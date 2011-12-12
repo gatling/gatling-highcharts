@@ -7,9 +7,12 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>gatling-charts-highcharts</artifactId>
+	<name>toto</name>
 
 	<properties>
-		<gatling-bundle-content>${settings.localRepository}/com/excilys/ebi/gatling/gatling-bundle/${gatling.version}/gatling-bundle-${gatling.version}-bundle.zip/gatling-bundle-${gatling.version}</gatling-bundle-content>
+		<gatling-bundle-artifactIdVersion>gatling-bundle-${gatling.version}</gatling-bundle-artifactIdVersion>
+		<gatling-highcharts-artifactIdVersion>${project.artifactId}-${project.version}</gatling-highcharts-artifactIdVersion>
+		<gatling-bundle-content>${settings.localRepository}/com/excilys/ebi/gatling/gatling-bundle/${gatling.version}/${gatling-bundle-artifactIdVersion}-bundle.zip/${gatling-bundle-artifactIdVersion}</gatling-bundle-content>
 	</properties>
 
 	<dependencies>
@@ -69,7 +72,7 @@
 						<phase>package</phase>
 						<configuration>
 							<from>${gatling-bundle-content}</from>
-							<to>${project.build.directory}/gatling-charts-highcharts-${project.version}-bundle.zip/gatling-charts-highcharts-${project.version}</to>
+							<to>${project.build.directory}/${gatling-highcharts-artifactIdVersion}-bundle.zip/${gatling-highcharts-artifactIdVersion}</to>
 						</configuration>
 					</execution>
 					<execution>
@@ -80,7 +83,7 @@
 						<phase>package</phase>
 						<configuration>
 							<from>${gatling-bundle-content}</from>
-							<to>${project.build.directory}/gatling-charts-highcharts-${project.version}-bundle.tar.gz/gatling-charts-highcharts-${project.version}</to>
+							<to>${project.build.directory}/${gatling-highcharts-artifactIdVersion}-bundle.tar.gz/${gatling-highcharts-artifactIdVersion}</to>
 						</configuration>
 					</execution>
 				</executions>
