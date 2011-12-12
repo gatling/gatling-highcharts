@@ -10,7 +10,6 @@
 
 	<modules>
 		<module>gatling-charts-highcharts</module>
-
 	</modules>
 
 	<licenses>
@@ -77,6 +76,7 @@
 		<maven-release-plugin.version>2.2.1</maven-release-plugin.version>
 		<maven-scalate-plugin.version>1.5.2</maven-scalate-plugin.version>
 		<maven-licence-plugin.version>1.9.0</maven-licence-plugin.version>
+		<truezip-maven-plugin.version>1.0-beta-5</truezip-maven-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -88,13 +88,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<dependencies>
-		<dependency>
-			<groupId>com.excilys.ebi.gatling</groupId>
-			<artifactId>gatling-charts</artifactId>
-		</dependency>
-	</dependencies>
 
 	<build>
 		<pluginManagement>
@@ -125,6 +118,11 @@
 					<groupId>com.mycila.maven-license-plugin</groupId>
 					<artifactId>maven-license-plugin</artifactId>
 					<version>${maven-licence-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>truezip-maven-plugin</artifactId>
+					<version>${truezip-maven-plugin.version}</version>
 				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->

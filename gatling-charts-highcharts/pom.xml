@@ -8,6 +8,10 @@
 	</parent>
 	<artifactId>gatling-charts-highcharts</artifactId>
 
+	<properties>
+		<gatling-bundle-content>${settings.localRepository}/com/excilys/ebi/gatling/gatling-bundle/${gatling.version}/gatling-bundle-${gatling.version}-bundle.zip/gatling-bundle-${gatling.version}</gatling-bundle-content>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.excilys.ebi.gatling</groupId>
@@ -56,7 +60,6 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>truezip-maven-plugin</artifactId>
-				<version>1.0-beta-5</version>
 				<executions>
 					<execution>
 						<id>merge-zip</id>
@@ -65,7 +68,7 @@
 						</goals>
 						<phase>package</phase>
 						<configuration>
-							<from>${settings.localRepository}/com/excilys/ebi/gatling/gatling-bundle/${gatling.version}/gatling-bundle-${gatling.version}-bundle.zip/gatling-bundle-${gatling.version}</from>
+							<from>${gatling-bundle-content}</from>
 							<to>${project.build.directory}/gatling-charts-highcharts-${project.version}-bundle.zip/gatling-charts-highcharts-${project.version}</to>
 						</configuration>
 					</execution>
@@ -76,7 +79,7 @@
 						</goals>
 						<phase>package</phase>
 						<configuration>
-							<from>${settings.localRepository}/com/excilys/ebi/gatling/gatling-bundle/${gatling.version}/gatling-bundle-${gatling.version}-bundle.zip/gatling-bundle-${gatling.version}</from>
+							<from>${gatling-bundle-content}</from>
 							<to>${project.build.directory}/gatling-charts-highcharts-${project.version}-bundle.tar.gz/gatling-charts-highcharts-${project.version}</to>
 						</configuration>
 					</execution>
