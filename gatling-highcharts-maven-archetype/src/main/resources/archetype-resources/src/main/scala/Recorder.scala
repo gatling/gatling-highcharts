@@ -9,6 +9,7 @@ object Recorder extends App {
 	val projectDir = File(url).parents(2)
 
 	val outputFolder = projectDir / "src/main/scala" / "${package}".replace(".", "/")
+	val requestBodiesFolder = projectDir / "src/main/resources/request-bodies"
 
-	GatlingHttpProxyUI.main(Array("-scala", "-of", outputFolder, "-run", "-eclipse", "${package}"))
+	GatlingHttpProxyUI.main(Array("-scala", "-of", outputFolder, "-run", "-eclipse", "${package}", "-rbf", requestBodiesFolder))
 }
