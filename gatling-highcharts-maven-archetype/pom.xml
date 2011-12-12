@@ -1,33 +1,65 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>gatling-highcharts</artifactId>
 		<groupId>com.excilys.ebi.gatling.highcharts</groupId>
 		<version>1.0.0-SNAPSHOT</version>
-		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>gatling-highcharts-maven-archetype</artifactId>
 	<packaging>maven-archetype</packaging>
-	<name>gatling-highcharts-maven-archetype</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.excilys.ebi.gatling.highcharts</groupId>
+			<artifactId>gatling-charts-highcharts</artifactId>
+			<scope>provided</scope> <!-- ensure gatling-charts-highcharts is built before -->
+		</dependency>
+	</dependencies>
 
 	<build>
 		<extensions>
 			<extension>
 				<groupId>org.apache.maven.archetype</groupId>
 				<artifactId>archetype-packaging</artifactId>
-				<version>2.1</version>
 			</extension>
 		</extensions>
-
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<artifactId>maven-archetype-plugin</artifactId>
-					<version>2.1</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>truezip-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>merge-assets</id>
+						<goals>
+							<goal>cp</goal>
+						</goals>
+						<phase>process-resources</phase>
+						<configuration>
+							<from>${settings.localRepository}/com/excilys/ebi/gatling/highcharts/gatling-charts-highcharts/${project.version}/gatling-charts-highcharts-${project.version}-bundle.zip/gatling-charts-highcharts-${project.version}/assets</from>
+							<to>${project.build.directory}/classes/archetype-resources/src/main/resources/assets</to>
+						</configuration>
+					</execution>
+					<execution>
+						<id>merge-conf</id>
+						<goals>
+							<goal>cp</goal>
+						</goals>
+						<phase>process-resources</phase>
+						<configuration>
+							<from>${settings.localRepository}/com/excilys/ebi/gatling/highcharts/gatling-charts-highcharts/${project.version}/gatling-charts-highcharts-${project.version}-bundle.zip/gatling-charts-highcharts-${project.version}/conf</from>
+							<to>${project.build.directory}/classes/archetype-resources/src/main/resources</to>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>com.mycila.maven-license-plugin</groupId>
 				<artifactId>maven-license-plugin</artifactId>

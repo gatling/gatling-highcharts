@@ -78,10 +78,18 @@
 		<maven-scalate-plugin.version>1.5.2</maven-scalate-plugin.version>
 		<maven-licence-plugin.version>1.9.0</maven-licence-plugin.version>
 		<truezip-maven-plugin.version>1.0-beta-5</truezip-maven-plugin.version>
+		<maven-archetype-plugin.version>2.2</maven-archetype-plugin.version>
+		<archetype-packaging.version>2.2</archetype-packaging.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.excilys.ebi.gatling.highcharts</groupId>
+				<artifactId>gatling-charts-highcharts</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>com.excilys.ebi.gatling</groupId>
 				<artifactId>gatling-charts</artifactId>
@@ -116,6 +124,10 @@
 					<version>${maven-release-plugin.version}</version><!--$NO-MVN-MAN-VER$ -->
 				</plugin>
 				<plugin>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>${maven-archetype-plugin.version}</version>
+				</plugin>
+				<plugin>
 					<groupId>com.mycila.maven-license-plugin</groupId>
 					<artifactId>maven-license-plugin</artifactId>
 					<version>${maven-licence-plugin.version}</version>
@@ -147,9 +159,33 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											truezip-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.0-beta-5,)
+										</versionRange>
+										<goals>
+											<goal>cp</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.archetype</groupId>
+					<artifactId>archetype-packaging</artifactId>
+					<version>${archetype-packaging.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
