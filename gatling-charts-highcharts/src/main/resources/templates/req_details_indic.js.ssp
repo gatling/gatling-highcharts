@@ -1,0 +1,55 @@
+<%@ val pieSeries: com.excilys.ebi.gatling.highcharts.series.PieSeries %>
+<%@ val categories: List[String] %>
+<%@ val series: List[com.excilys.ebi.gatling.highcharts.series.StackedColumnSeries] %>
+var chart = new Highcharts.Chart({
+   chart: {
+      renderTo: 'container_indicators',
+      marginRight: 160
+   },
+   credits: {
+      enabled: false
+   },
+   legend: {
+      enabled: false
+   },
+   title: {
+      text: 'Indicators'
+   },
+   xAxis: {
+      categories: [<%= categories.mkString("'", "', '", "'") %>]
+   },
+   yAxis: {
+   	  title: {
+   	     text: 'Number of Requests'
+   	  }
+   },
+   tooltip: {
+      formatter: function() {
+         var s;
+         if (this.point.name) { // the pie chart
+            s = ''+ this.point.name +': '+ this.y +' requests';
+         } else {
+            s = ''+ this.y + ' requests';
+         }
+         return s;
+      }
+   },
+   plotOptions: {
+      series: {
+         stacking: 'normal'
+      }
+   },
+   series: [
+   <%= series.mkString("{", "}, {", "}") %>,
+   {
+      <%= pieSeries %>,
+      center: [500, 60],
+      size: 100,
+      showInLegend: false,
+      dataLabels: {
+         enabled: false
+      }
+   }]
+});
+   
+   

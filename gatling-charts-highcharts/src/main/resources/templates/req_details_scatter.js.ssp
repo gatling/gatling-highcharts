@@ -1,0 +1,74 @@
+<%@ val successes: com.excilys.ebi.gatling.highcharts.series.ScatterSeries  %>
+<%@ val failures: com.excilys.ebi.gatling.highcharts.series.ScatterSeries %>
+
+var req_details_scatter_chart;
+
+if(<%= successes.data.size.toString %> > 50000){
+	$("#container_dispersion").attr("style", "background-color:white");
+	$("#container_dispersion").append('<div style="height:100px;width:400px;margin:0 auto;padding:150px"><p>There are more than 50 000 points to draw.<br/>This could take a long time or even crash your browser.<br/>Do you want to display the chart anyway?</p><input type="button" value="Display" id="disp_chart" style="width:100px;margin:20px auto;display:block" /></div>');
+	$("#disp_chart").click(function(){display_chart()});
+} else {
+	display_chart();
+}
+
+function display_chart(){
+   req_details_scatter_chart = new Highcharts.Chart({
+      chart: {
+         renderTo: 'container_dispersion', 
+         defaultSeriesType: 'scatter',
+         zoomType: 'xy'
+      },
+      credits: {
+         enabled: false
+      },
+      title: {
+         text: 'Response time against the global number of requests per second'
+      },
+      xAxis: {
+         title: {
+            enabled: true,
+            text: 'Global number of requests per second'
+         },
+         startOnTick: true,
+         endOnTick: true,
+         showLastLabel: true
+      },
+      yAxis: {
+         title: {
+            text: 'Response time'
+         }
+      },
+      tooltip: {
+         formatter: function() {
+                   return ''+
+               this.y +' ms at ' + this.x + ' allreq/s';
+         }
+      },
+      legend: {
+         enabled: false
+      },
+      plotOptions: {
+         scatter: {
+            marker: {
+               radius: 3,
+               states: {
+                  hover: {
+                     enabled: true,
+                     lineColor: 'rgb(100,100,100)'
+                  }
+               }
+            },
+            states: {
+               hover: {
+                  marker: {
+                     enabled: false
+                  }
+               }
+            }
+         }
+      },
+      series: [{ <%= successes %> }, { <%= failures %> } ]
+   });
+}
+   
+   

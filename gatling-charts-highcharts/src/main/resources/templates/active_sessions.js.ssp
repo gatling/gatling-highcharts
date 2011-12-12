@@ -1,0 +1,52 @@
+<%  import com.excilys.ebi.gatling.charts.util.Colors._ %>
+<%@ val chartTitle: String %>
+<%@ val series: Seq[com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries] %>
+var response_time_chart = new Highcharts.StockChart({
+    chart: {
+        renderTo: 'container',
+        zoomType: 'x'
+    },
+    credits: {
+    	enabled: false
+    },
+    legend: {
+      enabled: true,
+      floating: true,
+      y: -345,
+      borderWidth: 0
+    },
+    rangeSelector: {
+    	buttons : [{
+			type : 'minute',
+			count : 1,
+			text : '1m'
+		}, {
+			type : 'minute',
+			count : 10,
+			text : '10m'
+		}, {
+			type : 'hour',
+			count : 1,
+			text : '1h'
+		}, {
+		    type : 'all',
+		    count : 1,
+		    text : 'All'
+		}],
+		selected : 3,
+		inputEnabled : false
+    },
+    xAxis: {
+    	type: 'datetime',
+        maxZoom: 10000 // three days
+    },
+    yAxis: {
+        title: {
+            text: 'Number of Active Sessions'
+        }
+    },
+    title: {
+        text: '<%= chartTitle %>'
+    },
+    series: [<%= series.mkString("{", "},{", "}") %>]
+});

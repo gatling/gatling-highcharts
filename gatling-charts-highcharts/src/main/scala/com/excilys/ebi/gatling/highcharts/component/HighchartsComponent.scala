@@ -1,0 +1,17 @@
+/**
+ * Copyright 2011 eBusiness Information, Groupe Excilys (www.excilys.com)
+ *
+ * Licensed under the Gatling Highcharts License
+ */
+package com.excilys.ebi.gatling.highcharts.component
+import com.excilys.ebi.gatling.charts.component.Component
+import com.excilys.ebi.gatling.highcharts.config.HighchartsFiles.{ HIGHSTOCK_FILE, HIGHCHARTS_FILE }
+import com.excilys.ebi.gatling.highcharts.template.Template
+
+abstract class HighchartsComponent(template: Template) extends Component {
+	def getHTMLContent: String = template.getHTMLContent
+
+	def getJavascriptContent: String = template.getJSContent
+
+	def getJavascriptFiles: Seq[String] = Seq(HIGHCHARTS_FILE, HIGHSTOCK_FILE)
+}
