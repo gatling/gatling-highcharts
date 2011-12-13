@@ -7,6 +7,7 @@
 			<includes>
 				<include>**/Engine.scala</include>
 				<include>**/Recorder.scala</include>
+				<include>**/IDEPathHelper.scala</include>
 			</includes>
 		</fileSet>
 		<fileSet encoding="UTF-8" packaged="true" filtered="true">
