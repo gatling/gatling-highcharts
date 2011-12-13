@@ -6,14 +6,15 @@
 	<version>${version}</version>
 
 	<properties>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-		<encoding>UTF-8</encoding>
-		<scala.version>2.9.1</scala.version>
-		<gatling.version>1.0.0-SNAPSHOT</gatling.version>
-		<gatling-highcharts.version>1.0.0-SNAPSHOT</gatling-highcharts.version>
+		<maven.compiler.source>${maven.compiler.source}</maven.compiler.source>
+		<maven.compiler.target>${maven.compiler.target}</maven.compiler.target>
+		<scala.version>${scala.version}</scala.version>
+		<encoding>${encoding}</encoding>
 
-		<maven-scala-plugin.version>2.15.2</maven-scala-plugin.version>
+		<gatling.version>${gatling.version}</gatling.version>
+		<gatling-highcharts.version>${version}</gatling-highcharts.version>
+
+		<maven-scala-plugin.version>${maven-scala-plugin.version}</maven-scala-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -21,7 +22,7 @@
 			<dependency>
 				<groupId>com.excilys.ebi.gatling</groupId>
 				<artifactId>gatling-app</artifactId>
-				<version>${gatling.version}</version>
+				<version>\${gatling.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>ch.qos.logback</groupId>
@@ -32,17 +33,17 @@
 			<dependency>
 				<groupId>com.excilys.ebi.gatling</groupId>
 				<artifactId>gatling-recorder</artifactId>
-				<version>${gatling.version}</version>
+				<version>\${gatling.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.excilys.ebi.gatling.highcharts</groupId>
 				<artifactId>gatling-charts-highcharts</artifactId>
-				<version>${gatling-highcharts.version}</version>
+				<version>\${gatling-highcharts.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.scala-lang</groupId>
 				<artifactId>scala-library</artifactId>
-				<version>${scala.version}</version>
+				<version>\${scala.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -65,14 +66,13 @@
 		</dependency>
 	</dependencies>
 
-
 	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.scala-tools</groupId>
 					<artifactId>maven-scala-plugin</artifactId>
-					<version>${maven-scala-plugin.version}</version>
+					<version>\${maven-scala-plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -90,7 +90,7 @@
 							<args>
 								<arg>-make:transitive</arg>
 								<arg>-dependencyfile</arg>
-								<arg>${project.build.directory}/.scala_dependencies</arg>
+								<arg>\${project.build.directory}/.scala_dependencies</arg>
 							</args>
 						</configuration>
 					</execution>

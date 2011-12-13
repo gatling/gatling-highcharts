@@ -80,6 +80,7 @@
 		<truezip-maven-plugin.version>1.0-beta-5</truezip-maven-plugin.version>
 		<maven-archetype-plugin.version>2.2</maven-archetype-plugin.version>
 		<archetype-packaging.version>2.2</archetype-packaging.version>
+		<maven-resources-plugin.version>2.5</maven-resources-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -186,6 +187,14 @@
 					<groupId>org.apache.maven.archetype</groupId>
 					<artifactId>archetype-packaging</artifactId>
 					<version>${archetype-packaging.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin.version}</version>
+					<configuration>
+						<escapeString>\</escapeString>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
