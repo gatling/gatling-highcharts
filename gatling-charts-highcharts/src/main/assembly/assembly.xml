@@ -1,10 +1,5 @@
-<!--
-
-    Copyright 2011-2012 eBusiness Information, Groupe Excilys (www.excilys.com)
-
-    Licensed under the Gatling Highcharts License
-
--->
+<!-- Copyright 2011-2012 eBusiness Information, Groupe Excilys (www.excilys.com)
+	Licensed under the Gatling Highcharts License -->
 <!-- Copyright 2011 eBusiness Information, Groupe Excilys (www.excilys.com)
 	Licensed under the Gatling Highcharts License -->
 <assembly
@@ -21,18 +16,16 @@
 		<dependencySet>
 			<unpack>false</unpack>
 			<outputDirectory>lib/</outputDirectory>
-			<includes>
-				<include>com.excilys.ebi.gatling.highcharts:gatling-charts-highcharts</include>
-			</includes>
+			<excludes></excludes>
 		</dependencySet>
 	</dependencySets>
 	<fileSets>
 		<fileSet>
-			<directory>src/main/assembly/assembly-structure</directory>
+			<directory>target/gatling-bundle</directory>
 			<outputDirectory>/</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>target/gatling-bundle</directory>
+			<directory>src/main/assembly/assembly-structure</directory>
 			<outputDirectory>/</outputDirectory>
 		</fileSet>
 	</fileSets>
