@@ -16,14 +16,14 @@
 	<licenses>
 		<license>
 			<name>Gatling Highcharts License</name>
-			<url>http://no-url-at-the-moment</url>
+			<url>https://raw.github.com/excilys/gatling-highcharts/master/gatling-charts-highcharts/src/main/resources/META-INF/LICENCE</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
 
 	<scm>
-		<connection>scm:git:git://github.com/excilys/gatling-highcharts.git</connection>
-		<developerConnection>scm:git@github.com:excilys/gatling-highcharts.git</developerConnection>
+		<connection>scm:git:git@github.com:excilys/gatling-highcharts.git</connection>
+		<developerConnection>scm:git:git@github.com:excilys/gatling-highcharts.git</developerConnection>
 		<url>https://github.com/excilys/gatling-highcharts</url>
 	</scm>
 
