@@ -14,8 +14,11 @@ var req_details_resp_time_chart = new Highcharts.StockChart({
 	legend: {
 		enabled: true,
 		floating: true,
-		y: -345,
+		y: -285,
 		borderWidth: 0
+	},
+	title: {
+	  text: 'A title to let highcharts reserve the place for the title set later'
 	},
 	rangeSelector: {
 		buttons : [{
@@ -62,9 +65,6 @@ var req_details_resp_time_chart = new Highcharts.StockChart({
 		},
 		opposite: true
 	}],
-	title: {
-		text: '<%= chartTitle %>'
-	},
 	series: [
 	<% if(!successSeries.data.isEmpty){ %>
 	{<%= successSeries %>, yAxis: 0},
@@ -74,3 +74,10 @@ var req_details_resp_time_chart = new Highcharts.StockChart({
 	<% } %>
 	{<%= activeSessionsSeries %>, yAxis: 1}]
 });
+
+req_details_resp_time_chart.setTitle({
+	text: '<span class="chart_title chart_title_"><%= chartTitle %></span>',
+	useHTML: true
+});
+
+req_details_resp_time_chart.redraw();

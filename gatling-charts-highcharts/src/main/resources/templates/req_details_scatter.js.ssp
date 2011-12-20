@@ -21,9 +21,6 @@ function display_chart(){
       credits: {
          enabled: false
       },
-      title: {
-         text: 'Response time against the global number of requests per second'
-      },
       xAxis: {
          title: {
             enabled: true,
@@ -33,6 +30,9 @@ function display_chart(){
          endOnTick: true,
          showLastLabel: true
       },
+	  title: {
+	     text: 'A title to let highcharts reserve the place for the title set later'
+	  },
       yAxis: {
          title: {
             text: 'Response time'
@@ -45,8 +45,8 @@ function display_chart(){
          }
       },
       legend: {
-         enabled: false
-      },
+		enabled: false
+	  },
       plotOptions: {
          scatter: {
             marker: {
@@ -69,6 +69,10 @@ function display_chart(){
       },
       series: [{ <%= successes %> }, { <%= failures %> } ]
    });
+   req_details_scatter_chart.setTitle({
+	text: '<span class="chart_title">Response time against the global number of requests per second</span>',
+	useHTML: true
+   });
 }
-   
+
    

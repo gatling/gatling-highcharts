@@ -21,6 +21,7 @@ object HighchartsFiles {
 	val REQUESTS_HTML_TEMPLATE = GATLING_TEMPLATE / "requests.html.ssp"
 	val REQUESTS_JS_TEMPLATE = GATLING_TEMPLATE / "requests.js.ssp"
 
+	val HIGHCARTS_THEME_FILE = "theme.js"
 	val HIGHCHARTS_FILE = "highcharts.js"
 	val HIGHSTOCK_FILE = "highstock.js"
 

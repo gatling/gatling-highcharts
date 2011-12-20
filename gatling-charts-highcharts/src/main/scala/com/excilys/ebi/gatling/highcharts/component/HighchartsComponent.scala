@@ -5,7 +5,7 @@
  */
 package com.excilys.ebi.gatling.highcharts.component
 import com.excilys.ebi.gatling.charts.component.Component
-import com.excilys.ebi.gatling.highcharts.config.HighchartsFiles.{ HIGHSTOCK_FILE, HIGHCHARTS_FILE }
+import com.excilys.ebi.gatling.highcharts.config.HighchartsFiles.{ HIGHSTOCK_FILE, HIGHCHARTS_FILE, HIGHCARTS_THEME_FILE }
 import com.excilys.ebi.gatling.highcharts.template.Template
 
 abstract class HighchartsComponent(template: Template) extends Component {
@@ -13,5 +13,5 @@ abstract class HighchartsComponent(template: Template) extends Component {
 
 	def getJavascriptContent: String = template.getJSContent
 
-	def getJavascriptFiles: Seq[String] = Seq(HIGHCHARTS_FILE, HIGHSTOCK_FILE)
+	def getJavascriptFiles: Seq[String] = Seq(HIGHCHARTS_FILE, HIGHSTOCK_FILE, HIGHCARTS_THEME_FILE)
 }

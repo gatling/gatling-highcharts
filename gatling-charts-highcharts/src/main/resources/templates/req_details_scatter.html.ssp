@@ -1,1 +1,3 @@
-<div id="container_dispersion" class="chart_block"></div>
+						<div class="schema geant">
+							<div id="container_dispersion" class="geant"></div>
+						</div>

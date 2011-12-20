@@ -11,7 +11,7 @@ Highcharts.setOptions({
 var chart = new Highcharts.Chart({
    chart: {
       renderTo: 'container_indicators',
-      marginRight: 160
+      marginRight: 150
    },
    credits: {
       enabled: false
@@ -20,7 +20,7 @@ var chart = new Highcharts.Chart({
       enabled: false
    },
    title: {
-      text: 'Indicators'
+	 text: 'A title to let highcharts reserve the place for the title set later'
    },
    xAxis: {
       categories: [<%= categories.mkString("'", "', '", "'") %>]
@@ -50,7 +50,7 @@ var chart = new Highcharts.Chart({
    <%= series.mkString("{", "}, {", "}") %>,
    {
       <%= pieSeries %>,
-      center: [500, 60],
+      center: [540, 60],
       size: 100,
       showInLegend: false,
       dataLabels: {
@@ -58,5 +58,9 @@ var chart = new Highcharts.Chart({
       }
    }]
 });
-   
+
+chart.setTitle({
+	text: '<span class="chart_title">Indicators</span>',
+	useHTML: true
+});
    

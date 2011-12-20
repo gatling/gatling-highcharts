@@ -8,7 +8,7 @@ Highcharts.setOptions({
 	}
 });
 
-var response_time_chart = new Highcharts.StockChart({
+var chart = new Highcharts.StockChart({
 	chart: {
 		renderTo: 'container',
 		zoomType: 'x'
@@ -19,8 +19,11 @@ var response_time_chart = new Highcharts.StockChart({
 	legend: {
 		enabled: true,
 		floating: true,
-		y: -345,
+		y: -285,
 		borderWidth: 0
+	},
+	title: {
+	  text: 'A title to let highcharts reserve the place for the title set later'
 	},
 	rangeSelector: {
 		buttons : [{
@@ -53,8 +56,11 @@ var response_time_chart = new Highcharts.StockChart({
 			text: 'Number of Active Sessions'
 		}
 	},
-	title: {
-		text: '<%= chartTitle %>'
-	},
 	series: [<%= series.mkString("{", "},{", "}") %>]
+});
+
+
+chart.setTitle({
+	text: '<span class="chart_title"><%= chartTitle %></span>',
+	useHTML: true
 });
