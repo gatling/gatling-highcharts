@@ -101,6 +101,11 @@
 				<artifactId>gatling-charts</artifactId>
 				<version>${gatling.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.excilys.ebi.gatling</groupId>
+				<artifactId>gatling-recorder</artifactId>
+				<version>${gatling.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

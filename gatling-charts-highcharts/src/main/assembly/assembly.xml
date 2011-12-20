@@ -15,8 +15,17 @@
 	<dependencySets>
 		<dependencySet>
 			<unpack>false</unpack>
-			<outputDirectory>lib/</outputDirectory>
-			<excludes></excludes>
+			<outputDirectory>lib</outputDirectory>
+			<excludes>
+				<exclude>com.excilys.ebi.gatling:gatling-recorder</exclude>
+			</excludes>
+		</dependencySet>
+		<dependencySet>
+			<unpack>false</unpack>
+			<outputDirectory>recorder</outputDirectory>
+			<includes>
+				<include>com.excilys.ebi.gatling:gatling-recorder</include>
+			</includes>
 		</dependencySet>
 	</dependencySets>
 	<fileSets>
