@@ -1,3 +1,8 @@
+/*
+ * Copyright 2011-2012 eBusiness Information, Groupe Excilys (www.excilys.com)
+ *
+ * Licensed under the Gatling Highcharts License
+ */
 Highcharts.theme = {
 	chart: {
 		backgroundColor: '#e6e5e0',
