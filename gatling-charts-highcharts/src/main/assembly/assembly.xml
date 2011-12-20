@@ -42,10 +42,6 @@
 			<outputDirectory>/conf</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>target/gatling-bundle/recorder</directory>
-			<outputDirectory>/recorder</outputDirectory>
-		</fileSet>
-		<fileSet>
 			<directory>target/gatling-bundle/results</directory>
 			<outputDirectory>/results</outputDirectory>
 		</fileSet>
