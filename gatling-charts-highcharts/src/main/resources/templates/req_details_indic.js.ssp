@@ -1,6 +1,13 @@
 <%@ val pieSeries: com.excilys.ebi.gatling.highcharts.series.PieSeries %>
 <%@ val categories: List[String] %>
 <%@ val series: List[com.excilys.ebi.gatling.highcharts.series.StackedColumnSeries] %>
+
+Highcharts.setOptions({
+	global: {
+		useUTC: false
+	}
+});
+
 var chart = new Highcharts.Chart({
    chart: {
       renderTo: 'container_indicators',

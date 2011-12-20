@@ -4,6 +4,13 @@
 <%@ val series: List[com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries] %>
 <%@ val pieSeries: com.excilys.ebi.gatling.highcharts.series.PieSeries %>
 <%@ val activeSessions: com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries %>
+
+Highcharts.setOptions({
+	global: {
+		useUTC: false
+	}
+});
+
 var chart = new Highcharts.StockChart({
 	chart: {
 		renderTo: 'container',
