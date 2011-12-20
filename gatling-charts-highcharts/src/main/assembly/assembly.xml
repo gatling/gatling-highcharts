@@ -21,8 +21,28 @@
 	</dependencySets>
 	<fileSets>
 		<fileSet>
-			<directory>target/gatling-bundle</directory>
-			<outputDirectory>/</outputDirectory>
+			<directory>target/gatling-bundle/assets</directory>
+			<outputDirectory>/assets</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>target/gatling-bundle/bin</directory>
+			<outputDirectory>/bin</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>target/gatling-bundle/conf</directory>
+			<outputDirectory>/conf</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>target/gatling-bundle/recorder</directory>
+			<outputDirectory>/recorder</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>target/gatling-bundle/results</directory>
+			<outputDirectory>/results</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>target/gatling-bundle/user-files</directory>
+			<outputDirectory>/user-files</outputDirectory>
 		</fileSet>
 		<fileSet>
 			<directory>src/main/assembly/assembly-structure</directory>
