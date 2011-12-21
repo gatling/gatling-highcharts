@@ -67,7 +67,7 @@
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<encoding>UTF-8</encoding>
 		<scala.version>2.9.1</scala.version>
-		<gatling.version>1.0.0</gatling.version>
+		<gatling.version>1.0.1-SNAPSHOT</gatling.version>
 
 		<maven-assembly-plugin.version>2.2.2</maven-assembly-plugin.version>
 		<maven-jar-plugin.version>2.3.2</maven-jar-plugin.version>
