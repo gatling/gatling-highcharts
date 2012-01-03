@@ -30,23 +30,23 @@
 	</dependencySets>
 	<fileSets>
 		<fileSet>
-			<directory>target/gatling-bundle/assets</directory>
+			<directory>target/gatling-bundle-${gatling.version}/assets</directory>
 			<outputDirectory>/assets</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>target/gatling-bundle/bin</directory>
+			<directory>target/gatling-bundle-${gatling.version}/bin</directory>
 			<outputDirectory>/bin</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>target/gatling-bundle/conf</directory>
+			<directory>target/gatling-bundle-${gatling.version}/conf</directory>
 			<outputDirectory>/conf</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>target/gatling-bundle/results</directory>
+			<directory>target/gatling-bundle-${gatling.version}/results</directory>
 			<outputDirectory>/results</outputDirectory>
 		</fileSet>
 		<fileSet>
-			<directory>target/gatling-bundle/user-files</directory>
+			<directory>target/gatling-bundle-${gatling.version}/user-files</directory>
 			<outputDirectory>/user-files</outputDirectory>
 		</fileSet>
 		<fileSet>

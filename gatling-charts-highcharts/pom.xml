@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>gatling-highcharts</artifactId>
@@ -6,11 +7,6 @@
 		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>gatling-charts-highcharts</artifactId>
-
-	<properties>
-		<gatling-bundle-artifactIdVersion>gatling-bundle-${gatling.version}</gatling-bundle-artifactIdVersion>
-		<gatling-bundle-content>${settings.localRepository}/com/excilys/ebi/gatling/gatling-bundle/${gatling.version}/${gatling-bundle-artifactIdVersion}-bundle.zip/${gatling-bundle-artifactIdVersion}</gatling-bundle-content>
-	</properties>
 
 	<dependencies>
 		<dependency>
@@ -30,19 +26,47 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>truezip-maven-plugin</artifactId>
+				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>extract-to-tmp</id>
+						<id>unpack-gatling-bundle</id>
+						<phase>package</phase>
 						<goals>
-							<goal>cp</goal>
+							<goal>unpack</goal>
 						</goals>
 						<configuration>
-							<from>${gatling-bundle-content}</from>
-							<to>${project.build.directory}/gatling-bundle</to>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.excilys.ebi.gatling</groupId>
+									<artifactId>gatling-bundle</artifactId>
+									<version>${gatling.version}</version>
+									<type>zip</type>
+									<classifier>bundle</classifier>
+									<outputDirectory>${project.build.directory}</outputDirectory>
+								</artifactItem>
+							</artifactItems>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>filter-assembly-descriptor</id>
 						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>src/main/assembly/filter</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+							<outputDirectory>${project.build.directory}</outputDirectory>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -50,7 +74,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptors>
-						<descriptor>src/main/assembly/assembly.xml</descriptor>
+						<descriptor>${project.build.directory}/assembly.xml</descriptor>
 					</descriptors>
 				</configuration>
 				<executions>

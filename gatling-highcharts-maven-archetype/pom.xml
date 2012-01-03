@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>gatling-highcharts</artifactId>
@@ -38,29 +39,62 @@
 		</pluginManagement>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>truezip-maven-plugin</artifactId>
+				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>merge-assets</id>
-						<goals>
-							<goal>cp</goal>
-						</goals>
+						<id>unpack-gatling-bundle</id>
 						<phase>process-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
 						<configuration>
-							<from>${settings.localRepository}/com/excilys/ebi/gatling/highcharts/gatling-charts-highcharts/${project.version}/gatling-charts-highcharts-${project.version}-bundle.zip/gatling-charts-highcharts-${project.version}/assets</from>
-							<to>${project.build.directory}/classes/archetype-resources/src/main/resources/assets</to>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.excilys.ebi.gatling.highcharts</groupId>
+									<artifactId>gatling-charts-highcharts</artifactId>
+									<version>${project.version}</version>
+									<type>zip</type>
+									<classifier>bundle</classifier>
+									<outputDirectory>${project.build.directory}</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-assets</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>${project.build.directory}/gatling-charts-highcharts-${project.version}/assets</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+							<outputDirectory>${project.build.directory}/classes/archetype-resources/src/main/resources/assets</outputDirectory>
 						</configuration>
 					</execution>
 					<execution>
-						<id>merge-conf</id>
-						<goals>
-							<goal>cp</goal>
-						</goals>
+						<id>copy-conf</id>
 						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
 						<configuration>
-							<from>${settings.localRepository}/com/excilys/ebi/gatling/highcharts/gatling-charts-highcharts/${project.version}/gatling-charts-highcharts-${project.version}-bundle.zip/gatling-charts-highcharts-${project.version}/conf</from>
-							<to>${project.build.directory}/classes/archetype-resources/src/main/resources</to>
+							<resources>
+								<resource>
+									<directory>${project.build.directory}/gatling-charts-highcharts-${project.version}/conf</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+							<outputDirectory>${project.build.directory}/classes/archetype-resources/src/main/resources</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
