@@ -30,7 +30,7 @@
 				<executions>
 					<execution>
 						<id>unpack-gatling-bundle</id>
-						<phase>package</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>unpack</goal>
 						</goals>
@@ -54,7 +54,7 @@
 				<executions>
 					<execution>
 						<id>filter-assembly-descriptor</id>
-						<phase>package</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>

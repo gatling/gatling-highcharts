@@ -43,7 +43,7 @@
 				<executions>
 					<execution>
 						<id>unpack-gatling-bundle</id>
-						<phase>process-resources</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>unpack</goal>
 						</goals>
@@ -67,7 +67,7 @@
 				<executions>
 					<execution>
 						<id>copy-assets</id>
-						<phase>process-resources</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
@@ -83,7 +83,7 @@
 					</execution>
 					<execution>
 						<id>copy-conf</id>
-						<phase>process-resources</phase>
+						<phase>prepare-package</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
