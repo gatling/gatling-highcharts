@@ -5,5 +5,5 @@ import IDEPathHelper.{ requestBodiesFolder, outputFolder }
 
 object Recorder extends App {
 
-	GatlingHttpProxyUI.main(Array("-scala", "-of", outputFolder, "-run", "-eclipse", "com.excilys.ebi.gatling.toto", "-rbf", requestBodiesFolder))
+	GatlingHttpProxyUI.main(Array("-scala", "-of", outputFolder, "-run", "-ide", "${package}", "-rbf", requestBodiesFolder))
 }
