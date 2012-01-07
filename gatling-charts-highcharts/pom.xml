@@ -26,6 +26,17 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.fusesource.scalate</groupId>
+				<artifactId>maven-scalate-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>precompile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
