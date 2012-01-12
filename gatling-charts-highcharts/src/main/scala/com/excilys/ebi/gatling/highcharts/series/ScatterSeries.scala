@@ -6,12 +6,22 @@
 package com.excilys.ebi.gatling.highcharts.series
 
 import com.excilys.ebi.gatling.core.util.StringHelper.END_OF_LINE
+import scala.collection.mutable.ArrayBuffer
 
 class ScatterSeries(name: String, data: List[(Int, Int)], color: String) extends HighchartsSeries[Int, Int](name, data, List(color)) {
-	override def toString = new StringBuilder()
-		.append("type: 'scatter',").append(END_OF_LINE)
-		.append("color: '").append(color).append("',").append(END_OF_LINE)
-		.append("name: '").append(name).append("',").append(END_OF_LINE)
-		.append("data: [").append(data.map { entry => entry._1 + "," + entry._2 }.mkString("[", "], [", "]")).append("]")
-		.toString
+
+	def getElements: ArrayBuffer[String] = {
+		val buffer = new ArrayBuffer[String]
+		buffer += "type: 'scatter',"
+		buffer += "color: '" + color + "',"
+		buffer += "name: '" + name + "',"
+		buffer += "data: ["
+		if (data.isEmpty)
+			buffer += "[]"
+		else
+			buffer ++= data.map {
+				entry => new StringBuilder().append("[").append(entry._1).append(",").append(entry._2).append("]").toString
+			}.foldLeft(List[String]())((l, v) => "," :: v :: l).tail.reverse
+		buffer += "]"
+	}
 }

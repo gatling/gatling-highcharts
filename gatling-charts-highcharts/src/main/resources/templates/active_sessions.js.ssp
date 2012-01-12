@@ -56,7 +56,16 @@ var chart = new Highcharts.StockChart({
 			text: 'Number of Active Sessions'
 		}
 	},
-	series: [<%= series.mkString("{", "},{", "}") %>]
+	series: [
+		#for (i <- 0 until series.size)
+		{
+			<% series(i).getElements.foreach{ s =>%><%=s%><% } %>
+		}
+		#if (i != series.size -1)
+		,
+		#end
+		#end
+	]
 });
 
 

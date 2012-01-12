@@ -6,12 +6,20 @@
 package com.excilys.ebi.gatling.highcharts.series
 
 import com.excilys.ebi.gatling.core.util.StringHelper.END_OF_LINE
+import scala.collection.mutable.ArrayBuffer
 
 class StackedColumnSeries(name: String, data: List[(String, Int)], color: String) extends ColumnSeries(name, data, List(color)) {
-	override def toString = new StringBuilder()
-		.append("type: 'column',").append(END_OF_LINE)
-		.append("color: '").append(colors(0)).append("',").append(END_OF_LINE)
-		.append("name: '").append(name).append("',").append(END_OF_LINE)
-		.append("data: ").append(data.map { entry => entry._2 }.mkString("[", ",", "]")).append(",").append(END_OF_LINE)
-		.append("tooltip: { yDecimals: 0, ySuffix: 'ms' }").toString
+
+	def getElements: ArrayBuffer[String] = {
+		val buffer = new ArrayBuffer[String]
+		buffer += "type: 'column',"
+		buffer += "color: '" + colors(0) + "',"
+		buffer += "name: '" + name + "',"
+		buffer += "data: ["
+		if (!data.isEmpty)
+			buffer ++= data.map {
+				entry => entry._2.toString
+			}.foldLeft(List[String]())((l, v) => "," :: v :: l).tail.reverse
+		buffer += "], tooltip: { yDecimals: 0, ySuffix: 'ms' }"
+	}
 }

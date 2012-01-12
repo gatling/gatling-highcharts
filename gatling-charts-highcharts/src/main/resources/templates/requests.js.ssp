@@ -74,10 +74,16 @@ var chart = new Highcharts.StockChart({
 	}],
 	series:
 	[
-		<%= series.mkString("{", "},{", "}") %>,
-		{ <%= activeSessions %>, yAxis: 1 }
+		<% series.foreach{ serie => %>
+		{
+			<% serie.getElements.foreach{ s =>%><%=s%><% } %>
+  		},
+  		<% } %>
+		{
+		<% activeSessions.getElements.foreach{ s =>%><%=s%><% } %>
+		, yAxis: 1 }
 		, {
-			<%= pieSeries %>,
+			<% pieSeries.getElements.foreach{ s =>%><%=s%><% } %>,
 			center: [920, -20],
 			size: 70,
 			showInLegend: false,

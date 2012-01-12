@@ -9,58 +9,62 @@ Highcharts.setOptions({
 });
 
 var chart = new Highcharts.Chart({
-   chart: {
-      renderTo: 'container_indicators',
-      marginRight: 150
-   },
-   credits: {
-      enabled: false
-   },
-   legend: {
-      enabled: false
-   },
-   title: {
+	chart: {
+		renderTo: 'container_indicators',
+		marginRight: 150
+	},
+	credits: {
+		enabled: false
+	},
+	legend: {
+		enabled: false
+	},
+	title: {
 	 text: 'A title to let highcharts reserve the place for the title set later'
-   },
-   xAxis: {
-      categories: [<%= categories.mkString("'", "', '", "'") %>]
-   },
-   yAxis: {
-   	  title: {
-   	     text: 'Number of Requests'
-   	  }
-   },
-   tooltip: {
-      formatter: function() {
-         var s;
-         if (this.point.name) { // the pie chart
-            s = ''+ this.point.name +': '+ this.y +' requests';
-         } else {
-            s = ''+ this.y + ' requests';
-         }
-         return s;
-      }
-   },
-   plotOptions: {
-      series: {
-         stacking: 'normal'
-      }
-   },
-   series: [
-   <%= series.mkString("{", "}, {", "}") %>,
-   {
-      <%= pieSeries %>,
-      center: [540, 60],
-      size: 100,
-      showInLegend: false,
-      dataLabels: {
-         enabled: false
-      }
-   }]
+	},
+	xAxis: {
+		categories: [<%= categories.mkString("'", "', '", "'") %>]
+	},
+	yAxis: {
+		title: {
+			text: 'Number of Requests'
+		}
+	},
+	tooltip: {
+		formatter: function() {
+			var s;
+			if (this.point.name) { // the pie chart
+				s = ''+ this.point.name +': '+ this.y +' requests';
+			} else {
+				s = ''+ this.y + ' requests';
+			}
+			return s;
+		}
+	},
+	plotOptions: {
+		series: {
+			stacking: 'normal'
+		}
+	},
+	series: [
+	<% series.foreach{ serie => %>
+	{
+		<% serie.getElements.foreach{ s => %><%=s%><% } %>
+	}, 
+	<% } %>
+	{
+	<% pieSeries.getElements.foreach{ s => %><%=s%><% } %>,
+	center: [540, 60],
+	size: 100,
+	showInLegend: false,
+	dataLabels: {
+		enabled: false
+	}
+	}]
 });
 
 chart.setTitle({
 	text: '<span class="chart_title">Indicators</span>',
 	useHTML: true
 });
-   
+

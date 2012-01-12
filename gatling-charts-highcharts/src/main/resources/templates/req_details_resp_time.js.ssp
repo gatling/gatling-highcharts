@@ -67,12 +67,18 @@ var req_details_resp_time_chart = new Highcharts.StockChart({
 	}],
 	series: [
 	<% if(!successSeries.data.isEmpty){ %>
-	{<%= successSeries %>, yAxis: 0},
+	{
+		<% successSeries.getElements.foreach{ s => %><%=s%><% } %>
+		, yAxis: 0},
 	<% } %>
 	<% if(!failureSeries.data.isEmpty){ %>
-	{<%= failureSeries %>, yAxis: 0, marker: { radius: 3, enabled: true }},
+	{
+		<% failureSeries.getElements.foreach{ s => %><%=s%><% } %>
+		, yAxis: 0, marker: { radius: 3, enabled: true }},
 	<% } %>
-	{<%= activeSessionsSeries %>, yAxis: 1}]
+	{
+		<% activeSessionsSeries.getElements.foreach{ s => %><%=s%><% } %>
+	, yAxis: 1}]
 });
 
 req_details_resp_time_chart.setTitle({

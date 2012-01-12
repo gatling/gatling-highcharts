@@ -67,12 +67,14 @@ function display_chart(){
             }
          }
       },
-      series: [{ <%= successes %> }, { <%= failures %> } ]
+      series: [{ 
+      	<% successes.getElements.foreach { s => %><%=s%><% } %>
+      	}, {
+      	<% failures.getElements.foreach { s => %><%=s%><% } %>
+      } ]
    });
    req_details_scatter_chart.setTitle({
 	text: '<span class="chart_title">Response time against the global number of requests per second</span>',
 	useHTML: true
    });
 }
-
-   
