@@ -12,22 +12,17 @@
 		<dependencySet>
 			<unpack>false</unpack>
 			<outputDirectory>lib</outputDirectory>
-			<excludes>
-				<exclude>com.excilys.ebi.gatling:gatling-recorder</exclude>
-			</excludes>
-		</dependencySet>
-		<dependencySet>
-			<unpack>false</unpack>
-			<outputDirectory>recorder</outputDirectory>
-			<includes>
-				<include>com.excilys.ebi.gatling:gatling-recorder</include>
-			</includes>
 		</dependencySet>
 	</dependencySets>
 	<fileSets>
 		<fileSet>
 			<directory>target/gatling-bundle-${gatling.version}/assets</directory>
 			<outputDirectory>/assets</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>target/gatling-bundle-${gatling.version}/bin</directory>
+			<outputDirectory>/bin</outputDirectory>
+			<fileMode>0755</fileMode>
 		</fileSet>
 		<fileSet>
 			<directory>target/gatling-bundle-${gatling.version}/conf</directory>
@@ -46,15 +41,4 @@
 			<outputDirectory>/</outputDirectory>
 		</fileSet>
 	</fileSets>
-	<files>
-		<file>
-			<source>target/gatling-bundle-${gatling.version}/bin/gatling.sh</source>
-			<fileMode>0755</fileMode>
-			<outputDirectory>/bin/</outputDirectory>
-		</file>
-		<file>
-			<source>target/gatling-bundle-${gatling.version}/bin/gatling.bat</source>
-			<outputDirectory>/bin/</outputDirectory>
-		</file>
-	</files>
 </assembly>
