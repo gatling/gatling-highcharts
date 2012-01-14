@@ -16,10 +16,6 @@
 	</dependencySets>
 	<fileSets>
 		<fileSet>
-			<directory>target/gatling-bundle-${gatling.version}/assets</directory>
-			<outputDirectory>/assets</outputDirectory>
-		</fileSet>
-		<fileSet>
 			<directory>target/gatling-bundle-${gatling.version}/bin</directory>
 			<outputDirectory>/bin</outputDirectory>
 			<fileMode>0755</fileMode>

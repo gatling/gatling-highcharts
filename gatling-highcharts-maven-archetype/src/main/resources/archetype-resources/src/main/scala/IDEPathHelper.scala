@@ -9,7 +9,6 @@ object IDEPathHelper {
 	val dataFolder = projectDir / "src/main/resources/data"
 	val resultsFolder = projectDir / "target/gatling-results"
 	val requestBodiesFolder = projectDir / "src/main/resources/request-bodies"
-	val ideAssetsFolder = projectDir / "src/main/resources/assets"
-	val ideSimulationFolder = projectDir / "src/main/scala" / packageName.replace(".", "/")
+	val simulationFolder = projectDir / "src/main/scala" / packageName.replace(".", "/")
 	val outputFolder = projectDir / "src/main/scala" / "${package}".replace(".", "/")
 }
