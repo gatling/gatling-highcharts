@@ -5,7 +5,6 @@
  */
 package com.excilys.ebi.gatling.highcharts.series
 
-import com.excilys.ebi.gatling.core.util.StringHelper.END_OF_LINE
 import scala.collection.mutable.ArrayBuffer
 
 class StackedColumnSeries(name: String, data: List[(String, Int)], color: String) extends ColumnSeries(name, data, List(color)) {

@@ -5,7 +5,6 @@
  */
 package com.excilys.ebi.gatling.highcharts.series
 
-import com.excilys.ebi.gatling.core.util.StringHelper.END_OF_LINE
 import scala.collection.mutable.ArrayBuffer
 
 class ScatterSeries(name: String, data: List[(Int, Long)], color: String) extends HighchartsSeries[Int, Long](name, data, List(color)) {

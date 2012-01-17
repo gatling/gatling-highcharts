@@ -5,7 +5,6 @@
  */
 package com.excilys.ebi.gatling.highcharts.series
 
-import com.excilys.ebi.gatling.core.util.StringHelper.END_OF_LINE
 import scala.collection.mutable.ArrayBuffer
 
 class PieSeries(name: String, data: List[(String, Int)], seriesColors: List[String]) extends HighchartsSeries[String, Int](name, data, seriesColors) {

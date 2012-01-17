@@ -4,9 +4,9 @@
  * Licensed under the Gatling Highcharts License
  */
 package com.excilys.ebi.gatling.highcharts.series
-import org.joda.time.DateTime
-import com.excilys.ebi.gatling.core.util.StringHelper._
 import scala.collection.mutable.ArrayBuffer
+
+import org.joda.time.DateTime
 
 class NumberPerSecondSeries(name: String, data: List[(DateTime, Int)], color: String) extends HighchartsSeries[DateTime, Int](name, data, List(color)) {
 
