@@ -20,6 +20,8 @@ object HighchartsFiles {
 	val REQUEST_DETAILS_SCATTER_JS_TEMPLATE_URL = GATLING_TEMPLATE + "req_details_scatter.js.ssp"
 	val REQUESTS_HTML_TEMPLATE_URL = GATLING_TEMPLATE + "requests.html.ssp"
 	val REQUESTS_JS_TEMPLATE_URL = GATLING_TEMPLATE + "requests.js.ssp"
+	val TRANSACTIONS_HTML_TEMPLATE_URL = GATLING_TEMPLATE + "transactions.html.ssp"
+	val TRANSACTIONS_JS_TEMPLATE_URL = GATLING_TEMPLATE + "transactions.js.ssp"
 
 	val HIGHCARTS_THEME_FILE = "theme.js"
 	val HIGHCHARTS_FILE = "highcharts.js"
