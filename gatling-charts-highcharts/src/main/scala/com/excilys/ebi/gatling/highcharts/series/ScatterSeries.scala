@@ -6,6 +6,7 @@
 package com.excilys.ebi.gatling.highcharts.series
 
 import scala.collection.mutable.ArrayBuffer
+
 import com.excilys.ebi.gatling.charts.series.Series
 
 class ScatterSeries(name: String, data: List[(Int, Long)], color: String) extends Series[Int, Long](name, data, List(color)) {
@@ -16,12 +17,13 @@ class ScatterSeries(name: String, data: List[(Int, Long)], color: String) extend
 		buffer += "color: '" + color + "',"
 		buffer += "name: '" + name + "',"
 		buffer += "data: ["
-		if (data.isEmpty)
+		if (sample.isEmpty)
 			buffer += "[]"
-		else
-			buffer ++= data.map {
+		else {
+			buffer ++= sample.map {
 				entry => new StringBuilder().append("[").append(entry._1).append(",").append(entry._2).append("]").toString
 			}.foldLeft(List[String]())((l, v) => "," :: v :: l).tail.reverse
+		}
 		buffer += "]"
 	}
 }
