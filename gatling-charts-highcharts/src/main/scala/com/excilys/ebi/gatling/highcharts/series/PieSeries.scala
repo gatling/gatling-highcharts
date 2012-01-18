@@ -6,8 +6,9 @@
 package com.excilys.ebi.gatling.highcharts.series
 
 import scala.collection.mutable.ArrayBuffer
+import com.excilys.ebi.gatling.charts.series.Series
 
-class PieSeries(name: String, data: List[(String, Int)], seriesColors: List[String]) extends HighchartsSeries[String, Int](name, data, seriesColors) {
+class PieSeries(name: String, data: List[(String, Int)], seriesColors: List[String]) extends Series[String, Int](name, data, seriesColors) {
 
 	private val dataWithColors =
 		data.zip(seriesColors).map { entry =>

@@ -5,10 +5,10 @@
  */
 package com.excilys.ebi.gatling.highcharts.series
 import scala.collection.mutable.ArrayBuffer
-
 import org.joda.time.DateTime
+import com.excilys.ebi.gatling.charts.series.Series
 
-class ResponseTimeSeries(name: String, data: List[(DateTime, Int)], color: String) extends HighchartsSeries[DateTime, Int](name, data, List(color)) {
+class ResponseTimeSeries(name: String, data: List[(DateTime, Int)], color: String) extends Series[DateTime, Int](name, data, List(color)) {
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
