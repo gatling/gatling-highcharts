@@ -50,7 +50,7 @@ var req_details_latency_chart = new Highcharts.StockChart({
 	{
 		min: 0,
 		title: {
-			text: 'Latency',
+			text: 'Latency (ms)',
 			style: {
 				color: '<%= BLUE %>'
 			}
