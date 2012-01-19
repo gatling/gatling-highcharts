@@ -7,15 +7,13 @@ package com.excilys.ebi.gatling.highcharts.series
 
 import scala.collection.mutable.ArrayBuffer
 
-import org.joda.time.DateTime
-
 import com.excilys.ebi.gatling.charts.computer.Computer.AVERAGE_TIME_NO_PLOT_MAGIC_VALUE
 import com.excilys.ebi.gatling.charts.series.Series
 
 class ResponseTimeSeries(name: String, data: List[(Long, Int)], color: String) extends Series[Long, Int](name, data, List(color)) {
 
 	override def isPlotMandatory(plot: (Long, Int)) = plot._2 != AVERAGE_TIME_NO_PLOT_MAGIC_VALUE
-	
+
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
 		buffer += "name: '" + name + "',"

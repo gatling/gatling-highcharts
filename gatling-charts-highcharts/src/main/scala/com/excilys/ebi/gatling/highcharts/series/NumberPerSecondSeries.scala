@@ -7,8 +7,6 @@ package com.excilys.ebi.gatling.highcharts.series
 
 import scala.collection.mutable.ArrayBuffer
 
-import org.joda.time.DateTime
-
 import com.excilys.ebi.gatling.charts.series.Series
 
 class NumberPerSecondSeries(name: String, data: List[(Long, Int)], color: String) extends Series[Long, Int](name, data, List(color)) {

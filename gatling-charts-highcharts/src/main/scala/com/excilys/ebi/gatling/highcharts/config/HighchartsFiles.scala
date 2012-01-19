@@ -5,9 +5,7 @@
  */
 package com.excilys.ebi.gatling.highcharts.config
 
-import org.joda.time.DateTime
-import scala.tools.nsc.io.Path.string2path
-import com.excilys.ebi.gatling.charts.config.ChartsFiles._
+import com.excilys.ebi.gatling.charts.config.ChartsFiles.GATLING_TEMPLATE
 
 object HighchartsFiles {
 	val ACTIVE_SESSIONS_HTML_TEMPLATE_URL = GATLING_TEMPLATE + "active_sessions.html.ssp"
@@ -28,6 +26,4 @@ object HighchartsFiles {
 	val HIGHCARTS_THEME_FILE = "theme.js"
 	val HIGHCHARTS_FILE = "highcharts.js"
 	val HIGHSTOCK_FILE = "highstock.js"
-
-	def printHighChartsDate(dateTime: DateTime) = dateTime.getMillis.toString
 }
