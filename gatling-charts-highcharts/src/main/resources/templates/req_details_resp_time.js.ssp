@@ -18,7 +18,7 @@ var req_details_resp_time_chart = new Highcharts.StockChart({
 		borderWidth: 0
 	},
 	title: {
-	  text: 'A title to let highcharts reserve the place for the title set later'
+		text: 'A title to let highcharts reserve the place for the title set later'
 	},
 	rangeSelector: {
 		buttons : [{

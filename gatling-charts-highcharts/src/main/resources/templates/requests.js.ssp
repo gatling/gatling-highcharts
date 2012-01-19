@@ -26,28 +26,28 @@ var chart = new Highcharts.StockChart({
 		borderWidth: 0
 	},
 	title: {
-	  text: 'A title to let highcharts reserve the place for the title set later'
+		text: 'A title to let highcharts reserve the place for the title set later'
 	},
 	rangeSelector: {
-		buttons : [{
-		type : 'minute',
-		count : 1,
-		text : '1m'
-	}, {
-		type : 'minute',
-		count : 10,
-		text : '10m'
-	}, {
-		type : 'hour',
-		count : 1,
-		text : '1h'
-	}, {
-		type : 'all',
-		count : 1,
-		text : 'All'
-	}],
-	selected : 3,
-	inputEnabled : false
+			buttons : [{
+			type : 'minute',
+			count : 1,
+			text : '1m'
+		}, {
+			type : 'minute',
+			count : 10,
+			text : '10m'
+		}, {
+			type : 'hour',
+			count : 1,
+			text : '1h'
+		}, {
+			type : 'all',
+			count : 1,
+			text : 'All'
+		}],
+		selected : 3,
+		inputEnabled : false
 	},
 	xAxis: {
 		type: 'datetime',
@@ -77,8 +77,8 @@ var chart = new Highcharts.StockChart({
 		<% series.foreach{ serie => %>
 		{
 			<% serie.getElements.foreach{ s =>%><%=s%><% } %>
-  		},
-  		<% } %>
+		},
+		<% } %>
 		{
 		<% activeSessions.getElements.foreach{ s =>%><%=s%><% } %>
 		, yAxis: 1 }
