@@ -4,7 +4,7 @@
  * Licensed under the Gatling Highcharts License
  */
 package com.excilys.ebi.gatling.highcharts.component
-import org.joda.time.DateTime
+
 import com.excilys.ebi.gatling.charts.component.Component
 import com.excilys.ebi.gatling.charts.series.Series
 import com.excilys.ebi.gatling.highcharts.template.TransactionsTemplate
@@ -12,7 +12,7 @@ import com.excilys.ebi.gatling.highcharts.series.PieSeries
 import com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries
 import com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries
 
-class TransactionsComponent(allTransactions: Series[DateTime, Int], failedTransactions: Series[DateTime, Int], succeededTransactions: Series[DateTime, Int], pieSeries: Series[String, Int], allActiveSessions: Series[DateTime, Int])
+class TransactionsComponent(allTransactions: Series[Long, Int], failedTransactions: Series[Long, Int], succeededTransactions: Series[Long, Int], pieSeries: Series[String, Int], allActiveSessions: Series[Long, Int])
 	extends HighchartsComponent(
 		new TransactionsTemplate("Number of transactions per second",
 			Seq(new NumberPerSecondSeries(allTransactions.name, allTransactions.data, allTransactions.colors.head),

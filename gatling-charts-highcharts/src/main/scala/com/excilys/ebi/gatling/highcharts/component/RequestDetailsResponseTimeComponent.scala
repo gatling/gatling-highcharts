@@ -4,14 +4,13 @@
  * Licensed under the Gatling Highcharts License
  */
 package com.excilys.ebi.gatling.highcharts.component
-import org.joda.time.DateTime
+
 import com.excilys.ebi.gatling.charts.component.Component
 import com.excilys.ebi.gatling.charts.series.Series
+import com.excilys.ebi.gatling.highcharts.series.{ResponseTimeSeries, NumberPerSecondSeries}
 import com.excilys.ebi.gatling.highcharts.template.RequestDetailsResponseTimeTemplate
-import com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries
-import com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries
 
-class RequestDetailsResponseTimeComponent(responseTimesSuccess: Series[DateTime, Int], responseTimesFailures: Series[DateTime, Int], allActiveSessions: Series[DateTime, Int])
+class RequestDetailsResponseTimeComponent(responseTimesSuccess: Series[Long, Int], responseTimesFailures: Series[Long, Int], allActiveSessions: Series[Long, Int])
 	extends HighchartsComponent(
 		new RequestDetailsResponseTimeTemplate(
 			"Response time during simulation",

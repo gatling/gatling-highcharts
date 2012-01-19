@@ -11,7 +11,7 @@ import org.joda.time.DateTime
 
 import com.excilys.ebi.gatling.charts.series.Series
 
-class NumberPerSecondSeries(name: String, data: List[(DateTime, Int)], color: String) extends Series[DateTime, Int](name, data, List(color)) {
+class NumberPerSecondSeries(name: String, data: List[(Long, Int)], color: String) extends Series[Long, Int](name, data, List(color)) {
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
@@ -20,7 +20,7 @@ class NumberPerSecondSeries(name: String, data: List[(DateTime, Int)], color: St
 		buffer += "data: ["
 		if (!sample.isEmpty) {
 			buffer ++= sample.map {
-				entry => new StringBuilder().append("[").append(entry._1.getMillis).append(",").append(entry._2).append("]").toString
+				entry => new StringBuilder().append("[").append(entry._1).append(",").append(entry._2).append("]").toString
 			}.foldLeft(List[String]())((l, v) => "," :: v :: l).tail.reverse
 		}
 		buffer += "], tooltip: { yDecimals: 0, ySuffix: '' }"
