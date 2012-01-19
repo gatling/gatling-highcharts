@@ -3,12 +3,16 @@ object IDEPathHelper {
 
 	val packageName = "${package}"
 
-	val url = getClass.getClassLoader.getResource("gatling.conf").getPath
-	val projectDir = File(url).parents(2)
+	val gatlingConfUrl = getClass.getClassLoader.getResource("gatling.conf").getPath
+	val projectRootDir = File(gatlingConfUrl).parents(2)
 
-	val dataFolder = projectDir / "src/main/resources/data"
-	val resultsFolder = projectDir / "target/gatling-results"
-	val requestBodiesFolder = projectDir / "src/main/resources/request-bodies"
-	val simulationFolder = projectDir / "src/main/scala" / packageName.replace(".", "/")
-	val outputFolder = projectDir / "src/main/scala" / "${package}".replace(".", "/")
+	val resourcesDirPath = Path(List("src", "main", "resources"))
+	val scalaSourcesDirPath = Path(List("src", "main", "scala"))
+	val packageAsPath: Path = packageName.replace(".", java.io.File.separator)
+
+	val dataFolder = projectRootDir / resourcesDirPath / "data"
+	val resultsFolder = projectRootDir / Path(List("target", "gatling-results"))
+	val requestBodiesFolder = projectRootDir / resourcesDirPath / "request-bodies"
+	val simulationFolder = projectRootDir / scalaSourcesDirPath / packageAsPath
+	val outputFolder = projectRootDir / scalaSourcesDirPath / packageAsPath
 }
