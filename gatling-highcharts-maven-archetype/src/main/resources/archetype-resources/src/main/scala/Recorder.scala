@@ -5,5 +5,5 @@ import IDEPathHelper.{ requestBodiesFolder, outputFolder }
 
 object Recorder extends App {
 
-	GatlingHttpProxyUI.main(Array("-scala", "-of", outputFolder, "-run", "-ide", "${package}", "-rbf", requestBodiesFolder))
+	GatlingHttpProxyUI.main(Array("-scala", "-of", outputFolder, "-run", "-ide", "${package}", "-bf", requestBodiesFolder))
 }
