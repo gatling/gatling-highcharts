@@ -58,7 +58,7 @@ var chart = new Highcharts.StockChart({
 	{
 		min: 0,
 		title: {
-			text: 'Number of Requests',
+			text: 'Number of Transactions',
 			style: {
 				color: '<%= BLUE %>'
 			}
