@@ -1,4 +1,4 @@
-import scala.tools.nsc.io.File
+import scala.tools.nsc.io.{ File, Path }
 object IDEPathHelper {
 
 	val packageName = "${package}"
