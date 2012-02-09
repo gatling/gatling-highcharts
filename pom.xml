@@ -46,6 +46,66 @@
 		</developer>
 	</developers>
 
+	<repositories>
+		<repository>
+			<id>excilys-release</id>
+			<url>http://repository.excilys.com/content/repositories/releases</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>typesafe</id>
+			<name>Typesafe Release Repository</name>
+			<url>http://repo.typesafe.com/typesafe/releases</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!-- required for xerces/XercesImpl -->
+		<repository>
+			<id>excilys-thirdparty</id>
+			<name>Excilys Third Party Repository</name>
+			<url>http://repository.excilys.com/content/repositories/thirdparty</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!-- required for arg4j/arg4j -->
+		<repository>
+			<id>glassfish</id>
+			<name>Glassfish Repository</name>
+			<url>http://maven.glassfish.org/content/repositories/public</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<!-- required for com.twitter/util-core_2.9.1 -->
+		<repository>
+			<id>twitter</id>
+			<name>Twitter Repository</name>
+			<url>http://maven.twttr.com</url>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<properties>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
