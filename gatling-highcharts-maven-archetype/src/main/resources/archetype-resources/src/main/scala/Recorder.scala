@@ -1,9 +1,9 @@
 import com.excilys.ebi.gatling.core.util.PathHelper.path2string
 import com.excilys.ebi.gatling.recorder.ui.GatlingHttpProxyUI
 
-import IDEPathHelper.{ requestBodiesFolder, outputFolder }
+import IDEPathHelper.{ requestBodiesFolder, recorderOutputFolder }
 
 object Recorder extends App {
 
-	GatlingHttpProxyUI.main(Array("-scala", "-of", outputFolder, "-run", "-ide", "${package}", "-bf", requestBodiesFolder))
+	GatlingHttpProxyUI.main(Array("-of", recorderOutputFolder, "-run", "-ide", "${package}", "-bf", requestBodiesFolder))
 }

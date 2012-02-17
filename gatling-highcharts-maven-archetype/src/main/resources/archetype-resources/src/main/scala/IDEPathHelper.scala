@@ -1,18 +1,18 @@
-import scala.tools.nsc.io.{ File, Path }
+import scala.tools.nsc.io.File
+import scala.tools.nsc.io.Path
 object IDEPathHelper {
-
-	val packageName = "${package}"
 
 	val gatlingConfUrl = getClass.getClassLoader.getResource("gatling.conf").getPath
 	val projectRootDir = File(gatlingConfUrl).parents(2)
 
-	val resourcesDirPath = Path(List("src", "main", "resources"))
-	val scalaSourcesDirPath = Path(List("src", "main", "scala"))
-	val packageAsPath: Path = packageName.replace(".", java.io.File.separator)
+	val mavenSourcesDir = projectRootDir / "src" / "main" / "scala"
+	val mavenResourcesDir = projectRootDir / "src" / "main" / "resources"
+	val mavenTargetDir = projectRootDir / "target"
+	val mavenBinariesDir = mavenTargetDir / "classes"
 
-	val dataFolder = projectRootDir / resourcesDirPath / "data"
-	val resultsFolder = projectRootDir / Path(List("target", "gatling-results"))
-	val requestBodiesFolder = projectRootDir / resourcesDirPath / "request-bodies"
-	val simulationFolder = projectRootDir / scalaSourcesDirPath / packageAsPath
-	val outputFolder = projectRootDir / scalaSourcesDirPath / packageAsPath
+	val dataFolder = mavenResourcesDir / "data"
+	val requestBodiesFolder = mavenResourcesDir / "request-bodies"
+
+	val recorderOutputFolder = mavenSourcesDir / Path("${package}".split("."))
+	val resultsFolder = mavenTargetDir / "gatling-results"
 }
