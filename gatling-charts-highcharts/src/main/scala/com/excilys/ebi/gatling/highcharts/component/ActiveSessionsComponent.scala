@@ -9,5 +9,5 @@ import com.excilys.ebi.gatling.charts.series.Series
 import com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries
 import com.excilys.ebi.gatling.highcharts.template.ActiveSessionsTemplate
 
-class ActiveSessionsComponent(series: Series[Long, Int]*)
+class ActiveSessionsComponent(series: Seq[Series[Long, Int]])
 	extends HighchartsComponent(new ActiveSessionsTemplate("Active Sessions along the simulation", series.map { s => new NumberPerSecondSeries(s.name, s.data, s.colors.head) }))
