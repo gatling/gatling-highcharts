@@ -9,7 +9,7 @@ import com.excilys.ebi.gatling.charts.series.Series
 import com.excilys.ebi.gatling.highcharts.series.{ ResponseTimeSeries, NumberPerSecondSeries }
 import com.excilys.ebi.gatling.highcharts.template.RequestDetailsLatencyTemplate
 
-class RequestDetailsLatencyComponent(latencySuccess: Series[Long, Int], latencyFailures: Series[Long, Int], allActiveSessions: Series[Long, Int])
+class RequestDetailsLatencyComponent(latencySuccess: Series[Long, Long], latencyFailures: Series[Long, Long], allActiveSessions: Series[Long, Int])
 	extends HighchartsComponent(
 		new RequestDetailsLatencyTemplate(
 			"Latency during simulation",
