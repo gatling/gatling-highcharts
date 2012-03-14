@@ -10,4 +10,7 @@ import com.excilys.ebi.gatling.highcharts.template.RequestDetailsScatterTemplate
 import com.excilys.ebi.gatling.highcharts.series.ScatterSeries
 
 class RequestDetailsScatterComponent(success: Series[Int, Long], failures: Series[Int, Long])
-	extends HighchartsComponent(new RequestDetailsScatterTemplate("Active Sessions along the simulation", new ScatterSeries(success.name, success.data, success.colors.head), new ScatterSeries(failures.name, failures.data, failures.colors.head)))
+	extends HighchartsComponent(
+		new RequestDetailsScatterTemplate("Active Sessions along the simulation",
+			new ScatterSeries(success.name, success.data, success.colors.head),
+			new ScatterSeries(failures.name, failures.data, failures.colors.head)))
