@@ -12,13 +12,13 @@ import com.excilys.ebi.gatling.highcharts.series.PieSeries
 
 class RequestDetailsIndicatorComponent(columnSeries: Series[String, Int], pieSeries: Series[String, Int])
 	extends HighchartsComponent({
-		val d = columnSeries.data
+		val data = columnSeries.data
 		val colors = columnSeries.colors
-		val d0 = d.map { entry => (entry._1, 0) };
+		val emptyStacks = data.map { case (name, _) => (name, 0) }
 		new RequestDetailsIndicatorTemplate(
-			new StackedColumnSeries("OK", List(d(0), d0(1), d0(2), d0(3)), colors(0)),
-			new StackedColumnSeries("Acceptable", List(d0(0), d(1), d0(2), d0(3)), colors(1)),
-			new StackedColumnSeries("Off Boundaries", List(d0(0), d0(1), d(2), d0(3)), colors(2)),
-			new StackedColumnSeries("Failed", List(d0(0), d0(1), d0(2), d(3)), colors(3)),
+			new StackedColumnSeries("OK", List(data(0), emptyStacks(1), emptyStacks(2), emptyStacks(3)), colors(0)),
+			new StackedColumnSeries("Acceptable", List(emptyStacks(0), data(1), emptyStacks(2), emptyStacks(3)), colors(1)),
+			new StackedColumnSeries("Off Boundaries", List(emptyStacks(0), emptyStacks(1), data(2), emptyStacks(3)), colors(2)),
+			new StackedColumnSeries("Failed", List(emptyStacks(0), emptyStacks(1), emptyStacks(2), data(3)), colors(3)),
 			new PieSeries("Percentages", pieSeries.data, pieSeries.colors))
 	})
