@@ -54,7 +54,7 @@ var chart = new Highcharts.Chart({
 	<% } %>
 	{
 	<% pieSeries.getElements.foreach{ s => %><%=s%><% } %>,
-	center: [540, 60],
+	center: [500, 85],
 	size: 100,
 	showInLegend: false,
 	dataLabels: {
