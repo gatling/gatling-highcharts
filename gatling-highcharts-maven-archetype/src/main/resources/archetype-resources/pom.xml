@@ -74,7 +74,7 @@
 		<gatling.version>${gatling.version}</gatling.version>
 		<gatling-highcharts.version>${version}</gatling-highcharts.version>
 
-		<maven-scala-plugin.version>${maven-scala-plugin.version}</maven-scala-plugin.version>
+		<scala-maven-plugin.version>${scala-maven-plugin.version}</scala-maven-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -131,16 +131,16 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.scala-tools</groupId>
-					<artifactId>maven-scala-plugin</artifactId>
-					<version>\${maven-scala-plugin.version}</version>
+					<groupId>net.alchim31.maven</groupId>
+					<artifactId>scala-maven-plugin</artifactId>
+					<version>\${scala-maven-plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
 			<plugin>
-				<groupId>org.scala-tools</groupId>
-				<artifactId>maven-scala-plugin</artifactId>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
 				<executions>
 					<execution>
 						<goals>
