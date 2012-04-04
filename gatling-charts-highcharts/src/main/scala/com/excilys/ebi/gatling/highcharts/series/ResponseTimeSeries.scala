@@ -7,8 +7,8 @@ package com.excilys.ebi.gatling.highcharts.series
 
 import scala.collection.mutable.ArrayBuffer
 
-import com.excilys.ebi.gatling.charts.computer.Computer.NO_PLOT_MAGIC_VALUE
 import com.excilys.ebi.gatling.charts.series.Series
+import com.excilys.ebi.gatling.charts.util.StatisticsHelper.NO_PLOT_MAGIC_VALUE
 
 class ResponseTimeSeries(name: String, data: List[(Long, Long)], color: String) extends Series[Long, Long](name, data, List(color)) {
 
