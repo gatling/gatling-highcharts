@@ -9,7 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 
 import com.excilys.ebi.gatling.charts.series.Series
 
-class ScatterSeries(name: String, data: List[(Int, Long)], color: String) extends Series[Int, Long](name, data, List(color)) {
+class ScatterSeries(name: String, data: Seq[(Int, Long)], color: String) extends Series[Int, Long](name, data, List(color)) {
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]

@@ -1,0 +1,54 @@
+<%@ val categories: Seq[String] %>
+<%@ val series: Seq[com.excilys.ebi.gatling.highcharts.series.StackedColumnSeries] %>
+var req_details_resp_time_distrib_chart = new Highcharts.Chart({
+	chart: {
+		renderTo: 'container_distrib',
+		type: 'column'
+	},
+	credits: {
+		enabled: false
+	},
+	legend: {
+		enabled: true,
+		floating: true,
+		y: -285,
+		borderWidth: 0
+	},
+	title: {
+		text: 'A title to let highcharts reserve the place for the title set later'
+	},
+	xAxis: {
+		categories: [<%= categories.mkString("'", "', '", "'") %>],
+		tickInterval: 20
+	},
+	yAxis: {
+		title: {
+			text: 'Percentage of Requests'
+		}
+	},
+	tooltip: {
+		formatter: function() {
+			return '<b>'+ this.x +' ms</b><br/>'+
+			this.series.name +': '+ this.y +' %<br/>'+
+			'Total: '+ this.point.stackTotal + ' %';
+		}
+	},
+	plotOptions: {
+		series: {
+			groupPadding: 0,
+			stacking: 'normal'
+		}
+	},
+	series: [
+	<% series.foreach{ serie => %>
+	{
+		<% serie.getElements.foreach{ s => %><%=s%><% } %>
+	},
+	<% } %>
+	]
+});
+
+req_details_resp_time_distrib_chart.setTitle({
+	text: '<span class="chart_title">Response Time Distribution</span>',
+	useHTML: true
+});

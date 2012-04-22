@@ -9,7 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 
 import com.excilys.ebi.gatling.charts.series.Series
 
-class NumberPerSecondSeries(name: String, data: List[(Long, Int)], color: String) extends Series[Long, Int](name, data, List(color)) {
+class NumberPerSecondSeries(name: String, data: Seq[(Long, Int)], color: String) extends Series[Long, Int](name, data, List(color)) {
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]

@@ -7,7 +7,7 @@ package com.excilys.ebi.gatling.highcharts.series
 
 import scala.collection.mutable.ArrayBuffer
 
-class StackedColumnSeries(name: String, data: List[(String, Int)], color: String) extends ColumnSeries(name, data, List(color)) {
+class StackedColumnSeries(name: String, data: Seq[(String, Int)], color: String) extends ColumnSeries(name, data, List(color)) {
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
