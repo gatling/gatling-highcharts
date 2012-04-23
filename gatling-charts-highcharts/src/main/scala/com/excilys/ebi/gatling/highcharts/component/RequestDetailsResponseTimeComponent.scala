@@ -13,7 +13,6 @@ import com.excilys.ebi.gatling.highcharts.template.RequestDetailsResponseTimeTem
 class RequestDetailsResponseTimeComponent(responseTimesSuccess: Series[Long, Long], responseTimesFailures: Series[Long, Long], allActiveSessions: Series[Long, Int])
 	extends HighchartsComponent(
 		new RequestDetailsResponseTimeTemplate(
-			"Response time during simulation",
 			new ResponseTimeSeries(responseTimesSuccess.name, responseTimesSuccess.data, responseTimesSuccess.colors.head),
 			new ResponseTimeSeries(responseTimesFailures.name, responseTimesFailures.data, responseTimesFailures.colors.head),
 			new NumberPerSecondSeries(allActiveSessions.name, allActiveSessions.data, allActiveSessions.colors.head)))

@@ -12,7 +12,6 @@ import com.excilys.ebi.gatling.highcharts.template.RequestDetailsLatencyTemplate
 class RequestDetailsLatencyComponent(latencySuccess: Series[Long, Long], latencyFailures: Series[Long, Long], allActiveSessions: Series[Long, Int])
 	extends HighchartsComponent(
 		new RequestDetailsLatencyTemplate(
-			"Latency during simulation",
 			new ResponseTimeSeries(latencySuccess.name, latencySuccess.data, latencySuccess.colors.head),
 			new ResponseTimeSeries(latencyFailures.name, latencyFailures.data, latencyFailures.colors.head),
 			new NumberPerSecondSeries(allActiveSessions.name, allActiveSessions.data, allActiveSessions.colors.head)))

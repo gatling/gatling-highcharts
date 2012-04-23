@@ -14,6 +14,5 @@ import com.excilys.ebi.gatling.highcharts.template.RequestDetailsResponseTimeDis
 class RequestDetailsResponseTimeDistributionComponent(successDistribution: Series[Long, Int], failuresDistribution: Series[Long, Int])
 	extends HighchartsComponent(
 		new RequestDetailsResponseTimeDistributionTemplate(
-			"Response time distribution",
 			new StackedColumnSeries(successDistribution.name, successDistribution.data.map{case (time, count) => (time.toString -> count)}, successDistribution.colors.head),
 			new StackedColumnSeries(failuresDistribution.name, failuresDistribution.data.map{case (time, count) => (time.toString -> count)}, failuresDistribution.colors.head)))

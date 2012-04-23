@@ -70,6 +70,6 @@ var chart = new Highcharts.StockChart({
 
 
 chart.setTitle({
-	text: '<span class="chart_title"><%= chartTitle %></span>',
+	text: '<span class="chart_title"><%=chartTitle%></span>',
 	useHTML: true
 });

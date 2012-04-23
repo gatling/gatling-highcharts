@@ -10,10 +10,10 @@ import com.excilys.ebi.gatling.core.util.PathHelper.path2string
 import com.excilys.ebi.gatling.highcharts.config.HighchartsFiles.{REQUESTS_JS_TEMPLATE_URL, REQUESTS_HTML_TEMPLATE_URL}
 import com.excilys.ebi.gatling.highcharts.series.{PieSeries, NumberPerSecondSeries}
 
-class RequestsTemplate(chartTitle: String, series: Seq[NumberPerSecondSeries], pieSeries: PieSeries, activeSessionsSeries: NumberPerSecondSeries) extends Template {
+class RequestsTemplate(series: Seq[NumberPerSecondSeries], pieSeries: PieSeries, activeSessionsSeries: NumberPerSecondSeries) extends Template {
 
 	def getJSContent = PageTemplate.TEMPLATE_ENGINE.layout(REQUESTS_JS_TEMPLATE_URL, Map("yAxisTitle" -> "Number of Requests /s",
-		"chartTitle" -> chartTitle,
+		"chartTitle" -> "Number of Requests per Second",
 		"series" -> series,
 		"pieSeries" -> pieSeries,
 		"activeSessions" -> activeSessionsSeries))

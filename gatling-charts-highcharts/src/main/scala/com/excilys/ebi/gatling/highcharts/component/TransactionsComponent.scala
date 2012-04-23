@@ -14,7 +14,7 @@ import com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries
 
 class TransactionsComponent(allTransactions: Series[Long, Int], failedTransactions: Series[Long, Int], succeededTransactions: Series[Long, Int], pieSeries: Series[String, Int], allActiveSessions: Series[Long, Int])
 	extends HighchartsComponent(
-		new TransactionsTemplate("Number of transactions per second",
+		new TransactionsTemplate(
 			Seq(new NumberPerSecondSeries(allTransactions.name, allTransactions.data, allTransactions.colors.head),
 				new NumberPerSecondSeries(failedTransactions.name, failedTransactions.data, failedTransactions.colors.head),
 				new NumberPerSecondSeries(succeededTransactions.name, succeededTransactions.data, succeededTransactions.colors.head)),

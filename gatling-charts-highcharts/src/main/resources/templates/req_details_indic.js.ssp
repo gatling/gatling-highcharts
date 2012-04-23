@@ -1,3 +1,4 @@
+<%@ val chartTitle: String %>
 <%@ val pieSeries: com.excilys.ebi.gatling.highcharts.series.PieSeries %>
 <%@ val categories: List[String] %>
 <%@ val series: List[com.excilys.ebi.gatling.highcharts.series.StackedColumnSeries] %>
@@ -64,7 +65,6 @@ var chart = new Highcharts.Chart({
 });
 
 chart.setTitle({
-	text: '<span class="chart_title">Indicators</span>',
+	text: '<span class="chart_title"><%=chartTitle%></span>',
 	useHTML: true
 });
-

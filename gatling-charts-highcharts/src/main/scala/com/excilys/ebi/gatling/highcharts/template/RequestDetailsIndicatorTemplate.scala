@@ -11,11 +11,12 @@ import com.excilys.ebi.gatling.highcharts.series.{ StackedColumnSeries, PieSerie
 
 class RequestDetailsIndicatorTemplate(okColumnSeries: StackedColumnSeries, mediumColumnSeries: StackedColumnSeries, koColumnSeries: StackedColumnSeries, failedColumnSeries: StackedColumnSeries, pieSeries: PieSeries) extends Template {
 
-	def getJSContent = {
-		PageTemplate.TEMPLATE_ENGINE.layout(REQUEST_DETAILS_INDICATORS_JS_TEMPLATE_URL, Map("pieSeries" -> pieSeries,
+	def getJSContent = PageTemplate.TEMPLATE_ENGINE.layout(REQUEST_DETAILS_INDICATORS_JS_TEMPLATE_URL,
+		Map("chartTitle" -> "Indicators",
+			"pieSeries" -> pieSeries,
 			"categories" -> okColumnSeries.getXValues,
 			"series" -> List(okColumnSeries, mediumColumnSeries, koColumnSeries, failedColumnSeries)))
-	}
+
 	def getHTMLContent = PageTemplate.TEMPLATE_ENGINE.layout(REQUEST_DETAILS_INDICATORS_HTML_TEMPLATE_URL)
 }
 

@@ -1,3 +1,4 @@
+<%@ val chartTitle: String %>
 <%@ val successes: com.excilys.ebi.gatling.highcharts.series.ScatterSeries  %>
 <%@ val failures: com.excilys.ebi.gatling.highcharts.series.ScatterSeries %>
 
@@ -63,7 +64,6 @@ var req_details_scatter_chart = new Highcharts.Chart({
 	} ]
 });
 req_details_scatter_chart.setTitle({
-	text: '<span class="chart_title">Response time against the global number of requests per second</span>',
+	text: '<span class="chart_title"><%=chartTitle%></span>',
 	useHTML: true
 });
-

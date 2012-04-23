@@ -14,7 +14,7 @@ import com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries
 
 class RequestsComponent(allRequests: Series[Long, Int], failedRequests: Series[Long, Int], succeededRequests: Series[Long, Int], pieSeries: Series[String, Int], allActiveSessions: Series[Long, Int])
 	extends HighchartsComponent(
-		new RequestsTemplate("Number of requests per second",
+		new RequestsTemplate(
 			Seq(new NumberPerSecondSeries(allRequests.name, allRequests.data, allRequests.colors.head),
 				new NumberPerSecondSeries(failedRequests.name, failedRequests.data, failedRequests.colors.head),
 				new NumberPerSecondSeries(succeededRequests.name, succeededRequests.data, succeededRequests.colors.head)),
