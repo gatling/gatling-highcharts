@@ -8,6 +8,5 @@ import com.excilys.ebi.gatling.charts.series.Series
 
 class ColumnSeries(name: String, data: Seq[(String, Int)], colors: List[String]) extends Series[String, Int](name, data, colors) {
 	val getXValues = data.map(_._1)
-
 	val getYValues = data.map(_._2)
 }

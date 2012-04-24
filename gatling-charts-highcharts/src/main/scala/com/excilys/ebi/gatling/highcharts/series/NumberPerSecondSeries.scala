@@ -16,11 +16,12 @@ class NumberPerSecondSeries(name: String, data: Seq[(Long, Int)], color: String)
 		buffer += "name: '" + name + "',"
 		buffer += "color: '" + color + "',"
 		buffer += "data: ["
-		if (!sample.isEmpty) {
-			buffer ++= sample.map {
-				entry => new StringBuilder().append("[").append(entry._1).append(",").append(entry._2).append("]").toString
-			}.foldLeft(List[String]())((l, v) => "," :: v :: l).tail.reverse
-		}
+		if (!sample.isEmpty)
+			buffer ++= sample
+				.map { case (time, count) => new StringBuilder().append("[").append(time).append(",").append(count).append("]").toString }
+				.foldLeft(List[String]())((l, v) => "," :: v :: l)
+				.tail
+				.reverse
 		buffer += "], tooltip: { yDecimals: 0, ySuffix: '' }"
 	}
 }

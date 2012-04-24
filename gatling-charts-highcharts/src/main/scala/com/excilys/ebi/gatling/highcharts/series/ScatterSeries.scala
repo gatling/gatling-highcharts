@@ -19,11 +19,12 @@ class ScatterSeries(name: String, data: Seq[(Int, Long)], color: String) extends
 		buffer += "data: ["
 		if (sample.isEmpty)
 			buffer += "[]"
-		else {
-			buffer ++= sample.map {
-				entry => new StringBuilder().append("[").append(entry._1).append(",").append(entry._2).append("]").toString
-			}.foldLeft(List[String]())((l, v) => "," :: v :: l).tail.reverse
-		}
+		else
+			buffer ++= sample
+				.map { case (requestsPerSecond, responseTime) => new StringBuilder().append("[").append(requestsPerSecond).append(",").append(responseTime).append("]").toString }
+				.foldLeft(List[String]())((l, v) => "," :: v :: l)
+				.tail
+				.reverse
 		buffer += "]"
 	}
 }

@@ -21,9 +21,11 @@ class ResponseTimeSeries(name: String, data: Seq[(Long, Long)], color: String) e
 		buffer += "pointInterval: 1000,"
 		buffer += "data: ["
 		if (!sample.isEmpty)
-			buffer ++= sample.map {
-				entry => new StringBuilder().append("[").append(entry._1).append(",").append((if (entry._2 == NO_PLOT_MAGIC_VALUE) "null" else entry._2)).append("]").toString
-			}.foldLeft(List[String]())((l, v) => "," :: v :: l).tail.reverse
+			buffer ++= sample
+				.map { case (time, responseTime) => new StringBuilder().append("[").append(time).append(",").append((if (responseTime == NO_PLOT_MAGIC_VALUE) "null" else responseTime)).append("]").toString }
+				.foldLeft(List[String]())((l, v) => "," :: v :: l)
+				.tail
+				.reverse
 		buffer += "], tooltip: { yDecimals: 0, ySuffix: 'ms' }"
 	}
 }

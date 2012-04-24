@@ -10,10 +10,7 @@ import com.excilys.ebi.gatling.charts.series.Series
 
 class PieSeries(name: String, data: Seq[(String, Int)], seriesColors: List[String]) extends Series[String, Int](name, data, seriesColors) {
 
-	private val dataWithColors =
-		data.zip(seriesColors).map { entry =>
-			(entry._1._1, entry._1._2, entry._2)
-		}
+	private val dataWithColors = data.zip(seriesColors).map { case (slice, color) => (slice._1, slice._2, color) }
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
@@ -21,10 +18,11 @@ class PieSeries(name: String, data: Seq[(String, Int)], seriesColors: List[Strin
 		buffer += "name: '" + name + "',"
 		buffer += "data: ["
 		if (!data.isEmpty)
-			buffer ++= dataWithColors.map {
-				entry => new StringBuilder().append("{name: '").append(entry._1).append("', y: ").append(entry._2).append(", color: '").append(entry._3).append("'}").toString
-			}.foldLeft(List[String]())((l, v) => "," :: v :: l).tail.reverse
-
+			buffer ++= dataWithColors
+				.map { case (name, count, color) => new StringBuilder().append("{name: '").append(name).append("', y: ").append(count).append(", color: '").append(color).append("'}").toString }
+				.foldLeft(List[String]())((l, v) => "," :: v :: l)
+				.tail
+				.reverse
 		buffer += "]"
 	}
 }

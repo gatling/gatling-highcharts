@@ -16,9 +16,11 @@ class StackedColumnSeries(name: String, data: Seq[(String, Int)], color: String)
 		buffer += "name: '" + name + "',"
 		buffer += "data: ["
 		if (!data.isEmpty)
-			buffer ++= data.map {
-				entry => entry._2.toString
-			}.foldLeft(List[String]())((l, v) => "," :: v :: l).tail.reverse
+			buffer ++= data
+				.map { case (_, count) => count.toString }
+				.foldLeft(List[String]())((l, v) => "," :: v :: l)
+				.tail
+				.reverse
 		buffer += "], tooltip: { yDecimals: 0, ySuffix: 'ms' }"
 	}
 }
