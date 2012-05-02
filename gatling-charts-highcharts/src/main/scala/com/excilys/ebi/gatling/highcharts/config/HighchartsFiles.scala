@@ -10,6 +10,7 @@ import com.excilys.ebi.gatling.charts.config.ChartsFiles.GATLING_TEMPLATE
 object HighchartsFiles {
 	val ACTIVE_SESSIONS_HTML_TEMPLATE_URL = GATLING_TEMPLATE + "active_sessions.html.ssp"
 	val ACTIVE_SESSIONS_JS_TEMPLATE_URL = GATLING_TEMPLATE + "active_sessions.js.ssp"
+	val ALL_SESSIONS_JS_TEMPLATE_URL = GATLING_TEMPLATE + "all_sessions.js.ssp"
 	val REQUEST_DETAILS_INDICATORS_HTML_TEMPLATE_URL = GATLING_TEMPLATE + "req_details_indic.html.ssp"
 	val REQUEST_DETAILS_INDICATORS_JS_TEMPLATE_URL = GATLING_TEMPLATE + "req_details_indic.js.ssp"
 	val REQUEST_DETAILS_RESPONSE_TIME_HTML_TEMPLATE_URL = GATLING_TEMPLATE + "req_details_resp_time.html.ssp"

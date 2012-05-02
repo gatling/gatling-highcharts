@@ -1,6 +1,7 @@
 <%@ val chartTitle: String %>
 <%@ val categories: Seq[String] %>
 <%@ val series: Seq[com.excilys.ebi.gatling.highcharts.series.StackedColumnSeries] %>
+
 var req_details_resp_time_distrib_chart = new Highcharts.Chart({
 	chart: {
 		renderTo: 'container_distrib',

@@ -12,11 +12,10 @@ import com.excilys.ebi.gatling.highcharts.series.PieSeries
 import com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries
 import com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries
 
-class RequestsComponent(allRequests: Series[Long, Int], failedRequests: Series[Long, Int], succeededRequests: Series[Long, Int], pieSeries: Series[String, Int], allActiveSessions: Series[Long, Int])
+class RequestsComponent(allRequests: Series[Long, Int], failedRequests: Series[Long, Int], succeededRequests: Series[Long, Int], pieSeries: Series[String, Int])
 	extends HighchartsComponent(
 		new RequestsTemplate(
 			Seq(new NumberPerSecondSeries(allRequests.name, allRequests.data, allRequests.colors.head),
 				new NumberPerSecondSeries(failedRequests.name, failedRequests.data, failedRequests.colors.head),
 				new NumberPerSecondSeries(succeededRequests.name, succeededRequests.data, succeededRequests.colors.head)),
-			new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
-			new NumberPerSecondSeries(allActiveSessions.name, allActiveSessions.data, allActiveSessions.colors.head)))
+			new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors)))

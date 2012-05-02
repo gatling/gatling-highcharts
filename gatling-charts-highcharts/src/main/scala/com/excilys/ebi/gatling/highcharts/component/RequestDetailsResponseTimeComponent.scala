@@ -10,9 +10,8 @@ import com.excilys.ebi.gatling.charts.series.Series
 import com.excilys.ebi.gatling.highcharts.series.{ResponseTimeSeries, NumberPerSecondSeries}
 import com.excilys.ebi.gatling.highcharts.template.RequestDetailsResponseTimeTemplate
 
-class RequestDetailsResponseTimeComponent(responseTimesSuccess: Series[Long, Long], responseTimesFailures: Series[Long, Long], allActiveSessions: Series[Long, Int])
+class RequestDetailsResponseTimeComponent(responseTimesSuccess: Series[Long, Long], responseTimesFailures: Series[Long, Long])
 	extends HighchartsComponent(
 		new RequestDetailsResponseTimeTemplate(
 			new ResponseTimeSeries(responseTimesSuccess.name, responseTimesSuccess.data, responseTimesSuccess.colors.head),
-			new ResponseTimeSeries(responseTimesFailures.name, responseTimesFailures.data, responseTimesFailures.colors.head),
-			new NumberPerSecondSeries(allActiveSessions.name, allActiveSessions.data, allActiveSessions.colors.head)))
+			new ResponseTimeSeries(responseTimesFailures.name, responseTimesFailures.data, responseTimesFailures.colors.head)))
