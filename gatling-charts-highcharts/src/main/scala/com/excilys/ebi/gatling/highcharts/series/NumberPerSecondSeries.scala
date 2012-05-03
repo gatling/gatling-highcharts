@@ -13,7 +13,7 @@ class NumberPerSecondSeries(name: String, data: Seq[(Long, Int)], color: String)
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
-		buffer += "name: '" + name + "',"
+		buffer += "name: '" + name.replace("'", "\\\'") + "',"
 		buffer += "color: '" + color + "',"
 		buffer += "data: ["
 		if (!sample.isEmpty)
