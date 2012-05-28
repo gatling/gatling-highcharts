@@ -11,7 +11,7 @@ allSessionsData.yAxis = 0;
 
 var chart = new Highcharts.StockChart({
 	chart: {
-		renderTo: 'container',
+		renderTo: 'container_active_sessions',
 		zoomType: 'x'
 	},
 	credits: {

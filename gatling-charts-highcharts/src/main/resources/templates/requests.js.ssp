@@ -12,7 +12,7 @@ Highcharts.setOptions({
 
 var chart = new Highcharts.StockChart({
 	chart: {
-		renderTo: 'container',
+		renderTo: 'container_requests',
 		zoomType: 'x'
 	},
 	credits: {

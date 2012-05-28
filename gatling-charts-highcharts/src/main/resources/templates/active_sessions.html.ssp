@@ -1,3 +1,4 @@
 						<div class="schema geant">
-							<div id="container" class="geant"></div>
+							<a name="active_sessions"></a>
+							<div id="container_active_sessions" class="geant"></div>
 						</div>
