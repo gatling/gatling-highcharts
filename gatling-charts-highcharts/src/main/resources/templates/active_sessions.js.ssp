@@ -72,3 +72,5 @@ chart.setTitle({
 	text: '<span class="chart_title"><%=chartTitle%></span>',
 	useHTML: true
 });
+
+allSessionsData.yAxis = 1;
