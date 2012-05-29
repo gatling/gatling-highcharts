@@ -5,18 +5,7 @@
  */
 package com.excilys.ebi.gatling.highcharts.series
 
-import scala.collection.mutable.ArrayBuffer
-
 class StackedColumnSeries(name: String, data: Seq[(String, Int)], color: String) extends ColumnSeries(name, data, List(color)) {
 
-	def getElements: ArrayBuffer[String] = {
-		val buffer = new ArrayBuffer[String]
-		if (!data.isEmpty)
-			buffer ++= data
-				.map { case (_, count) => count.toString }
-				.foldLeft(List[String]())((l, v) => "," :: v :: l)
-				.tail
-				.reverse
-		buffer
-	}
+	def elements: Seq[String] = data.map { case (_, count) => count.toString }
 }

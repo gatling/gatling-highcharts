@@ -5,7 +5,7 @@
 type: 'pie'
 , name: '<%=serie.name%>'
 , data: [
-<% serie.getElements.foreach{ s => %><%=s%><% } %>
+<% serie.elements.foreach{ s => %><%=s%>,<% } %>
 ]
 , center: [<%=centerX%>, <%=centerY%>]
 , size: <%=size%>

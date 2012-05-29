@@ -5,21 +5,22 @@
  */
 package com.excilys.ebi.gatling.highcharts.series
 
-import scala.collection.mutable.ArrayBuffer
-
 import com.excilys.ebi.gatling.charts.series.Series
 
 class ScatterSeries(name: String, data: Seq[(Int, Long)], color: String) extends Series[Int, Long](name, data, List(color)) {
 
-	def getElements: ArrayBuffer[String] = {
-		val buffer = new ArrayBuffer[String]
+	def elements: Seq[String] =
 		if (sample.isEmpty)
-			buffer += "[]"
+			List("[]")
 		else
-			buffer ++= sample
-				.map { case (requestsPerSecond, responseTime) => new StringBuilder().append("[").append(requestsPerSecond).append(",").append(responseTime).append("]").toString }
-				.foldLeft(List[String]())((l, v) => "," :: v :: l)
-				.tail
-				.reverse
-	}
+			sample.map {
+				case (requestsPerSecond, responseTime) =>
+					new StringBuilder()
+						.append("[")
+						.append(requestsPerSecond)
+						.append(",")
+						.append(responseTime)
+						.append("]")
+						.toString
+			}
 }

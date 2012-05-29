@@ -3,6 +3,6 @@ type: 'column'
 , color: '<%=serie.colors(0)%>'
 , name: '<%=serie.name%>'
 , data: [
-<% serie.getElements.foreach{ s => %><%=s%><% } %>
+<% serie.elements.foreach{ s => %><%=s%>,<% } %>
 ]
 , tooltip: { yDecimals: 0, ySuffix: 'ms' }
