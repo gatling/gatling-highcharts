@@ -1,0 +1,5 @@
+<%@ val seq: Seq[String] %>
+<% val it = seq.iterator %>
+<% while (it.hasNext) { %>
+<%=it.next %><% if (it.hasNext) {%>,<%}%>
+<% } %>

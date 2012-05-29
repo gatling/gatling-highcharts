@@ -5,7 +5,7 @@
 type: 'pie'
 , name: '<%=serie.name%>'
 , data: [
-<% serie.elements.foreach{ s => %><%=s%>,<% } %>
+<% render("jslist.ssp", Map("seq" -> serie.elements)) %>
 ]
 , center: [<%=centerX%>, <%=centerY%>]
 , size: <%=size%>

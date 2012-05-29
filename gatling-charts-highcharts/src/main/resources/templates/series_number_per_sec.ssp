@@ -2,6 +2,6 @@
 color: '<%=serie.colors(0)%>'
 , name: '<%=serie.name%>'
 , data: [
-<% serie.elements.foreach{ s => %><%=s%>,<% } %>
+<% render("jslist.ssp", Map("seq" -> serie.elements)) %>
 ]
 , tooltip: { yDecimals: 0, ySuffix: '' }
