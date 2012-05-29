@@ -4,11 +4,10 @@
  * Licensed under the Gatling Highcharts License
  */
 package com.excilys.ebi.gatling.highcharts.component
-import com.excilys.ebi.gatling.charts.component.Component
+
 import com.excilys.ebi.gatling.charts.series.Series
+import com.excilys.ebi.gatling.highcharts.series.{ StackedColumnSeries, PieSeries }
 import com.excilys.ebi.gatling.highcharts.template.RequestDetailsIndicatorTemplate
-import com.excilys.ebi.gatling.highcharts.series.StackedColumnSeries
-import com.excilys.ebi.gatling.highcharts.series.PieSeries
 
 class RequestDetailsIndicatorComponent(columnSeries: Series[String, Int], pieSeries: Series[String, Int])
 	extends HighchartsComponent({

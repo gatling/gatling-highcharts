@@ -4,10 +4,10 @@
  * Licensed under the Gatling Highcharts License
  */
 package com.excilys.ebi.gatling.highcharts.component
-import com.excilys.ebi.gatling.charts.component.Component
+
 import com.excilys.ebi.gatling.charts.series.Series
-import com.excilys.ebi.gatling.highcharts.template.RequestDetailsScatterTemplate
 import com.excilys.ebi.gatling.highcharts.series.ScatterSeries
+import com.excilys.ebi.gatling.highcharts.template.RequestDetailsScatterTemplate
 
 class RequestDetailsScatterComponent(success: Series[Int, Long], failures: Series[Int, Long])
 	extends HighchartsComponent(

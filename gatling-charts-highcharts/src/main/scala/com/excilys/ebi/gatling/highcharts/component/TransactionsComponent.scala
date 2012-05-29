@@ -5,12 +5,9 @@
  */
 package com.excilys.ebi.gatling.highcharts.component
 
-import com.excilys.ebi.gatling.charts.component.Component
 import com.excilys.ebi.gatling.charts.series.Series
+import com.excilys.ebi.gatling.highcharts.series.{ PieSeries, NumberPerSecondSeries }
 import com.excilys.ebi.gatling.highcharts.template.TransactionsTemplate
-import com.excilys.ebi.gatling.highcharts.series.PieSeries
-import com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries
-import com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries
 
 class TransactionsComponent(allTransactions: Series[Long, Int], failedTransactions: Series[Long, Int], succeededTransactions: Series[Long, Int], pieSeries: Series[String, Int])
 	extends HighchartsComponent(

@@ -6,7 +6,7 @@
 package com.excilys.ebi.gatling.highcharts.component
 
 import com.excilys.ebi.gatling.charts.series.Series
-import com.excilys.ebi.gatling.highcharts.series.{ ResponseTimeSeries, NumberPerSecondSeries }
+import com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries
 import com.excilys.ebi.gatling.highcharts.template.RequestDetailsLatencyTemplate
 
 class RequestDetailsLatencyComponent(latencySuccess: Series[Long, Long], latencyFailures: Series[Long, Long])
