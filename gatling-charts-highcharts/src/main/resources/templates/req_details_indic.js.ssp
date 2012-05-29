@@ -9,7 +9,7 @@ Highcharts.setOptions({
 	}
 });
 
-var chart = new Highcharts.Chart({
+var indicatorsChart = new Highcharts.Chart({
 	chart: {
 		renderTo: 'container_indicators',
 		marginRight: 150
@@ -50,21 +50,15 @@ var chart = new Highcharts.Chart({
 	series: [
 	<% series.foreach{ serie => %>
 	{
-		<% serie.getElements.foreach{ s => %><%=s%><% } %>
-	}, 
+		<% render("series_stacked_column.ssp", Map("serie" -> serie)) %>
+	},
 	<% } %>
 	{
-	<% pieSeries.getElements.foreach{ s => %><%=s%><% } %>,
-	center: [500, 85],
-	size: 100,
-	showInLegend: false,
-	dataLabels: {
-		enabled: false
-	}
+		<% render("series_pie.ssp", Map("serie" -> pieSeries, "centerX" -> 500, "centerY" -> 85, "size" -> 100)) %>
 	}]
 });
 
-chart.setTitle({
+indicatorsChart.setTitle({
 	text: '<span class="chart_title"><%=chartTitle%></span>',
 	useHTML: true
 });

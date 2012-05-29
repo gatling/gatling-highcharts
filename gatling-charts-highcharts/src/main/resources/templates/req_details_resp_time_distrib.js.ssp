@@ -2,7 +2,7 @@
 <%@ val categories: Seq[String] %>
 <%@ val series: Seq[com.excilys.ebi.gatling.highcharts.series.StackedColumnSeries] %>
 
-var req_details_resp_time_distrib_chart = new Highcharts.Chart({
+var responseTimeDistributionChart = new Highcharts.Chart({
 	chart: {
 		renderTo: 'container_distrib',
 		type: 'column'
@@ -44,13 +44,13 @@ var req_details_resp_time_distrib_chart = new Highcharts.Chart({
 	series: [
 	<% series.foreach{ serie => %>
 	{
-		<% serie.getElements.foreach{ s => %><%=s%><% } %>
+		<% render("series_stacked_column.ssp", Map("serie" -> serie)) %>
 	},
 	<% } %>
 	]
 });
 
-req_details_resp_time_distrib_chart.setTitle({
+responseTimeDistributionChart.setTitle({
 	text: '<span class="chart_title"><%=chartTitle%></span>',
 	useHTML: true
 });

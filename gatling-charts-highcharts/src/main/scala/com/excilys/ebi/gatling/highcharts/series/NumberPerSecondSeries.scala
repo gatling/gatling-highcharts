@@ -9,19 +9,16 @@ import scala.collection.mutable.ArrayBuffer
 
 import com.excilys.ebi.gatling.charts.series.Series
 
-class NumberPerSecondSeries(name: String, data: Seq[(Long, Int)], color: String) extends Series[Long, Int](name, data, List(color)) {
+class NumberPerSecondSeries(name: String, data: Seq[(Long, Int)], color: String) extends Series[Long, Int](name.replace("'", "\\\'"), data, List(color)) {
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
-		buffer += "name: '" + name.replace("'", "\\\'") + "',"
-		buffer += "color: '" + color + "',"
-		buffer += "data: ["
 		if (!sample.isEmpty)
 			buffer ++= sample
 				.map { case (time, count) => new StringBuilder().append("[").append(time).append(",").append(count).append("]").toString }
 				.foldLeft(List[String]())((l, v) => "," :: v :: l)
 				.tail
 				.reverse
-		buffer += "], tooltip: { yDecimals: 0, ySuffix: '' }"
+		buffer
 	}
 }

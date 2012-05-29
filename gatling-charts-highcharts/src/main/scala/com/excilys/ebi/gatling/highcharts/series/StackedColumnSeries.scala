@@ -11,16 +11,12 @@ class StackedColumnSeries(name: String, data: Seq[(String, Int)], color: String)
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
-		buffer += "type: 'column',"
-		buffer += "color: '" + colors(0) + "',"
-		buffer += "name: '" + name + "',"
-		buffer += "data: ["
 		if (!data.isEmpty)
 			buffer ++= data
 				.map { case (_, count) => count.toString }
 				.foldLeft(List[String]())((l, v) => "," :: v :: l)
 				.tail
 				.reverse
-		buffer += "], tooltip: { yDecimals: 0, ySuffix: 'ms' }"
+		buffer
 	}
 }

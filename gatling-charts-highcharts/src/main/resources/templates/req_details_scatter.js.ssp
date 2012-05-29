@@ -2,7 +2,7 @@
 <%@ val successes: com.excilys.ebi.gatling.highcharts.series.ScatterSeries  %>
 <%@ val failures: com.excilys.ebi.gatling.highcharts.series.ScatterSeries %>
 
-var req_details_scatter_chart = new Highcharts.Chart({
+var scatterChart = new Highcharts.Chart({
 	chart: {
 		renderTo: 'container_dispersion', 
 		defaultSeriesType: 'scatter',
@@ -57,13 +57,14 @@ var req_details_scatter_chart = new Highcharts.Chart({
 			}
 		}
 	},
-	series: [{ 
-		<% successes.getElements.foreach { s => %><%=s%><% } %>
+	series: [{
+		<% render("series_scatter.ssp", Map("serie" -> successes)) %>
 		}, {
-		<% failures.getElements.foreach { s => %><%=s%><% } %>
+		<% render("series_scatter.ssp", Map("serie" -> failures)) %>
 	} ]
 });
-req_details_scatter_chart.setTitle({
+
+scatterChart.setTitle({
 	text: '<span class="chart_title"><%=chartTitle%></span>',
 	useHTML: true
 });

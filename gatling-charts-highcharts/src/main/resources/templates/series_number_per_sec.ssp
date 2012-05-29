@@ -1,0 +1,7 @@
+<%@ val serie: com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries %>
+color: '<%=serie.colors(0)%>'
+, name: '<%=serie.name%>'
+, data: [
+<% serie.getElements.foreach{ s => %><%=s%><% } %>
+]
+, tooltip: { yDecimals: 0, ySuffix: '' }

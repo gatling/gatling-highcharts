@@ -10,7 +10,7 @@ Highcharts.setOptions({
 	}
 });
 
-var chart = new Highcharts.StockChart({
+var transactionsChart = new Highcharts.StockChart({
 	chart: {
 		renderTo: 'container_transactions',
 		zoomType: 'x'
@@ -75,23 +75,17 @@ var chart = new Highcharts.StockChart({
 	[
 		<% series.foreach{ serie => %>
 		{
-			<% serie.getElements.foreach{ s =>%><%=s%><% } %>
+			<% render("series_number_per_sec.ssp", Map("serie" -> serie)) %>
 		},
 		<% } %>
 		allSessionsData,
 		{
-			<% pieSeries.getElements.foreach{ s =>%><%=s%><% } %>,
-			center: [820, -20],
-			size: 70,
-			showInLegend: false,
-			dataLabels: {
-				enabled: false
-			}
+			<% render("series_pie.ssp", Map("serie" -> pieSeries, "centerX" -> 820, "centerY" -> -20, "size" -> 70)) %>
 		}
 	]
 });
 
-chart.setTitle({
+transactionsChart.setTitle({
 	text: '<span class="chart_title"><%=chartTitle%></span>',
 	useHTML: true
 });

@@ -14,15 +14,12 @@ class PieSeries(name: String, data: Seq[(String, Int)], seriesColors: List[Strin
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
-		buffer += "type: 'pie',"
-		buffer += "name: '" + name + "',"
-		buffer += "data: ["
 		if (!data.isEmpty)
 			buffer ++= dataWithColors
 				.map { case (name, count, color) => new StringBuilder().append("{name: '").append(name).append("', y: ").append(count).append(", color: '").append(color).append("'}").toString }
 				.foldLeft(List[String]())((l, v) => "," :: v :: l)
 				.tail
 				.reverse
-		buffer += "]"
+		buffer
 	}
 }

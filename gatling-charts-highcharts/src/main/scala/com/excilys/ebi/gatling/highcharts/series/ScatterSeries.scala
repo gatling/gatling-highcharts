@@ -13,10 +13,6 @@ class ScatterSeries(name: String, data: Seq[(Int, Long)], color: String) extends
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
-		buffer += "type: 'scatter',"
-		buffer += "color: '" + color + "',"
-		buffer += "name: '" + name + "',"
-		buffer += "data: ["
 		if (sample.isEmpty)
 			buffer += "[]"
 		else
@@ -25,6 +21,5 @@ class ScatterSeries(name: String, data: Seq[(Int, Long)], color: String) extends
 				.foldLeft(List[String]())((l, v) => "," :: v :: l)
 				.tail
 				.reverse
-		buffer += "]"
 	}
 }

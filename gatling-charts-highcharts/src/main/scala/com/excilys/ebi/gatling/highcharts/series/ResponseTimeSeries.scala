@@ -16,16 +16,12 @@ class ResponseTimeSeries(name: String, data: Seq[(Long, Long)], color: String) e
 
 	def getElements: ArrayBuffer[String] = {
 		val buffer = new ArrayBuffer[String]
-		buffer += "name: '" + name + "',"
-		buffer += "color: '" + color + "',"
-		buffer += "pointInterval: 1000,"
-		buffer += "data: ["
 		if (!sample.isEmpty)
 			buffer ++= sample
 				.map { case (time, responseTime) => new StringBuilder().append("[").append(time).append(",").append((if (responseTime == NO_PLOT_MAGIC_VALUE) "null" else responseTime)).append("]").toString }
 				.foldLeft(List[String]())((l, v) => "," :: v :: l)
 				.tail
 				.reverse
-		buffer += "], tooltip: { yDecimals: 0, ySuffix: 'ms' }"
+		buffer
 	}
 }
