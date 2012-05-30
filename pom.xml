@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.excilys.ebi.gatling.highcharts</groupId>
 	<artifactId>gatling-highcharts</artifactId>
@@ -123,6 +124,10 @@
 					<version>${maven-compiler-plugin.version}</version>
 				</plugin>
 				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${maven-assembly-plugin.version}</version>
+				</plugin>
+				<plugin>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>${maven-jar-plugin.version}</version>
 				</plugin>
@@ -173,6 +178,7 @@
 					<version>${maven-license-plugin.version}</version>
 					<configuration>
 						<header>src/etc/header.txt</header>
+						<strictCheck>false</strictCheck>
 						<excludes>
 							<exclude>**/highcharts.js</exclude>
 							<exclude>**/highstock.js</exclude>
