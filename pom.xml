@@ -151,6 +151,7 @@
 									<arg>-make:transitive</arg>
 									<arg>-dependencyfile</arg>
 									<arg>${project.build.directory}/.scala_dependencies</arg>
+									<arg>-deprecation</arg>
 								</args>
 							</configuration>
 						</execution>
@@ -162,7 +163,7 @@
 				</plugin>
 				<plugin>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>${maven-release-plugin.version}</version><!--$NO-MVN-MAN-VER$ -->
+					<version>${maven-release-plugin.version}</version>
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<tagNameFormat>@{project.version}</tagNameFormat>
