@@ -18,4 +18,3 @@ object RequestDetailsScatterComponent {
 		new HighchartsComponent(template)
 	}
 }
-		

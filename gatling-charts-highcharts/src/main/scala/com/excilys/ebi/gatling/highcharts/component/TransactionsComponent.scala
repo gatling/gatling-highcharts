@@ -6,7 +6,7 @@
 package com.excilys.ebi.gatling.highcharts.component
 
 import com.excilys.ebi.gatling.charts.series.Series
-import com.excilys.ebi.gatling.highcharts.series.{PieSeries, NumberPerSecondSeries}
+import com.excilys.ebi.gatling.highcharts.series.{ PieSeries, NumberPerSecondSeries }
 import com.excilys.ebi.gatling.highcharts.template.TransactionsTemplate
 
 object TransactionsComponent {

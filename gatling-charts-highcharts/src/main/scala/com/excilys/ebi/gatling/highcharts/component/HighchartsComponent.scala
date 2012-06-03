@@ -10,9 +10,10 @@ import com.excilys.ebi.gatling.highcharts.config.HighchartsFiles.{ HIGHSTOCK_FIL
 import com.excilys.ebi.gatling.highcharts.template.Template
 
 class HighchartsComponent(template: Template) extends Component {
+
 	def getHTMLContent: String = template.getHTMLContent
 
 	def getJavascriptContent: String = template.getJSContent
 
-	def getJavascriptFiles: Seq[String] = Seq(HIGHCHARTS_FILE, HIGHSTOCK_FILE, HIGHCARTS_THEME_FILE)
+	val getJavascriptFiles: Seq[String] = Seq(HIGHCHARTS_FILE, HIGHSTOCK_FILE, HIGHCARTS_THEME_FILE)
 }

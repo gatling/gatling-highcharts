@@ -10,6 +10,7 @@ import com.excilys.ebi.gatling.highcharts.series.{ StackedColumnSeries, PieSerie
 import com.excilys.ebi.gatling.highcharts.template.RequestDetailsIndicatorTemplate
 
 object RequestDetailsIndicatorComponent {
+
 	def apply(columnSeries: Series[String, Int], pieSeries: Series[String, Int]) = {
 		val template = {
 			val data = columnSeries.data

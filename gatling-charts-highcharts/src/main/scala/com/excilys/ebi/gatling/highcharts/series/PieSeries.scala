@@ -9,11 +9,11 @@ import com.excilys.ebi.gatling.charts.series.Series
 
 class PieSeries(name: String, data: Seq[(String, Int)], seriesColors: List[String]) extends Series[String, Int](name, data, seriesColors) {
 
-	private val dataWithColors = data.zip(seriesColors).map { case (slice, color) => (slice._1, slice._2, color) }
-
-	def elements: Seq[String] = dataWithColors.map {
-		case (name, count, color) =>
-			new StringBuilder()
+	def elements: Seq[String] = data
+		.zip(seriesColors)
+		.map { case (slice, color) => (slice._1, slice._2, color) }
+		.map {
+			case (name, count, color) => new StringBuilder()
 				.append("{name: '")
 				.append(name)
 				.append("', y: ")
@@ -22,5 +22,5 @@ class PieSeries(name: String, data: Seq[(String, Int)], seriesColors: List[Strin
 				.append(color)
 				.append("'}")
 				.toString
-	}
+		}
 }
