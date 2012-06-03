@@ -9,8 +9,13 @@ import com.excilys.ebi.gatling.charts.series.Series
 import com.excilys.ebi.gatling.highcharts.series.ScatterSeries
 import com.excilys.ebi.gatling.highcharts.template.RequestDetailsScatterTemplate
 
-class RequestDetailsScatterComponent(success: Series[Int, Long], failures: Series[Int, Long])
-	extends HighchartsComponent(
-		new RequestDetailsScatterTemplate(
+object RequestDetailsScatterComponent {
+
+	def apply(success: Series[Int, Long], failures: Series[Int, Long]) = {
+		val template = new RequestDetailsScatterTemplate(
 			new ScatterSeries(success.name, success.data, success.colors.head),
-			new ScatterSeries(failures.name, failures.data, failures.colors.head)))
+			new ScatterSeries(failures.name, failures.data, failures.colors.head))
+		new HighchartsComponent(template)
+	}
+}
+		
