@@ -24,6 +24,7 @@ var scatterChart = new Highcharts.Chart({
 		text: 'A title to let highcharts reserve the place for the title set later'
 	},
 	yAxis: {
+		min: 0,
 		title: {
 			text: 'Response time'
 		}

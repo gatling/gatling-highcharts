@@ -63,6 +63,7 @@ var requestsChart = new Highcharts.StockChart({
 			}
 		}
 	}, {
+		min: 0,
 		title: {
 			text: 'Active Sessions',
 			style: {
