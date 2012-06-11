@@ -82,6 +82,8 @@
 		<maven-resources-plugin.version>2.5</maven-resources-plugin.version>
 		<build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
 		<maven-jdeb-plugin.version>0.10</maven-jdeb-plugin.version>
+
+		<header.basedir>${project.basedir}</header.basedir>
 	</properties>
 
 	<dependencyManagement>
@@ -175,7 +177,7 @@
 					<artifactId>maven-license-plugin</artifactId>
 					<version>${maven-license-plugin.version}</version>
 					<configuration>
-						<header>src/etc/header.txt</header>
+						<header>${header.basedir}/src/etc/header.txt</header>
 						<strictCheck>false</strictCheck>
 						<excludes>
 							<exclude>**/highcharts.js</exclude>
