@@ -7,6 +7,10 @@
 	</parent>
 	<artifactId>gatling-highcharts-maven-archetype</artifactId>
 	<packaging>maven-archetype</packaging>
+	
+	<properties>
+		<header.basedir>${project.parent.basedir}</header.basedir>
+	</properties>
 
 	<dependencies>
 		<dependency>
