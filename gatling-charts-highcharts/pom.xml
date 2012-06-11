@@ -7,6 +7,10 @@
 	</parent>
 	<artifactId>gatling-charts-highcharts</artifactId>
 
+	<properties>
+		<header.basedir>${project.parent.basedir}</header.basedir>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.excilys.ebi.gatling</groupId>
