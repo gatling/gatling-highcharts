@@ -5,7 +5,7 @@
  */
 package com.excilys.ebi.gatling.highcharts.template
 
-trait Template {
+abstract class Template {
 	def getJSContent: String
 
 	def getHTMLContent: String
