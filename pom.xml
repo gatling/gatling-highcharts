@@ -68,12 +68,12 @@
 		<scala.version>2.9.2</scala.version>
 		<gatling.version>1.2.4-SNAPSHOT</gatling.version>
 
-		<maven-compiler-plugin.version>2.4</maven-compiler-plugin.version>
+		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 		<maven-assembly-plugin.version>2.2.2</maven-assembly-plugin.version>
 		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>
 		<scala-maven-plugin.version>3.0.2</scala-maven-plugin.version>
 		<maven-surefire-plugin.version>2.12</maven-surefire-plugin.version>
-		<maven-release-plugin.version>2.3</maven-release-plugin.version>
+		<maven-release-plugin.version>2.3.2</maven-release-plugin.version>
 		<maven-scalate-plugin.version>1.5.3</maven-scalate-plugin.version>
 		<maven-license-plugin.version>1.10.b1</maven-license-plugin.version>
 		<maven-archetype-plugin.version>2.2</maven-archetype-plugin.version>
