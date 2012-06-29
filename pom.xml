@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.excilys.ebi.gatling.highcharts</groupId>
 	<artifactId>gatling-highcharts</artifactId>
-	<version>1.2.4-SNAPSHOT</version>
+	<version>1.2.4</version>
 	<packaging>pom</packaging>
 	<inceptionYear>2011</inceptionYear>
 
@@ -24,7 +24,7 @@
 		<connection>scm:git:git@github.com:excilys/gatling-highcharts.git</connection>
 		<developerConnection>scm:git:git@github.com:excilys/gatling-highcharts.git</developerConnection>
 		<url>https://github.com/excilys/gatling-highcharts</url>
-	  <tag>HEAD</tag>
+	  <tag>1.2.4</tag>
   </scm>
 
 	<distributionManagement>
