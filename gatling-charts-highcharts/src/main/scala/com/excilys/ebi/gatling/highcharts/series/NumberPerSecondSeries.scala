@@ -7,7 +7,7 @@ package com.excilys.ebi.gatling.highcharts.series
 
 import com.excilys.ebi.gatling.charts.series.Series
 
-class NumberPerSecondSeries(name: String, data: Seq[(Long, Int)], color: String) extends Series[Long, Int](name.replace("'", "\\\'"), data, List(color)) {
+class NumberPerSecondSeries(name: String, data: Seq[(Long, Long)], color: String) extends Series[Long, Long](name.replace("'", "\\\'"), data, List(color)) {
 
 	def elements: Seq[String] = sample.map {
 		case (time, count) =>

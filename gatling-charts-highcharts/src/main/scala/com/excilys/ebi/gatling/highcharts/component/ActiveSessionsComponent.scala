@@ -11,7 +11,7 @@ import com.excilys.ebi.gatling.highcharts.template.ActiveSessionsTemplate
 
 object ActiveSessionsComponent {
 
-	def apply(series: Seq[Series[Long, Int]]) = {
+	def apply(series: Seq[Series[Long, Long]]) = {
 		val template = new ActiveSessionsTemplate(series.map { s => new NumberPerSecondSeries(s.name, s.data, s.colors.head) })
 		new HighchartsComponent(template)
 	}
