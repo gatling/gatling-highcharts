@@ -11,7 +11,7 @@ import com.excilys.ebi.gatling.highcharts.template.RequestDetailsResponseTimeDis
 
 object RequestDetailsResponseTimeDistributionComponent {
 
-	def apply(successDistribution: Series[Long, Int], failuresDistribution: Series[Long, Int]) = {
+	def apply(successDistribution: Series[Long, Long], failuresDistribution: Series[Long, Long]) = {
 		val template = new RequestDetailsResponseTimeDistributionTemplate(
 			new StackedColumnSeries(successDistribution.name, successDistribution.data.map { case (time, count) => (time.toString -> count) }, successDistribution.colors.head),
 			new StackedColumnSeries(failuresDistribution.name, failuresDistribution.data.map { case (time, count) => (time.toString -> count) }, failuresDistribution.colors.head))
