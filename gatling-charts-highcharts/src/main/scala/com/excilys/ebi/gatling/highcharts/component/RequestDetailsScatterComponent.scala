@@ -11,7 +11,7 @@ import com.excilys.ebi.gatling.highcharts.template.RequestDetailsScatterTemplate
 
 object RequestDetailsScatterComponent {
 
-	def apply(success: Series[Int, Long], failures: Series[Int, Long]) = {
+	def apply(success: Series[Long, Long], failures: Series[Long, Long]) = {
 		val template = new RequestDetailsScatterTemplate(
 			new ScatterSeries(success.name, success.data, success.colors.head),
 			new ScatterSeries(failures.name, failures.data, failures.colors.head))

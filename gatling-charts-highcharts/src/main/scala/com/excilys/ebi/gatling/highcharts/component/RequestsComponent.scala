@@ -11,7 +11,7 @@ import com.excilys.ebi.gatling.highcharts.template.RequestsTemplate
 
 object RequestsComponent {
 
-	def apply(allRequests: Series[Long, Int], failedRequests: Series[Long, Int], succeededRequests: Series[Long, Int], pieSeries: Series[String, Int]) = {
+	def apply(allRequests: Series[Long, Long], failedRequests: Series[Long, Long], succeededRequests: Series[Long, Long], pieSeries: Series[String, Long]) = {
 		val template = new RequestsTemplate(
 			Seq(new NumberPerSecondSeries(allRequests.name, allRequests.data, allRequests.colors.head),
 				new NumberPerSecondSeries(failedRequests.name, failedRequests.data, failedRequests.colors.head),

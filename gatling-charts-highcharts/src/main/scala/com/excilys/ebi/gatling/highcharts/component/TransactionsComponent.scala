@@ -11,7 +11,7 @@ import com.excilys.ebi.gatling.highcharts.template.TransactionsTemplate
 
 object TransactionsComponent {
 
-	def apply(allTransactions: Series[Long, Int], failedTransactions: Series[Long, Int], succeededTransactions: Series[Long, Int], pieSeries: Series[String, Int]) = {
+	def apply(allTransactions: Series[Long, Long], failedTransactions: Series[Long, Long], succeededTransactions: Series[Long, Long], pieSeries: Series[String, Long]) = {
 		val template = new TransactionsTemplate(
 			Seq(new NumberPerSecondSeries(allTransactions.name, allTransactions.data, allTransactions.colors.head),
 				new NumberPerSecondSeries(failedTransactions.name, failedTransactions.data, failedTransactions.colors.head),
