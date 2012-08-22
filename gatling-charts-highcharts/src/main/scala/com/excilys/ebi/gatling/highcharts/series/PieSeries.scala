@@ -12,15 +12,5 @@ class PieSeries(name: String, data: Seq[(String, Long)], seriesColors: List[Stri
 	def elements: Seq[String] = data
 		.zip(seriesColors)
 		.map { case (slice, color) => (slice._1, slice._2, color) }
-		.map {
-			case (name, count, color) => new StringBuilder()
-				.append("{name: '")
-				.append(name)
-				.append("', y: ")
-				.append(count)
-				.append(", color: '")
-				.append(color)
-				.append("'}")
-				.toString
-		}
+		.map { case (name, count, color) => "{name: '" + name + "', y: " + count + ", color: '" + color + "'}" }
 }

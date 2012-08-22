@@ -12,14 +12,5 @@ class ResponseTimeSeries(name: String, data: Seq[(Long, Long)], color: String) e
 
 	override def isPlotMandatory(plot: (Long, Long)) = plot._2 != NO_PLOT_MAGIC_VALUE
 
-	def elements: Seq[String] = sample.map {
-		case (time, responseTime) =>
-			new StringBuilder()
-				.append("[")
-				.append(time)
-				.append(",")
-				.append((if (responseTime == NO_PLOT_MAGIC_VALUE) "null" else responseTime))
-				.append("]")
-				.toString
-	}
+	def elements: Seq[String] = sample.map { case (time, responseTime) => "[" + time + "," + (if (responseTime == NO_PLOT_MAGIC_VALUE) "null" else responseTime) + "]" }
 }

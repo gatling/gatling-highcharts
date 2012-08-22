@@ -13,14 +13,5 @@ class ScatterSeries(name: String, data: Seq[(Long, Long)], color: String) extend
 		if (sample.isEmpty)
 			List("[]")
 		else
-			sample.map {
-				case (requestsPerSecond, responseTime) =>
-					new StringBuilder()
-						.append("[")
-						.append(requestsPerSecond)
-						.append(",")
-						.append(responseTime)
-						.append("]")
-						.toString
-			}
+			sample.map { case (requestsPerSecond, responseTime) => "[" + requestsPerSecond + "," + responseTime + "]" }
 }
