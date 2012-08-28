@@ -6,6 +6,7 @@ color: '<%=serie.colors(0)%>'
 , data: [
 <% render("jslist.ssp", Map("seq" -> serie.elements)) %>
 ]
+, type: 'arearange'
 , tooltip: { yDecimals: 0, ySuffix: 'ms' }
 , yAxis: 0
 <%marker.map{marker=>%>, marker: { <%=marker%> }<%}%>
