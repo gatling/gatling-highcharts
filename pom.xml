@@ -195,6 +195,7 @@
 						<strictCheck>false</strictCheck>
 						<excludes>
 							<exclude>**/highcharts.js</exclude>
+							<exclude>**/highcharts-more.js</exclude>
 							<exclude>**/highstock.js</exclude>
 						</excludes>
 					</configuration>
