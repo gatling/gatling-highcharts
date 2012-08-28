@@ -6,7 +6,7 @@
 package com.excilys.ebi.gatling.highcharts.series
 
 import com.excilys.ebi.gatling.charts.series.Series
-import com.excilys.ebi.gatling.charts.util.StatisticsHelper.NO_PLOT_MAGIC_VALUE
+import com.excilys.ebi.gatling.core.result.reader.DataReader.NO_PLOT_MAGIC_VALUE
 
 class ResponseTimeSeries(name: String, data: Seq[(Long, Long)], color: String) extends Series[Long, Long](name, data, List(color)) {
 
