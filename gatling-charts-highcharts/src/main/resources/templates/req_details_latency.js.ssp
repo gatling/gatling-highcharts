@@ -65,6 +65,11 @@ var latencyChart = new Highcharts.StockChart({
 		},
 		opposite: true
 	}],
+    plotOptions: {
+        arearange: {
+            lineWidth: 1
+        }
+    },
 	series: [
 	<% if(!successSeries.data.isEmpty){ %>
 	{
