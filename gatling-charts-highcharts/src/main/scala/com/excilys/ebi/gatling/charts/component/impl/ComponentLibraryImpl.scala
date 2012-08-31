@@ -7,7 +7,7 @@ package com.excilys.ebi.gatling.charts.component.impl
 
 import com.excilys.ebi.gatling.charts.component.{ ComponentLibrary, Component }
 import com.excilys.ebi.gatling.charts.series.Series
-import com.excilys.ebi.gatling.highcharts.component.{ TransactionsComponent, RequestsComponent, RequestDetailsScatterComponent, RequestDetailsResponseTimeDistributionComponent, RequestDetailsResponseTimeComponent, RequestDetailsLatencyComponent, RequestDetailsIndicatorComponent, AllSessionsComponent, ActiveSessionsComponent }
+import com.excilys.ebi.gatling.highcharts.component._
 
 class ComponentLibraryImpl extends ComponentLibrary {
 	def getAllSessionsJs(series: Series[Long, Long]): String = new AllSessionsComponent(series).getJavascript
@@ -19,4 +19,5 @@ class ComponentLibraryImpl extends ComponentLibrary {
 	def getRequestDetailsLatencyChartComponent(latencySuccess: Series[Long, (Long, Long)], latencyFailures: Series[Long, (Long, Long)]): Component = RequestDetailsLatencyComponent(latencySuccess, latencyFailures)
 	def getRequestDetailsScatterChartComponent(successes: Series[Long, Long], failures: Series[Long, Long]): Component = RequestDetailsScatterComponent(successes, failures)
 	def getRequestDetailsIndicatorChartComponent: Component = RequestDetailsIndicatorComponent()
+	def getNumberOfRequestsChartComponent = NumberOfRequestsComponent()
 }
