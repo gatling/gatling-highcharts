@@ -10,5 +10,5 @@ object Engine extends App {
 	props.requestBodiesDirectory(IDEPathHelper.requestBodiesDirectory)
 	props.binariesDirectory(IDEPathHelper.mavenBinariesDirectory)
 
-	Gatling.fromProperties(props.build)
+	Gatling.fromMap(props.build)
 }
