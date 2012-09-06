@@ -10,9 +10,10 @@ import com.excilys.ebi.gatling.core.result.reader.DataReader.NO_PLOT_MAGIC_VALUE
 
 class ResponseTimeSeries(name: String, data: Seq[(Long, (Long, Long))], color: String) extends Series[Long, (Long, Long)](name, data, List(color)) {
 
-	override def isPlotMandatory(plot: (Long, (Long, Long))) = plot._2._1 != NO_PLOT_MAGIC_VALUE && plot._2._2 != NO_PLOT_MAGIC_VALUE
+	def elements: Seq[String] = data.map { case (time, (responseTimeMin, responseTimeMax)) => "[" + time + "," + valueOrNull(responseTimeMin) + "," + valueOrNull(responseTimeMax) + "]" }
 
-	def elements: Seq[String] = sample.map { case (time, (responseTimeMin, responseTimeMax)) => "[" + time + "," + valueOrNull(responseTimeMin) + "," + valueOrNull(responseTimeMax) + "]" }
-
-	private def valueOrNull[A](value: A) = if (value == NO_PLOT_MAGIC_VALUE) "null" else value.toString
+	private def valueOrNull[A](value: A) = value match {
+		case NO_PLOT_MAGIC_VALUE => "null"
+		case _ => value.toString
+	}
 }

@@ -9,5 +9,5 @@ import com.excilys.ebi.gatling.charts.series.Series
 
 class NumberPerSecondSeries(name: String, data: Seq[(Long, Long)], color: String) extends Series[Long, Long](name.replace("'", "\\\'"), data, List(color)) {
 
-	def elements: Seq[String] = sample.map { case (time, count) => "[" + time + "," + count + "]" }
+	def elements: Seq[String] = data.map { case (time, count) => "[" + time + "," + count + "]" }
 }

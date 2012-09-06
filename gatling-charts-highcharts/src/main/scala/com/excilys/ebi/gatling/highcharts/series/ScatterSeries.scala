@@ -9,9 +9,8 @@ import com.excilys.ebi.gatling.charts.series.Series
 
 class ScatterSeries(name: String, data: Seq[(Long, Long)], color: String) extends Series[Long, Long](name, data, List(color)) {
 
-	def elements: Seq[String] =
-		if (sample.isEmpty)
-			List("[]")
-		else
-			sample.map { case (requestsPerSecond, responseTime) => "[" + requestsPerSecond + "," + responseTime + "]" }
+	def elements: Seq[String] = data match {
+		case Nil => List("[]")
+		case _ => data.map { case (requestsPerSecond, responseTime) => "[" + requestsPerSecond + "," + responseTime + "]" }
+	}
 }
