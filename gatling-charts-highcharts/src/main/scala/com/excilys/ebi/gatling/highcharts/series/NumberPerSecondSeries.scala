@@ -6,8 +6,9 @@
 package com.excilys.ebi.gatling.highcharts.series
 
 import com.excilys.ebi.gatling.charts.series.Series
+import com.excilys.ebi.gatling.core.util.StringHelper.escapeJsQuoteString
 
-class NumberPerSecondSeries(name: String, data: Seq[(Long, Long)], color: String) extends Series[Long, Long](name.replace("'", "\\\'"), data, List(color)) {
+class NumberPerSecondSeries(name: String, data: Seq[(Long, Long)], color: String) extends Series[Long, Long](escapeJsQuoteString(name), data, List(color)) {
 
 	def elements: Seq[String] = data.map { case (time, count) => "[" + time + "," + count + "]" }
 }
