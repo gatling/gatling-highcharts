@@ -11,10 +11,10 @@ import com.excilys.ebi.gatling.highcharts.template.RequestDetailsLatencyTemplate
 
 object RequestDetailsLatencyComponent {
 
-	def apply(latencySuccess: Series[Long, (Long, Long)], latencyFailures: Series[Long, (Long, Long)]) = {
+	def apply(runStart: Long, latencySuccess: Series[Int, (Int, Int)], latencyFailures: Series[Int, (Int, Int)]) = {
 		val template = new RequestDetailsLatencyTemplate(
-			new ResponseTimeSeries(latencySuccess.name, latencySuccess.data, latencySuccess.colors.head),
-			new ResponseTimeSeries(latencyFailures.name, latencyFailures.data, latencyFailures.colors.head))
+			new ResponseTimeSeries(latencySuccess.name, runStart, latencySuccess.data, latencySuccess.colors.head),
+			new ResponseTimeSeries(latencyFailures.name, runStart, latencyFailures.data, latencyFailures.colors.head))
 
 		new HighchartsComponent(template)
 	}

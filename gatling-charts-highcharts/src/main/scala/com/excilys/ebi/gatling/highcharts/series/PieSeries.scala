@@ -7,7 +7,7 @@ package com.excilys.ebi.gatling.highcharts.series
 
 import com.excilys.ebi.gatling.charts.series.Series
 
-class PieSeries(name: String, data: Seq[(String, Long)], seriesColors: List[String]) extends Series[String, Long](name, data, seriesColors) {
+class PieSeries(name: String, data: Seq[(String, Int)], seriesColors: List[String]) extends Series[String, Int](name, data, seriesColors) {
 
 	def elements: Seq[String] = data
 		.zip(seriesColors)

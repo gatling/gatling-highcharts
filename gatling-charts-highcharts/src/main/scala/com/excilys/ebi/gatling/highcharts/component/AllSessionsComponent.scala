@@ -10,10 +10,10 @@ import com.excilys.ebi.gatling.charts.template.PageTemplate
 import com.excilys.ebi.gatling.highcharts.config.HighchartsFiles.ALL_SESSIONS_JS_TEMPLATE_URL
 import com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries
 
-class AllSessionsComponent(series: Series[Long, Long]) {
+class AllSessionsComponent(runStart: Long, series: Series[Int, Int]) {
 
 	def getJavascript: String = {
-		val numberPerSecondSeries = new NumberPerSecondSeries(series.name, series.data, series.colors.head)
+		val numberPerSecondSeries = new NumberPerSecondSeries(series.name, runStart, series.data, series.colors.head)
 		PageTemplate.TEMPLATE_ENGINE.layout(ALL_SESSIONS_JS_TEMPLATE_URL, Map("activeSessions" -> numberPerSecondSeries))
 	}
 }

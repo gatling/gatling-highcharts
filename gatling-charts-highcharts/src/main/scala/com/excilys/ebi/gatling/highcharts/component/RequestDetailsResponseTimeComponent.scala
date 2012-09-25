@@ -11,10 +11,10 @@ import com.excilys.ebi.gatling.highcharts.template.RequestDetailsResponseTimeTem
 
 object RequestDetailsResponseTimeComponent {
 
-	def apply(responseTimesSuccess: Series[Long, (Long, Long)], responseTimesFailures: Series[Long, (Long, Long)]) = {
+	def apply(runStart: Long, responseTimesSuccess: Series[Int, (Int, Int)], responseTimesFailures: Series[Int, (Int, Int)]) = {
 		val template = new RequestDetailsResponseTimeTemplate(
-			new ResponseTimeSeries(responseTimesSuccess.name, responseTimesSuccess.data, responseTimesSuccess.colors.head),
-			new ResponseTimeSeries(responseTimesFailures.name, responseTimesFailures.data, responseTimesFailures.colors.head))
+			new ResponseTimeSeries(responseTimesSuccess.name, runStart, responseTimesSuccess.data, responseTimesSuccess.colors.head),
+			new ResponseTimeSeries(responseTimesFailures.name, runStart, responseTimesFailures.data, responseTimesFailures.colors.head))
 
 		new HighchartsComponent(template)
 	}

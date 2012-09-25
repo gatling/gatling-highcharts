@@ -10,14 +10,14 @@ import com.excilys.ebi.gatling.charts.series.Series
 import com.excilys.ebi.gatling.highcharts.component._
 
 class ComponentLibraryImpl extends ComponentLibrary {
-	def getAllSessionsJs(series: Series[Long, Long]): String = new AllSessionsComponent(series).getJavascript
-	def getActiveSessionsChartComponent(series: Seq[Series[Long, Long]]): Component = ActiveSessionsComponent(series)
-	def getRequestsChartComponent(allRequests: Series[Long, Long], failedRequests: Series[Long, Long], succeededRequests: Series[Long, Long], pieSeries: Series[String, Long]): Component = RequestsComponent(allRequests, failedRequests, succeededRequests, pieSeries)
-	def getTransactionsChartComponent(allTransactions: Series[Long, Long], failedTransactions: Series[Long, Long], succeededTransactions: Series[Long, Long], pieSeries: Series[String, Long]): Component = TransactionsComponent(allTransactions, failedTransactions, succeededTransactions, pieSeries)
-	def getRequestDetailsResponseTimeChartComponent(responseTimesSuccess: Series[Long, (Long, Long)], responseTimesFailures: Series[Long, (Long, Long)]): Component = RequestDetailsResponseTimeComponent(responseTimesSuccess, responseTimesFailures)
-	def getRequestDetailsResponseTimeDistributionChartComponent(responseTimesSuccess: Series[Long, Long], responseTimesFailures: Series[Long, Long]): Component = RequestDetailsResponseTimeDistributionComponent(responseTimesSuccess, responseTimesFailures)
-	def getRequestDetailsLatencyChartComponent(latencySuccess: Series[Long, (Long, Long)], latencyFailures: Series[Long, (Long, Long)]): Component = RequestDetailsLatencyComponent(latencySuccess, latencyFailures)
-	def getRequestDetailsScatterChartComponent(successes: Series[Long, Long], failures: Series[Long, Long]): Component = RequestDetailsScatterComponent(successes, failures)
+	def getAllSessionsJs(runStart: Long, series: Series[Int, Int]): String = new AllSessionsComponent(runStart, series).getJavascript
+	def getActiveSessionsChartComponent(runStart: Long, series: Seq[Series[Int, Int]]): Component = ActiveSessionsComponent(runStart, series)
+	def getRequestsChartComponent(runStart: Long, allRequests: Series[Int, Int], failedRequests: Series[Int, Int], succeededRequests: Series[Int, Int], pieSeries: Series[String, Int]): Component = RequestsComponent(runStart, allRequests, failedRequests, succeededRequests, pieSeries)
+	def getTransactionsChartComponent(runStart: Long, allTransactions: Series[Int, Int], failedTransactions: Series[Int, Int], succeededTransactions: Series[Int, Int], pieSeries: Series[String, Int]): Component = TransactionsComponent(runStart, allTransactions, failedTransactions, succeededTransactions, pieSeries)
+	def getRequestDetailsResponseTimeChartComponent(runStart: Long, responseTimesSuccess: Series[Int, (Int, Int)], responseTimesFailures: Series[Int, (Int, Int)]): Component = RequestDetailsResponseTimeComponent(runStart, responseTimesSuccess, responseTimesFailures)
+	def getRequestDetailsResponseTimeDistributionChartComponent(responseTimesSuccess: Series[Int, Int], responseTimesFailures: Series[Int, Int]): Component = RequestDetailsResponseTimeDistributionComponent(responseTimesSuccess, responseTimesFailures)
+	def getRequestDetailsLatencyChartComponent(runStart: Long, latencySuccess: Series[Int, (Int, Int)], latencyFailures: Series[Int, (Int, Int)]): Component = RequestDetailsLatencyComponent(runStart, latencySuccess, latencyFailures)
+	def getRequestDetailsScatterChartComponent(successes: Series[Int, Int], failures: Series[Int, Int]): Component = RequestDetailsScatterComponent(successes, failures)
 	def getRequestDetailsIndicatorChartComponent: Component = RequestDetailsIndicatorComponent()
 	def getNumberOfRequestsChartComponent = NumberOfRequestsComponent()
 }
