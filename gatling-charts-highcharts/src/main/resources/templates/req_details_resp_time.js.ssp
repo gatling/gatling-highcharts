@@ -17,11 +17,6 @@ var responseTimeChart = new Highcharts.StockChart({
 		y: -285,
 		borderWidth: 0
 	},
-	navigator : {
-		series: {
-    	    type: 'arearange',
-        }
-    },
 	title: {
 		text: 'A title to let highcharts reserve the place for the title set later'
 	},
