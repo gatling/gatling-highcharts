@@ -2,12 +2,13 @@
 <%@ val centerX: Int %>
 <%@ val centerY: Int %>
 <%@ val size: Int %>
-type: 'pie'
-, name: '<%=serie.name%>'
-, data: [
+type: 'pie',
+name: '<%=serie.name%>',
+data: [
 <% render("jslist.ssp", Map("seq" -> serie.elements)) %>
-]
-, center: [<%=centerX%>, <%=centerY%>]
-, size: <%=size%>
-, showInLegend: false
-, dataLabels: { enabled: false }
+],
+center: [<%=centerX%>, <%=centerY%>],
+size: <%=size%>,
+showInLegend: false,
+dataLabels: { enabled: false },
+dataGrouping: { enabled: false }
