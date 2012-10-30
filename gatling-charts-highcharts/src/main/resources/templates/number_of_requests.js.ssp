@@ -1,22 +1,22 @@
+//<% import com.excilys.ebi.gatling.charts.report.Container.GROUP %>
+//<% import com.excilys.ebi.gatling.charts.report.Container.REQUEST %>
+
 function numberOfRequestsDataForGroup(group) {
 	var data = {names: [], oks: [], kos: []};
 
-	if (group.groups != null) {
-		$.each(group.groups, function(groupName, group) {
-			var result = numberOfRequestsDataForGroup(group);
+	$.each(group.contents, function(contentName, content) {
+		if (content.type == '<%= GROUP %>') {
+			var result = numberOfRequestsDataForGroup(content);
 			data.names = data.names.concat(result.names);
 			data.oks = data.oks.concat(result.oks);
 			data.kos = data.kos.concat(result.kos);
-		});
-	}
-
-	if (group.requests != null) {
-		$.each(group.requests, function(requestName, request) {
-			data.names.push(request.path);
-			data.oks.push(parseInt(request.stats.numberOfRequests.ok));
-			data.kos.push(parseInt(request.stats.numberOfRequests.ko));
-		});
-	}
+		}
+		else if (content.type == '<%= REQUEST %>') {
+			data.names.push(content.path);
+			data.oks.push(parseInt(content.stats.numberOfRequests.ok));
+			data.kos.push(parseInt(content.stats.numberOfRequests.ko));
+		}
+	});
 
 	return data;
 }
