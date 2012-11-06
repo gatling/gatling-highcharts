@@ -18,7 +18,7 @@ Highcharts.theme = {
 		tickColor: '#666',
 		labels: {
 			style: {
-				color: '#666',
+				color: '#666'
 			}
 		},
 		title: {
@@ -70,7 +70,7 @@ Highcharts.theme = {
 				    color: '#34332e',
 				    fontWeight: 'bold',
 				    borderColor: '#8b897d'
-			    },
+			    }
 				},
 				select: {
 					fill: '#E37400',
