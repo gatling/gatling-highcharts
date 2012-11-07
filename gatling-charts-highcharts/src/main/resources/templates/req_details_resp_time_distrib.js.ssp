@@ -43,10 +43,11 @@ var responseTimeDistributionChart = new Highcharts.Chart({
 		}
 	},
 	series: [
-	<% series.foreach{ serie => %>
+	<% val it = series.iterator %>
+	<% while (it.hasNext) { %>
 	{
-		<% render("series_stacked_column.ssp", Map("serie" -> serie)) %>
-	},
+		<% render("series_stacked_column.ssp", Map("serie" -> it.next)) %>
+	}<% if (it.hasNext) { %>,<% } %>
 	<% } %>
 	]
 });
