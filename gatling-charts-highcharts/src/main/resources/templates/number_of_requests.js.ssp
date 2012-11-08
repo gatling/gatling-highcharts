@@ -1,16 +1,27 @@
-//<% import com.excilys.ebi.gatling.charts.config.ChartsFiles.GLOBAL_PAGE_NAME %>
+//<% import com.excilys.ebi.gatling.charts.report.Container.GROUP %>
+//<% import com.excilys.ebi.gatling.charts.report.Container.REQUEST %>
 
-var requestsName = []
-var numberOfRequestsOK = []
-var numberOfRequestsKO = []
+function numberOfRequestsDataForGroup(group) {
+	var data = {names: [], oks: [], kos: []};
 
-$.each(stats, function (request, values) {
-	if (values.name != "<%= GLOBAL_PAGE_NAME %>") {
-		requestsName.push(values.name)
-		numberOfRequestsOK.push(parseInt(values.numberOfRequests.ok))
-		numberOfRequestsKO.push(parseInt(values.numberOfRequests.ko))
-	}
-})
+	$.each(group.contents, function(contentName, content) {
+		if (content.type == '<%= GROUP %>') {
+			var result = numberOfRequestsDataForGroup(content);
+			data.names = data.names.concat(result.names);
+			data.oks = data.oks.concat(result.oks);
+			data.kos = data.kos.concat(result.kos);
+		}
+		else if (content.type == '<%= REQUEST %>') {
+			data.names.push(content.path);
+			data.oks.push(parseInt(content.stats.numberOfRequests.ok));
+			data.kos.push(parseInt(content.stats.numberOfRequests.ko));
+		}
+	});
+
+	return data;
+}
+
+var numberOfRequestsData = numberOfRequestsDataForGroup(stats);
 
 new Highcharts.Chart({
 
@@ -32,7 +43,7 @@ new Highcharts.Chart({
 
 	xAxis:{
 		tickmarkPlacement:'on',
-		categories:requestsName,
+		categories:numberOfRequestsData.names,
 		labels:{enabled:false}
 	},
 
@@ -51,12 +62,12 @@ new Highcharts.Chart({
 	series:[
 		{
 			name:'KO',
-			data:numberOfRequestsKO,
+			data:numberOfRequestsData.kos,
 			color:"#FF0000"
 		},
 		{
 			name:'OK',
-			data:numberOfRequestsOK,
+			data:numberOfRequestsData.oks,
 			color:"#4572A7"
 		}
 	]
