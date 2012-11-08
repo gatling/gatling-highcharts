@@ -17,6 +17,9 @@
 			</includes>
 		</fileSet>
 		<fileSet encoding="UTF-8">
+			<directory>src/test/scala</directory>
+		</fileSet>
+		<fileSet encoding="UTF-8">
 			<directory>src/main/resources/data</directory>
 		</fileSet>
 		<fileSet encoding="UTF-8">
