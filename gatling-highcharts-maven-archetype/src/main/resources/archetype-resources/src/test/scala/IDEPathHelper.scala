@@ -9,7 +9,7 @@ object IDEPathHelper {
 	val mavenSourcesDirectory = projectRootDir / "src" / "test" / "scala"
 	val mavenResourcesDirectory = projectRootDir / "src" / "test" / "resources"
 	val mavenTargetDirectory = projectRootDir / "target"
-	val mavenBinariesDirectory = mavenTargetDirectory / "classes"
+	val mavenBinariesDirectory = mavenTargetDirectory / "test-classes"
 
 	val dataDirectory = mavenResourcesDirectory / "data"
 	val requestBodiesDirectory = mavenResourcesDirectory / "request-bodies"
