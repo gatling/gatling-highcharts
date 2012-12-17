@@ -97,7 +97,7 @@
 									<filtering>false</filtering>
 								</resource>
 							</resources>
-							<outputDirectory>${project.build.directory}/classes/archetype-resources/src/main/resources</outputDirectory>
+							<outputDirectory>${project.build.directory}/classes/archetype-resources/src/test/resources</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
