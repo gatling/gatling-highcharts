@@ -1,4 +1,4 @@
-Package: gatling
+Package: gatling-tool
 Version: [[version]]
 Architecture: all
 Maintainer: Nicolas Huray <nicolas.huray@gmail.com>
