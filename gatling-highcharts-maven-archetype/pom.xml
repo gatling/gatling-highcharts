@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>gatling-highcharts</artifactId>
 		<groupId>com.excilys.ebi.gatling.highcharts</groupId>
-		<version>1.4.0</version>
+		<version>1.4.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>gatling-highcharts-maven-archetype</artifactId>
 	<packaging>maven-archetype</packaging>

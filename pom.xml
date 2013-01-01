@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.excilys.ebi.gatling.highcharts</groupId>
 	<artifactId>gatling-highcharts</artifactId>
-	<version>1.4.0</version>
+	<version>1.4.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<inceptionYear>2011</inceptionYear>
 
@@ -24,7 +24,7 @@
 		<connection>scm:git:git@github.com:excilys/gatling-highcharts.git</connection>
 		<developerConnection>scm:git:git@github.com:excilys/gatling-highcharts.git</developerConnection>
 		<url>https://github.com/excilys/gatling-highcharts</url>
-		<tag>1.4.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
@@ -65,9 +65,8 @@
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<encoding>UTF-8</encoding>
-		<scala.version>2.9.2</scala.version>
-		<gatling.version>1.4.0</gatling.version>
-
+		<scala.version>2.9.3-RC1</scala.version>
+		<gatling.version>1.4.1-SNAPSHOT</gatling.version>
 		<maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
 		<maven-source-plugin.version>2.2</maven-source-plugin.version>
 		<maven-assembly-plugin.version>2.2.2</maven-assembly-plugin.version>
