@@ -20,4 +20,6 @@ class ComponentLibraryImpl extends ComponentLibrary {
 	def getRequestDetailsScatterChartComponent(successes: Series[Int, Int], failures: Series[Int, Int]): Component = RequestDetailsScatterComponent(successes, failures)
 	def getRequestDetailsIndicatorChartComponent: Component = RequestDetailsIndicatorComponent()
 	def getNumberOfRequestsChartComponent = NumberOfRequestsComponent()
+	def getGroupDurationChartComponent(runStart: Long, durations: Series[Int, (Int, Int)]): Component = GroupDetailsDurationComponent(runStart, durations)
+	def getGroupDetailsDurationDistributionChartComponent(durations: Series[Int, Int]): Component = GroupDetailsDurationDistributionComponent(durations)
 }

@@ -1,0 +1,85 @@
+<% import com.excilys.ebi.gatling.charts.util.Colors._ %>
+<%@ val chartTitle: String %>
+<%@ val durationSeries: com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries %>
+
+var responseTimeChart = new Highcharts.StockChart({
+	chart: {
+		renderTo: 'container',
+		zoomType: 'x'
+	},
+	credits: {
+		enabled: false
+	},
+	legend: {
+		enabled: true,
+		floating: true,
+		y: -285,
+		borderWidth: 0
+	},
+	title: {
+		text: 'A title to let highcharts reserve the place for the title set later'
+	},
+	rangeSelector: {
+		buttons : [{
+		type : 'minute',
+		count : 1,
+		text : '1m'
+	}, {
+		type : 'minute',
+		count : 10,
+		text : '10m'
+	}, {
+		type : 'hour',
+		count : 1,
+		text : '1h'
+	}, {
+		type : 'all',
+		count : 1,
+		text : 'All'
+	}],
+	selected : 3,
+	inputEnabled : false
+	},
+	xAxis: {
+		type: 'datetime',
+		ordinal: false,
+		maxZoom: 10000 // three days
+	},
+	yAxis:[
+	{
+		min: 0,
+		title: {
+			text: 'Duration (ms)',
+			style: {
+				color: '<%= BLUE %>'
+			}
+		}
+	}, {
+		min: 0,
+		title: {
+			text: 'Active Sessions',
+			style: {
+				color: '<%= ORANGE %>'
+			}
+		},
+		opposite: true
+	}],
+    plotOptions: {
+        arearange: {
+            lineWidth: 1
+        }
+    },
+	series: [
+	<% if(!durationSeries.data.isEmpty){ %>
+	{
+		<% render("series_response_time.ssp", Map("serie" -> durationSeries, "marker" -> None)) %>
+	},
+	<% } %>
+	allSessionsData
+	]
+});
+
+responseTimeChart.setTitle({
+	text: '<span class="chart_title chart_title_"><%= chartTitle %></span>',
+	useHTML: true
+});
