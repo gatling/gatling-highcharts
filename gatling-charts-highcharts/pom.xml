@@ -32,7 +32,7 @@
 		<plugins>
 			<plugin>
 				<groupId>org.fusesource.scalate</groupId>
-				<artifactId>maven-scalate-plugin</artifactId>
+				<artifactId>maven-scalate-plugin_2.10</artifactId>
 				<executions>
 					<execution>
 						<goals>
