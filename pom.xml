@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.excilys.ebi.gatling.highcharts</groupId>
 	<artifactId>gatling-highcharts</artifactId>
@@ -162,6 +163,19 @@
 								<goal>compile</goal>
 								<goal>testCompile</goal>
 							</goals>
+							<configuration>
+								<args>
+									<arg>-encoding</arg>
+									<arg>UTF-8</arg>
+									<arg>-target:jvm-1.6</arg>
+									<arg>-deprecation</arg>
+									<arg>-feature</arg>
+									<arg>-unchecked</arg>
+									<arg>-language:implicitConversions</arg>
+									<arg>-language:reflectiveCalls</arg>
+									<arg>-language:postfixOps</arg>
+								</args>
+							</configuration>
 						</execution>
 					</executions>
 				</plugin>
