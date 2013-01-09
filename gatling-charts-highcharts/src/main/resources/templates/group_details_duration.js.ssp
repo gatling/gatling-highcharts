@@ -1,6 +1,7 @@
 <% import com.excilys.ebi.gatling.charts.util.Colors._ %>
 <%@ val chartTitle: String %>
-<%@ val durationSeries: com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries %>
+<%@ val durationSeriesSuccess: com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries %>
+<%@ val durationSeriesFailure: com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries %>
 
 var responseTimeChart = new Highcharts.StockChart({
 	chart: {
@@ -70,9 +71,14 @@ var responseTimeChart = new Highcharts.StockChart({
         }
     },
 	series: [
-	<% if(!durationSeries.data.isEmpty){ %>
+	<% if(!durationSeriesSuccess.data.isEmpty){ %>
 	{
-		<% render("series_response_time.ssp", Map("serie" -> durationSeries, "marker" -> None)) %>
+		<% render("series_response_time.ssp", Map("serie" -> durationSeriesSuccess, "marker" -> None)) %>
+	},
+	<% } %>
+	<% if(!durationSeriesFailure.data.isEmpty){ %>
+	{
+		<% render("series_response_time.ssp", Map("serie" -> durationSeriesFailure, "marker" -> None)) %>
 	},
 	<% } %>
 	allSessionsData
