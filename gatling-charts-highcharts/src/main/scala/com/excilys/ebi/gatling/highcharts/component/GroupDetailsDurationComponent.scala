@@ -11,9 +11,10 @@ import com.excilys.ebi.gatling.highcharts.template.GroupDetailsDurationTemplate
 
 object GroupDetailsDurationComponent {
 
-	def apply(runStart: Long, durations: Series[Int, (Int, Int)]) = {
+	def apply(runStart: Long, durationsSuccess: Series[Int, (Int, Int)], durationsFailure: Series[Int, (Int, Int)]) = {
 		val template = new GroupDetailsDurationTemplate(
-			new ResponseTimeSeries(durations.name, runStart, durations.data, durations.colors.head))
+			new ResponseTimeSeries(durationsSuccess.name, runStart, durationsSuccess.data, durationsSuccess.colors.head),
+			new ResponseTimeSeries(durationsFailure.name, runStart, durationsFailure.data, durationsFailure.colors.head))
 
 		new HighchartsComponent(template)
 	}
