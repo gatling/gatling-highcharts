@@ -11,9 +11,10 @@ import com.excilys.ebi.gatling.highcharts.template.GroupDetailsDurationDistribut
 
 object GroupDetailsDurationDistributionComponent {
 
-	def apply(durationDistribution: Series[Int, Int]) = {
+	def apply(durationDistributionSuccess: Series[Int, Int], durationDistributionFailure: Series[Int, Int]) = {
 		val template = new GroupDetailsDurationDistributionTemplate(
-			new StackedColumnSeries(durationDistribution.name, durationDistribution.data.map { case (time, count) => (time.toString -> count) }, durationDistribution.colors.head))
+			new StackedColumnSeries(durationDistributionSuccess.name, durationDistributionSuccess.data.map { case (time, count) => (time.toString -> count) }, durationDistributionSuccess.colors.head),
+			new StackedColumnSeries(durationDistributionFailure.name, durationDistributionFailure.data.map { case (time, count) => (time.toString -> count) }, durationDistributionFailure.colors.head))
 
 		new HighchartsComponent(template)
 	}
