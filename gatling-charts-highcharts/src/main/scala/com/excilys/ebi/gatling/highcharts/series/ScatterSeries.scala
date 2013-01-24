@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2012 eBusiness Information, Groupe Excilys (www.excilys.com)
+ * Copyright 2011-2013 eBusiness Information, Groupe Excilys (www.excilys.com)
  *
  * Licensed under the Gatling Highcharts License
  */
