@@ -3,7 +3,7 @@ import scala.tools.nsc.io.Path.string2path
 
 object IDEPathHelper {
 
-	val gatlingConfUrl = getClass.getClassLoader.getResource("application.conf").getPath
+	val gatlingConfUrl = getClass.getClassLoader.getResource("gatling.conf").getPath
 	val projectRootDir = File(gatlingConfUrl).parents(2)
 
 	val mavenSourcesDirectory = projectRootDir / "src" / "test" / "scala"
