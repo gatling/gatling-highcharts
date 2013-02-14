@@ -81,7 +81,6 @@
 		<archetype-packaging.version>2.2</archetype-packaging.version>
 		<maven-resources-plugin.version>2.5</maven-resources-plugin.version>
 		<build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
-		<maven-jdeb-plugin.version>0.10</maven-jdeb-plugin.version>
 
 		<header.basedir>${project.basedir}</header.basedir>
 	</properties>
@@ -261,11 +260,6 @@
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
 					<version>${build-helper-maven-plugin.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.vafer</groupId>
-					<artifactId>jdeb</artifactId>
-					<version>${maven-jdeb-plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
