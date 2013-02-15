@@ -38,12 +38,6 @@
 				<groupId>com.excilys.ebi.gatling</groupId>
 				<artifactId>gatling-app</artifactId>
 				<version>\${gatling.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>ch.qos.logback</groupId>
-						<artifactId>logback-classic</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>com.excilys.ebi.gatling</groupId>
