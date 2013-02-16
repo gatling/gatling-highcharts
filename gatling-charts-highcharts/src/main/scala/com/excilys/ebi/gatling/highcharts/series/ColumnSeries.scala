@@ -5,9 +5,9 @@
  */
 package com.excilys.ebi.gatling.highcharts.series
 
-import com.excilys.ebi.gatling.charts.series.Series
+import com.excilys.ebi.gatling.core.result.{ PieSlice, Series }
 
-class ColumnSeries(name: String, data: Seq[(String, Int)], colors: List[String]) extends Series[String, Int](name, data, colors) {
-	val getXValues = data.map(_._1)
-	val getYValues = data.map(_._2)
+class ColumnSeries(name: String, data: Seq[PieSlice], colors: List[String]) extends Series[PieSlice](name, data, colors) {
+	val getXValues = data.map(_.name)
+	val getYValues = data.map(_.value)
 }

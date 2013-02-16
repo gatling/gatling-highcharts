@@ -5,12 +5,12 @@
  */
 package com.excilys.ebi.gatling.highcharts.component
 
-import com.excilys.ebi.gatling.charts.series.Series
 import com.excilys.ebi.gatling.charts.template.PageTemplate
+import com.excilys.ebi.gatling.core.result.{ IntVsTimePlot, Series }
 import com.excilys.ebi.gatling.highcharts.config.HighchartsFiles.ALL_SESSIONS_JS_TEMPLATE_URL
 import com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries
 
-class AllSessionsComponent(runStart: Long, series: Series[Int, Int]) {
+class AllSessionsComponent(runStart: Long, series: Series[IntVsTimePlot]) {
 
 	def getJavascript: String = {
 		val numberPerSecondSeries = new NumberPerSecondSeries(series.name, runStart, series.data, series.colors.head)

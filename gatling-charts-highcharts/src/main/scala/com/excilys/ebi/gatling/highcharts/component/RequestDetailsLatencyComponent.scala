@@ -5,13 +5,13 @@
  */
 package com.excilys.ebi.gatling.highcharts.component
 
-import com.excilys.ebi.gatling.charts.series.Series
+import com.excilys.ebi.gatling.core.result.{ IntRangeVsTimePlot, Series }
 import com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries
 import com.excilys.ebi.gatling.highcharts.template.RequestDetailsLatencyTemplate
 
 object RequestDetailsLatencyComponent {
 
-	def apply(runStart: Long, latencySuccess: Series[Int, (Int, Int)], latencyFailures: Series[Int, (Int, Int)]) = {
+	def apply(runStart: Long, latencySuccess: Series[IntRangeVsTimePlot], latencyFailures: Series[IntRangeVsTimePlot]) = {
 		val template = new RequestDetailsLatencyTemplate(
 			new ResponseTimeSeries(latencySuccess.name, runStart, latencySuccess.data, latencySuccess.colors.head),
 			new ResponseTimeSeries(latencyFailures.name, runStart, latencyFailures.data, latencyFailures.colors.head))

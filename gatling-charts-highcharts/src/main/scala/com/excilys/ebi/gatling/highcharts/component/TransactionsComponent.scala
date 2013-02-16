@@ -5,13 +5,13 @@
  */
 package com.excilys.ebi.gatling.highcharts.component
 
-import com.excilys.ebi.gatling.charts.series.Series
-import com.excilys.ebi.gatling.highcharts.series.{ PieSeries, NumberPerSecondSeries }
+import com.excilys.ebi.gatling.core.result.{ IntVsTimePlot, PieSlice, Series }
+import com.excilys.ebi.gatling.highcharts.series.{ NumberPerSecondSeries, PieSeries }
 import com.excilys.ebi.gatling.highcharts.template.TransactionsTemplate
 
 object TransactionsComponent {
 
-	def apply(runStart: Long, allTransactions: Series[Int, Int], failedTransactions: Series[Int, Int], succeededTransactions: Series[Int, Int], pieSeries: Series[String, Int]) = {
+	def apply(runStart: Long, allTransactions: Series[IntVsTimePlot], failedTransactions: Series[IntVsTimePlot], succeededTransactions: Series[IntVsTimePlot], pieSeries: Series[PieSlice]) = {
 		val template = new TransactionsTemplate(
 			Seq(new NumberPerSecondSeries(allTransactions.name, runStart, allTransactions.data, allTransactions.colors.head),
 				new NumberPerSecondSeries(failedTransactions.name, runStart, failedTransactions.data, failedTransactions.colors.head),
