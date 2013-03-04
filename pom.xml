@@ -74,7 +74,7 @@
 		<scala-maven-plugin.version>3.1.3</scala-maven-plugin.version>
 		<maven-surefire-plugin.version>2.12</maven-surefire-plugin.version>
 		<maven-release-plugin.version>2.3.2</maven-release-plugin.version>
-		<maven-scalate-plugin.version>1.5.3</maven-scalate-plugin.version>
+		<maven-scalate-plugin.version>1.6.1</maven-scalate-plugin.version>
 		<maven-license-plugin.version>1.10.b1</maven-license-plugin.version>
 		<maven-archetype-plugin.version>2.2</maven-archetype-plugin.version>
 		<maven-dependency-plugin.version>2.4</maven-dependency-plugin.version>
@@ -153,7 +153,7 @@
 				</plugin>
 				<plugin>
 					<groupId>org.fusesource.scalate</groupId>
-					<artifactId>maven-scalate-plugin</artifactId>
+					<artifactId>maven-scalate-plugin_2.9</artifactId>
 					<version>${maven-scalate-plugin.version}</version>
 				</plugin>
 				<plugin>
