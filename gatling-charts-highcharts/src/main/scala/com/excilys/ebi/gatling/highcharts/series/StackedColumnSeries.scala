@@ -7,7 +7,7 @@ package com.excilys.ebi.gatling.highcharts.series
 
 import com.excilys.ebi.gatling.core.result.PieSlice
 
-class StackedColumnSeries(name: String, data: Seq[PieSlice], color: String) extends ColumnSeries(name, data, List(color)) {
+class StackedColumnSeries(name: String, data: Seq[PieSlice], color: String) extends ColumnSeries(name, data, Vector(color)) {
 
 	def elements: Seq[String] = data.map(_.value.toString)
 }

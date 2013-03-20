@@ -30,5 +30,5 @@ object HighchartsFiles {
 	val GROUP_DETAILS_DURATION_HTML_TEMPLATE_URL = GATLING_TEMPLATE + "group_details_duration.html.ssp"
 	val GROUP_DETAILS_DURATION_JS_TEMPLATE_URL = GATLING_TEMPLATE + "group_details_duration.js.ssp"
 
-	val HIGHCHARTS_RESOURCES = List("highcharts.js", "highstock.js", "highcharts-more.js", "theme.js")
+	val HIGHCHARTS_RESOURCES = Vector("highcharts.js", "highstock.js", "highcharts-more.js", "theme.js")
 }
