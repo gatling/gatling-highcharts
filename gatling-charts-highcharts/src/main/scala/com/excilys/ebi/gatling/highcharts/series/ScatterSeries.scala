@@ -7,10 +7,10 @@ package com.excilys.ebi.gatling.highcharts.series
 
 import com.excilys.ebi.gatling.core.result.{ IntVsTimePlot, Series }
 
-class ScatterSeries(name: String, data: Seq[IntVsTimePlot], color: String) extends Series[IntVsTimePlot](name, data, List(color)) {
+class ScatterSeries(name: String, data: Seq[IntVsTimePlot], color: String) extends Series[IntVsTimePlot](name, data, Vector(color)) {
 
 	def elements: Seq[String] = data match {
-		case Nil => List("[]")
+		case x if x.isEmpty => Vector("[]")
 		case _ => data.map { plot => "[" + plot.time + "," + plot.value + "]" }
 	}
 }

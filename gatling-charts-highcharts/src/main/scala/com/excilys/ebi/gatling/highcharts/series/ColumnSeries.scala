@@ -7,7 +7,7 @@ package com.excilys.ebi.gatling.highcharts.series
 
 import com.excilys.ebi.gatling.core.result.{ PieSlice, Series }
 
-class ColumnSeries(name: String, data: Seq[PieSlice], colors: List[String]) extends Series[PieSlice](name, data, colors) {
+class ColumnSeries(name: String, data: Seq[PieSlice], colors: Vector[String]) extends Series[PieSlice](name, data, colors) {
 	val getXValues = data.map(_.name)
 	val getYValues = data.map(_.value)
 }

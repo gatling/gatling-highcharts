@@ -8,7 +8,7 @@ package com.excilys.ebi.gatling.highcharts.series
 import com.excilys.ebi.gatling.core.result.{ IntVsTimePlot, Series }
 import com.excilys.ebi.gatling.core.util.StringHelper.escapeJsQuoteString
 
-class NumberPerSecondSeries(name: String, runStart: Long, data: Seq[IntVsTimePlot], color: String) extends Series[IntVsTimePlot](escapeJsQuoteString(name), data, List(color)) {
+class NumberPerSecondSeries(name: String, runStart: Long, data: Seq[IntVsTimePlot], color: String) extends Series[IntVsTimePlot](escapeJsQuoteString(name), data, Vector(color)) {
 
 	def elements: Seq[String] = data.map { plot => "[" + (runStart + plot.time) + "," + plot.value + "]" }
 }
