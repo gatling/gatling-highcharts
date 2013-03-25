@@ -1,6 +1,6 @@
 <%@ val chartTitle: String %>
-<%@ val successes: com.excilys.ebi.gatling.highcharts.series.ScatterSeries  %>
-<%@ val failures: com.excilys.ebi.gatling.highcharts.series.ScatterSeries %>
+<%@ val successes: io.gatling.highcharts.series.ScatterSeries  %>
+<%@ val failures: io.gatling.highcharts.series.ScatterSeries %>
 
 var scatterChart = new Highcharts.Chart({
 	chart: {

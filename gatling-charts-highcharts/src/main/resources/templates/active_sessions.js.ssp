@@ -1,5 +1,5 @@
 <%@ val chartTitle: String %>
-<%@ val series: Seq[com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries] %>
+<%@ val series: Seq[io.gatling.highcharts.series.NumberPerSecondSeries] %>
 
 Highcharts.setOptions({
 	global: {

@@ -1,5 +1,5 @@
-import com.excilys.ebi.gatling.recorder.config.RecorderPropertiesBuilder
-import com.excilys.ebi.gatling.recorder.controller.RecorderController
+import io.gatling.recorder.config.RecorderPropertiesBuilder
+import io.gatling.recorder.controller.RecorderController
 
 object Recorder extends App {
 

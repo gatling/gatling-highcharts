@@ -1,7 +1,7 @@
-<% import com.excilys.ebi.gatling.charts.util.Colors._ %>
+<% import io.gatling.charts.util.Colors._ %>
 <%@ val chartTitle: String %>
-<%@ val durationSeriesSuccess: com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries %>
-<%@ val durationSeriesFailure: com.excilys.ebi.gatling.highcharts.series.ResponseTimeSeries %>
+<%@ val durationSeriesSuccess: io.gatling.highcharts.series.ResponseTimeSeries %>
+<%@ val durationSeriesFailure: io.gatling.highcharts.series.ResponseTimeSeries %>
 
 var responseTimeChart = new Highcharts.StockChart({
 	chart: {

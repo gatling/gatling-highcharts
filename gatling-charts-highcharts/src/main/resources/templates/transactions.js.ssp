@@ -1,8 +1,8 @@
-<% import com.excilys.ebi.gatling.charts.util.Colors._ %>
+<% import io.gatling.charts.util.Colors._ %>
 <%@ val yAxisTitle: String %>
 <%@ val chartTitle: String %>
-<%@ val series: List[com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries] %>
-<%@ val pieSeries: com.excilys.ebi.gatling.highcharts.series.PieSeries %>
+<%@ val series: List[io.gatling.highcharts.series.NumberPerSecondSeries] %>
+<%@ val pieSeries: io.gatling.highcharts.series.PieSeries %>
 
 Highcharts.setOptions({
 	global: {

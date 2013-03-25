@@ -1,4 +1,4 @@
-<%@ val serie: com.excilys.ebi.gatling.highcharts.series.ScatterSeries %>
+<%@ val serie: io.gatling.highcharts.series.ScatterSeries %>
 type: 'scatter'
 , color: '<%=serie.colors(0)%>'
 , name: '<%=serie.name%>'

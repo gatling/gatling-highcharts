@@ -1,5 +1,5 @@
-import com.excilys.ebi.gatling.app.Gatling
-import com.excilys.ebi.gatling.core.config.GatlingPropertiesBuilder
+import io.gatling.app.Gatling
+import io.gatling.core.config.GatlingPropertiesBuilder
 
 object Engine extends App {
 	

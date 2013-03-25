@@ -1,4 +1,4 @@
-<%@ val serie: com.excilys.ebi.gatling.highcharts.series.NumberPerSecondSeries %>
+<%@ val serie: io.gatling.highcharts.series.NumberPerSecondSeries %>
 color: '<%=serie.colors(0)%>'
 , name: '<%=serie.name%>'
 , data: [

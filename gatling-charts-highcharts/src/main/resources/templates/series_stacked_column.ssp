@@ -1,4 +1,4 @@
-<%@ val serie: com.excilys.ebi.gatling.highcharts.series.StackedColumnSeries %>
+<%@ val serie: io.gatling.highcharts.series.StackedColumnSeries %>
 type: 'column'
 , color: '<%=serie.colors(0)%>'
 , name: '<%=serie.name%>'

@@ -1,4 +1,4 @@
-<% import com.excilys.ebi.gatling.charts.util.Colors._ %>
+<% import io.gatling.charts.util.Colors._ %>
 <%@ val chartTitle: String %>
 
 Highcharts.setOptions({

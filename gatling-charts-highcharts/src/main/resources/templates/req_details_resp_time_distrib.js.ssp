@@ -1,6 +1,6 @@
 <%@ val chartTitle: String %>
 <%@ val categories: Seq[String] %>
-<%@ val series: Seq[com.excilys.ebi.gatling.highcharts.series.StackedColumnSeries] %>
+<%@ val series: Seq[io.gatling.highcharts.series.StackedColumnSeries] %>
 
 var responseTimeDistributionChart = new Highcharts.Chart({
 	chart: {
