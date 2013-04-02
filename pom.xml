@@ -68,6 +68,7 @@
 		<encoding>UTF-8</encoding>
 		<scala.version>2.10.1</scala.version>
 		<gatling.version>2.0.0-SNAPSHOT</gatling.version>
+		<scalate.version>1.6.1</scalate.version>
 
 		<maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
 		<maven-source-plugin.version>2.2</maven-source-plugin.version>
@@ -76,7 +77,6 @@
 		<scala-maven-plugin.version>3.1.3</scala-maven-plugin.version>
 		<maven-surefire-plugin.version>2.12</maven-surefire-plugin.version>
 		<maven-release-plugin.version>2.3.2</maven-release-plugin.version>
-		<maven-scalate-plugin.version>1.5.3</maven-scalate-plugin.version>
 		<maven-license-plugin.version>1.10.b1</maven-license-plugin.version>
 		<maven-archetype-plugin.version>2.2</maven-archetype-plugin.version>
 		<maven-dependency-plugin.version>2.4</maven-dependency-plugin.version>
@@ -147,9 +147,9 @@
 					<version>${maven-jar-plugin.version}</version>
 				</plugin>
 				<plugin>
-					<groupId>org.fusesource.scalate_2.10</groupId>
-					<artifactId>maven-scalate-plugin</artifactId>
-					<version>${maven-scalate-plugin.version}</version>
+					<groupId>org.fusesource.scalate</groupId>
+					<artifactId>maven-scalate-plugin_2.10</artifactId>
+					<version>${scalate.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>net.alchim31.maven</groupId>
@@ -200,11 +200,18 @@
 					<version>${maven-license-plugin.version}</version>
 					<configuration>
 						<header>${header.basedir}/src/etc/header.txt</header>
-						<strictCheck>false</strictCheck>
+						<strictCheck>true</strictCheck>
 						<excludes>
 							<exclude>**/highcharts.js</exclude>
 							<exclude>**/highcharts-more.js</exclude>
 							<exclude>**/highstock.js</exclude>
+							<exclude>**/*.ssp</exclude>
+							<exclude>**/.cache</exclude>
+							<exclude>**/.keep</exclude>
+							<exclude>**/*.conf</exclude>
+							<exclude>**/LICENSE</exclude>
+							<exclude>**/*.md</exclude>
+							<exclude>.gitignore</exclude>
 						</excludes>
 					</configuration>
 					<executions>
