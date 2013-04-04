@@ -5,17 +5,90 @@
  */
 package io.gatling.highcharts.template
 
+import com.dongxiguo.fastring.Fastring.Implicits._
+
 import io.gatling.charts.template.PageTemplate
-import io.gatling.highcharts.config.HighchartsFiles.{ ACTIVE_SESSIONS_JS_TEMPLATE_URL, ACTIVE_SESSIONS_HTML_TEMPLATE_URL }
 import io.gatling.highcharts.series.NumberPerSecondSeries
 
 class ActiveSessionsTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
 
-	def getJSContent = PageTemplate.TEMPLATE_ENGINE.layout(ACTIVE_SESSIONS_JS_TEMPLATE_URL,
-		Map("chartTitle" -> "Active Sessions along the Simulation",
-			"runStart" -> runStart,
-			"series" -> series))
+	def js = fast"""
+Highcharts.setOptions({
+    global: {
+        useUTC: false
+    }
+});
 
-	def getHTMLContent = PageTemplate.TEMPLATE_ENGINE.layout(ACTIVE_SESSIONS_HTML_TEMPLATE_URL)
+allSessionsData.yAxis = 0;
+
+var allSessionsChart = new Highcharts.StockChart({
+    chart: {
+        renderTo: 'container_active_sessions',
+        zoomType: 'x'
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        enabled: true,
+        floating: true,
+        y: -285,
+        borderWidth: 0
+    },
+    title: {
+      text: 'A title to let highcharts reserve the place for the title set later'
+    },
+    rangeSelector: {
+        buttons : [{
+        type : 'minute',
+        count : 1,
+        text : '1m'
+    }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+    }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+    }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+    }],
+    selected : 3,
+    inputEnabled : false
+    },
+    xAxis: {
+        type: 'datetime',
+        ordinal: false,
+        maxZoom: 10000 // three days
+    },
+    yAxis: {
+        title: {
+            text: 'Number of Active Sessions'
+        }
+    },
+    series: [
+        ${series.map(serie => List("{", renderNumberPerSecondSeries(serie), "},\n")).flatten.mkFastring}
+        allSessionsData
+    ]
+});
+
+
+allSessionsChart.setTitle({
+    text: '<span class="chart_title">Active Sessions along the Simulation</span>',
+    useHTML: true
+});
+
+allSessionsData.yAxis = 1;
+"""
+
+	val html = fast"""
+                        <div class="schema geant">
+                            <a name="active_sessions"></a>
+                            <div id="container_active_sessions" class="geant"></div>
+                        </div>
+"""
 }
 

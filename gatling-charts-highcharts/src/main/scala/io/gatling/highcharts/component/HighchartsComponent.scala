@@ -6,14 +6,13 @@
 package io.gatling.highcharts.component
 
 import io.gatling.charts.component.Component
-import io.gatling.highcharts.config.HighchartsFiles.HIGHCHARTS_RESOURCES
 import io.gatling.highcharts.template.Template
 
 class HighchartsComponent(template: Template) extends Component {
 
-	def getHTMLContent: String = template.getHTMLContent
+	def html = template.html
 
-	def getJavascriptContent: String = template.getJSContent
+	def js = template.js
 
-	val getJavascriptFiles: Seq[String] = HIGHCHARTS_RESOURCES
+	val jsFiles: Seq[String] = List("highcharts.js", "highstock.js", "highcharts-more.js", "theme.js")
 }

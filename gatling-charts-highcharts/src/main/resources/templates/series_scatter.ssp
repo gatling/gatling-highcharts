@@ -1,7 +1,0 @@
-<%@ val serie: io.gatling.highcharts.series.ScatterSeries %>
-type: 'scatter'
-, color: '<%=serie.colors(0)%>'
-, name: '<%=serie.name%>'
-, data: [
-<% render("jslist.ssp", Map("seq" -> serie.elements)) %>
-]

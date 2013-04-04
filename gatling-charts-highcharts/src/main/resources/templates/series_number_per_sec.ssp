@@ -1,7 +1,0 @@
-<%@ val serie: io.gatling.highcharts.series.NumberPerSecondSeries %>
-color: '<%=serie.colors(0)%>'
-, name: '<%=serie.name%>'
-, data: [
-<% render("jslist.ssp", Map("seq" -> serie.elements)) %>
-]
-, tooltip: { yDecimals: 0, ySuffix: '' }

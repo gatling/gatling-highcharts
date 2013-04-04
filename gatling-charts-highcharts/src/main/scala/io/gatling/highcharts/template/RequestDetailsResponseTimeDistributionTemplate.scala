@@ -5,17 +5,74 @@
  */
 package io.gatling.highcharts.template
 
+import com.dongxiguo.fastring.Fastring.Implicits._
+
 import io.gatling.charts.template.PageTemplate
-import io.gatling.highcharts.config.HighchartsFiles.{ REQUEST_DETAILS_RESPONSE_TIME_DISTRIBUTION_JS_TEMPLATE_URL, REQUEST_DETAILS_RESPONSE_TIME_DISTRIBUTION_HTML_TEMPLATE_URL }
 import io.gatling.highcharts.series.StackedColumnSeries
+
+object RequestDetailsResponseTimeDistributionTemplate {
+	val htmlContent = fast"""
+                        <div class="schema geant">
+                            <div id="container_distrib" class="geant"></div>
+                        </div>
+"""
+}
 
 class RequestDetailsResponseTimeDistributionTemplate(successSeries: StackedColumnSeries, failuresSeries: StackedColumnSeries) extends Template {
 
-	def getJSContent = PageTemplate.TEMPLATE_ENGINE.layout(REQUEST_DETAILS_RESPONSE_TIME_DISTRIBUTION_JS_TEMPLATE_URL,
-		Map("chartTitle" -> "Response Time Distribution",
-			"categories" -> successSeries.getXValues,
-			"series" -> List(successSeries, failuresSeries)))
+	def js = fast"""
+var responseTimeDistributionChart = new Highcharts.Chart({
+    chart: {
+        renderTo: 'container_distrib',
+        type: 'column'
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        enabled: true,
+        floating: true,
+        y: -285,
+        borderWidth: 0
+    },
+    title: {
+        text: 'A title to let highcharts reserve the place for the title set later'
+    },
+    xAxis: {
+        categories: ['${successSeries.getXValues.mkFastring("', '")}'],
+        tickInterval: 20
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Percentage of Requests'
+        }
+    },
+    tooltip: {
+        formatter: function() {
+            return '<b>'+ this.x +' ms</b><br/>'+
+            this.series.name +': '+ this.y +' %<br/>'+
+            'Total: '+ this.point.stackTotal + ' %';
+        }
+    },
+    plotOptions: {
+        series: {
+            groupPadding: 0,
+            stacking: 'normal'
+        }
+    },
+    series: [
+    	{${renderStackedColumnSeries(successSeries)}},
+    	{${renderStackedColumnSeries(failuresSeries)}}
+    ]
+});
 
-	def getHTMLContent = PageTemplate.TEMPLATE_ENGINE.layout(REQUEST_DETAILS_RESPONSE_TIME_DISTRIBUTION_HTML_TEMPLATE_URL)
+responseTimeDistributionChart.setTitle({
+    text: '<span class="chart_title">Response Time Distribution</span>',
+    useHTML: true
+});
+"""
+
+	val html = RequestDetailsResponseTimeDistributionTemplate.htmlContent
 }
 

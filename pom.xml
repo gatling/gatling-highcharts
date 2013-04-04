@@ -68,7 +68,6 @@
 		<encoding>UTF-8</encoding>
 		<scala.version>2.10.1</scala.version>
 		<gatling.version>2.0.0-SNAPSHOT</gatling.version>
-		<scalate.version>1.6.1</scalate.version>
 
 		<maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
 		<maven-source-plugin.version>2.2</maven-source-plugin.version>
@@ -145,11 +144,6 @@
 				<plugin>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>${maven-jar-plugin.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.fusesource.scalate</groupId>
-					<artifactId>maven-scalate-plugin_2.10</artifactId>
-					<version>${scalate.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>net.alchim31.maven</groupId>
