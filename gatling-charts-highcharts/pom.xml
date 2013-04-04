@@ -34,6 +34,10 @@
 			<artifactId>fastring_2.10</artifactId>
 			<version>0.2.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-reflect</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
