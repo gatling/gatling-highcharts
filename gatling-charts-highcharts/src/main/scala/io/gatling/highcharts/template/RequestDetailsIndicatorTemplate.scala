@@ -54,7 +54,8 @@ var indicatorsChart = new Highcharts.Chart({
     },
     plotOptions: {
         series: {
-            stacking: 'normal'
+            stacking: 'normal',
+            shadow: true
         }
     },
     series: [
@@ -107,7 +108,7 @@ var indicatorsChart = new Highcharts.Chart({
                     color: '$RED'
                 }
             ],
-            center: [500, 85],
+            center: [470, 85],
             size: 100,
             showInLegend: false,
             dataLabels: { enabled: false }

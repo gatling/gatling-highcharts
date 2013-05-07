@@ -14,12 +14,6 @@ import io.gatling.highcharts.series.{ PieSeries, NumberPerSecondSeries }
 class TransactionsTemplate(series: Seq[NumberPerSecondSeries], pieSeries: PieSeries) extends Template {
 
 	def js = fast"""
-Highcharts.setOptions({
-    global: {
-        useUTC: false
-    }
-});
-
 var transactionsChart = new Highcharts.StockChart({
     chart: {
         renderTo: 'container_transactions',

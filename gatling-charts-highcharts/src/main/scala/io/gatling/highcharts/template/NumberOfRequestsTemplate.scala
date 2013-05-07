@@ -67,7 +67,8 @@ new Highcharts.Chart({
         series:{
             stacking:'normal',
             groupPadding:0,
-            pointPlacement:'on'
+            pointPlacement:'on',
+            shadow: true
         }
     },
 

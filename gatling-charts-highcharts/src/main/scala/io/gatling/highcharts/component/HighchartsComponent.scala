@@ -14,5 +14,5 @@ class HighchartsComponent(template: Template) extends Component {
 
 	def js = template.js
 
-	val jsFiles: Seq[String] = List("highcharts.js", "highstock.js", "highcharts-more.js", "theme.js")
+	val jsFiles: Seq[String] = List("highstock.js", "highcharts-more.js", "theme.js")
 }

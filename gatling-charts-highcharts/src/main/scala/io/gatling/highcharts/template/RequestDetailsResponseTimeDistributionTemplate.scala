@@ -58,7 +58,8 @@ var responseTimeDistributionChart = new Highcharts.Chart({
     plotOptions: {
         series: {
             groupPadding: 0,
-            stacking: 'normal'
+            stacking: 'normal',
+            shadow: true
         }
     },
     series: [

@@ -13,12 +13,6 @@ import io.gatling.highcharts.series.NumberPerSecondSeries
 class ActiveSessionsTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
 
 	def js = fast"""
-Highcharts.setOptions({
-    global: {
-        useUTC: false
-    }
-});
-
 allSessionsData.yAxis = 0;
 
 var allSessionsChart = new Highcharts.StockChart({

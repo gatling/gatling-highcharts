@@ -79,6 +79,9 @@ var responseTimeChart = new Highcharts.StockChart({
     plotOptions: {
         arearange: {
             lineWidth: 1
+        },
+        series: {
+            shadow: true
         }
     },
     series: [
