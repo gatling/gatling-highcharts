@@ -83,15 +83,15 @@ var latencyChart = new Highcharts.StockChart({
     },
     series: [
     ${
-        if (!successSeries.data.isEmpty)
-            fast"{${renderResponseTimeSeries(successSeries, None)}},"
-        else ""
-    }
+		if (!successSeries.data.isEmpty)
+			fast"{${renderResponseTimeSeries(successSeries, None)}},"
+		else ""
+	}
     ${
-        if (!failuresSeries.data.isEmpty)
-            fast"{${renderResponseTimeSeries(failuresSeries, Some("radius: 3, enabled: true"))}},"
-        else ""
-    }
+		if (!failuresSeries.data.isEmpty)
+			fast"{${renderResponseTimeSeries(failuresSeries, Some("radius: 3, enabled: true"))}},"
+		else ""
+	}
     allSessionsData
     ]
 });

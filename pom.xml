@@ -80,6 +80,7 @@
 		<maven-dependency-plugin.version>2.4</maven-dependency-plugin.version>
 		<archetype-packaging.version>2.2</archetype-packaging.version>
 		<maven-resources-plugin.version>2.5</maven-resources-plugin.version>
+		<scalariform-maven-plugin.version>0.1.4</scalariform-maven-plugin.version>
 
 		<header.basedir>${project.basedir}</header.basedir>
 	</properties>
@@ -274,6 +275,23 @@
 						<escapeString>\</escapeString>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.scalariform</groupId>
+					<artifactId>scalariform-maven-plugin</artifactId>
+					<version>${scalariform-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<phase>process-sources</phase>
+							<goals>
+								<goal>format</goal>
+							</goals>
+							<configuration>
+								<doubleIndentClassDeclaration>false</doubleIndentClassDeclaration>
+								<indentWithTabs>true</indentWithTabs>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -283,6 +301,10 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.scalariform</groupId>
+				<artifactId>scalariform-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
