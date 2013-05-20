@@ -8,5 +8,5 @@ object Recorder extends App {
 	props.simulationPackage("${package}")
 	props.requestBodiesFolder(IDEPathHelper.requestBodiesDirectory.toString)
 
-	RecorderController(props.build)
+	RecorderController(props.build, Some(IDEPathHelper.recorderConfigFile))
 }
