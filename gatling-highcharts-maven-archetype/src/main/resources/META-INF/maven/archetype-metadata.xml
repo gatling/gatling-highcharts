@@ -23,6 +23,7 @@
 			<directory>src/test/resources</directory>
 			<includes>
 				<include>**/gatling.conf</include>
+				<include>**/recorder.conf</include>
 				<include>**/akka.conf</include>
 				<include>**/logback.xml</include>
 			</includes>
