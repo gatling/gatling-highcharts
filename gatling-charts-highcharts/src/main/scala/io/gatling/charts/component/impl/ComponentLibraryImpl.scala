@@ -5,12 +5,14 @@
  */
 package io.gatling.charts.component.impl
 
+import com.dongxiguo.fastring.Fastring
+
 import io.gatling.charts.component.{ Component, ComponentLibrary }
 import io.gatling.core.result.{ IntRangeVsTimePlot, IntVsTimePlot, PieSlice, Series }
 import io.gatling.highcharts.component._
 
 class ComponentLibraryImpl extends ComponentLibrary {
-	def getAllSessionsJs(runStart: Long, series: Series[IntVsTimePlot]): String = new AllSessionsComponent(runStart, series).getJavascript
+	def getAllSessionsJs(runStart: Long, series: Series[IntVsTimePlot]): Fastring = new AllSessionsComponent(runStart, series).getJavascript
 	def getActiveSessionsChartComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component = ActiveSessionsComponent(runStart, series)
 	def getRequestsChartComponent(runStart: Long, allRequests: Series[IntVsTimePlot], failedRequests: Series[IntVsTimePlot], succeededRequests: Series[IntVsTimePlot], pieSeries: Series[PieSlice]): Component = RequestsComponent(runStart, allRequests, failedRequests, succeededRequests, pieSeries)
 	def getTransactionsChartComponent(runStart: Long, allTransactions: Series[IntVsTimePlot], failedTransactions: Series[IntVsTimePlot], succeededTransactions: Series[IntVsTimePlot], pieSeries: Series[PieSlice]): Component = TransactionsComponent(runStart, allTransactions, failedTransactions, succeededTransactions, pieSeries)
