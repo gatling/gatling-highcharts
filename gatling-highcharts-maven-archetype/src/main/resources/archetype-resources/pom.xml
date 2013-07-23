@@ -98,6 +98,16 @@
 							<goal>compile</goal>
 							<goal>testCompile</goal>
 						</goals>
+						<configuration>
+							<args>
+								<arg>-target:jvm-1.6</arg>
+								<arg>-deprecation</arg>
+								<arg>-feature</arg>
+								<arg>-unchecked</arg>
+								<arg>-language:implicitConversions</arg>
+								<arg>-language:postfixOps</arg>
+							</args>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
