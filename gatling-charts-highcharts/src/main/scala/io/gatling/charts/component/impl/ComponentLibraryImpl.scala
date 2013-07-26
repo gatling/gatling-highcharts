@@ -24,5 +24,4 @@ class ComponentLibraryImpl extends ComponentLibrary {
 	def getNumberOfRequestsChartComponent = NumberOfRequestsComponent()
 	def getGroupDurationChartComponent(runStart: Long, durationsSuccess: Series[IntRangeVsTimePlot], durationsFailure: Series[IntRangeVsTimePlot]): Component = GroupDetailsDurationComponent(runStart, durationsSuccess, durationsFailure)
 	def getGroupDetailsDurationDistributionChartComponent(durationsSuccess: Series[IntVsTimePlot], durationsFailure: Series[IntVsTimePlot]): Component = GroupDetailsDurationDistributionComponent(durationsSuccess, durationsFailure)
-	def getErrorTableComponent(errors: Seq[(String, Int, Int)]): Component = ErrorTableComponent(errors)
 }
