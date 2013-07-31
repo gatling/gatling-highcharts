@@ -22,6 +22,6 @@ class ComponentLibraryImpl extends ComponentLibrary {
 	def getRequestDetailsScatterChartComponent(successes: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]): Component = RequestDetailsScatterComponent(successes, failures)
 	def getRequestDetailsIndicatorChartComponent: Component = RequestDetailsIndicatorComponent()
 	def getNumberOfRequestsChartComponent = NumberOfRequestsComponent()
-	def getGroupDurationChartComponent(runStart: Long, durationsSuccess: Series[IntRangeVsTimePlot], durationsFailure: Series[IntRangeVsTimePlot]): Component = GroupDetailsDurationComponent(runStart, durationsSuccess, durationsFailure)
-	def getGroupDetailsDurationDistributionChartComponent(durationsSuccess: Series[IntVsTimePlot], durationsFailure: Series[IntVsTimePlot]): Component = GroupDetailsDurationDistributionComponent(durationsSuccess, durationsFailure)
+	def getGroupDurationChartComponent(title: String, containerId: String, yAxisName: String, runStart: Long, durationsSuccess: Series[IntRangeVsTimePlot], durationsFailure: Series[IntRangeVsTimePlot]): Component = GroupDetailsDurationComponent(title, containerId, yAxisName, runStart, durationsSuccess, durationsFailure)
+	def getGroupDetailsDurationDistributionChartComponent(title: String, containerId: String, durationsSuccess: Series[IntVsTimePlot], durationsFailure: Series[IntVsTimePlot]): Component = GroupDetailsDurationDistributionComponent(title, containerId, durationsSuccess, durationsFailure)
 }
