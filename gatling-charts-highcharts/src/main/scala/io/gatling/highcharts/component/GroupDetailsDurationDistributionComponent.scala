@@ -11,8 +11,10 @@ import io.gatling.highcharts.template.GroupDetailsDurationDistributionTemplate
 
 object GroupDetailsDurationDistributionComponent {
 
-	def apply(durationDistributionSuccess: Series[IntVsTimePlot], durationDistributionFailure: Series[IntVsTimePlot]) = {
+	def apply(title: String, containerId: String, durationDistributionSuccess: Series[IntVsTimePlot], durationDistributionFailure: Series[IntVsTimePlot]) = {
 		val template = new GroupDetailsDurationDistributionTemplate(
+		    title,
+		    containerId,
 			new StackedColumnSeries(durationDistributionSuccess.name, durationDistributionSuccess.data.map { plot => PieSlice(plot.time.toString, plot.value) }, durationDistributionSuccess.colors.head),
 			new StackedColumnSeries(durationDistributionFailure.name, durationDistributionFailure.data.map { plot => PieSlice(plot.time.toString, plot.value) }, durationDistributionFailure.colors.head))
 

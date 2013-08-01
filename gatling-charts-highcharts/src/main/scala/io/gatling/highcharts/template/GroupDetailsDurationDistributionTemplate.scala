@@ -10,12 +10,12 @@ import com.dongxiguo.fastring.Fastring.Implicits._
 import io.gatling.charts.template.PageTemplate
 import io.gatling.highcharts.series.StackedColumnSeries
 
-class GroupDetailsDurationDistributionTemplate(durationSeriesSuccess: StackedColumnSeries, durationSeriesFailure: StackedColumnSeries) extends Template {
+class GroupDetailsDurationDistributionTemplate(title: String, containerId: String, durationSeriesSuccess: StackedColumnSeries, durationSeriesFailure: StackedColumnSeries) extends Template {
 
 	def js = fast"""
 var responseTimeDistributionChart = new Highcharts.Chart({
     chart: {
-        renderTo: 'container_distrib',
+        renderTo: '$containerId',
         type: 'column'
     },
     credits: {
@@ -61,11 +61,15 @@ var responseTimeDistributionChart = new Highcharts.Chart({
 });
 
 responseTimeDistributionChart.setTitle({
-    text: '<span class="chart_title">Group Duration Distribution</span>',
+    text: '<span class="chart_title">$title</span>',
     useHTML: true
 });
 """
 
-	val html = RequestDetailsResponseTimeDistributionTemplate.htmlContent
+	val html = fast"""
+                        <div class="schema geant">
+                            <div id="$containerId" class="geant"></div>
+                        </div>
+"""
 }
 
