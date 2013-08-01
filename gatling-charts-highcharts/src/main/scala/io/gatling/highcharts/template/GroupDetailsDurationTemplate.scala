@@ -11,12 +11,12 @@ import io.gatling.charts.template.PageTemplate
 import io.gatling.charts.util.Colors._
 import io.gatling.highcharts.series.ResponseTimeSeries
 
-class GroupDetailsDurationTemplate(durationSeriesSuccess: ResponseTimeSeries, durationSeriesFailure: ResponseTimeSeries) extends Template {
+class GroupDetailsDurationTemplate(title: String, containerId: String, yAxisName: String, durationSeriesSuccess: ResponseTimeSeries, durationSeriesFailure: ResponseTimeSeries) extends Template {
 
 	def js = fast"""
 var responseTimeChart = new Highcharts.StockChart({
     chart: {
-        renderTo: 'container',
+        renderTo: '$containerId',
         zoomType: 'x'
     },
     credits: {
@@ -61,7 +61,7 @@ var responseTimeChart = new Highcharts.StockChart({
     {
         min: 0,
         title: {
-            text: 'Duration (ms)',
+            text: '$yAxisName',
             style: {
                 color: '${BLUE}'
             }
@@ -100,14 +100,14 @@ var responseTimeChart = new Highcharts.StockChart({
 });
 
 responseTimeChart.setTitle({
-    text: '<span class="chart_title chart_title_">Group duration during Simulation</span>',
+    text: '<span class="chart_title chart_title_">$title</span>',
     useHTML: true
 });
 """
 
 	val html = fast"""
                         <div class="schema geant">
-                            <div id="container" class="geant"></div>
+                            <div id="$containerId" class="geant"></div>
                         </div>
 """
 }
