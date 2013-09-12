@@ -18,7 +18,7 @@ object BuildSettings {
 		organizationHomepage  := Some(new URL("http://gatling.io")),
 		startYear             := Some(2011),
 		licenses              := Seq("Gatling Highcharts License" -> new URL("https://raw.github.com/excilys/gatling-highcharts/master/src/main/resources/META-INF/LICENCE")),
-		resolvers             := Seq(Resolver.mavenLocal, excilysNexus, Resolver.typesafeIvyRepo("releases"), publicCloudbeesSnapshots),
+		resolvers             := Seq(Resolver.mavenLocal, excilysNexus, publicCloudbeesSnapshots),
 		scalaVersion          := "2.10.2",
 		crossPaths            := false,
 		pomExtra              := scm ++ developersXml(developers),
