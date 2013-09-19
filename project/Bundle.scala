@@ -27,6 +27,8 @@ object Bundle {
 	def zipFileMappings = Def.task {
 		IO.unzip(bundleFile.value, unzippedBundleLocation.value)
 		val location = unzippedBundleLocation.value.listFiles.head
+		// IO.unzip seems to "forget" file permissions, reset them after unzipping
+		(location / "bin").***.get.map(_.setExecutable(true))
 		val finder = (location.***) --- location
 		finder x relativeTo(location)
 	}
