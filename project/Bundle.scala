@@ -27,7 +27,7 @@ object Bundle {
 	def zipFileMappings = Def.task {
 		IO.unzip(bundleFile.value, unzippedBundleLocation.value)
 		val location = unzippedBundleLocation.value.listFiles.head
-		val finder = (location ***) --- location
+		val finder = (location.***) --- location
 		finder x relativeTo(location)
 	}
 }
