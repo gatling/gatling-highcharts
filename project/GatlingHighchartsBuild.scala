@@ -17,7 +17,7 @@ object GatlingBuild extends Build {
 
 	lazy val root = Project("gatling-charts-highcharts", file("."))
 		.settings(gatlingHighchartsSettings: _*)
-		.settings(libraryDependencies ++= gatlingHighchartsDeps)
+		.settings(libraryDependencies ++= gatlingHighchartsDeps(version.value))
 		.settings(bundleSettings: _*)
 
 }

@@ -7,11 +7,11 @@ object Dependencies {
 	val publicCloudbeesSnapshots = "Public Cloudbees Snapshots" at "http://repository-gatling.forge.cloudbees.com/snapshot/"
 	val cloudbeesSnapshots = "Cloudbees Private Repository" at "davs://repository-gatling.forge.cloudbees.com/snapshot"
 
-	val charts   = "io.gatling" % "gatling-charts"   % "2.0.0-SNAPSHOT"
-	val app      = "io.gatling" % "gatling-app"      % "2.0.0-SNAPSHOT"
-	val recorder = "io.gatling" % "gatling-recorder" % "2.0.0-SNAPSHOT"
+	val charts: String => ModuleID   = "io.gatling" % "gatling-charts"   % _
+	val app: String => ModuleID      = "io.gatling" % "gatling-app"      % _
+	val recorder: String => ModuleID = "io.gatling" % "gatling-recorder" % _
 
-	val bundle   = "io.gatling" % "gatling-bundle"   % "2.0.0-SNAPSHOT" artifacts(Artifact("gatling-bundle", "zip", "zip", "bundle"))
+	val bundle: String => ModuleID   = "io.gatling" % "gatling-bundle"   % _ artifacts(Artifact("gatling-bundle", "zip", "zip", "bundle"))
 
-	val gatlingHighchartsDeps = Seq(charts, app, recorder, bundle)
+	def gatlingHighchartsDeps(version: String) = Seq(charts, app, recorder, bundle).map(_(version))
 }

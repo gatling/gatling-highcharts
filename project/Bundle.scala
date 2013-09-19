@@ -19,7 +19,7 @@ object Bundle {
 
 	val bundleSettings = packagerSettings ++ bundleArtifacts ++ Seq(
 		mappings in Universal <+= (packageBin in Compile) map { jar => jar -> ("lib/" + jar.getName) },
-		bundleFile := update.value.select(module = moduleFilter(name = Dependencies.bundle.name)).head,
+		bundleFile := update.value.select(artifact = artifactFilter(classifier = "bundle")).head,
 		unzippedBundleLocation := target.value / "unzipped",
 		mappings in Universal ++= zipFileMappings.value
 	)
