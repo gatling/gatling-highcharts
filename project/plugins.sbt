@@ -8,7 +8,7 @@ addSbtPlugin("no.arktekk.sbt" % "aether-deploy" % "0.10")
 
 addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.3.0")
 
-addSbtPlugin("com.github.gseitz" % "sbt-release" % "0.7.1")
+addSbtPlugin("com.github.gseitz" % "sbt-release" % "0.8")
 
 // Dependency needed for the WebDAV wagon
 libraryDependencies += "org.apache.maven.wagon" % "wagon-webdav-jackrabbit" % "2.4"
