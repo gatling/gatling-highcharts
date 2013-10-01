@@ -18,7 +18,7 @@ object BuildSettings {
 		startYear             := Some(2011),
 		licenses              := Seq("Gatling Highcharts License" -> new URL("https://raw.github.com/excilys/gatling-highcharts/master/src/main/resources/META-INF/LICENCE")),
 		resolvers             := Seq(excilysNexus, publicCloudbeesSnapshots),
-		scalaVersion          := "2.10.3-RC2",
+		scalaVersion          := "2.10.3",
 		scalacOptions         := Seq(
 			"-encoding",
 			"UTF-8",
