@@ -5,9 +5,7 @@ import com.typesafe.sbt.SbtScalariform
 import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 import net.virtualvoid.sbt.graph.Plugin.graphSettings
 import com.typesafe.sbteclipse.plugin.EclipsePlugin._
-import sbtrelease.ReleasePlugin._
 
-import Publishing._
 import Resolvers._
 
 object BuildSettings {
@@ -34,7 +32,7 @@ object BuildSettings {
 
 	lazy val gatlingHighchartsSettings = 
 		basicSettings ++ formattingSettings ++ graphSettings ++ 
-		publishingSettings ++ eclipseSettings ++ releaseSettings
+		Publish.settings ++ Release.settings ++ eclipseSettings
 
 	/*************************/
 	/** Formatting settings **/
