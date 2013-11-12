@@ -111,4 +111,3 @@ latencyChart.setTitle({
                         </div>
 """
 }
-

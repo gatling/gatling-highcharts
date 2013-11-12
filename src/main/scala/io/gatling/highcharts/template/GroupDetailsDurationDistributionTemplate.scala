@@ -72,4 +72,3 @@ responseTimeDistributionChart.setTitle({
                         </div>
 """
 }
-

@@ -128,4 +128,3 @@ indicatorsChart.setTitle({
                         </div>
 """
 }
-

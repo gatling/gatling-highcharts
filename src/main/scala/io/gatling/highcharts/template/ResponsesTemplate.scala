@@ -11,12 +11,12 @@ import io.gatling.charts.template.PageTemplate
 import io.gatling.charts.util.Colors._
 import io.gatling.highcharts.series.{ PieSeries, NumberPerSecondSeries }
 
-class TransactionsTemplate(series: Seq[NumberPerSecondSeries], pieSeries: PieSeries) extends Template {
+class ResponsesTemplate(series: Seq[NumberPerSecondSeries], pieSeries: PieSeries) extends Template {
 
 	def js = fast"""
-var transactionsChart = new Highcharts.StockChart({
+var responsesChart = new Highcharts.StockChart({
     chart: {
-        renderTo: 'container_transactions',
+        renderTo: 'container_responses',
         zoomType: 'x'
     },
     credits: {
@@ -61,7 +61,7 @@ var transactionsChart = new Highcharts.StockChart({
     {
         min: 0,
         title: {
-            text: 'Number of Transactions',
+            text: 'Number of Responses',
             style: {
                 color: '$BLUE'
             }
@@ -86,16 +86,16 @@ var transactionsChart = new Highcharts.StockChart({
     ]
 });
 
-transactionsChart.setTitle({
-    text: '<span class="chart_title">Number of transactions per second</span>',
+responsesChart.setTitle({
+    text: '<span class="chart_title">Number of responses per second</span>',
     useHTML: true
 });
 """
 
 	val html = fast"""
                         <div class="schema geant">
-                            <a name="transactions"></a>
-                            <div id="container_transactions" class="geant"></div>
+                            <a name="responses"></a>
+                            <div id="container_responses" class="geant"></div>
                         </div>
 """
 }

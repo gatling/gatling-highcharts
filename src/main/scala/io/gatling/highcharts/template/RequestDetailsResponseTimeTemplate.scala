@@ -111,4 +111,3 @@ responseTimeChart.setTitle({
                         </div>
 """
 }
-

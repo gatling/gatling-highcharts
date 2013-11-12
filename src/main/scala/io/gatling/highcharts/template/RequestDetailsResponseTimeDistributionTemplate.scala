@@ -76,4 +76,3 @@ responseTimeDistributionChart.setTitle({
 
 	val html = RequestDetailsResponseTimeDistributionTemplate.htmlContent
 }
-

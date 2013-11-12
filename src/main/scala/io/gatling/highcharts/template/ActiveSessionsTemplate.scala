@@ -85,4 +85,3 @@ allSessionsData.yAxis = 1;
                         </div>
 """
 }
-
