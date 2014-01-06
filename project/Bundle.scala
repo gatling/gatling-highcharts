@@ -20,7 +20,7 @@ object Bundle {
 		bundleFile := update.value.select(artifact = artifactFilter(classifier = "bundle")).head,
 		unzippedBundleLocation := target.value / "unzipped",
 		mappings in Universal ++= zipFileMappings.value
-	)
+	) ++ useNativeZip
 
 	def zipFileMappings = Def.task {
 		IO.unzip(bundleFile.value, unzippedBundleLocation.value)
