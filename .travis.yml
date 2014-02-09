@@ -1,0 +1,17 @@
+language: scala
+before_script: ./make_credentials.sh
+script: sbt test
+
+env:
+  global:
+    - secure: "j7DO+DWE9vwRmbtSuSOIHZq0VLTnraXw+8Shl3o2Zrxts7UE4I1TuR7Jxq3RN632Dl4vKu78jv2FgJMTTBIgdegmvnTVXCm4uQHHnNXh+0wB1KlpkFz3BN5gBKOOcy6ZfrxTqRlAOdT/Ym61oELceAUiUyBwDriiNy6tQRun4Gg="
+    - secure: "bIyJDObVqSLcW1wXn1KEqxPwtvOXQZfyp+soQnRA/rSgEJopCfSVY4kEXuEWQ5VODA4DUmn17+ItXeFWxYZQWI10p6OfF6ZQ9SHrrbdN5/AUYv0A3fjhsg9G+YQwPbiqNHOyV4azsaiUG7TPsYJZRG/ThvT99T5CqaKGfc/fsQQ="
+
+# Publish to Sonatype if building master
+after_success:
+  - "[[ $TRAVIS_BRANCH == \"master\" ]] && sbt publish"
+
+# Blacklisting
+branches:
+  except:
+    - 1.5.X
