@@ -45,7 +45,7 @@ var indicatorsChart = new Highcharts.Chart({
         formatter: function() {
             var s;
             if (this.point.name) { // the pie chart
-                s = ''+ this.point.name +': '+ this.y +' requests';
+                s = ''+ this.point.name +': '+ this.y +'% requests';
             } else {
                 s = ''+ this.y + ' requests';
             }
