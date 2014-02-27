@@ -9,12 +9,15 @@ import io.gatling.core.result.{ IntVsTimePlot, Series }
 import io.gatling.highcharts.series.ScatterSeries
 import io.gatling.highcharts.template.RequestDetailsScatterTemplate
 
-object RequestDetailsScatterComponent {
+object RequestDetailsResponseTimeScatterComponent {
 
 	def apply(success: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]) = {
 		val template = new RequestDetailsScatterTemplate(
 			new ScatterSeries(success.name, success.data, success.colors.head),
-			new ScatterSeries(failures.name, failures.data, failures.colors.head))
+			new ScatterSeries(failures.name, failures.data, failures.colors.head),
+			"container_response_time_dispersion",
+			"Response Time against the Global Number of Requests per Second",
+			"Response Time")
 		new HighchartsComponent(template)
 	}
 }

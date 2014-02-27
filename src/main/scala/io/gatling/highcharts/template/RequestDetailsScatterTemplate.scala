@@ -10,12 +10,12 @@ import com.dongxiguo.fastring.Fastring.Implicits._
 import io.gatling.charts.template.PageTemplate
 import io.gatling.highcharts.series.ScatterSeries
 
-class RequestDetailsScatterTemplate(success: ScatterSeries, failures: ScatterSeries) extends Template {
+class RequestDetailsScatterTemplate(success: ScatterSeries, failures: ScatterSeries, containerName: String, chartTitle: String, yAxisTitle: String) extends Template {
 
 	def js = fast"""
 var scatterChart = new Highcharts.Chart({
     chart: {
-        renderTo: 'container_dispersion', 
+        renderTo: '$containerName', 
         defaultSeriesType: 'scatter',
         zoomType: 'xy'
     },
@@ -37,7 +37,7 @@ var scatterChart = new Highcharts.Chart({
     yAxis: {
         min: 0,
         title: {
-            text: 'Response time'
+            text: '$yAxisTitle'
         }
     },
     tooltip: {
@@ -76,14 +76,14 @@ var scatterChart = new Highcharts.Chart({
 });
 
 scatterChart.setTitle({
-    text: '<span class="chart_title">Response Time against the Global Number of Requests per Second</span>',
+    text: '<span class="chart_title">${chartTitle}</span>',
     useHTML: true
 });
 """
 
 	val html = fast"""
                         <div class="schema geant">
-                            <div id="container_dispersion" class="geant"></div>
+                            <div id="$containerName" class="geant"></div>
                         </div>
 """
 }
