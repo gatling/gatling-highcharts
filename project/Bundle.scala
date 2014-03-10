@@ -24,7 +24,7 @@ object Bundle {
 		mappings in Universal ++= allJars.value.map(jar => jar -> buildDestinationJarPath(jar, version.value)),
 		mappings in Universal += {
 			val highchartsJar = (packageBin in Compile).value
-			(highchartsJar, "lib/" + highchartsJar.getName) 
+			(highchartsJar, "lib/" + highchartsJar.getName)
 		},
 		bundleFile := update.value.select(artifact = artifactFilter(classifier = "bundle")).head,
 		unzippedBundleLocation := target.value / "unzipped",
@@ -41,9 +41,9 @@ object Bundle {
 	}
 
 	def buildDestinationJarPath(sourceJarPath: File, version: String): String = {
-		if(sourceJarPath.getName.startsWith("gatling")) 
+		if(sourceJarPath.getName.startsWith("gatling") && !sourceJarPath.getName.contains(version))
 			s"lib/${sourceJarPath.base}-$version.${sourceJarPath.ext}"
-		else 
+		else
 			s"lib/${sourceJarPath.getName}"
 	}
 }
