@@ -10,8 +10,3 @@ env:
 # Publish to Sonatype if building master
 after_success:
   - "[[ $TRAVIS_BRANCH == \"master\" ]] && sbt publish"
-
-# Blacklisting
-branches:
-  except:
-    - 1.5.X
