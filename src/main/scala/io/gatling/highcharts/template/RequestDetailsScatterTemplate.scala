@@ -50,8 +50,8 @@ var scatterChart = new Highcharts.Chart({
         layout: 'vertical',
         align: 'left',
         verticalAlign: 'top',
-        x: 100,
-        y: 70,
+        x: 80,
+        y: 10,
         floating: true,
         backgroundColor: '#FFFFFF',
         borderWidth: 1
