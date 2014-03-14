@@ -47,7 +47,14 @@ var scatterChart = new Highcharts.Chart({
         }
     },
     legend: {
-        enabled: false
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 100,
+        y: 70,
+        floating: true,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1
     },
     plotOptions: {
         scatter: {
