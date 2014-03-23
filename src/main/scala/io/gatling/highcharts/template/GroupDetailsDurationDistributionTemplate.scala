@@ -7,7 +7,6 @@ package io.gatling.highcharts.template
 
 import com.dongxiguo.fastring.Fastring.Implicits._
 
-import io.gatling.charts.template.PageTemplate
 import io.gatling.highcharts.series.StackedColumnSeries
 
 class GroupDetailsDurationDistributionTemplate(title: String, containerId: String, durationSeriesSuccess: StackedColumnSeries, durationSeriesFailure: StackedColumnSeries) extends Template {

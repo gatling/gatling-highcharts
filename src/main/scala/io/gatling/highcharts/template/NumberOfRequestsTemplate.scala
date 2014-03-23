@@ -7,7 +7,6 @@ package io.gatling.highcharts.template
 
 import com.dongxiguo.fastring.Fastring.Implicits._
 
-import io.gatling.charts.template.PageTemplate
 import io.gatling.charts.report.Container.{ GROUP, REQUEST }
 
 class NumberOfRequestsTemplate extends Template {

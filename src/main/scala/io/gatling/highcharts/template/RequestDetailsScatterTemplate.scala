@@ -7,7 +7,6 @@ package io.gatling.highcharts.template
 
 import com.dongxiguo.fastring.Fastring.Implicits._
 
-import io.gatling.charts.template.PageTemplate
 import io.gatling.highcharts.series.ScatterSeries
 
 class RequestDetailsScatterTemplate(success: ScatterSeries, failures: ScatterSeries, containerName: String, chartTitle: String, yAxisTitle: String) extends Template {
@@ -83,7 +82,7 @@ var scatterChart = new Highcharts.Chart({
 });
 
 scatterChart.setTitle({
-    text: '<span class="chart_title">${chartTitle}</span>',
+    text: '<span class="chart_title">$chartTitle</span>',
     useHTML: true
 });
 """
