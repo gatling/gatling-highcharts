@@ -11,7 +11,7 @@ import io.gatling.highcharts.series.NumberPerSecondSeries
 
 class ActiveSessionsTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
 
-	def js = fast"""
+  def js = fast"""
 allSessionsData.yAxis = 0;
 
 var allSessionsChart = new Highcharts.StockChart({
@@ -77,7 +77,7 @@ allSessionsChart.setTitle({
 allSessionsData.yAxis = 1;
 """
 
-	val html = fast"""
+  val html = fast"""
                         <div class="schema geant">
                             <a name="active_sessions"></a>
                             <div id="container_active_sessions" class="geant"></div>

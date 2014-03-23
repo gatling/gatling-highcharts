@@ -11,11 +11,11 @@ import io.gatling.highcharts.template.RequestDetailsResponseTimeDistributionTemp
 
 object RequestDetailsResponseTimeDistributionComponent {
 
-	def apply(successDistribution: Series[IntVsTimePlot], failuresDistribution: Series[IntVsTimePlot]) = {
-		val template = new RequestDetailsResponseTimeDistributionTemplate(
-			new StackedColumnSeries(successDistribution.name, successDistribution.data.map { plot => PieSlice(plot.time.toString, plot.value) }, successDistribution.colors.head),
-			new StackedColumnSeries(failuresDistribution.name, failuresDistribution.data.map { plot => PieSlice(plot.time.toString, plot.value) }, failuresDistribution.colors.head))
+  def apply(successDistribution: Series[IntVsTimePlot], failuresDistribution: Series[IntVsTimePlot]) = {
+    val template = new RequestDetailsResponseTimeDistributionTemplate(
+      new StackedColumnSeries(successDistribution.name, successDistribution.data.map { plot => PieSlice(plot.time.toString, plot.value) }, successDistribution.colors.head),
+      new StackedColumnSeries(failuresDistribution.name, failuresDistribution.data.map { plot => PieSlice(plot.time.toString, plot.value) }, failuresDistribution.colors.head))
 
-		new HighchartsComponent(template)
-	}
+    new HighchartsComponent(template)
+  }
 }

@@ -12,7 +12,7 @@ import io.gatling.highcharts.series.ResponseTimeSeries
 
 class RequestDetailsLatencyTemplate(successSeries: ResponseTimeSeries, failuresSeries: ResponseTimeSeries) extends Template {
 
-	def js = fast"""
+  def js = fast"""
 var latencyChart = new Highcharts.StockChart({
     chart: {
         renderTo: 'container_latency',
@@ -85,15 +85,15 @@ var latencyChart = new Highcharts.StockChart({
     },
     series: [
     ${
-		if (!successSeries.data.isEmpty)
-			fast"{${renderResponseTimeSeries(successSeries, None)}},"
-		else ""
-	}
+    if (!successSeries.data.isEmpty)
+      fast"{${renderResponseTimeSeries(successSeries, None)}},"
+    else ""
+  }
     ${
-		if (!failuresSeries.data.isEmpty)
-			fast"{${renderResponseTimeSeries(failuresSeries, Some("radius: 3, enabled: true"))}},"
-		else ""
-	}
+    if (!failuresSeries.data.isEmpty)
+      fast"{${renderResponseTimeSeries(failuresSeries, Some("radius: 3, enabled: true"))}},"
+    else ""
+  }
     allSessionsData
     ]
 });
@@ -104,7 +104,7 @@ latencyChart.setTitle({
 });
 """
 
-	val html = fast"""
+  val html = fast"""
                         <div class="schema geant">
                             <div id="container_latency" class="geant"></div>
                         </div>

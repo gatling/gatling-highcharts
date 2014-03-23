@@ -11,8 +11,8 @@ import io.gatling.highcharts.template.ActiveSessionsTemplate
 
 object ActiveSessionsComponent {
 
-	def apply(runStart: Long, series: Seq[Series[IntVsTimePlot]]) = {
-		val template = new ActiveSessionsTemplate(runStart, series.map { s => new NumberPerSecondSeries(s.name, runStart, s.data, s.colors.head) })
-		new HighchartsComponent(template)
-	}
+  def apply(runStart: Long, series: Seq[Series[IntVsTimePlot]]) = {
+    val template = new ActiveSessionsTemplate(runStart, series.map { s => new NumberPerSecondSeries(s.name, runStart, s.data, s.colors.head) })
+    new HighchartsComponent(template)
+  }
 }

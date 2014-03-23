@@ -10,7 +10,7 @@ import com.dongxiguo.fastring.Fastring.Implicits._
 import io.gatling.highcharts.series._
 
 object Template {
-	def renderNumberPerSecondSeries(serie: NumberPerSecondSeries) = fast"""
+  def renderNumberPerSecondSeries(serie: NumberPerSecondSeries) = fast"""
 color: '${serie.colors(0)}'
 , name: '${serie.name}'
 , data: [
@@ -22,11 +22,11 @@ ${serie.elements.mkFastring(",")}
 
 abstract class Template {
 
-	def js: Fastring
+  def js: Fastring
 
-	def html: Fastring
+  def html: Fastring
 
-	def renderPieSeries(serie: PieSeries) = fast"""
+  def renderPieSeries(serie: PieSeries) = fast"""
 type: 'pie',
 name: '${serie.name}',
 data: [
@@ -39,7 +39,7 @@ dataLabels: { enabled: false },
 dataGrouping: { enabled: false }
 """
 
-	def renderStackedColumnSeries(serie: StackedColumnSeries) = fast"""
+  def renderStackedColumnSeries(serie: StackedColumnSeries) = fast"""
 type: 'column'
 , color: '${serie.colors(0)}'
 , name: '${serie.name}'
@@ -49,7 +49,7 @@ ${serie.elements.mkFastring(",")}
 , tooltip: { yDecimals: 0, ySuffix: 'ms' }
 """
 
-	def renderScatterSeries(serie: ScatterSeries) = fast"""
+  def renderScatterSeries(serie: ScatterSeries) = fast"""
 type: 'scatter'
 , color: '${serie.colors(0)}'
 , name: '${serie.name}'
@@ -57,7 +57,7 @@ type: 'scatter'
 ${serie.elements.mkFastring(",")}
 ]"""
 
-	def renderResponseTimeSeries(series: ResponseTimeSeries, marker: Option[String]) = fast"""
+  def renderResponseTimeSeries(series: ResponseTimeSeries, marker: Option[String]) = fast"""
 color: '${series.colors(0)}'
 , pointInterval: 1000
 , name: '${series.name}'
@@ -70,5 +70,5 @@ ${series.elements.mkFastring(",")}
 ${marker.map(m => s", marker: { $m }").getOrElse("")}
 """
 
-	def renderNumberPerSecondSeries(serie: NumberPerSecondSeries) = Template.renderNumberPerSecondSeries(serie)
+  def renderNumberPerSecondSeries(serie: NumberPerSecondSeries) = Template.renderNumberPerSecondSeries(serie)
 }

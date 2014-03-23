@@ -11,11 +11,11 @@ import io.gatling.highcharts.template.RequestDetailsLatencyTemplate
 
 object RequestDetailsLatencyComponent {
 
-	def apply(runStart: Long, latencySuccess: Series[IntRangeVsTimePlot], latencyFailures: Series[IntRangeVsTimePlot]) = {
-		val template = new RequestDetailsLatencyTemplate(
-			new ResponseTimeSeries(latencySuccess.name, runStart, latencySuccess.data, latencySuccess.colors.head),
-			new ResponseTimeSeries(latencyFailures.name, runStart, latencyFailures.data, latencyFailures.colors.head))
+  def apply(runStart: Long, latencySuccess: Series[IntRangeVsTimePlot], latencyFailures: Series[IntRangeVsTimePlot]) = {
+    val template = new RequestDetailsLatencyTemplate(
+      new ResponseTimeSeries(latencySuccess.name, runStart, latencySuccess.data, latencySuccess.colors.head),
+      new ResponseTimeSeries(latencyFailures.name, runStart, latencyFailures.data, latencyFailures.colors.head))
 
-		new HighchartsComponent(template)
-	}
+    new HighchartsComponent(template)
+  }
 }

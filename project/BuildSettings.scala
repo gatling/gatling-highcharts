@@ -45,7 +45,8 @@ object BuildSettings {
 
 	def formattingPreferences = 
 		FormattingPreferences()
-			.setPreference(DoubleIndentClassDeclaration, false)
-			.setPreference(IndentWithTabs, true)
-
+      .setPreference(DoubleIndentClassDeclaration, true)
+      .setPreference(AlignParameters, true)
+      .setPreference(AlignSingleLineCaseStatements, true)
+      .setPreference(IndentLocalDefs, true)
 }

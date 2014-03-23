@@ -9,9 +9,9 @@ import io.gatling.highcharts.template.RequestDetailsIndicatorTemplate
 
 object RequestDetailsIndicatorComponent {
 
-	def apply() = {
-		val template = new RequestDetailsIndicatorTemplate
+  def apply() = {
+    val template = new RequestDetailsIndicatorTemplate
 
-		new HighchartsComponent(template)
-	}
+    new HighchartsComponent(template)
+  }
 }

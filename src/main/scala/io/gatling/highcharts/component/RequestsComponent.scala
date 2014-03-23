@@ -11,13 +11,13 @@ import io.gatling.highcharts.template.RequestsTemplate
 
 object RequestsComponent {
 
-	def apply(runStart: Long, allRequests: Series[IntVsTimePlot], failedRequests: Series[IntVsTimePlot], succeededRequests: Series[IntVsTimePlot], pieSeries: Series[PieSlice]) = {
-		val template = new RequestsTemplate(
-			Seq(new NumberPerSecondSeries(allRequests.name, runStart, allRequests.data, allRequests.colors.head),
-				new NumberPerSecondSeries(failedRequests.name, runStart, failedRequests.data, failedRequests.colors.head),
-				new NumberPerSecondSeries(succeededRequests.name, runStart, succeededRequests.data, succeededRequests.colors.head)),
-			new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors))
+  def apply(runStart: Long, allRequests: Series[IntVsTimePlot], failedRequests: Series[IntVsTimePlot], succeededRequests: Series[IntVsTimePlot], pieSeries: Series[PieSlice]) = {
+    val template = new RequestsTemplate(
+      Seq(new NumberPerSecondSeries(allRequests.name, runStart, allRequests.data, allRequests.colors.head),
+        new NumberPerSecondSeries(failedRequests.name, runStart, failedRequests.data, failedRequests.colors.head),
+        new NumberPerSecondSeries(succeededRequests.name, runStart, succeededRequests.data, succeededRequests.colors.head)),
+      new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors))
 
-		new HighchartsComponent(template)
-	}
+    new HighchartsComponent(template)
+  }
 }

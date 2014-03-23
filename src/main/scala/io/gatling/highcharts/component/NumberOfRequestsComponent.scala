@@ -8,5 +8,5 @@ package io.gatling.highcharts.component
 import io.gatling.highcharts.template.NumberOfRequestsTemplate
 
 object NumberOfRequestsComponent {
-	def apply() = new HighchartsComponent(new NumberOfRequestsTemplate)
+  def apply() = new HighchartsComponent(new NumberOfRequestsTemplate)
 }

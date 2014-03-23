@@ -10,7 +10,7 @@ import com.dongxiguo.fastring.Fastring.Implicits._
 import io.gatling.highcharts.series.StackedColumnSeries
 
 object RequestDetailsResponseTimeDistributionTemplate {
-	val htmlContent = fast"""
+  val htmlContent = fast"""
                         <div class="schema geant">
                             <div id="container_distrib" class="geant"></div>
                         </div>
@@ -19,7 +19,7 @@ object RequestDetailsResponseTimeDistributionTemplate {
 
 class RequestDetailsResponseTimeDistributionTemplate(successSeries: StackedColumnSeries, failuresSeries: StackedColumnSeries) extends Template {
 
-	def js = fast"""
+  def js = fast"""
 var responseTimeDistributionChart = new Highcharts.Chart({
     chart: {
         renderTo: 'container_distrib',
@@ -73,5 +73,5 @@ responseTimeDistributionChart.setTitle({
 });
 """
 
-	val html = RequestDetailsResponseTimeDistributionTemplate.htmlContent
+  val html = RequestDetailsResponseTimeDistributionTemplate.htmlContent
 }

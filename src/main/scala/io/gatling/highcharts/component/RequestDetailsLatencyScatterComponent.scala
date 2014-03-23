@@ -11,13 +11,13 @@ import io.gatling.highcharts.template.RequestDetailsScatterTemplate
 
 object RequestDetailsLatencyScatterComponent {
 
-	def apply(success: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]) = {
-		val template = new RequestDetailsScatterTemplate(
-			new ScatterSeries(success.name, success.data, success.colors.head),
-			new ScatterSeries(failures.name, failures.data, failures.colors.head),
-			"container_latency_dispersion",
-			"Latency against the Global Number of Requests per Second",
-			"Latency")
-		new HighchartsComponent(template)
-	}
+  def apply(success: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]) = {
+    val template = new RequestDetailsScatterTemplate(
+      new ScatterSeries(success.name, success.data, success.colors.head),
+      new ScatterSeries(failures.name, failures.data, failures.colors.head),
+      "container_latency_dispersion",
+      "Latency against the Global Number of Requests per Second",
+      "Latency")
+    new HighchartsComponent(template)
+  }
 }

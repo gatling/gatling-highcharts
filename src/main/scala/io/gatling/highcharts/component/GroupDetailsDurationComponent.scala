@@ -11,14 +11,14 @@ import io.gatling.highcharts.template.GroupDetailsDurationTemplate
 
 object GroupDetailsDurationComponent {
 
-	def apply(title: String, containerId: String, yAxisName: String, runStart: Long, durationsSuccess: Series[IntRangeVsTimePlot], durationsFailure: Series[IntRangeVsTimePlot]) = {
-		val template = new GroupDetailsDurationTemplate(
-			title,
-			containerId,
-			yAxisName,
-			new ResponseTimeSeries(durationsSuccess.name, runStart, durationsSuccess.data, durationsSuccess.colors.head),
-			new ResponseTimeSeries(durationsFailure.name, runStart, durationsFailure.data, durationsFailure.colors.head))
+  def apply(title: String, containerId: String, yAxisName: String, runStart: Long, durationsSuccess: Series[IntRangeVsTimePlot], durationsFailure: Series[IntRangeVsTimePlot]) = {
+    val template = new GroupDetailsDurationTemplate(
+      title,
+      containerId,
+      yAxisName,
+      new ResponseTimeSeries(durationsSuccess.name, runStart, durationsSuccess.data, durationsSuccess.colors.head),
+      new ResponseTimeSeries(durationsFailure.name, runStart, durationsFailure.data, durationsFailure.colors.head))
 
-		new HighchartsComponent(template)
-	}
+    new HighchartsComponent(template)
+  }
 }

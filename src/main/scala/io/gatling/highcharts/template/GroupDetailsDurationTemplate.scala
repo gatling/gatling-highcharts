@@ -12,7 +12,7 @@ import io.gatling.highcharts.series.ResponseTimeSeries
 
 class GroupDetailsDurationTemplate(title: String, containerId: String, yAxisName: String, durationSeriesSuccess: ResponseTimeSeries, durationSeriesFailure: ResponseTimeSeries) extends Template {
 
-	def js = fast"""
+  def js = fast"""
 var responseTimeChart = new Highcharts.StockChart({
     chart: {
         renderTo: '$containerId',
@@ -85,15 +85,15 @@ var responseTimeChart = new Highcharts.StockChart({
     },
     series: [
     ${
-		if (!durationSeriesSuccess.data.isEmpty)
-			fast"{${renderResponseTimeSeries(durationSeriesSuccess, None)}},"
-		else ""
-	}	
+    if (!durationSeriesSuccess.data.isEmpty)
+      fast"{${renderResponseTimeSeries(durationSeriesSuccess, None)}},"
+    else ""
+  }	
     ${
-		if (!durationSeriesFailure.data.isEmpty)
-			fast"{${renderResponseTimeSeries(durationSeriesFailure, None)}},"
-		else ""
-	}	
+    if (!durationSeriesFailure.data.isEmpty)
+      fast"{${renderResponseTimeSeries(durationSeriesFailure, None)}},"
+    else ""
+  }	
     allSessionsData
     ]
 });
@@ -104,7 +104,7 @@ responseTimeChart.setTitle({
 });
 """
 
-	val html = fast"""
+  val html = fast"""
                         <div class="schema geant">
                             <div id="$containerId" class="geant"></div>
                         </div>

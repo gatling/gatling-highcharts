@@ -11,7 +11,7 @@ import io.gatling.charts.util.Colors._
 
 class RequestDetailsIndicatorTemplate extends Template {
 
-	val js = fast"""
+  val js = fast"""
 Highcharts.setOptions({
     global: {
         useUTC: false
@@ -121,7 +121,7 @@ indicatorsChart.setTitle({
 });
 """
 
-	val html = fast"""
+  val html = fast"""
                         <div class="schema demi">
                             <div id="container_indicators" class="demi"></div>
                         </div>

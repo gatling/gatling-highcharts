@@ -12,7 +12,7 @@ import io.gatling.highcharts.series.{ PieSeries, NumberPerSecondSeries }
 
 class ResponsesTemplate(series: Seq[NumberPerSecondSeries], pieSeries: PieSeries) extends Template {
 
-	def js = fast"""
+  def js = fast"""
 var responsesChart = new Highcharts.StockChart({
     chart: {
         renderTo: 'container_responses',
@@ -91,7 +91,7 @@ responsesChart.setTitle({
 });
 """
 
-	val html = fast"""
+  val html = fast"""
                         <div class="schema geant">
                             <a name="responses"></a>
                             <div id="container_responses" class="geant"></div>

@@ -9,5 +9,5 @@ import io.gatling.core.result.PieSlice
 
 class StackedColumnSeries(name: String, data: Seq[PieSlice], color: String) extends ColumnSeries(name, data, List(color)) {
 
-	def elements: Seq[String] = data.map(_.value.toString)
+  def elements: Seq[String] = data.map(_.value.toString)
 }

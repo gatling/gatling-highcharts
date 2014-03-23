@@ -11,7 +11,7 @@ import io.gatling.highcharts.series.StackedColumnSeries
 
 class GroupDetailsDurationDistributionTemplate(title: String, containerId: String, durationSeriesSuccess: StackedColumnSeries, durationSeriesFailure: StackedColumnSeries) extends Template {
 
-	def js = fast"""
+  def js = fast"""
 var responseTimeDistributionChart = new Highcharts.Chart({
     chart: {
         renderTo: '$containerId',
@@ -65,7 +65,7 @@ responseTimeDistributionChart.setTitle({
 });
 """
 
-	val html = fast"""
+  val html = fast"""
                         <div class="schema geant">
                             <div id="$containerId" class="geant"></div>
                         </div>
