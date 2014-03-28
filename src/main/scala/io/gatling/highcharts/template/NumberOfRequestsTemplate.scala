@@ -9,7 +9,7 @@ import com.dongxiguo.fastring.Fastring.Implicits._
 
 import io.gatling.charts.report.Container.{ GROUP, REQUEST }
 
-class NumberOfRequestsTemplate extends Template {
+class NumberOfRequestsTemplate(numberOfRequestNames: Int) extends Template {
 
   val js = fast"""
 function numberOfRequestsDataForGroup(group) {
@@ -54,6 +54,7 @@ new Highcharts.Chart({
 
     xAxis:{
         tickmarkPlacement:'on',
+        tickInterval: ${math.ceil(numberOfRequestNames.toDouble / 1000).toInt},
         categories:numberOfRequestsData.names,
         labels:{enabled:false}
     },
