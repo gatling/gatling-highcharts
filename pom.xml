@@ -67,19 +67,10 @@
 		<encoding>UTF-8</encoding>
 		<scala.version>2.9.3</scala.version>
 		<gatling.version>1.5.5-SNAPSHOT</gatling.version>
-		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-		<maven-source-plugin.version>2.2</maven-source-plugin.version>
-		<maven-assembly-plugin.version>2.2.2</maven-assembly-plugin.version>
-		<maven-jar-plugin.version>2.4</maven-jar-plugin.version>
 		<scala-maven-plugin.version>3.1.5</scala-maven-plugin.version>
-		<maven-surefire-plugin.version>2.12</maven-surefire-plugin.version>
-		<maven-release-plugin.version>2.3.2</maven-release-plugin.version>
 		<maven-scalate-plugin.version>1.6.1</maven-scalate-plugin.version>
 		<maven-license-plugin.version>1.10.b1</maven-license-plugin.version>
-		<maven-archetype-plugin.version>2.2</maven-archetype-plugin.version>
-		<maven-dependency-plugin.version>2.4</maven-dependency-plugin.version>
 		<archetype-packaging.version>2.2</archetype-packaging.version>
-		<maven-resources-plugin.version>2.5</maven-resources-plugin.version>
 		<build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
 
 		<header.basedir>${project.basedir}</header.basedir>
@@ -129,11 +120,9 @@
 			<plugins>
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven-compiler-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>${maven-source-plugin.version}</version>
 					<executions>
 						<execution>
 							<id>attach-sources</id>
@@ -142,14 +131,6 @@
 							</goals>
 						</execution>
 					</executions>
-				</plugin>
-				<plugin>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>${maven-assembly-plugin.version}</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>${maven-jar-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.fusesource.scalate</groupId>
@@ -171,20 +152,11 @@
 					</executions>
 				</plugin>
 				<plugin>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>${maven-surefire-plugin.version}</version>
-				</plugin>
-				<plugin>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>${maven-release-plugin.version}</version>
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<tagNameFormat>@{project.version}</tagNameFormat>
 					</configuration>
-				</plugin>
-				<plugin>
-					<artifactId>maven-archetype-plugin</artifactId>
-					<version>${maven-archetype-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>com.mycila.maven-license-plugin</groupId>
@@ -207,10 +179,6 @@
 							</goals>
 						</execution>
 					</executions>
-				</plugin>
-				<plugin>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>${maven-dependency-plugin.version}</version>
 				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
@@ -258,7 +226,6 @@
 				</plugin>
 				<plugin>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>${maven-resources-plugin.version}</version>
 					<configuration>
 						<escapeString>\</escapeString>
 					</configuration>
