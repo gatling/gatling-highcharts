@@ -66,7 +66,7 @@
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<encoding>UTF-8</encoding>
 		<scala.version>2.9.3</scala.version>
-		<gatling.version>1.5.5-SNAPSHOT</gatling.version>
+		<gatling.version>1.5.5</gatling.version>
 		<scala-maven-plugin.version>3.1.5</scala-maven-plugin.version>
 		<maven-scalate-plugin.version>1.6.1</maven-scalate-plugin.version>
 		<maven-license-plugin.version>1.10.b1</maven-license-plugin.version>
