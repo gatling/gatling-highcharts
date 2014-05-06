@@ -32,7 +32,7 @@ name: '${serie.name}',
 data: [
 ${serie.elements.mkFastring(",")}
 ],
-center: [800, -30],
+center: [775, -40],
 size: 70,
 showInLegend: false,
 dataLabels: { enabled: false },

@@ -24,7 +24,10 @@ var scatterChart = new Highcharts.Chart({
     xAxis: {
         title: {
             enabled: true,
-            text: 'Global number of requests per second'
+            text: 'Global number of requests per second',
+            style: {
+              fontWeight: 'bold'
+            }
         },
         startOnTick: true,
         endOnTick: true,
@@ -53,7 +56,12 @@ var scatterChart = new Highcharts.Chart({
         y: 10,
         floating: true,
         backgroundColor: '#FFFFFF',
-        borderWidth: 1
+        borderWidth: 1,
+        borderRadius: 3,
+        itemStyle: {
+          fontWeight: "normal",
+          color: "#274B6D"
+        }
     },
     plotOptions: {
         scatter: {

@@ -24,7 +24,10 @@ var responseTimeDistributionChart = new Highcharts.Chart({
         enabled: true,
         floating: true,
         y: -285,
-        borderWidth: 0
+        borderWidth: 0,
+        itemStyle: {
+          fontWeight: "normal"
+        }
     },
     title: {
         text: 'A title to let highcharts reserve the place for the title set later'

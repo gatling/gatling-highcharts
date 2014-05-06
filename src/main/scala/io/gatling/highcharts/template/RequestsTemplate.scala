@@ -24,14 +24,45 @@ var requestsChart = new Highcharts.StockChart({
     legend: {
         enabled: true,
         floating: true,
+        itemDistance: 10,
         y: -285,
-        borderWidth: 0
+        borderWidth: 0,
+        itemStyle: {
+          fontWeight: "normal"
+        }
     },
     title: {
         text: 'A title to let highcharts reserve the place for the title set later'
     },
     rangeSelector: {
-            buttons : [{
+        buttonSpacing: 0,
+        buttonTheme: {
+          fill: '$LIGHT_GREY',
+          padding: 1,
+          stroke: '$BLACK',
+          'stroke-width': 0.25,
+          style: {
+            color: '$BLACK',
+            fontWeight: 'bold',
+          },
+          states: {
+            stroke: '$BLACK',
+            'stroke-width': 0.25,
+            hover: {
+              fill: '$DARK_GREY',
+              style: {
+                color: 'black'
+              }
+           },
+           select: {
+              fill: '$DARK_ORANGE',
+              style: {
+                color: 'white'
+              }
+            }
+          }
+        },
+        buttons : [{
             type : 'minute',
             count : 1,
             text : '1m'
@@ -64,7 +95,8 @@ var requestsChart = new Highcharts.StockChart({
             style: {
                 color: '$BLUE'
             }
-        }
+        },
+        opposite: false
     }, {
         min: 0,
         title: {

@@ -71,7 +71,14 @@ new Highcharts.Chart({
             shadow: true
         }
     },
-
+    legend: {
+        	  borderWidth: 0.5,
+            borderRadius: 3,
+            borderColor: 'black',
+            itemStyle: {
+                fontWeight: "normal"
+            }
+    },
     series:[
         {
             name:'KO',
