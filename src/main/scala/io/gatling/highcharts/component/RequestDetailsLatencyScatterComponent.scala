@@ -16,7 +16,7 @@ object RequestDetailsLatencyScatterComponent {
       new ScatterSeries(success.name, success.data, success.colors.head),
       new ScatterSeries(failures.name, failures.data, failures.colors.head),
       "container_latency_dispersion",
-      "Latency against the Global Number of Requests per Second",
+      "Latency against Global RPS",
       "Latency")
     new HighchartsComponent(template)
   }
