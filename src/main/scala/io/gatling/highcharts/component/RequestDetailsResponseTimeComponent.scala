@@ -5,16 +5,17 @@
  */
 package io.gatling.highcharts.component
 
-import io.gatling.core.result.{ IntRangeVsTimePlot, Series }
-import io.gatling.highcharts.series.ResponseTimeSeries
-import io.gatling.highcharts.template.RequestDetailsResponseTimeTemplate
+import io.gatling.core.result.{ PercentilesVsTimePlot, Series }
+import io.gatling.highcharts.series.PercentilesSeries
+import io.gatling.highcharts.template.PercentilesOverTimeTemplate
 
 object RequestDetailsResponseTimeComponent {
 
-  def apply(runStart: Long, responseTimesSuccess: Series[IntRangeVsTimePlot], responseTimesFailures: Series[IntRangeVsTimePlot]) = {
-    val template = new RequestDetailsResponseTimeTemplate(
-      new ResponseTimeSeries(responseTimesSuccess.name, runStart, responseTimesSuccess.data, responseTimesSuccess.colors.head),
-      new ResponseTimeSeries(responseTimesFailures.name, runStart, responseTimesFailures.data, responseTimesFailures.colors.head))
+  def apply(runStart: Long, responseTimesSuccess: Series[PercentilesVsTimePlot]) = {
+    val template = new PercentilesOverTimeTemplate(
+      "container",
+      "Response Time (ms)",
+      new PercentilesSeries(responseTimesSuccess.name, runStart, responseTimesSuccess.data, responseTimesSuccess.colors))
 
     new HighchartsComponent(template)
   }

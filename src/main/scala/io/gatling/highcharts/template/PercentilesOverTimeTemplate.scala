@@ -1,0 +1,127 @@
+/**
+ * Copyright 2011-2014 eBusiness Information, Groupe Excilys (www.ebusinessinformation.fr)
+ *
+ * Licensed under the Gatling Highcharts License
+ */
+package io.gatling.highcharts.template
+
+import com.dongxiguo.fastring.Fastring.Implicits._
+
+import io.gatling.highcharts.series.PercentilesSeries
+import io.gatling.charts.util.Colors._
+
+class PercentilesOverTimeTemplate(containerId: String, yAxisName: String, series: PercentilesSeries) extends Template {
+
+  def js = fast"""
+var responseTimeChart = new Highcharts.StockChart({
+  chart: {
+    renderTo: '$containerId',
+    zoomType: 'x'
+  },
+  colors: ['#C4FD90', '#7FF77F', '#6FF2AD', '#60ECE5', '#51A8E7', '#4353E2', '#7335DC', '#BC28D7', '#D11C97', '#C73905', '$ORANGE'],
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: -65,
+    borderWidth: 0,
+    itemStyle: {
+      fontWeight: "normal"
+    }
+  },
+  title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  rangeSelector: {
+    rangeSelector: { align: "left" },
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '$LIGHT_GREY',
+      padding: 1,
+      stroke: '$BLACK',
+      'stroke-width': 0.25,
+      style: {
+        color: '$BLACK',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '$BLACK',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '$DARK_GREY',
+          style: { color: 'black' }
+        },
+        select: {
+          fill: '$DARK_ORANGE',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis:[
+    {
+      min: 0,
+      title: {
+        text: '$yAxisName',
+        style: { color: '$BLUE' }
+      },
+      opposite: false
+    }, {
+      min: 0,
+      title: {
+        text: 'Active Sessions',
+        style: {
+          color: '$ORANGE'
+        }
+      },
+      opposite: true
+    }
+  ],
+  plotOptions: {
+    arearange: { lineWidth: 1 },
+    series: {
+      dataGrouping: {enabled: false}
+    }
+  },
+  series: [
+  ${renderPercentilesSeries(series)}
+  allSessionsData
+  ]
+});
+
+responseTimeChart.setTitle({
+  text: '<span class="chart_title chart_title_">${series.name}</span>',
+  useHTML: true
+});
+"""
+
+  val html = fast"""
+            <div class="schema geant">
+              <div id="$containerId" class="geant"></div>
+            </div>
+"""
+}
