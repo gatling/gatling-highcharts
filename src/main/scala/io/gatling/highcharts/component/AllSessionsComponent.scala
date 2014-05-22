@@ -17,6 +17,7 @@ class AllSessionsComponent(runStart: Long, series: Series[IntVsTimePlot]) {
     val numberPerSecondSeries = new NumberPerSecondSeries(series.name, runStart, series.data, series.colors.head)
     fast"""allSessionsData = {
     ${Template.renderNumberPerSecondSeries(numberPerSecondSeries)}
+    , zIndex: 20
     , yAxis: 1
 };"""
   }
