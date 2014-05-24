@@ -18,7 +18,7 @@ var responseTimeChart = new Highcharts.StockChart({
     renderTo: '$containerId',
     zoomType: 'x'
   },
-  colors: ['#C4FD90', '#7FF77F', '#6FF2AD', '#60ECE5', '#51A8E7', '#4353E2', '#7335DC', '#BC28D7', '#D11C97', '#C73905', '$ORANGE'],
+  colors: ['#C4FD90', '#7FF77F', '#6FF2AD', '#60ECE5', '#51A8E7', '#4353E2', '#7335DC', '#BC28D7', '#D11C97', '#C73905', '$Orange'],
   credits: { enabled: false },
   legend: {
     enabled: true,
@@ -34,23 +34,23 @@ var responseTimeChart = new Highcharts.StockChart({
     rangeSelector: { align: "left" },
     buttonSpacing: 0,
     buttonTheme: {
-      fill: '$LIGHT_GREY',
+      fill: '$LightGrey',
       padding: 1,
-      stroke: '$BLACK',
+      stroke: '$Black',
       'stroke-width': 0.25,
       style: {
-        color: '$BLACK',
+        color: '$Black',
         fontWeight: 'bold',
       },
       states: {
-        stroke: '$BLACK',
+        stroke: '$Black',
         'stroke-width': 0.25,
         hover: {
-          fill: '$DARK_GREY',
+          fill: '$DarkGrey',
           style: { color: 'black' }
         },
         select: {
-          fill: '$DARK_ORANGE',
+          fill: '$DarkOrange',
           style: { color: 'white' }
         }
       }
@@ -87,7 +87,7 @@ var responseTimeChart = new Highcharts.StockChart({
       min: 0,
       title: {
         text: '$yAxisName',
-        style: { color: '$BLUE' }
+        style: { color: '$Blue' }
       },
       opposite: false
     }, {
@@ -95,7 +95,7 @@ var responseTimeChart = new Highcharts.StockChart({
       title: {
         text: 'Active Sessions',
         style: {
-          color: '$ORANGE'
+          color: '$Orange'
         }
       },
       opposite: true
