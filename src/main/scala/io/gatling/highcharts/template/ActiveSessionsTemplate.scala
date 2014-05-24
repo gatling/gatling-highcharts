@@ -38,25 +38,25 @@ var allSessionsChart = new Highcharts.StockChart({
     rangeSelector: {
         buttonSpacing: 0,
         buttonTheme: {
-          fill: '$LIGHT_GREY',
+          fill: '$LightGrey',
           padding: 1,
-          stroke: '$BLACK',
+          stroke: '$Black',
           'stroke-width': 0.25,
           style: {
-            color: '$BLACK',
+            color: '$Black',
             fontWeight: 'bold',
           },
           states: {
-            stroke: '$BLACK',
+            stroke: '$Black',
             'stroke-width': 0.25,
             hover: {
-              fill: '$DARK_GREY',
+              fill: '$DarkGrey',
               style: {
                 color: 'black'
               }
            },
            select: {
-              fill: '$DARK_ORANGE',
+              fill: '$DarkOrange',
               style: {
                 color: 'white'
               }
