@@ -87,7 +87,7 @@ var responseTimeChart = new Highcharts.StockChart({
       min: 0,
       title: {
         text: '$yAxisName',
-        style: { color: '$Blue' }
+        style: { color: '${Blue.code}' }
       },
       opposite: false
     }, {
@@ -95,7 +95,7 @@ var responseTimeChart = new Highcharts.StockChart({
       title: {
         text: 'Active Sessions',
         style: {
-          color: '$Orange'
+          color: '${Orange.code}'
         }
       },
       opposite: true

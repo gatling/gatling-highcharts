@@ -93,7 +93,7 @@ var requestsChart = new Highcharts.StockChart({
         title: {
             text: 'Number of Requests',
             style: {
-                color: '$Blue'
+                color: '${Blue.code}'
             }
         },
         opposite: false
@@ -102,7 +102,7 @@ var requestsChart = new Highcharts.StockChart({
         title: {
             text: 'Active Sessions',
             style: {
-                color: '$Orange'
+                color: '${Orange.code}'
             }
         },
         opposite: true
