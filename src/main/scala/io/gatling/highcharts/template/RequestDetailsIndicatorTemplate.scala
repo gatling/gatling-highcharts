@@ -60,25 +60,25 @@ var indicatorsChart = new Highcharts.Chart({
     series: [
         {
             type: 'column',
-            color: '$Green',
+            color: '${Green.code}',
             data: [pageStats.group1.count,0,0,0],
             tooltip: { yDecimals: 0, ySuffix: 'ms' }
         },
         {
             type: 'column',
-            color: '$Yellow',
+            color: '${Yellow.code}',
             data: [0,pageStats.group2.count,0,0],
             tooltip: { yDecimals: 0, ySuffix: 'ms' }
         },
         {
             type: 'column',
-            color: '$Orange',
+            color: '${Orange.code}',
             data: [0,0,pageStats.group3.count,0],
             tooltip: { yDecimals: 0, ySuffix: 'ms' }
         },
         {
             type: 'column',
-            color: '$Red',
+            color: '${Red.code}',
             data: [0,0,0,pageStats.group4.count],
             tooltip: { yDecimals: 0, ySuffix: 'ms' }
         },
@@ -89,22 +89,22 @@ var indicatorsChart = new Highcharts.Chart({
                 {
                     name: pageStats.group1.name,
                     y: pageStats.group1.percentage,
-                    color: '$Green'
+                    color: '${Green.code}'
                 },
                 {
                     name: pageStats.group2.name,
                     y: pageStats.group2.percentage,
-                    color: '$Yellow'
+                    color: '${Yellow.code}'
                 },
                 {
                     name: pageStats.group3.name,
                     y: pageStats.group3.percentage,
-                    color: '$Orange'
+                    color: '${Orange.code}'
                 },
                 {
                     name: pageStats.group4.name,
                     y: pageStats.group4.percentage,
-                    color: '$Red'
+                    color: '${Red.code}'
                 }
             ],
             center: [470, 85],
