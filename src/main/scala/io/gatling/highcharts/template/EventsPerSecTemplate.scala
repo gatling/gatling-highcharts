@@ -10,12 +10,16 @@ import com.dongxiguo.fastring.Fastring.Implicits._
 import io.gatling.charts.util.Colors._
 import io.gatling.highcharts.series.{ PieSeries, NumberPerSecondSeries }
 
-class RequestsTemplate(series: Seq[NumberPerSecondSeries], pieSeries: PieSeries) extends Template {
+class EventsPerSecTemplate(chartTitle: String,
+                           containerName: String,
+                           anchorName: String,
+                           series: Seq[NumberPerSecondSeries],
+                           pieSeries: PieSeries) extends Template {
 
   def js = fast"""
 var requestsChart = new Highcharts.StockChart({
   chart: {
-    renderTo: 'container_requests',
+    renderTo: '$containerName',
     zoomType: 'x'
   },
   credits: { enabled: false },
@@ -96,9 +100,7 @@ var requestsChart = new Highcharts.StockChart({
       min: 0,
       title: {
         text: 'Active Sessions',
-        style: {
-          color: '${Orange.code}'
-        }
+        style: { color: '${Orange.code}' }
       },
       opposite: true
     }
@@ -113,15 +115,15 @@ var requestsChart = new Highcharts.StockChart({
 });
 
 requestsChart.setTitle({
-  text: '<span class="chart_title">Number of requests per second</span>',
+  text: '<span class="chart_title">$chartTitle</span>',
   useHTML: true
 });
 """
 
   val html = fast"""
             <div class="schema geant">
-              <a name="requests"></a>
-              <div id="container_requests" class="geant"></div>
+              <a name="$anchorName"></a>
+                <div id="$containerName" class="geant"></div>
             </div>
 """
 }
