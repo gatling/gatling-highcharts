@@ -25,9 +25,7 @@ var responseTimeChart = new Highcharts.StockChart({
     floating: true,
     y: -65,
     borderWidth: 0,
-    itemStyle: {
-      fontWeight: "normal"
-    }
+    itemStyle: { fontWeight: "normal" }
   },
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
   rangeSelector: {
@@ -94,9 +92,7 @@ var responseTimeChart = new Highcharts.StockChart({
       min: 0,
       title: {
         text: 'Active Sessions',
-        style: {
-          color: '${Orange.code}'
-        }
+        style: { color: '${Orange.code}' }
       },
       opposite: true
     }
@@ -104,7 +100,7 @@ var responseTimeChart = new Highcharts.StockChart({
   plotOptions: {
     arearange: { lineWidth: 1 },
     series: {
-      dataGrouping: {enabled: false}
+      dataGrouping: { enabled: false }
     }
   },
   series: [

@@ -14,119 +14,110 @@ class ResponsesTemplate(series: Seq[NumberPerSecondSeries], pieSeries: PieSeries
 
   def js = fast"""
 var responsesChart = new Highcharts.StockChart({
-    chart: {
-        renderTo: 'container_responses',
-        zoomType: 'x'
-    },
-    credits: {
-        enabled: false
-    },
-    legend: {
-        enabled: true,
-        floating: true,
-        itemDistance: 5,
-        y: -285,
-        borderWidth: 0,
-        itemStyle: {
-          fontWeight: "normal"
+  chart: {
+    renderTo: 'container_responses',
+    zoomType: 'x'
+  },
+  credits: {
+    enabled: false
+  },
+  legend: {
+    enabled: true,
+    floating: true,
+    itemDistance: 5,
+    y: -285,
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" }
+  },
+  title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '$LightGrey',
+      padding: 1,
+      stroke: '$Black',
+      'stroke-width': 0.25,
+      style: {
+      color: '$Black',
+      fontWeight: 'bold',
+      },
+      states: {
+        stroke: '$Black',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '$DarkGrey',
+          style: { color: 'black' }
+         },
+         select: {
+          fill: '$DarkOrange',
+          style: { color: 'white' }
         }
+      }
     },
-    title: {
-        text: 'A title to let highcharts reserve the place for the title set later'
-    },
-    rangeSelector: {
-        buttonSpacing: 0,
-        buttonTheme: {
-          fill: '$LightGrey',
-          padding: 1,
-          stroke: '$Black',
-          'stroke-width': 0.25,
-          style: {
-            color: '$Black',
-            fontWeight: 'bold',
-          },
-          states: {
-            stroke: '$Black',
-            'stroke-width': 0.25,
-            hover: {
-              fill: '$DarkGrey',
-              style: {
-                color: 'black'
-              }
-           },
-           select: {
-              fill: '$DarkOrange',
-              style: {
-                color: 'white'
-              }
-            }
-          }
-        },
-        buttons : [{
-            type : 'minute',
-            count : 1,
-            text : '1m'
-        }, {
-            type : 'minute',
-            count : 10,
-            text : '10m'
-        }, {
-            type : 'hour',
-            count : 1,
-            text : '1h'
-        }, {
-            type : 'all',
-            count : 1,
-            text : 'All'
-        }],
-        selected : 3,
-        inputEnabled : false
-    },
-    xAxis: {
-        type: 'datetime',
-        ordinal: false,
-        maxZoom: 10000 // three days
-    },
-    yAxis:[
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis:[
     {
-        min: 0,
-        title: {
-            text: 'Number of Responses',
-            style: {
-                color: '${Blue.code}'
-            }
-        },
-        opposite: false
+      min: 0,
+      title: {
+        text: 'Number of Responses',
+        style: { color: '${Blue.code}' }
+      },
+      opposite: false
     }, {
-        min: 0,
-        title: {
-            text: 'Active Sessions',
-            style: {
-                color: '${Orange.code}'
-            }
-        },
-        opposite: true
-    }],
-    series:
-    [
-        ${series.map(s => List("{", renderNumberPerSecondSeries(s), "},")).flatten.mkFastring}
-        allSessionsData,
-        {
-            ${renderPieSeries(pieSeries)}
-        }
-    ]
+      min: 0,
+      title: {
+        text: 'Active Sessions',
+        style: { color: '${Orange.code}' }
+      },
+      opposite: true
+    }
+  ],
+  series:
+  [
+    ${series.map(s => List("{", renderNumberPerSecondSeries(s), "},")).flatten.mkFastring}
+    allSessionsData,
+    {
+      ${renderPieSeries(pieSeries)}
+    }
+  ]
 });
 
 responsesChart.setTitle({
-    text: '<span class="chart_title">Number of responses per second</span>',
-    useHTML: true
+  text: '<span class="chart_title">Number of responses per second</span>',
+  useHTML: true
 });
 """
 
   val html = fast"""
-                        <div class="schema geant">
-                            <a name="responses"></a>
-                            <div id="container_responses" class="geant"></div>
-                        </div>
+            <div class="schema geant">
+              <a name="responses"></a>
+              <div id="container_responses" class="geant"></div>
+            </div>
 """
 }
