@@ -74,6 +74,11 @@ var requestsChart = new Highcharts.StockChart({
     selected : 3,
     inputEnabled : false
   },
+  plotOptions: {
+    series: {
+      dataGrouping: { enabled: false }
+    }
+  },
   xAxis: {
     type: 'datetime',
     ordinal: false,
