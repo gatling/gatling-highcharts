@@ -28,6 +28,7 @@ var responseTimeChart = new Highcharts.StockChart({
     itemStyle: { fontWeight: "normal" }
   },
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  navigator: { baseSeries: 9 },
   rangeSelector: {
     rangeSelector: { align: "left" },
     buttonSpacing: 0,
