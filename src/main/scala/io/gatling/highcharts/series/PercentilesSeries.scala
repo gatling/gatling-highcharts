@@ -6,7 +6,7 @@
 package io.gatling.highcharts.series
 
 import io.gatling.core.result.{ PercentilesVsTimePlot, Series }
-import io.gatling.core.result.reader.DataReader._
+import io.gatling.core.result.reader.DataReader.NoPlotMagicValue
 
 class PercentilesSeries(name: String, runStart: Long, data: Seq[PercentilesVsTimePlot], colors: List[String]) extends Series[PercentilesVsTimePlot](name, data, colors) {
 
@@ -14,8 +14,8 @@ class PercentilesSeries(name: String, runStart: Long, data: Seq[PercentilesVsTim
 
       // FIXME doesn't seem to be properly dealt with upstream
       def valueOrNull(value: Int) = value match {
-        case NO_PLOT_MAGIC_VALUE => "null"
-        case _                   => value.toString
+        case NoPlotMagicValue => "null"
+        case _                => value.toString
       }
 
     data.map { plot => "[" + (runStart + plot.time) + "," + valueOrNull(percentile(plot)) + "]" }

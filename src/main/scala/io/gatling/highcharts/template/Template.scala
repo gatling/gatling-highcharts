@@ -73,7 +73,7 @@ zIndex: $zIndex
   def renderPercentilesSeries(series: PercentilesSeries) =
     fast"""
     ${
-      if (!series.data.isEmpty) {
+      if (series.data.nonEmpty) {
         fast"""
          {${renderPercentileSeries("min", series.percentiles0, 10)}},
          {${renderPercentileSeries("25%", series.percentiles25, 9)}},
