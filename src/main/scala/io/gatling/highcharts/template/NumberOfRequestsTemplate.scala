@@ -7,7 +7,7 @@ package io.gatling.highcharts.template
 
 import com.dongxiguo.fastring.Fastring.Implicits._
 
-import io.gatling.charts.report.Container.{ GROUP, REQUEST }
+import io.gatling.charts.report.Container.{ Group, Request }
 
 class NumberOfRequestsTemplate(numberOfRequestNames: Int) extends Template {
 
@@ -16,13 +16,13 @@ function numberOfRequestsDataForGroup(group) {
   var data = {names: [], oks: [], kos: []};
 
   $$.each(group.contents, function(contentName, content) {
-    if (content.type == '$GROUP') {
+    if (content.type == '$Group') {
       var result = numberOfRequestsDataForGroup(content);
       data.names = data.names.concat(result.names);
       data.oks = data.oks.concat(result.oks);
       data.kos = data.kos.concat(result.kos);
     }
-    else if (content.type == '$REQUEST') {
+    else if (content.type == '$Request') {
       data.names.push(content.path);
       data.oks.push(parseInt(content.stats.numberOfRequests.ok));
       data.kos.push(parseInt(content.stats.numberOfRequests.ko));
