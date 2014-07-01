@@ -66,12 +66,13 @@
 		<maven.compiler.target>1.6</maven.compiler.target>
 		<encoding>UTF-8</encoding>
 		<scala.version>2.9.3</scala.version>
-		<gatling.version>1.5.6-SNAPSHOT</gatling.version>
+		<gatling.version>1.5.6</gatling.version>
 		<scala-maven-plugin.version>3.1.5</scala-maven-plugin.version>
 		<maven-scalate-plugin.version>1.6.1</maven-scalate-plugin.version>
 		<maven-license-plugin.version>1.10.b1</maven-license-plugin.version>
 		<archetype-packaging.version>2.2</archetype-packaging.version>
 		<build-helper-maven-plugin.version>1.7</build-helper-maven-plugin.version>
+		<maven-release-plugin.version>2.1</maven-release-plugin.version>
 
 		<header.basedir>${project.basedir}</header.basedir>
 	</properties>
@@ -118,6 +119,11 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven-release-plugin.version}</version>
+				</plugin>
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 				</plugin>
