@@ -1,6 +1,8 @@
 import sbt._
 import sbt.Keys._
 
+import scala.util.Properties.envOrNone
+
 import com.typesafe.sbt.SbtScalariform
 import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 import net.virtualvoid.sbt.graph.Plugin.graphSettings
@@ -15,7 +17,7 @@ object BuildSettings {
     organizationHomepage := Some(new URL("http://gatling.io")),
     startYear            := Some(2011),
     licenses             := Seq("Gatling Highcharts License" -> new URL("https://raw.github.com/excilys/gatling-highcharts/master/src/main/resources/META-INF/LICENCE")),
-    resolvers            := Seq(if(isSnapshot.value) sonatypeSnapshots else sonatypeReleases),
+    resolvers            := envOrNone("CI").map(_ => Seq(sonatypeSnapshots)).getOrElse(Seq.empty),
     scalaVersion         := "2.10.4",
     scalacOptions        := Seq(
       "-encoding",

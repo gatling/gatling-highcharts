@@ -6,5 +6,4 @@ object Resolvers {
 
   val sonatypeSnapshots = "Sonatype Snapshots" at sonatypeRoot + "content/repositories/snapshots/"
   val sonatypeStaging   = "Sonatype Staging"   at sonatypeRoot + "service/local/staging/deploy/maven2/"
-  val sonatypeReleases  = "Sonatype Releases"  at sonatypeRoot + "content/repositories/releases/"
 }
