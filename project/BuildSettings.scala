@@ -16,7 +16,7 @@ object BuildSettings {
     organization         := "io.gatling.highcharts",
     organizationHomepage := Some(new URL("http://gatling.io")),
     startYear            := Some(2011),
-    licenses             := Seq("Gatling Highcharts License" -> new URL("https://raw.github.com/excilys/gatling-highcharts/master/src/main/resources/META-INF/LICENCE")),
+    licenses             := Seq("Gatling Highcharts License" -> new URL("https://raw.github.com/gatling/gatling-highcharts/master/src/main/resources/META-INF/LICENCE")),
     resolvers            := envOrNone("CI").map(_ => Seq(sonatypeSnapshots)).getOrElse(Seq.empty),
     scalaVersion         := "2.10.4",
     scalacOptions        := Seq(
