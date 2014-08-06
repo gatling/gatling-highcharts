@@ -12,7 +12,6 @@ object Release {
   lazy val settings = releaseSettings ++ Seq(
     crossBuild := false,
     releaseProcess := Seq[ReleaseStep](
-      checkSnapshotDependencies,
       inquireVersions,
       runClean,
       runTest,
