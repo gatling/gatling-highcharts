@@ -14,6 +14,7 @@ object ResponsesComponent {
   def apply(runStart: Long, allResponses: Series[IntVsTimePlot], failedResponses: Series[IntVsTimePlot], succeededResponses: Series[IntVsTimePlot], pieSeries: Series[PieSlice]) = {
     val template = new EventsPerSecTemplate(
       chartTitle = "Number of responses per second",
+      yAxisTitle = "Number of responses",
       containerName = "container_responses",
       anchorName = "responses",
       series = Seq(new NumberPerSecondSeries(allResponses.name, runStart, allResponses.data, allResponses.colors.head),

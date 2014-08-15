@@ -11,6 +11,7 @@ import io.gatling.charts.util.Colors._
 import io.gatling.highcharts.series.{ PieSeries, NumberPerSecondSeries }
 
 class EventsPerSecTemplate(chartTitle: String,
+                           yAxisTitle: String,
                            containerName: String,
                            anchorName: String,
                            series: Seq[NumberPerSecondSeries],
@@ -92,7 +93,7 @@ var requestsChart = new Highcharts.StockChart({
     {
       min: 0,
       title: {
-        text: 'Number of Requests',
+        text: '$yAxisTitle',
         style: { color: '${Blue.code}' }
       },
       opposite: false

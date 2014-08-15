@@ -14,6 +14,7 @@ object RequestsComponent {
   def apply(runStart: Long, allRequests: Series[IntVsTimePlot], failedRequests: Series[IntVsTimePlot], succeededRequests: Series[IntVsTimePlot], pieSeries: Series[PieSlice]) = {
     val template = new EventsPerSecTemplate(
       chartTitle = "Number of requests per second",
+      yAxisTitle = "Number of requests",
       containerName = "container_requests",
       anchorName = "requests",
       series = Seq(new NumberPerSecondSeries(allRequests.name, runStart, allRequests.data, allRequests.colors.head),
