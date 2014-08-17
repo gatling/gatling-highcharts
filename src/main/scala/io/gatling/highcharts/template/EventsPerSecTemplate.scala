@@ -100,7 +100,7 @@ var requestsChart = new Highcharts.StockChart({
     }, {
       min: 0,
       title: {
-        text: 'Active Sessions',
+        text: 'Active Users',
         style: { color: '${Orange.code}' }
       },
       opposite: true
@@ -108,7 +108,7 @@ var requestsChart = new Highcharts.StockChart({
   ],
   series: [
     ${series.map(s => List("{", renderNumberPerSecondSeries(s), "},")).flatten.mkFastring}
-    allSessionsData,
+    allUsersData,
     {
       ${renderPieSeries(pieSeries)}
     }

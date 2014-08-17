@@ -12,8 +12,8 @@ import io.gatling.core.result._
 import io.gatling.highcharts.component._
 
 class ComponentLibraryImpl extends ComponentLibrary {
-  def getAllSessionsJs(runStart: Long, series: Series[IntVsTimePlot]): Fastring = new AllSessionsComponent(runStart, series).getJavascript
-  def getActiveSessionsChartComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component = ActiveSessionsComponent(runStart, series)
+  def getAllUsersJs(runStart: Long, series: Series[IntVsTimePlot]): Fastring = new AllUsersComponent(runStart, series).getJavascript
+  def getActiveSessionsChartComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component = ActiveUsersComponent(runStart, series)
   def getRequestsChartComponent(runStart: Long, allRequests: Series[IntVsTimePlot], failedRequests: Series[IntVsTimePlot], succeededRequests: Series[IntVsTimePlot], pieSeries: Series[PieSlice]): Component = RequestsComponent(runStart, allRequests, failedRequests, succeededRequests, pieSeries)
   def getResponsesChartComponent(runStart: Long, allResponses: Series[IntVsTimePlot], failedResponses: Series[IntVsTimePlot], succeededResponses: Series[IntVsTimePlot], pieSeries: Series[PieSlice]): Component = ResponsesComponent(runStart, allResponses, failedResponses, succeededResponses, pieSeries)
   def getRequestDetailsResponseTimeChartComponent(runStart: Long, responseTimesSuccess: Series[PercentilesVsTimePlot]): Component = RequestDetailsResponseTimeComponent(runStart, responseTimesSuccess)

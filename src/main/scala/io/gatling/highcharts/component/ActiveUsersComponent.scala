@@ -7,12 +7,12 @@ package io.gatling.highcharts.component
 
 import io.gatling.core.result.{ IntVsTimePlot, Series }
 import io.gatling.highcharts.series.NumberPerSecondSeries
-import io.gatling.highcharts.template.ActiveSessionsTemplate
+import io.gatling.highcharts.template.ActiveUsersTemplate
 
-object ActiveSessionsComponent {
+object ActiveUsersComponent {
 
   def apply(runStart: Long, series: Seq[Series[IntVsTimePlot]]) = {
-    val template = new ActiveSessionsTemplate(runStart, series.map { s => new NumberPerSecondSeries(s.name, runStart, s.data, s.colors.head) })
+    val template = new ActiveUsersTemplate(runStart, series.map { s => new NumberPerSecondSeries(s.name, runStart, s.data, s.colors.head) })
     new HighchartsComponent(template)
   }
 }

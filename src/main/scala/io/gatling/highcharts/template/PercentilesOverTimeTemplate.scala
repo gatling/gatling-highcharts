@@ -92,7 +92,7 @@ var responseTimeChart = new Highcharts.StockChart({
     }, {
       min: 0,
       title: {
-        text: 'Active Sessions',
+        text: 'Active Users',
         style: { color: '${Orange.code}' }
       },
       opposite: true
@@ -106,7 +106,7 @@ var responseTimeChart = new Highcharts.StockChart({
   },
   series: [
   ${renderPercentilesSeries(series)}
-  allSessionsData
+  allUsersData
   ]
 });
 

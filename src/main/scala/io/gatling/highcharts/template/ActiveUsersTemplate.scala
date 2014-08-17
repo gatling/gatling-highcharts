@@ -10,14 +10,14 @@ import com.dongxiguo.fastring.Fastring.Implicits._
 import io.gatling.highcharts.series.NumberPerSecondSeries
 import io.gatling.charts.util.Colors._
 
-class ActiveSessionsTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
+class ActiveUsersTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
 
   def js = fast"""
-allSessionsData.yAxis = 0;
+allUsersData.yAxis = 0;
 
-var allSessionsChart = new Highcharts.StockChart({
+var allUsersChart = new Highcharts.StockChart({
   chart: {
-    renderTo: 'container_active_sessions',
+    renderTo: 'container_active_users',
     zoomType: 'x'
   },
   credits: { enabled: false },
@@ -81,28 +81,28 @@ var allSessionsChart = new Highcharts.StockChart({
     maxZoom: 10000 // three days
   },
   yAxis: {
-    title: { text: 'Number of Active Sessions' },
+    title: { text: 'Number of Active Users' },
     opposite: false
   },
   series: [
     ${series.map(serie => List("{", renderNumberPerSecondSeries(serie), "},\n")).flatten.mkFastring}
-    allSessionsData
+    allUsersData
   ]
 });
 
 
-allSessionsChart.setTitle({
-  text: '<span class="chart_title">Active Sessions along the Simulation</span>',
+allUsersChart.setTitle({
+  text: '<span class="chart_title">Active Users along the Simulation</span>',
   useHTML: true
 });
 
-allSessionsData.yAxis = 1;
+allUsersData.yAxis = 1;
 """
 
   val html = fast"""
             <div class="schema geant">
-              <a name="active_sessions"></a>
-              <div id="container_active_sessions" class="geant"></div>
+              <a name="active_users"></a>
+              <div id="container_active_users" class="geant"></div>
             </div>
 """
 }

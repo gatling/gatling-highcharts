@@ -11,11 +11,11 @@ import io.gatling.core.result.{ IntVsTimePlot, Series }
 import io.gatling.highcharts.series.NumberPerSecondSeries
 import io.gatling.highcharts.template.Template
 
-class AllSessionsComponent(runStart: Long, series: Series[IntVsTimePlot]) {
+class AllUsersComponent(runStart: Long, series: Series[IntVsTimePlot]) {
 
   def getJavascript: Fastring = {
     val numberPerSecondSeries = new NumberPerSecondSeries(series.name, runStart, series.data, series.colors.head)
-    fast"""allSessionsData = {
+    fast"""allUsersData = {
     ${Template.renderNumberPerSecondSeries(numberPerSecondSeries)}
     , zIndex: 20
     , yAxis: 1
