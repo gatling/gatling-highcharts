@@ -82,7 +82,8 @@ var allUsersChart = new Highcharts.StockChart({
   },
   yAxis: {
     title: { text: 'Number of Active Users' },
-    opposite: false
+    opposite: false,
+    min: 0
   },
   series: [
     ${series.map(serie => List("{", renderNumberPerSecondSeries(serie), "},\n")).flatten.mkFastring}

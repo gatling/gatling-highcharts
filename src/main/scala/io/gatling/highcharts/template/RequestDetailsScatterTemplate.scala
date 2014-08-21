@@ -27,7 +27,8 @@ var scatterChart = new Highcharts.Chart({
     },
     startOnTick: true,
     endOnTick: true,
-    showLastLabel: true
+    showLastLabel: true,
+    min: 0
   },
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
   yAxis: {
