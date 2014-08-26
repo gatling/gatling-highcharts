@@ -18,7 +18,7 @@ class PercentilesSeries(name: String, runStart: Long, data: Seq[PercentilesVsTim
         case _                => value.toString
       }
 
-    data.map { plot => "[" + (runStart + plot.time) + "," + valueOrNull(percentile(plot)) + "]" }
+    data.map { plot => s"[${runStart + plot.time},${valueOrNull(percentile(plot))}]" }
   }
 
   def percentiles0: Seq[String] = elements(_.percentile0)
