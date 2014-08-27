@@ -19,6 +19,8 @@ object RequestDetailsResponseTimeDistributionTemplate {
 
 class RequestDetailsResponseTimeDistributionTemplate(successSeries: StackedColumnSeries, failuresSeries: StackedColumnSeries) extends Template {
 
+  val categories = if (!successSeries.getXValues.isEmpty) successSeries.getXValues else failuresSeries.getXValues
+
   def js = fast"""
 var responseTimeDistributionChart = new Highcharts.Chart({
   chart: {
@@ -41,7 +43,7 @@ var responseTimeDistributionChart = new Highcharts.Chart({
     text: 'A title to let highcharts reserve the place for the title set later'
   },
   xAxis: {
-    categories: ['${successSeries.getXValues.mkFastring("', '")}'],
+    categories: ['${categories.mkFastring("', '")}'],
     tickInterval: 20
   },
   yAxis: {
