@@ -3,8 +3,6 @@ import sbt.Keys._
 
 import aether.Aether.aetherPublishSettings
 
-import Resolvers._
-
 object Publish {
 
   lazy val settings = aetherPublishSettings ++ Seq(
@@ -12,7 +10,7 @@ object Publish {
     pomExtra             := scm ++ developersXml(developers),
     publishMavenStyle    := true,
     pomIncludeRepository := { _ => false },
-    publishTo            := Some(if(isSnapshot.value) sonatypeSnapshots else sonatypeStaging),
+    publishTo            := Some(if(isSnapshot.value) Opts.resolver.sonatypeSnapshots else Opts.resolver.sonatypeStaging),
     credentials          += Credentials(Path.userHome / ".sbt" / ".credentials")
   )
 
