@@ -15,7 +15,7 @@ object BuildSettings {
     organizationHomepage := Some(new URL("http://gatling.io")),
     startYear            := Some(2011),
     licenses             := Seq("Gatling Highcharts License" -> new URL("https://raw.github.com/gatling/gatling-highcharts/master/src/main/resources/META-INF/LICENSE")),
-    resolvers            := envOrNone("CI").map(_ => Seq(Opts.resolver.sonatypeSnapshots)).getOrElse(Seq.empty),
+    resolvers            := envOrNone("CI").map(_ => Seq(Opts.resolver.sonatypeSnapshots)).getOrElse(Seq(Resolver.mavenLocal)),
     scalaVersion         := "2.10.4",
     scalacOptions        := Seq(
       "-encoding",
