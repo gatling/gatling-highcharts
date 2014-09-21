@@ -8,7 +8,7 @@ env:
     - secure: "bIyJDObVqSLcW1wXn1KEqxPwtvOXQZfyp+soQnRA/rSgEJopCfSVY4kEXuEWQ5VODA4DUmn17+ItXeFWxYZQWI10p6OfF6ZQ9SHrrbdN5/AUYv0A3fjhsg9G+YQwPbiqNHOyV4azsaiUG7TPsYJZRG/ThvT99T5CqaKGfc/fsQQ="
 
 # If building master, Publish to Sonatype
-after_success: "[[ $TRAVIS_PULL_REQUEST == \"false\" ]] && mvn deploy"
+after_success: "[[ $TRAVIS_PULL_REQUEST == \"false\" ]] && sbt publish"
 
 # whitelist
 branches:
