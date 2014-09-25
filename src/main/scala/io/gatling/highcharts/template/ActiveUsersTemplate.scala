@@ -86,7 +86,7 @@ var allUsersChart = new Highcharts.StockChart({
     min: 0
   },
   series: [
-    ${series.map(serie => List("{", renderNumberPerSecondSeries(serie), "},\n")).flatten.mkFastring}
+    ${series.map(serie => List("{", renderNumberPerSecondSeries(serie, false), "},\n")).flatten.mkFastring}
     allUsersData
   ]
 });

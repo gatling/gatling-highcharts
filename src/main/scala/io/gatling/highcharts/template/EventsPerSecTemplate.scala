@@ -82,6 +82,9 @@ var requestsChart = new Highcharts.StockChart({
   plotOptions: {
     series: {
       dataGrouping: { enabled: false }
+    },
+    area: {
+      stacking: 'normal'
     }
   },
   xAxis: {
@@ -107,7 +110,9 @@ var requestsChart = new Highcharts.StockChart({
     }
   ],
   series: [
-    ${series.map(s => List("{", renderNumberPerSecondSeries(s), "},")).flatten.mkFastring}
+    {${renderNumberPerSecondSeries(series(0), false)}},
+    {${renderNumberPerSecondSeries(series(1), true)}},
+    {${renderNumberPerSecondSeries(series(2), true)}},
     allUsersData,
     {
       ${renderPieSeries(pieSeries)}

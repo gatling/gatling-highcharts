@@ -16,7 +16,7 @@ class AllUsersComponent(runStart: Long, series: Series[IntVsTimePlot]) {
   def getJavascript: Fastring = {
     val numberPerSecondSeries = new NumberPerSecondSeries(series.name, runStart, series.data, series.colors.head)
     fast"""allUsersData = {
-    ${Template.renderNumberPerSecondSeries(numberPerSecondSeries)}
+    ${Template.renderNumberPerSecondSeries(numberPerSecondSeries, false)}
     , zIndex: 20
     , yAxis: 1
 };"""

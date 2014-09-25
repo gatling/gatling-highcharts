@@ -11,7 +11,7 @@ import io.gatling.core.result.IntVsTimePlot
 import io.gatling.highcharts.series._
 
 object Template {
-  def renderNumberPerSecondSeries(serie: NumberPerSecondSeries) = fast"""
+  def renderNumberPerSecondSeries(serie: NumberPerSecondSeries, area: Boolean) = fast"""
 color: '${serie.colors(0)}',
 name: '${serie.name}',
 data: [
@@ -23,7 +23,7 @@ data: [
   }
 ],
 tooltip: { yDecimals: 0, ySuffix: '' }
-"""
+${if (area) ",type: 'area'" else ""}"""
 }
 
 abstract class Template {
@@ -94,5 +94,5 @@ zIndex: $zIndex
       } else ""
     }"""
 
-  def renderNumberPerSecondSeries(series: NumberPerSecondSeries) = Template.renderNumberPerSecondSeries(series)
+  def renderNumberPerSecondSeries(series: NumberPerSecondSeries, area: Boolean) = Template.renderNumberPerSecondSeries(series, area)
 }
