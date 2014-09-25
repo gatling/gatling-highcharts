@@ -6,6 +6,7 @@
 package io.gatling.highcharts.template
 
 import com.dongxiguo.fastring.Fastring.Implicits._
+import io.gatling.core.result.IntVsTimePlot
 
 import io.gatling.highcharts.series._
 
@@ -14,7 +15,12 @@ object Template {
 color: '${serie.colors(0)}',
 name: '${serie.name}',
 data: [
-  ${serie.elements.mkFastring(",")}
+  ${
+    serie.data.map {
+      //case IntVsTimePlot(time, 0)     => fast"[${serie.runStart + time},null]"
+      case IntVsTimePlot(time, value) => fast"[${serie.runStart + time},$value]"
+    }.mkFastring(",")
+  }
 ],
 tooltip: { yDecimals: 0, ySuffix: '' }
 """
@@ -57,7 +63,7 @@ data: [
 ${serie.elements.mkFastring(",")}
 ]"""
 
-  private def renderPercentileSeries(name: String, elements: Seq[String], zIndex: Int) =
+  private def renderPercentileSeries(name: String, elements: Iterable[String], zIndex: Int) =
     fast"""
 pointInterval: 1000,
 name: '$name',
