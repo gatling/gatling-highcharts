@@ -20,7 +20,8 @@ object RequestsComponent {
       series = Seq(new NumberPerSecondSeries(allRequests.name, runStart, allRequests.data, allRequests.colors.head),
         new NumberPerSecondSeries(failedRequests.name, runStart, failedRequests.data, failedRequests.colors.head),
         new NumberPerSecondSeries(succeededRequests.name, runStart, succeededRequests.data, succeededRequests.colors.head)),
-      pieSeries = new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors))
+      pieSeries = new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
+      pieX = 760)
 
     new HighchartsComponent(template)
   }

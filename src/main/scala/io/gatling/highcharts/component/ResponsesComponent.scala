@@ -20,7 +20,8 @@ object ResponsesComponent {
       series = Seq(new NumberPerSecondSeries(allResponses.name, runStart, allResponses.data, allResponses.colors.head),
         new NumberPerSecondSeries(failedResponses.name, runStart, failedResponses.data, failedResponses.colors.head),
         new NumberPerSecondSeries(succeededResponses.name, runStart, succeededResponses.data, succeededResponses.colors.head)),
-      pieSeries = new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors))
+      pieSeries = new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
+      pieX = 775)
 
     new HighchartsComponent(template)
   }

@@ -15,7 +15,8 @@ class EventsPerSecTemplate(chartTitle: String,
                            containerName: String,
                            anchorName: String,
                            series: Seq[NumberPerSecondSeries],
-                           pieSeries: PieSeries) extends Template {
+                           pieSeries: PieSeries,
+                           pieX: Int) extends Template {
 
   def js = fast"""
 var requestsChart = new Highcharts.StockChart({
@@ -115,7 +116,7 @@ var requestsChart = new Highcharts.StockChart({
     {${renderNumberPerSecondSeries(series(2), true)}},
     allUsersData,
     {
-      ${renderPieSeries(pieSeries)}
+      ${renderPieSeries(pieSeries, pieX)}
     }
   ]
 });

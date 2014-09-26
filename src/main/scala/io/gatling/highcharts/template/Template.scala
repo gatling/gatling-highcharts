@@ -32,13 +32,13 @@ abstract class Template {
 
   def html: Fastring
 
-  def renderPieSeries(serie: PieSeries) = fast"""
+  def renderPieSeries(serie: PieSeries, pieX: Int) = fast"""
 type: 'pie',
 name: '${serie.name}',
 data: [
   ${serie.elements.mkFastring(",")}
 ],
-center: [775, -40],
+center: [$pieX, -40],
 size: 70,
 showInLegend: false,
 dataLabels: { enabled: false },
