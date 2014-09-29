@@ -31,7 +31,7 @@ object Publish {
 
   private val developers = Seq(
     GatlingDeveloper("slandelle@excilys.com", "Stephane Landelle", true),
-    GatlingDeveloper("rsertelon@excilys.com", "Romain Sertelon", true)
+    GatlingDeveloper("pdalpra@excilys.com", "Pierre Dal-Pra", true)
   )
 
   private def developersXml(devs: Seq[GatlingDeveloper]) = {
