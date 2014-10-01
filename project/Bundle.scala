@@ -36,8 +36,8 @@ object Bundle {
     val location = unzippedBundleLocation.value.listFiles.head
     // IO.unzip seems to "forget" file permissions, reset them after unzipping
     (location / "bin").***.get.map(_.setExecutable(true))
-    val finder = (location.***) --- location
-    finder x relativeTo(location)
+    val finder = location.*** --- location
+    finder pair relativeTo(location)
   }
 
   def buildDestinationJarPath(sourceJarPath: File, version: String): String = {
