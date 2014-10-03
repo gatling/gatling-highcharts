@@ -13,7 +13,7 @@ import io.gatling.highcharts.series._
 object Template {
   def renderNumberPerSecondSeries(serie: NumberPerSecondSeries, area: Boolean) = fast"""
 color: '${serie.colors(0)}',
-name: '${serie.name}',
+name: '${serie.name.replace("'", "\\'")}',
 data: [
   ${
     serie.data.map {
