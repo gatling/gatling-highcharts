@@ -5,7 +5,7 @@ import BuildSettings._
 import Dependencies._
 import Bundle._
 
-object GatlingBuild extends Build {
+object GatlingHighchartsBuild extends Build {
 
   override lazy val settings = super.settings ++ {
     shellPrompt := { state => Project.extract(state).currentProject.id + " > " }
