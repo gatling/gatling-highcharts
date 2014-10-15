@@ -15,9 +15,20 @@ object GatlingHighchartsBuild extends Build {
   /** Root project **/
   /******************/
 
-  lazy val root = Project("gatling-charts-highcharts", file("."))
-    .settings(gatlingHighchartsSettings: _*)
-    .settings(libraryDependencies ++= gatlingHighchartsDeps(version.value))
-    .settings(bundleSettings: _*)
+  def gatlingHighchartsModule(id: String) = Project(id, file(id)).settings(gatlingHighchartsModuleSettings: _*)
 
+  lazy val root = Project("gatling-highcharts", file("."))
+    .aggregate(gatlingChartsHighcharts, gatlingHighchartsBundle)
+    .settings(basicSettings: _*)
+    .settings(noCodeToPublish: _*)
+
+  lazy val gatlingChartsHighcharts = gatlingHighchartsModule("gatling-charts-highcharts")
+    .settings(libraryDependencies ++= gatlingChartsHighchartsDeps(version.value))
+    .settings(exportJars := true)
+
+  lazy val gatlingHighchartsBundle = gatlingHighchartsModule("gatling-charts-highcharts-bundle")
+    .dependsOn(gatlingChartsHighcharts)
+    .settings(libraryDependencies ++= gatlingHighchartsBundleDeps(version.value, scalaVersion.value))
+    .settings(bundleSettings: _*)
+    .settings(noCodeToPublish: _*)
 }

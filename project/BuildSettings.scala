@@ -27,11 +27,14 @@ object BuildSettings {
       "-language:implicitConversions",
       "-language:postfixOps"
     )
-  )
+  ) ++ Publish.settings ++ Release.settings
 
-  lazy val gatlingHighchartsSettings = 
-    basicSettings ++ formattingSettings ++ graphSettings ++ 
-    Publish.settings ++ Release.settings
+  lazy val gatlingHighchartsModuleSettings =
+    basicSettings ++ formattingSettings ++ graphSettings
+
+  lazy val noCodeToPublish = Seq(
+    publishArtifact in Compile := false
+  )
 
   /*************************/
   /** Formatting settings **/
