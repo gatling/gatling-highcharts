@@ -27,11 +27,11 @@ object Publish {
     </scm>
   }
 
-  private case class GatlingDeveloper(emailAddress: String, name: String, isEbiz: Boolean)
+  private case class GatlingDeveloper(emailAddress: String, name: String)
 
   private val developers = Seq(
-    GatlingDeveloper("slandelle@excilys.com", "Stephane Landelle", true),
-    GatlingDeveloper("pdalpra@excilys.com", "Pierre Dal-Pra", true)
+    GatlingDeveloper("slandelle@excilys.com", "Stephane Landelle"),
+    GatlingDeveloper("pdalpra@excilys.com", "Pierre Dal-Pra")
   )
 
   private def developersXml(devs: Seq[GatlingDeveloper]) = {
@@ -42,7 +42,7 @@ object Publish {
         <developer>
           <id>{dev.emailAddress}</id>
           <name>{dev.name}</name>
-          { if (dev.isEbiz) <organization>eBusiness Information, Excilys Group</organization> }
+          <organization>eBusiness Information, Excilys Group</organization>
         </developer>
       }
     }
