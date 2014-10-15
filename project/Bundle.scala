@@ -12,7 +12,7 @@ object Bundle {
   val unzippedBundleLocation = settingKey[File]("Directory where bundle is unzipped")
 
   val bundleArtifacts = {
-    def bundleArtifact(ext: String) = Artifact("gatling-charts-highcharts-bundle", ext, ext)
+    def bundleArtifact(ext: String) = Artifact("gatling-charts-highcharts-bundle", ext, ext, "bundle")
 
     Seq(
       addArtifact(bundleArtifact("zip"), packageBin in Universal)
