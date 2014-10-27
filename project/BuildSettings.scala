@@ -21,7 +21,7 @@ object BuildSettings {
     scalacOptions        := Seq(
       "-encoding",
       "UTF-8",
-      "-target:jvm-1.6",
+      "-target:jvm-1.7",
       "-deprecation",
       "-feature",
       "-unchecked",
