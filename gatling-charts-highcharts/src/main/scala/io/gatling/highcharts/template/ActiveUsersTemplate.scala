@@ -24,7 +24,9 @@ var allUsersChart = new Highcharts.StockChart({
   legend: {
     enabled: true,
     floating: true,
-    y: -285,
+    align: 'right',
+    verticalAlign: 'top',
+    layout: 'vertical',
     borderWidth: 0,
     itemStyle: { fontWeight: "normal" }
   },
