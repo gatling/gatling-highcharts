@@ -22,7 +22,7 @@ data: [
     }.mkFastring(",")
   }
 ],
-tooltip: { yDecimals: 0, ySuffix: '' }
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
 ${if (area) ",type: 'area'" else ""}"""
 }
 
