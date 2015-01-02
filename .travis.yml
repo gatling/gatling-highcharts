@@ -5,6 +5,8 @@ script: sbt test
 # If building master, Publish to Sonatype
 after_success: "[[ $TRAVIS_PULL_REQUEST == \"false\" ]] && sbt publish"
 
+sudo: false
+
 # whitelist
 branches:
   only:
