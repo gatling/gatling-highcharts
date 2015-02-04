@@ -1,7 +1,7 @@
 language: scala
 before_script: ./make_credentials.sh
 script: 
-  - sbt debug test
+  - sbt test
   - find $HOME/.sbt -name "*.lock" | xargs rm
   - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
 
