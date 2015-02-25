@@ -6,18 +6,18 @@
 package io.gatling.highcharts.component
 
 import io.gatling.core.result.{ CountsVsTimePlot, PieSlice, Series }
-import io.gatling.highcharts.series.{ EventsPerSecSeries, PieSeries }
-import io.gatling.highcharts.template.EventsPerSecTemplate
+import io.gatling.highcharts.series.{ CountsPerSecSeries, PieSeries }
+import io.gatling.highcharts.template.CountsPerSecTemplate
 
 object ResponsesComponent {
 
   def apply(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]) = {
-    val template = new EventsPerSecTemplate(
+    val template = new CountsPerSecTemplate(
       chartTitle = "Number of responses per second",
       yAxisTitle = "Number of responses",
       containerName = "container_responses",
       anchorName = "responses",
-      countsSeries = new EventsPerSecSeries(runStart, counts.data, counts.colors),
+      countsSeries = new CountsPerSecSeries(runStart, counts.data, counts.colors),
       pieSeries = new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
       pieX = 775)
 

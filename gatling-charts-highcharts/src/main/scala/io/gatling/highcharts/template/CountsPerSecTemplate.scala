@@ -8,13 +8,13 @@ package io.gatling.highcharts.template
 import com.dongxiguo.fastring.Fastring.Implicits._
 
 import io.gatling.charts.util.Colors._
-import io.gatling.highcharts.series.{ EventsPerSecSeries, PieSeries }
+import io.gatling.highcharts.series.{ CountsPerSecSeries, PieSeries }
 
-class EventsPerSecTemplate(chartTitle: String,
+class CountsPerSecTemplate(chartTitle: String,
                            yAxisTitle: String,
                            containerName: String,
                            anchorName: String,
-                           countsSeries: EventsPerSecSeries,
+                           countsSeries: CountsPerSecSeries,
                            pieSeries: PieSeries,
                            pieX: Int) extends Template {
 
@@ -115,7 +115,7 @@ var requestsChart = new Highcharts.StockChart({
     }
   ],
   series: [
-    ${renderEventsPerSecSeries(countsSeries, UnpackedPlotsVarName)}
+    ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName)}
     allUsersData,
     {
       ${renderPieSeries(pieSeries, pieX)}

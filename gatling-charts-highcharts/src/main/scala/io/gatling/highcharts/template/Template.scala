@@ -91,15 +91,15 @@ zIndex: $zIndex
       } else ""
     }"""
 
-  private def renderEventsPerSecSeries(name: String, chartVariableName: String, color: String, index: Int, area: Boolean): Fastring = fast"""
+  private def renderCountsPerSecSeries(name: String, chartVariableName: String, color: String, index: Int, area: Boolean): Fastring = fast"""
 color: '$color',
 name: '$name',
 data: $chartVariableName[$index],
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
 ${if (area) ",type: 'area'" else ""}"""
 
-  def renderEventsPerSecSeries(series: EventsPerSecSeries, chartVariableName: String): Fastring =
-    fast"""{${renderEventsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, false)}},
-{${renderEventsPerSecSeries(series.names(1), chartVariableName, series.colors(1), 1, true)}},
-{${renderEventsPerSecSeries(series.names(2), chartVariableName, series.colors(2), 2, true)}},"""
+  def renderCountsPerSecSeries(series: CountsPerSecSeries, chartVariableName: String): Fastring =
+    fast"""{${renderCountsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, false)}},
+{${renderCountsPerSecSeries(series.names(1), chartVariableName, series.colors(1), 1, true)}},
+{${renderCountsPerSecSeries(series.names(2), chartVariableName, series.colors(2), 2, true)}},"""
 }

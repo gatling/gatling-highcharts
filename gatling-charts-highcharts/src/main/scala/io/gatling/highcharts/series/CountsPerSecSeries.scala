@@ -8,7 +8,7 @@ package io.gatling.highcharts.series
 import com.dongxiguo.fastring.Fastring.Implicits._
 import io.gatling.core.result.{ Series, CountsVsTimePlot }
 
-case class EventsPerSecSeries(runStart: Long, data: Iterable[CountsVsTimePlot], colors: List[String]) {
+case class CountsPerSecSeries(runStart: Long, data: Iterable[CountsVsTimePlot], colors: List[String]) {
 
   val names = List(Series.All, Series.KO, Series.OK)
 
