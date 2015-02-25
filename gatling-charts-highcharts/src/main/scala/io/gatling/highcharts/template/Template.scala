@@ -63,34 +63,32 @@ data: [
 ${serie.elements.mkFastring(",")}
 ]"""
 
-  private def renderPercentileSeries(name: String, elements: Iterable[String], zIndex: Int) =
+  private def renderPercentileSeries(name: String, chartVariableName: String, index: Int, zIndex: Int) =
     fast"""
 pointInterval: 1000,
 name: '$name',
-data: [
-  ${elements.mkFastring(",")}
-],
+data: $chartVariableName[$index],
 tooltip: { yDecimals: 0, ySuffix: 'ms' },
 type : 'area',
 yAxis: 0,
 zIndex: $zIndex
 """
 
-  def renderPercentilesSeries(series: PercentilesSeries) =
+  def renderPercentilesSeries(series: PercentilesSeries, chartVariableName: String) =
     fast"""
     ${
       if (series.data.nonEmpty) {
         fast"""
-         {${renderPercentileSeries("min", series.percentiles0, 10)}},
-         {${renderPercentileSeries("25%", series.percentiles25, 9)}},
-         {${renderPercentileSeries("50%", series.percentiles50, 8)}},
-         {${renderPercentileSeries("75%", series.percentiles75, 7)}},
-         {${renderPercentileSeries("80%", series.percentiles80, 6)}},
-         {${renderPercentileSeries("85%", series.percentiles85, 5)}},
-         {${renderPercentileSeries("90%", series.percentiles90, 4)}},
-         {${renderPercentileSeries("95%", series.percentiles95, 3)}},
-         {${renderPercentileSeries("99%", series.percentiles99, 2)}},
-         {${renderPercentileSeries("max", series.percentiles100, 1)}},"""
+         {${renderPercentileSeries("min", chartVariableName, 0, 10)}},
+         {${renderPercentileSeries("25%", chartVariableName, 1, 9)}},
+         {${renderPercentileSeries("50%", chartVariableName, 2, 8)}},
+         {${renderPercentileSeries("75%", chartVariableName, 3, 7)}},
+         {${renderPercentileSeries("80%", chartVariableName, 4, 6)}},
+         {${renderPercentileSeries("85%", chartVariableName, 5, 5)}},
+         {${renderPercentileSeries("90%", chartVariableName, 6, 4)}},
+         {${renderPercentileSeries("95%", chartVariableName, 7, 3)}},
+         {${renderPercentileSeries("99%", chartVariableName, 8, 2)}},
+         {${renderPercentileSeries("max", chartVariableName, 9, 1)}},"""
       } else ""
     }"""
 

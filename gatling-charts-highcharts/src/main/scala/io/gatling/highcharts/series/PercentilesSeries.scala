@@ -5,21 +5,17 @@
  */
 package io.gatling.highcharts.series
 
-import io.gatling.core.result.{ Percentiles, PercentilesVsTimePlot, Series }
+import com.dongxiguo.fastring.Fastring.Implicits._
+import io.gatling.core.result.{ PercentilesVsTimePlot, Series }
 
-class PercentilesSeries(name: String, runStart: Long, data: Iterable[PercentilesVsTimePlot], colors: List[String]) extends Series[PercentilesVsTimePlot](name, data, colors) {
+class PercentilesSeries(name: String, runStart: Long, data: Iterable[PercentilesVsTimePlot], colors: List[String])
+  extends Series[PercentilesVsTimePlot](name, data, colors) {
 
-  def elements(percentile: Percentiles => Int): Iterable[String] =
-    data.map { plot => s"[${runStart + plot.time},${plot.percentiles.map(percentile).getOrElse("null")}]" }
+  def render: Fastring = {
+    fast"[${data.map(renderPercentilesVsTimePlot).mkString(",")}"
+  }
 
-  def percentiles0: Iterable[String] = elements(_.percentile0)
-  def percentiles25: Iterable[String] = elements(_.percentile25)
-  def percentiles50: Iterable[String] = elements(_.percentile50)
-  def percentiles75: Iterable[String] = elements(_.percentile75)
-  def percentiles80: Iterable[String] = elements(_.percentile80)
-  def percentiles85: Iterable[String] = elements(_.percentile85)
-  def percentiles90: Iterable[String] = elements(_.percentile90)
-  def percentiles95: Iterable[String] = elements(_.percentile95)
-  def percentiles99: Iterable[String] = elements(_.percentile99)
-  def percentiles100: Iterable[String] = elements(_.percentile100)
+  def renderPercentilesVsTimePlot(perc: PercentilesVsTimePlot) = {
+    fast"[${(runStart + perc.time) / 1000}, [${perc.percentiles.map(_.productIterator.mkString(",")).getOrElse("null")}]]"
+  }
 }
