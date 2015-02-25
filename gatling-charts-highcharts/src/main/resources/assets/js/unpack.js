@@ -17,7 +17,7 @@ var unpack = function (array) {
     var timestamp = array[i][0];
     var values = array[i][1];
     for (j = 0; j < nbSeries; j++) {
-      unpackedArray[j][i] = [timestamp * 1000, values[j]];
+      unpackedArray[j][i] = [timestamp * 1000, values === null ? null : values[j]];
     }
   }
 
