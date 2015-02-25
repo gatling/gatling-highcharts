@@ -9,7 +9,7 @@ import com.dongxiguo.fastring.Fastring.Implicits._
 import io.gatling.core.result.{ PercentilesVsTimePlot, Series }
 
 class PercentilesSeries(name: String, runStart: Long, data: Iterable[PercentilesVsTimePlot], colors: List[String])
-  extends Series[PercentilesVsTimePlot](name, data, colors) {
+    extends Series[PercentilesVsTimePlot](name, data, colors) {
 
   def render: Fastring = {
     fast"[${data.map(renderPercentilesVsTimePlot).mkString(",")}"
