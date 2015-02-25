@@ -12,7 +12,11 @@ import io.gatling.charts.util.Colors._
 
 class PercentilesOverTimeTemplate(containerId: String, yAxisName: String, series: PercentilesSeries) extends Template {
 
+  private val UnpackedPlotsVarName = "responseTimePercentiles"
+
   def js = fast"""
+var $UnpackedPlotsVarName = unpack(${series.render});
+
 var responseTimeChart = new Highcharts.StockChart({
   chart: {
     renderTo: '$containerId',
@@ -105,7 +109,7 @@ var responseTimeChart = new Highcharts.StockChart({
     }
   },
   series: [
-  ${renderPercentilesSeries(series)}
+  ${renderPercentilesSeries(series, UnpackedPlotsVarName)}
   allUsersData
   ]
 });
