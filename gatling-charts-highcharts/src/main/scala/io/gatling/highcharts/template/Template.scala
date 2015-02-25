@@ -11,7 +11,7 @@ import io.gatling.core.result.IntVsTimePlot
 import io.gatling.highcharts.series._
 
 object Template {
-  def renderNumberPerSecondSeries(serie: NumberPerSecondSeries, area: Boolean) = fast"""
+  def renderUsersPerSecondSeries(serie: NumberPerSecondSeries) = fast"""
 color: '${serie.colors(0)}',
 name: '${serie.name.replace("'", "\\'")}',
 data: [
@@ -22,8 +22,7 @@ data: [
     }.mkFastring(",")
   }
 ],
-tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
-${if (area) ",type: 'area'" else ""}"""
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }"""
 }
 
 abstract class Template {
@@ -92,5 +91,15 @@ zIndex: $zIndex
       } else ""
     }"""
 
-  def renderNumberPerSecondSeries(series: NumberPerSecondSeries, area: Boolean) = Template.renderNumberPerSecondSeries(series, area)
+  private def renderEventsPerSecSeries(name: String, chartVariableName: String, color: String, index: Int, area: Boolean): Fastring = fast"""
+color: '$color',
+name: '$name',
+data: $chartVariableName[$index],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+${if (area) ",type: 'area'" else ""}"""
+
+  def renderEventsPerSecSeries(series: EventsPerSecSeries, chartVariableName: String): Fastring =
+    fast"""{${renderEventsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, false)}},
+{${renderEventsPerSecSeries(series.names(1), chartVariableName, series.colors(1), 1, true)}},
+{${renderEventsPerSecSeries(series.names(2), chartVariableName, series.colors(2), 2, true)}},"""
 }

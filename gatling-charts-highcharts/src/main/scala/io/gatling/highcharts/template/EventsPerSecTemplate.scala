@@ -8,17 +8,21 @@ package io.gatling.highcharts.template
 import com.dongxiguo.fastring.Fastring.Implicits._
 
 import io.gatling.charts.util.Colors._
-import io.gatling.highcharts.series.{ PieSeries, NumberPerSecondSeries }
+import io.gatling.highcharts.series.{ EventsPerSecSeries, PieSeries }
 
 class EventsPerSecTemplate(chartTitle: String,
                            yAxisTitle: String,
                            containerName: String,
                            anchorName: String,
-                           series: Seq[NumberPerSecondSeries],
+                           countsSeries: EventsPerSecSeries,
                            pieSeries: PieSeries,
                            pieX: Int) extends Template {
 
+  private val UnpackedPlotsVarName = containerName
+
   def js = fast"""
+var $UnpackedPlotsVarName = unpack(${countsSeries.render});
+
 var requestsChart = new Highcharts.StockChart({
   chart: {
     renderTo: '$containerName',
@@ -111,9 +115,7 @@ var requestsChart = new Highcharts.StockChart({
     }
   ],
   series: [
-    {${renderNumberPerSecondSeries(series(0), false)}},
-    {${renderNumberPerSecondSeries(series(1), true)}},
-    {${renderNumberPerSecondSeries(series(2), true)}},
+    ${renderEventsPerSecSeries(countsSeries, UnpackedPlotsVarName)}
     allUsersData,
     {
       ${renderPieSeries(pieSeries, pieX)}
