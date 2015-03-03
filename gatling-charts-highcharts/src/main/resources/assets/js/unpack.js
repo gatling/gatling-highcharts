@@ -1,9 +1,22 @@
 'use strict';
 
 var unpack = function (array) {
+  var findNbSeries = function (array) {
+    var currentPlotPack;
+    var length = array.length;
+
+    for (var i = 0; i < length; i++) {
+      currentPlotPack = array[i][1];
+      if(currentPlotPack !== null) {
+        return currentPlotPack.length;
+      }
+    }
+    return 0;
+  };
+
   var i, j;
   var nbPlots = array.length;
-  var nbSeries = array[0][1].length;
+  var nbSeries = findNbSeries(array);
 
   // Prepare unpacked array
   var unpackedArray = new Array(nbSeries);
