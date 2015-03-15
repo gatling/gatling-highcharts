@@ -1,11 +1,7 @@
-addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.7.4")
+resolvers += Resolver.url(
+  "gatling-sbt-plugins",
+  url("http://dl.bintray.com/content/gatling/sbt-plugins/"))(Resolver.ivyStylePatterns)
 
-addSbtPlugin("com.typesafe.sbt" % "sbt-scalariform" % "1.3.0")
+addSbtPlugin("io.gatling" % "gatling-build-plugin" % "1.1")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "0.6.4")
-
-addSbtPlugin("com.github.gseitz" % "sbt-release" % "0.8.5")
-
-addSbtPlugin("com.typesafe.sbt" % "sbt-pgp" % "0.8.3")
-
-addSbtPlugin("no.arktekk.sbt" % "aether-deploy" % "0.13")
