@@ -19,7 +19,8 @@ object ResponsesComponent {
       anchorName = "responses",
       countsSeries = new CountsPerSecSeries(runStart, counts.data, counts.colors),
       pieSeries = new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
-      pieX = 775)
+      pieX = 775,
+      allOnly = false)
 
     new HighchartsComponent(template)
   }

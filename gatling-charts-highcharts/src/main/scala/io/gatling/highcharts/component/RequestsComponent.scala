@@ -19,7 +19,8 @@ object RequestsComponent {
       anchorName = "requests",
       countsSeries = new CountsPerSecSeries(runStart, counts.data, counts.colors),
       pieSeries = new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
-      pieX = 760)
+      pieX = 760,
+      allOnly = true)
 
     new HighchartsComponent(template)
   }

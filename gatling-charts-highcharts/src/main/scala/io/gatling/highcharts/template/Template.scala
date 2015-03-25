@@ -98,8 +98,12 @@ data: $chartVariableName[$index],
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
 ${if (area) ",type: 'area'" else ""}"""
 
-  def renderCountsPerSecSeries(series: CountsPerSecSeries, chartVariableName: String): Fastring =
-    fast"""{${renderCountsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, false)}},
+  def renderCountsPerSecSeries(series: CountsPerSecSeries, chartVariableName: String, allOnly: Boolean): Fastring =
+    if (allOnly) {
+      fast"""{${renderCountsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, true)}},"""
+    } else {
+      fast"""{${renderCountsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, false)}},
 {${renderCountsPerSecSeries(series.names(1), chartVariableName, series.colors(1), 1, true)}},
 {${renderCountsPerSecSeries(series.names(2), chartVariableName, series.colors(2), 2, true)}},"""
+    }
 }

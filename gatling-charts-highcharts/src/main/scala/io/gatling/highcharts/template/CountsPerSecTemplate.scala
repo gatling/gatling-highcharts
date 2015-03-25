@@ -16,7 +16,8 @@ class CountsPerSecTemplate(chartTitle: String,
                            anchorName: String,
                            countsSeries: CountsPerSecSeries,
                            pieSeries: PieSeries,
-                           pieX: Int) extends Template {
+                           pieX: Int,
+                           allOnly: Boolean) extends Template {
 
   private val UnpackedPlotsVarName = containerName
 
@@ -115,11 +116,18 @@ var requestsChart = new Highcharts.StockChart({
     }
   ],
   series: [
-    ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName)}
-    allUsersData,
-    {
-      ${renderPieSeries(pieSeries, pieX)}
+    ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName, allOnly)}
+    allUsersData${
+    if (!allOnly) {
+      fast""",
+{
+  ${renderPieSeries(pieSeries, pieX)}
+}
+"""
+    } else {
+      fast""
     }
+  }
   ]
 });
 
