@@ -1,6 +1,8 @@
 import sbt._
 import sbt.Keys._
-import io.gatling.build.MavenPublishPlugin.autoImport._
+import io.gatling.build.license._
+import io.gatling.build.LicenseKeys._
+import io.gatling.build.MavenPublishKeys._
 
 import scala.util.Properties.envOrNone
 
@@ -10,7 +12,7 @@ object BuildSettings {
     organization         := "io.gatling.highcharts",
     githubPath           := "gatling/gatling-highcharts",
     projectDevelopers    := developers,
-    licenses             := Seq("Gatling Highcharts License" -> new URL("https://raw.github.com/gatling/gatling-highcharts/master/src/main/resources/META-INF/LICENSE")),
+    license              := HighCharts,
     resolvers            := envOrNone("CI").map(_ => Seq(Opts.resolver.sonatypeSnapshots)).getOrElse(Seq(Resolver.mavenLocal))
   ) ++ Release.settings
 
