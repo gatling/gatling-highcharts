@@ -4,16 +4,14 @@ import io.gatling.build.license._
 import io.gatling.build.LicenseKeys._
 import io.gatling.build.MavenPublishKeys._
 
-import scala.util.Properties.envOrNone
-
 object BuildSettings {
 
   lazy val basicSettings = Seq(
-    organization         := "io.gatling.highcharts",
-    githubPath           := "gatling/gatling-highcharts",
-    projectDevelopers    := developers,
-    license              := HighCharts,
-    resolvers            := envOrNone("CI").map(_ => Seq(Opts.resolver.sonatypeSnapshots)).getOrElse(Seq(Resolver.mavenLocal))
+    organization            := "io.gatling.highcharts",
+    githubPath              := "gatling/gatling-highcharts",
+    projectDevelopers       := developers,
+    license                 := HighCharts,
+    useSonatypeRepositories := true
   ) ++ Release.settings
 
   val developers = Seq(
