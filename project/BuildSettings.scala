@@ -16,7 +16,7 @@ object BuildSettings {
 
   val developers = Seq(
     GatlingDeveloper("slandelle@excilys.com", "Stephane Landelle", true),
-    GatlingDeveloper("pdalpra@excilys.com", "Pierre Dal-Pra", true)
+    GatlingDeveloper("pdalpra@excilys.com", "Pierre Dal-Pra", false)
   )
 
   lazy val gatlingHighchartsModuleSettings = basicSettings
