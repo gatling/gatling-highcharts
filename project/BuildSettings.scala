@@ -2,6 +2,7 @@ import sbt._
 import sbt.Keys._
 import io.gatling.build.license._
 import io.gatling.build.LicenseKeys._
+import io.gatling.build.ReleaseProcessKeys._
 import io.gatling.build.MavenPublishKeys._
 
 object BuildSettings {
@@ -11,8 +12,9 @@ object BuildSettings {
     githubPath              := "gatling/gatling-highcharts",
     projectDevelopers       := developers,
     license                 := HighCharts,
-    useSonatypeRepositories := true
-  ) ++ Release.settings
+    useSonatypeRepositories := true,
+    skipSnapshotDepsCheck   := true
+  )
 
   val developers = Seq(
     GatlingDeveloper("slandelle@excilys.com", "Stephane Landelle", true),
