@@ -6,9 +6,8 @@
 package io.gatling.charts.component.impl
 
 import com.dongxiguo.fastring.Fastring
-
+import io.gatling.core.stats._
 import io.gatling.charts.component.{ Component, ComponentLibrary }
-import io.gatling.core.result._
 import io.gatling.highcharts.component._
 
 class ComponentLibraryImpl extends ComponentLibrary {

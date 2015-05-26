@@ -5,6 +5,6 @@
  */
 package io.gatling.highcharts.series
 
-import io.gatling.core.result.{ IntVsTimePlot, Series }
+import io.gatling.core.stats._
 
 class NumberPerSecondSeries(name: String, val runStart: Long, data: Iterable[IntVsTimePlot], color: String) extends Series[IntVsTimePlot](name, data, List(color))

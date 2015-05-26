@@ -5,7 +5,7 @@
  */
 package io.gatling.highcharts.component
 
-import io.gatling.core.result.{ PercentVsTimePlot, PieSlice, Series }
+import io.gatling.core.stats._
 import io.gatling.highcharts.series.StackedColumnSeries
 import io.gatling.highcharts.template.GroupDetailsDurationDistributionTemplate
 

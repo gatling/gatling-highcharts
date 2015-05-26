@@ -5,8 +5,8 @@
  */
 package io.gatling.highcharts.component
 
-import io.gatling.core.result.{ CountsVsTimePlot, IntVsTimePlot, PieSlice, Series }
-import io.gatling.highcharts.series.{ CountsPerSecSeries, NumberPerSecondSeries, PieSeries }
+import io.gatling.core.stats._
+import io.gatling.highcharts.series.{ CountsPerSecSeries, PieSeries }
 import io.gatling.highcharts.template.CountsPerSecTemplate
 
 object RequestsComponent {

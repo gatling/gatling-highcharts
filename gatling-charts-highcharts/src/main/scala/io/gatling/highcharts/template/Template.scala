@@ -6,8 +6,7 @@
 package io.gatling.highcharts.template
 
 import com.dongxiguo.fastring.Fastring.Implicits._
-import io.gatling.core.result.IntVsTimePlot
-
+import io.gatling.core.stats._
 import io.gatling.highcharts.series._
 
 object Template {

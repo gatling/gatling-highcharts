@@ -5,7 +5,7 @@
  */
 package io.gatling.highcharts.series
 
-import io.gatling.core.result.PieSlice
+import io.gatling.core.stats._
 
 class StackedColumnSeries(name: String, data: Iterable[PieSlice], color: String) extends ColumnSeries(name, data, List(color)) {
 

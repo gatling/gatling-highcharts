@@ -6,7 +6,7 @@
 package io.gatling.highcharts.series
 
 import com.dongxiguo.fastring.Fastring.Implicits._
-import io.gatling.core.result.{ Percentiles, PercentilesVsTimePlot, Series }
+import io.gatling.core.stats._
 
 class PercentilesSeries(name: String, runStart: Long, data: Iterable[PercentilesVsTimePlot], colors: List[String])
     extends Series[PercentilesVsTimePlot](name, data, colors) {

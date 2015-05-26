@@ -6,8 +6,7 @@
 package io.gatling.highcharts.component
 
 import com.dongxiguo.fastring.Fastring.Implicits._
-
-import io.gatling.core.result.{ IntVsTimePlot, Series }
+import io.gatling.core.stats._
 import io.gatling.highcharts.series.NumberPerSecondSeries
 import io.gatling.highcharts.template.Template
 

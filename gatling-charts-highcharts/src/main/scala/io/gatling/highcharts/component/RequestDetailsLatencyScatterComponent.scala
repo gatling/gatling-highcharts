@@ -5,7 +5,7 @@
  */
 package io.gatling.highcharts.component
 
-import io.gatling.core.result.{ IntVsTimePlot, Series }
+import io.gatling.core.stats._
 import io.gatling.highcharts.series.ScatterSeries
 import io.gatling.highcharts.template.RequestDetailsScatterTemplate
 

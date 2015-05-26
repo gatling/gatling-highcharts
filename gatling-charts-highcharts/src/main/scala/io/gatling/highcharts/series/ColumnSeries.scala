@@ -5,7 +5,7 @@
  */
 package io.gatling.highcharts.series
 
-import io.gatling.core.result.{ PieSlice, Series }
+import io.gatling.core.stats._
 
 class ColumnSeries(name: String, data: Iterable[PieSlice], colors: List[String]) extends Series[PieSlice](name, data, colors) {
   val getXValues = data.map(_.name)

@@ -5,7 +5,7 @@
  */
 package io.gatling.highcharts.series
 
-import io.gatling.core.result.{ PieSlice, Series }
+import io.gatling.core.stats._
 
 class PieSeries(name: String, data: Iterable[PieSlice], seriesColors: List[String]) extends Series[PieSlice](name, data, seriesColors) {
 
