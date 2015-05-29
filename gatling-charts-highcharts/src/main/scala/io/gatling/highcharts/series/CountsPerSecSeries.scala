@@ -5,6 +5,8 @@
  */
 package io.gatling.highcharts.series
 
+import io.gatling.highcharts.template.Template
+
 import com.dongxiguo.fastring.Fastring.Implicits._
 import io.gatling.core.stats._
 
@@ -17,6 +19,6 @@ case class CountsPerSecSeries(runStart: Long, data: Iterable[CountsVsTimePlot], 
 
   def renderCountsVsTimePlot(countsVsTimePlot: CountsVsTimePlot) = {
     import countsVsTimePlot._
-    fast"[${(runStart + time) / 1000},[$total,$kos, $oks]]"
+    fast"[${Template.millisToSeconds(runStart + time)},[$total,$kos, $oks]]"
   }
 }

@@ -10,14 +10,17 @@ import io.gatling.core.stats._
 import io.gatling.highcharts.series._
 
 object Template {
-  def renderUsersPerSecondSeries(serie: NumberPerSecondSeries) = fast"""
+
+  def millisToSeconds(millis: Long): Long = millis / 1000
+
+  def renderUsersPerSecondSeries(runStart: Long, serie: NumberPerSecondSeries) = fast"""
 color: '${serie.colors(0)}',
 name: '${serie.name.replace("'", "\\'")}',
 data: [
   ${
     serie.data.map {
       //case IntVsTimePlot(time, 0)     => fast"[${serie.runStart + time},null]"
-      case IntVsTimePlot(time, value) => fast"[${serie.runStart + time},$value]"
+      case IntVsTimePlot(time, value) => fast"[${millisToSeconds(runStart + time) * 1000},$value]"
     }.mkFastring(",")
   }
 ],

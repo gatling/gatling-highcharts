@@ -13,9 +13,9 @@ import io.gatling.highcharts.template.Template
 class AllUsersComponent(runStart: Long, series: Series[IntVsTimePlot]) {
 
   def getJavascript: Fastring = {
-    val numberPerSecondSeries = new NumberPerSecondSeries(series.name, runStart, series.data, series.colors.head)
+    val numberPerSecondSeries = new NumberPerSecondSeries(series.name, series.data, series.colors.head)
     fast"""allUsersData = {
-    ${Template.renderUsersPerSecondSeries(numberPerSecondSeries)}
+    ${Template.renderUsersPerSecondSeries(runStart, numberPerSecondSeries)}
     , zIndex: 20
     , yAxis: 1
 };"""
