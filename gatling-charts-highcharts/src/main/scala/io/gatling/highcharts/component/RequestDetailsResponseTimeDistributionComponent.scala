@@ -14,7 +14,8 @@ object RequestDetailsResponseTimeDistributionComponent {
   def apply(successDistribution: Series[PercentVsTimePlot], failuresDistribution: Series[PercentVsTimePlot]) = {
     val template = new RequestDetailsResponseTimeDistributionTemplate(
       new StackedColumnSeries(successDistribution.name, successDistribution.data.map { plot => PieSlice(plot.time.toString, plot.roundedUpValue) }, successDistribution.colors.head),
-      new StackedColumnSeries(failuresDistribution.name, failuresDistribution.data.map { plot => PieSlice(plot.time.toString, plot.roundedUpValue) }, failuresDistribution.colors.head))
+      new StackedColumnSeries(failuresDistribution.name, failuresDistribution.data.map { plot => PieSlice(plot.time.toString, plot.roundedUpValue) }, failuresDistribution.colors.head)
+    )
 
     new HighchartsComponent(template)
   }

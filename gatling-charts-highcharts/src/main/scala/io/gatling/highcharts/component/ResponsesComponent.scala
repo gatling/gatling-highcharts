@@ -20,7 +20,8 @@ object ResponsesComponent {
       countsSeries = new CountsPerSecSeries(runStart, counts.data, counts.colors),
       pieSeries = new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
       pieX = 775,
-      allOnly = false)
+      allOnly = false
+    )
 
     new HighchartsComponent(template)
   }

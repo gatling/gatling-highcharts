@@ -15,7 +15,8 @@ object RequestDetailsResponseTimeComponent {
     val template = new PercentilesOverTimeTemplate(
       "container",
       "Response Time (ms)",
-      new PercentilesSeries(responseTimesSuccess.name, runStart, responseTimesSuccess.data, responseTimesSuccess.colors))
+      new PercentilesSeries(responseTimesSuccess.name, runStart, responseTimesSuccess.data, responseTimesSuccess.colors)
+    )
 
     new HighchartsComponent(template)
   }

@@ -17,7 +17,8 @@ object RequestDetailsResponseTimeScatterComponent {
       new ScatterSeries(failures.name, failures.data, failures.colors.head),
       "container_response_time_dispersion",
       "Response Time against Global RPS",
-      "Response Time")
+      "Response Time"
+    )
     new HighchartsComponent(template)
   }
 }

@@ -15,7 +15,8 @@ object GroupDetailsDurationComponent {
     val template = new PercentilesOverTimeTemplate(
       containerId,
       yAxisName,
-      new PercentilesSeries(durationsSuccess.name, runStart, durationsSuccess.data, durationsSuccess.colors))
+      new PercentilesSeries(durationsSuccess.name, runStart, durationsSuccess.data, durationsSuccess.colors)
+    )
 
     new HighchartsComponent(template)
   }

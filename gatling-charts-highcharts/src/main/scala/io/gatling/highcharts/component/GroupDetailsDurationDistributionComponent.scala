@@ -16,7 +16,8 @@ object GroupDetailsDurationDistributionComponent {
       title,
       containerId,
       new StackedColumnSeries(durationDistributionSuccess.name, durationDistributionSuccess.data.map { plot => PieSlice(plot.time.toString, plot.roundedUpValue) }, durationDistributionSuccess.colors.head),
-      new StackedColumnSeries(durationDistributionFailure.name, durationDistributionFailure.data.map { plot => PieSlice(plot.time.toString, plot.roundedUpValue) }, durationDistributionFailure.colors.head))
+      new StackedColumnSeries(durationDistributionFailure.name, durationDistributionFailure.data.map { plot => PieSlice(plot.time.toString, plot.roundedUpValue) }, durationDistributionFailure.colors.head)
+    )
 
     new HighchartsComponent(template)
   }
