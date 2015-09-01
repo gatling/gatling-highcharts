@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2015 eBusiness Information, Groupe Excilys (www.ebusinessinformation.fr)
+ * Copyright 2011-2015 GatlingCorp (http://gatling.io)
  *
  * Licensed under the Gatling Highcharts License
  */
@@ -11,14 +11,14 @@ import io.gatling.charts.util.Colors._
 import io.gatling.highcharts.series.{ CountsPerSecSeries, PieSeries }
 
 class CountsPerSecTemplate(
-  chartTitle:    String,
-  yAxisTitle:    String,
-  containerName: String,
-  anchorName:    String,
-  countsSeries:  CountsPerSecSeries,
-  pieSeries:     PieSeries,
-  pieX:          Int,
-  allOnly:       Boolean
+    chartTitle:    String,
+    yAxisTitle:    String,
+    containerName: String,
+    anchorName:    String,
+    countsSeries:  CountsPerSecSeries,
+    pieSeries:     PieSeries,
+    pieX:          Int,
+    allOnly:       Boolean
 ) extends Template {
 
   private val UnpackedPlotsVarName = containerName
