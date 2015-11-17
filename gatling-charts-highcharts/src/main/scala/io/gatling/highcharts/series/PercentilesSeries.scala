@@ -16,7 +16,7 @@ class PercentilesSeries(name: String, runStart: Long, data: Iterable[Percentiles
   }
 
   def renderPercentilesVsTimePlot(percentilesVsTimePlot: PercentilesVsTimePlot) = {
-      def renderPercentiles(percentiles: Percentiles) = fast"[${percentiles.productIterator.mkString(",")}]"
+    def renderPercentiles(percentiles: Percentiles) = fast"[${percentiles.productIterator.mkString(",")}]"
 
     fast"[${(runStart + percentilesVsTimePlot.time) / 1000},${percentilesVsTimePlot.percentiles.map(renderPercentiles).getOrElse("null")}]"
   }
