@@ -17,7 +17,7 @@ object GatlingHighchartsBuild extends Build {
     .enablePlugins(SonatypeReleasePlugin)
     .aggregate(gatlingChartsHighcharts, gatlingHighchartsBundle)
     .settings(basicSettings: _*)
-    .settings(noCodeToPublish: _*)
+    .settings(noArtifactToPublish)
 
   /*************/
   /** Modules **/
@@ -35,5 +35,5 @@ object GatlingHighchartsBuild extends Build {
     .dependsOn(gatlingChartsHighcharts)
     .settings(libraryDependencies ++= gatlingHighchartsBundleDeps(version.value, scalaVersion.value))
     .settings(bundleSettings: _*)
-    .settings(noCodeToPublish: _*)
+    .settings(noArtifactToPublish)
 }

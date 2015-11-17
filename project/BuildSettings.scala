@@ -17,13 +17,12 @@ object BuildSettings {
   )
 
   val developers = Seq(
-    GatlingDeveloper("slandelle@gatling.io", "Stephane Landelle", true),
-    GatlingDeveloper("gcorre@atling.io", "Guillaume Corré", true)
+    GatlingDeveloper("slandelle@gatling.io", "Stephane Landelle", isGatlingCorp = true),
+    GatlingDeveloper("gcorre@atling.io", "Guillaume Corré", isGatlingCorp = true)
   )
 
   lazy val gatlingHighchartsModuleSettings = basicSettings
 
-  lazy val noCodeToPublish = Seq(
+  lazy val noArtifactToPublish =
     publishArtifact in Compile := false
-  )
 }
