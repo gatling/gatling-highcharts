@@ -1,3 +1,0 @@
-Copyright 2011-2014 eBusiness Information, Groupe Excilys (www.ebusinessinformation.fr)
-
-Licensed under the Gatling Highcharts License
