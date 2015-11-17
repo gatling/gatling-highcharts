@@ -11,14 +11,14 @@ import io.gatling.charts.util.Colors._
 import io.gatling.highcharts.series.{ CountsPerSecSeries, PieSeries }
 
 class CountsPerSecTemplate(
-    chartTitle: String,
-    yAxisTitle: String,
+    chartTitle:    String,
+    yAxisTitle:    String,
     containerName: String,
-    anchorName: String,
-    countsSeries: CountsPerSecSeries,
-    pieSeries: PieSeries,
-    pieX: Int,
-    allOnly: Boolean
+    anchorName:    String,
+    countsSeries:  CountsPerSecSeries,
+    pieSeries:     PieSeries,
+    pieX:          Int,
+    allOnly:       Boolean
 ) extends Template {
 
   private val UnpackedPlotsVarName = containerName
