@@ -1,5 +1,5 @@
 /**
- * Copyright 2011-2015 GatlingCorp (http://gatling.io)
+ * Copyright 2011-2016 GatlingCorp (http://gatling.io)
  *
  * Licensed under the Gatling Highcharts License
  */
