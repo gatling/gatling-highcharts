@@ -13,7 +13,9 @@ object BuildSettings {
     projectDevelopers       := developers,
     license                 := HighCharts,
     useSonatypeRepositories := true,
-    skipSnapshotDepsCheck   := true
+    skipSnapshotDepsCheck   := true,
+    isSnapshot              := version.value.endsWith("-SNAPSHOT"),
+    pushToPrivateNexus      := true
   )
 
   val developers = Seq(
