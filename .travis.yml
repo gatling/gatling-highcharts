@@ -20,3 +20,4 @@ cache:
 branches:
   only:
     - master
+    - 2.2
