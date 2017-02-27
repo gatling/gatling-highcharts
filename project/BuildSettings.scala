@@ -15,7 +15,7 @@ object BuildSettings {
     useSonatypeRepositories := true,
     skipSnapshotDepsCheck   := true,
     isSnapshot              := version.value.endsWith("-SNAPSHOT"),
-    pushToPrivateNexus      := true
+    pushToPrivateNexus      := false
   )
 
   val developers = Seq(
