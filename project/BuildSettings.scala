@@ -14,7 +14,6 @@ object BuildSettings {
     license                 := HighCharts,
     useSonatypeRepositories := true,
     skipSnapshotDepsCheck   := true,
-    isSnapshot              := version.value.endsWith("-SNAPSHOT"),
     pushToPrivateNexus      := false
   )
 
