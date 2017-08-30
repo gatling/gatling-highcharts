@@ -12,9 +12,11 @@ object BuildSettings {
     githubPath              := "gatling/gatling-highcharts",
     projectDevelopers       := developers,
     license                 := HighCharts,
+    // [fl]
+    //
+    // [fl]
     useSonatypeRepositories := true,
-    skipSnapshotDepsCheck   := true,
-    pushToPrivateNexus      := false
+    skipSnapshotDepsCheck   := true
   )
 
   val developers = Seq(
