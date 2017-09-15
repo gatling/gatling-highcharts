@@ -5,9 +5,7 @@ import com.typesafe.sbt.SbtNativePackager._
 
 object Bundle {
 
-  lazy val Zinc              = config("zinc") describedAs "Ivy configuration dedicated to Zinc-related dependencies"
   val gatlingJars            = taskKey[Seq[File]]("List of all Gatling jars needed for the bundle")
-  val zincJars               = taskKey[Seq[File]]("List of all jars related to the compiler needed for the bundle")
   val bundleFile             = taskKey[File]("Path of gatling-bundle")
   val unzippedBundleLocation = settingKey[File]("Directory where bundle is unzipped")
 
@@ -19,12 +17,9 @@ object Bundle {
     ).flatMap(_.settings)
   }
 
-  val bundleSettings = packagerSettings ++ bundleArtifacts ++ inConfig(Zinc)(Defaults.configSettings) ++ Seq(
-    ivyConfigurations      := overrideConfigs(Zinc)(ivyConfigurations.value),
+  val bundleSettings = packagerSettings ++ bundleArtifacts ++ Seq(
     gatlingJars            := (fullClasspath in Runtime).value.map(_.data).filter(ClasspathUtilities.isArchive),
-    zincJars               := (fullClasspath in Zinc).value.map(_.data).filter(ClasspathUtilities.isArchive),
     mappings in Universal ++= gatlingJars.value.map(jar => jar -> buildDestinationJarPath("lib", jar, version.value)),
-    mappings in Universal ++= zincJars.value.map(jar => jar -> buildDestinationJarPath("lib/zinc", jar, version.value)),
     bundleFile             := update.value.select(artifact = artifactFilter(classifier = "bundle")).head,
     unzippedBundleLocation := target.value / "unzipped",
     mappings in Universal ++= zipFileMappings.value
