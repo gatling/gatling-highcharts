@@ -8,15 +8,15 @@ import io.gatling.build.MavenPublishKeys._
 object BuildSettings {
 
   lazy val basicSettings = Seq(
-    organization            := "io.gatling.highcharts",
-    githubPath              := "gatling/gatling-highcharts",
-    projectDevelopers       := developers,
-    license                 := HighCharts,
+    organization := "io.gatling.highcharts",
+    githubPath := "gatling/gatling-highcharts",
+    projectDevelopers := developers,
+    license := HighCharts,
     // [fl]
     //
     // [fl]
     useSonatypeRepositories := true,
-    skipSnapshotDepsCheck   := true
+    skipSnapshotDepsCheck := true
   )
 
   val developers = Seq(

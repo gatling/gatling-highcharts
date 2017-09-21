@@ -5,8 +5,8 @@ import com.typesafe.sbt.SbtNativePackager._
 
 object Bundle {
 
-  val gatlingJars            = taskKey[Seq[File]]("List of all Gatling jars needed for the bundle")
-  val bundleFile             = taskKey[File]("Path of gatling-bundle")
+  val gatlingJars = taskKey[Seq[File]]("List of all Gatling jars needed for the bundle")
+  val bundleFile = taskKey[File]("Path of gatling-bundle")
   val unzippedBundleLocation = settingKey[File]("Directory where bundle is unzipped")
 
   val bundleArtifacts = {
@@ -18,9 +18,9 @@ object Bundle {
   }
 
   val bundleSettings = packagerSettings ++ bundleArtifacts ++ Seq(
-    gatlingJars            := (fullClasspath in Runtime).value.map(_.data).filter(ClasspathUtilities.isArchive),
+    gatlingJars := (fullClasspath in Runtime).value.map(_.data).filter(ClasspathUtilities.isArchive),
     mappings in Universal ++= gatlingJars.value.map(jar => jar -> buildDestinationJarPath("lib", jar, version.value)),
-    bundleFile             := update.value.select(artifact = artifactFilter(classifier = "bundle")).head,
+    bundleFile := update.value.select(artifact = artifactFilter(classifier = "bundle")).head,
     unzippedBundleLocation := target.value / "unzipped",
     mappings in Universal ++= zipFileMappings.value
   ) ++ useNativeZip
@@ -35,7 +35,7 @@ object Bundle {
   }
 
   def buildDestinationJarPath(folder: String, sourceJarPath: File, version: String): String = {
-    if(sourceJarPath.getName.startsWith("gatling") && !sourceJarPath.getName.contains(version))
+    if (sourceJarPath.getName.startsWith("gatling") && !sourceJarPath.getName.contains(version))
       s"$folder/${sourceJarPath.base}-$version.${sourceJarPath.ext}"
     else
       s"$folder/${sourceJarPath.getName}"
