@@ -1,9 +1,10 @@
-import sbt._
-import sbt.Keys._
 import io.gatling.build.license._
-import io.gatling.build.LicenseKeys._
 import io.gatling.build.ReleaseProcessKeys._
 import io.gatling.build.MavenPublishKeys._
+
+import sbt._
+import sbt.Keys._
+import de.heikoseeberger.sbtheader.HeaderPlugin.autoImport._
 
 object BuildSettings {
 
@@ -11,7 +12,7 @@ object BuildSettings {
     organization := "io.gatling.highcharts",
     githubPath := "gatling/gatling-highcharts",
     projectDevelopers := developers,
-    license := HighCharts,
+    headerLicense := GatlingHighChartsLicense,
     // [fl]
     //
     // [fl]
