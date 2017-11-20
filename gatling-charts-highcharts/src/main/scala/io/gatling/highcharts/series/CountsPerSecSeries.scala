@@ -3,6 +3,7 @@
  *
  * Licensed under the Gatling Highcharts License
  */
+
 package io.gatling.highcharts.series
 
 import io.gatling.highcharts.template.Template

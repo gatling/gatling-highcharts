@@ -3,6 +3,7 @@
  *
  * Licensed under the Gatling Highcharts License
  */
+
 package io.gatling.highcharts.component
 
 import io.gatling.highcharts.template.RequestDetailsIndicatorTemplate

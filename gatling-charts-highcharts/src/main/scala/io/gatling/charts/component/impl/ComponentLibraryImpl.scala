@@ -3,6 +3,7 @@
  *
  * Licensed under the Gatling Highcharts License
  */
+
 package io.gatling.charts.component.impl
 
 import com.dongxiguo.fastring.Fastring
