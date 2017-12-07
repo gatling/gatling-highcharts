@@ -22,7 +22,7 @@ object Bundle {
 
   val bundleSettings = bundleArtifacts ++ Seq(
     gatlingJars := (fullClasspath in Runtime).value.map(_.data).filter(ClasspathUtilities.isArchive),
-    mappings in Universal ++= gatlingJars.value.map(jar => jar -> buildDestinationJarPath("lib", jar, version.value)),
+    mappings in Universal ++= gatlingJars.value.map(jar => jar -> buildDestinationJarPath("lib", jar, version.value, scalaVersion.value)),
     bundleFile := update.value.select(artifact = artifactFilter(classifier = "bundle")).head,
     unzippedBundleLocation := target.value / "unzipped",
     mappings in Universal ++= zipFileMappings.value
@@ -37,10 +37,12 @@ object Bundle {
     finder pair relativeTo(location)
   }
 
-  def buildDestinationJarPath(folder: String, sourceJarPath: File, version: String): String = {
-    if (sourceJarPath.getName.startsWith("gatling") && !sourceJarPath.getName.contains(version))
-      s"$folder/${sourceJarPath.base}-$version.${sourceJarPath.ext}"
-    else
+  def buildDestinationJarPath(folder: String, sourceJarPath: File, gatlingVersion: String, scalaVersion: String): String =
+    if (sourceJarPath.getName.startsWith("gatling") && !sourceJarPath.getName.contains(gatlingVersion)) {
+      s"$folder/${sourceJarPath.base}-$gatlingVersion.${sourceJarPath.ext}"
+    } else if (Set("scala-library.jar", "scala-reflect.jar", "scala-compiler.jar").contains(sourceJarPath.getName)) {
+      s"$folder/${sourceJarPath.base}-$scalaVersion.${sourceJarPath.ext}"
+    } else {
       s"$folder/${sourceJarPath.getName}"
-  }
+    }
 }
