@@ -56,27 +56,22 @@ var indicatorsChart = new Highcharts.Chart({
   series: [
     {
       type: 'column',
-      color: '${Green.code}',
-      data: [pageStats.group1.count,0,0,0],
-      tooltip: { yDecimals: 0, ySuffix: 'ms' }
-    },
-    {
-      type: 'column',
-      color: '${Yellow.code}',
-      data: [0,pageStats.group2.count,0,0],
-      tooltip: { yDecimals: 0, ySuffix: 'ms' }
-    },
-    {
-      type: 'column',
-      color: '${Orange.code}',
-      data: [0,0,pageStats.group3.count,0],
-      tooltip: { yDecimals: 0, ySuffix: 'ms' }
-    },
-    {
-      type: 'column',
-      color: '${Red.code}',
-      data: [0,0,0,pageStats.group4.count],
-      tooltip: { yDecimals: 0, ySuffix: 'ms' }
+      data: [{
+      	color: '${Green.code}',
+      	y: pageStats.group1.count
+      },
+      {
+      	color: '${Yellow.code}',
+      	y: pageStats.group2.count
+      },
+      {
+      	color: '${Orange.code}',
+      	y: pageStats.group3.count
+      },
+      {
+      	color: '${Red.code}',
+      	y: pageStats.group4.count
+      }]
     },
     {
       type: 'pie',
