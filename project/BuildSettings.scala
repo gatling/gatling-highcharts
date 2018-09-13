@@ -13,6 +13,7 @@ object BuildSettings {
     githubPath := "gatling/gatling-highcharts",
     projectDevelopers := developers,
     headerLicense := GatlingHighChartsLicense,
+    licenses := Seq("Gatling Highcharts" -> url("https://raw.githubusercontent.com/gatling/gatling-highcharts/master/LICENSE")),
     // [fl]
     //
     // [fl]
