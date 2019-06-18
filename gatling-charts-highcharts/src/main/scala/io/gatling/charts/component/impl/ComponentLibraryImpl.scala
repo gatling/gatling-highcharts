@@ -6,13 +6,12 @@
 
 package io.gatling.charts.component.impl
 
-import com.dongxiguo.fastring.Fastring
 import io.gatling.core.stats._
 import io.gatling.charts.component.{ Component, ComponentLibrary }
 import io.gatling.highcharts.component._
 
 class ComponentLibraryImpl extends ComponentLibrary {
-  def getAllUsersJs(runStart: Long, series: Series[IntVsTimePlot]): Fastring = new AllUsersComponent(runStart, series).getJavascript
+  def getAllUsersJs(runStart: Long, series: Series[IntVsTimePlot]): String = new AllUsersComponent(runStart, series).getJavascript
   def getActiveSessionsChartComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component = ActiveUsersComponent(runStart, series)
   def getRequestsChartComponent(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]): Component = RequestsComponent(runStart, counts, pieSeries)
   def getResponsesChartComponent(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]): Component = ResponsesComponent(runStart, counts, pieSeries)

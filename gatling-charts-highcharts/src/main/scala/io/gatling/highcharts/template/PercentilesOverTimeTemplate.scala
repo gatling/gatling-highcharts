@@ -6,8 +6,6 @@
 
 package io.gatling.highcharts.template
 
-import com.dongxiguo.fastring.Fastring.Implicits._
-
 import io.gatling.highcharts.series.PercentilesSeries
 import io.gatling.charts.util.Colors._
 
@@ -15,7 +13,7 @@ class PercentilesOverTimeTemplate(containerId: String, yAxisName: String, series
 
   private val UnpackedPlotsVarName = "responseTimePercentiles"
 
-  def js = fast"""
+  def js = s"""
 var $UnpackedPlotsVarName = unpack(${series.render});
 
 var responseTimeChart = new Highcharts.StockChart({
@@ -121,7 +119,7 @@ responseTimeChart.setTitle({
 });
 """
 
-  val html = fast"""
+  val html = s"""
             <div class="schema geant">
               <div id="$containerId" class="geant"></div>
             </div>

@@ -6,8 +6,6 @@
 
 package io.gatling.highcharts.template
 
-import com.dongxiguo.fastring.Fastring.Implicits._
-
 import io.gatling.charts.util.Colors._
 import io.gatling.highcharts.series.{ CountsPerSecSeries, PieSeries }
 
@@ -24,7 +22,7 @@ class CountsPerSecTemplate(
 
   private val UnpackedPlotsVarName = containerName
 
-  def js = fast"""
+  def js = s"""
 var $UnpackedPlotsVarName = unpack(${countsSeries.render});
 
 var requestsChart = new Highcharts.StockChart({
@@ -122,13 +120,13 @@ var requestsChart = new Highcharts.StockChart({
     ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName, allOnly)}
     allUsersData${
     if (!allOnly) {
-      fast""",
+      s""",
 {
   ${renderPieSeries(pieSeries, pieX)}
 }
 """
     } else {
-      fast""
+      s""
     }
   }
   ]
@@ -140,7 +138,7 @@ requestsChart.setTitle({
 });
 """
 
-  val html = fast"""
+  val html = s"""
             <div class="schema geant">
               <a name="$anchorName"></a>
                 <div id="$containerName" class="geant"></div>

@@ -6,7 +6,6 @@
 
 package io.gatling.highcharts.template
 
-import com.dongxiguo.fastring.Fastring.Implicits._
 import io.gatling.core.stats._
 import io.gatling.highcharts.series._
 
@@ -14,15 +13,15 @@ object Template {
 
   def millisToSeconds(millis: Long): Long = millis / 1000
 
-  def renderUsersPerSecondSeries(runStart: Long, serie: NumberPerSecondSeries) = fast"""
+  def renderUsersPerSecondSeries(runStart: Long, serie: NumberPerSecondSeries) = s"""
 color: '${serie.colors(0)}',
 name: '${serie.name.replace("'", "\\'")}',
 data: [
   ${
     serie.data.map {
       //case IntVsTimePlot(time, 0)     => fast"[${serie.runStart + time},null]"
-      case IntVsTimePlot(time, value) => fast"[${millisToSeconds(runStart + time) * 1000},$value]"
-    }.mkFastring(",")
+      case IntVsTimePlot(time, value) => s"[${millisToSeconds(runStart + time) * 1000},$value]"
+    }.mkString(",")
   }
 ],
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }"""
@@ -30,15 +29,15 @@ tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }"""
 
 abstract class Template {
 
-  def js: Fastring
+  def js: String
 
-  def html: Fastring
+  def html: String
 
-  def renderPieSeries(serie: PieSeries, pieX: Int) = fast"""
+  def renderPieSeries(serie: PieSeries, pieX: Int) = s"""
 type: 'pie',
 name: '${serie.name}',
 data: [
-  ${serie.elements.mkFastring(",")}
+  ${serie.elements.mkString(",")}
 ],
 center: [$pieX, -40],
 size: 70,
@@ -47,26 +46,26 @@ dataLabels: { enabled: false },
 dataGrouping: { enabled: false }
 """
 
-  def renderStackedColumnSeries(serie: StackedColumnSeries) = fast"""
+  def renderStackedColumnSeries(serie: StackedColumnSeries) = s"""
 type: 'column',
 color: '${serie.colors(0)}',
 name: '${serie.name}',
 data: [
-  ${serie.elements.mkFastring(",")}
+  ${serie.elements.mkString(",")}
 ],
 tooltip: { yDecimals: 0, ySuffix: 'ms' }
 """
 
-  def renderScatterSeries(serie: ScatterSeries) = fast"""
+  def renderScatterSeries(serie: ScatterSeries) = s"""
 type: 'scatter',
 color: '${serie.colors(0)}',
 name: '${serie.name}',
 data: [
-${serie.elements.mkFastring(",")}
+${serie.elements.mkString(",")}
 ]"""
 
   private def renderPercentileSeries(name: String, chartVariableName: String, index: Int, zIndex: Int) =
-    fast"""
+    s"""
 pointInterval: 1000,
 name: '$name',
 data: $chartVariableName[$index],
@@ -77,10 +76,10 @@ zIndex: $zIndex
 """
 
   def renderPercentilesSeries(series: PercentilesSeries, chartVariableName: String) =
-    fast"""
+    s"""
     ${
       if (series.data.nonEmpty) {
-        fast"""
+        s"""
          {${renderPercentileSeries("min", chartVariableName, 0, 10)}},
          {${renderPercentileSeries("25%", chartVariableName, 1, 9)}},
          {${renderPercentileSeries("50%", chartVariableName, 2, 8)}},
@@ -94,18 +93,18 @@ zIndex: $zIndex
       } else ""
     }"""
 
-  private def renderCountsPerSecSeries(name: String, chartVariableName: String, color: String, index: Int, area: Boolean): Fastring = fast"""
+  private def renderCountsPerSecSeries(name: String, chartVariableName: String, color: String, index: Int, area: Boolean): String = s"""
 color: '$color',
 name: '$name',
 data: $chartVariableName[$index],
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
 ${if (area) ",type: 'area'" else ""}"""
 
-  def renderCountsPerSecSeries(series: CountsPerSecSeries, chartVariableName: String, allOnly: Boolean): Fastring =
+  def renderCountsPerSecSeries(series: CountsPerSecSeries, chartVariableName: String, allOnly: Boolean): String =
     if (allOnly) {
-      fast"""{${renderCountsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, true)}},"""
+      s"""{${renderCountsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, true)}},"""
     } else {
-      fast"""{${renderCountsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, false)}},
+      s"""{${renderCountsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, false)}},
 {${renderCountsPerSecSeries(series.names(1), chartVariableName, series.colors(1), 1, true)}},
 {${renderCountsPerSecSeries(series.names(2), chartVariableName, series.colors(2), 2, true)}},"""
     }

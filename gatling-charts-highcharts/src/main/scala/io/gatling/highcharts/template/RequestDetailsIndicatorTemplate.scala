@@ -6,13 +6,11 @@
 
 package io.gatling.highcharts.template
 
-import com.dongxiguo.fastring.Fastring.Implicits._
-
 import io.gatling.charts.util.Colors._
 
 class RequestDetailsIndicatorTemplate extends Template {
 
-  val js = fast"""
+  val js = s"""
 Highcharts.setOptions({
   global: { useUTC: false }
 });
@@ -112,7 +110,7 @@ indicatorsChart.setTitle({
 });
 """
 
-  val html = fast"""
+  val html = s"""
             <div class="schema demi">
               <div id="container_indicators" class="demi"></div>
             </div>

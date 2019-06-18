@@ -6,14 +6,12 @@
 
 package io.gatling.highcharts.template
 
-import com.dongxiguo.fastring.Fastring.Implicits._
-
 import io.gatling.highcharts.series.NumberPerSecondSeries
 import io.gatling.charts.util.Colors._
 
 class ActiveUsersTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
 
-  def js = fast"""
+  def js = s"""
 allUsersData.yAxis = 0;
 
 var allUsersChart = new Highcharts.StockChart({
@@ -89,7 +87,7 @@ var allUsersChart = new Highcharts.StockChart({
     min: 0
   },
   series: [
-    ${series.map(serie => List("{", Template.renderUsersPerSecondSeries(runStart, serie), "},\n")).flatten.mkFastring}
+    ${series.map(serie => List("{", Template.renderUsersPerSecondSeries(runStart, serie), "},\n")).flatten.mkString}
     allUsersData
   ]
 });
@@ -103,7 +101,7 @@ allUsersChart.setTitle({
 allUsersData.yAxis = 1;
 """
 
-  val html = fast"""
+  val html = s"""
             <div class="schema geant">
               <a name="active_users"></a>
               <div id="container_active_users" class="geant"></div>

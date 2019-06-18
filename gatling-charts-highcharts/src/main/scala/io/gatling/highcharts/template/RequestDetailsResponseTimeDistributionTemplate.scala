@@ -6,12 +6,10 @@
 
 package io.gatling.highcharts.template
 
-import com.dongxiguo.fastring.Fastring.Implicits._
-
 import io.gatling.highcharts.series.StackedColumnSeries
 
 object RequestDetailsResponseTimeDistributionTemplate {
-  val htmlContent = fast"""
+  val htmlContent = s"""
             <div class="schema geant">
               <div id="container_distrib" class="geant"></div>
             </div>
@@ -22,7 +20,7 @@ class RequestDetailsResponseTimeDistributionTemplate(successSeries: StackedColum
 
   val categories = if (!successSeries.getXValues.isEmpty) successSeries.getXValues else failuresSeries.getXValues
 
-  def js = fast"""
+  def js = s"""
 var responseTimeDistributionChart = new Highcharts.Chart({
   chart: {
     renderTo: 'container_distrib',
@@ -44,7 +42,7 @@ var responseTimeDistributionChart = new Highcharts.Chart({
     text: 'A title to let highcharts reserve the place for the title set later'
   },
   xAxis: {
-    categories: ['${categories.mkFastring("', '")}'],
+    categories: ['${categories.mkString("', '")}'],
     tickInterval: 20
   },
   yAxis: {

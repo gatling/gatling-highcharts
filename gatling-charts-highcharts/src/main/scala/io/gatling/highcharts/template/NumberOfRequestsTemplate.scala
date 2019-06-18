@@ -6,13 +6,11 @@
 
 package io.gatling.highcharts.template
 
-import com.dongxiguo.fastring.Fastring.Implicits._
-
 import io.gatling.charts.report.Container.{ Group, Request }
 
 class NumberOfRequestsTemplate(numberOfRequestNames: Int) extends Template {
 
-  val js = fast"""
+  val js = s"""
 function numberOfRequestsDataForGroup(group) {
   var data = {names: [], oks: [], kos: []};
 
@@ -87,7 +85,7 @@ new Highcharts.Chart({
 });
 """
 
-  val html = fast"""
+  val html = s"""
             <div class="schema polar">
               <div id="container_number_of_requests"></div>
             </div>
