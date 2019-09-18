@@ -15,9 +15,10 @@ lazy val root = Project("gatling-highcharts", file("."))
 
 // Modules
 
-def gatlingHighchartsModule(id: String) = Project(id, file(id))
-  .enablePlugins(AutomateHeaderPlugin, SonatypeReleasePlugin)
-  .settings(gatlingHighchartsModuleSettings: _*)
+def gatlingHighchartsModule(id: String) =
+  Project(id, file(id))
+    .enablePlugins(AutomateHeaderPlugin, SonatypeReleasePlugin)
+    .settings(gatlingHighchartsModuleSettings: _*)
 
 lazy val gatlingChartsHighcharts = gatlingHighchartsModule("gatling-charts-highcharts")
   .settings(libraryDependencies ++= gatlingChartsHighchartsDeps(version.value))
