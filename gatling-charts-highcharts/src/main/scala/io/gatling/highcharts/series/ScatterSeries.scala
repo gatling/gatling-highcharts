@@ -12,5 +12,8 @@ class ScatterSeries(name: String, data: Iterable[IntVsTimePlot], color: String) 
 
   def elements: Iterable[String] =
     if (data.isEmpty) List("[]")
-    else data.map { plot => s"[${plot.time},${plot.value}]" }
+    else
+      data.map { plot =>
+        s"[${plot.time},${plot.value}]"
+      }
 }

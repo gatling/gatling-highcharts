@@ -10,19 +10,20 @@ import io.gatling.charts.util.Colors._
 import io.gatling.highcharts.series.{ CountsPerSecSeries, PieSeries }
 
 class CountsPerSecTemplate(
-    chartTitle:    String,
-    yAxisTitle:    String,
+    chartTitle: String,
+    yAxisTitle: String,
     containerName: String,
-    anchorName:    String,
-    countsSeries:  CountsPerSecSeries,
-    pieSeries:     PieSeries,
-    pieX:          Int,
-    allOnly:       Boolean
+    anchorName: String,
+    countsSeries: CountsPerSecSeries,
+    pieSeries: PieSeries,
+    pieX: Int,
+    allOnly: Boolean
 ) extends Template {
 
   private val UnpackedPlotsVarName = containerName
 
-  def js = s"""
+  def js =
+    s"""
 var $UnpackedPlotsVarName = unpack(${countsSeries.render});
 
 var requestsChart = new Highcharts.StockChart({
@@ -118,8 +119,7 @@ var requestsChart = new Highcharts.StockChart({
   ],
   series: [
     ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName, allOnly)}
-    allUsersData${
-    if (!allOnly) {
+    allUsersData${if (!allOnly) {
       s""",
 {
   ${renderPieSeries(pieSeries, pieX)}
@@ -127,8 +127,7 @@ var requestsChart = new Highcharts.StockChart({
 """
     } else {
       s""
-    }
-  }
+    }}
   ]
 });
 

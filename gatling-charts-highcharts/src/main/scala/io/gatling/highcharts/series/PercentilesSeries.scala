@@ -9,7 +9,7 @@ package io.gatling.highcharts.series
 import io.gatling.core.stats._
 
 class PercentilesSeries(name: String, runStart: Long, data: Iterable[PercentilesVsTimePlot], colors: List[String])
-  extends Series[PercentilesVsTimePlot](name, data, colors) {
+    extends Series[PercentilesVsTimePlot](name, data, colors) {
 
   def render: String = {
     s"[${data.map(renderPercentilesVsTimePlot).mkString(",")}]"

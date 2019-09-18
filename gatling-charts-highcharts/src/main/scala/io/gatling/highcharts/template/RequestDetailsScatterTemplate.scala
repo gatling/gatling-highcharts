@@ -8,7 +8,8 @@ package io.gatling.highcharts.template
 
 import io.gatling.highcharts.series.ScatterSeries
 
-class RequestDetailsScatterTemplate(success: ScatterSeries, failures: ScatterSeries, containerName: String, chartTitle: String, yAxisTitle: String) extends Template {
+class RequestDetailsScatterTemplate(success: ScatterSeries, failures: ScatterSeries, containerName: String, chartTitle: String, yAxisTitle: String)
+    extends Template {
 
   def js = s"""
 var scatterChart = new Highcharts.Chart({

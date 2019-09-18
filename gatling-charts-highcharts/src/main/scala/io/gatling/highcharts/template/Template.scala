@@ -13,16 +13,17 @@ object Template {
 
   def millisToSeconds(millis: Long): Long = millis / 1000
 
-  def renderUsersPerSecondSeries(runStart: Long, serie: NumberPerSecondSeries) = s"""
+  def renderUsersPerSecondSeries(runStart: Long, serie: NumberPerSecondSeries) =
+    s"""
 color: '${serie.colors(0)}',
 name: '${serie.name.replace("'", "\\'")}',
 data: [
-  ${
-    serie.data.map {
-      //case IntVsTimePlot(time, 0)     => fast"[${serie.runStart + time},null]"
-      case IntVsTimePlot(time, value) => s"[${millisToSeconds(runStart + time) * 1000},$value]"
-    }.mkString(",")
-  }
+  ${serie.data
+      .map {
+        //case IntVsTimePlot(time, 0)     => fast"[${serie.runStart + time},null]"
+        case IntVsTimePlot(time, value) => s"[${millisToSeconds(runStart + time) * 1000},$value]"
+      }
+      .mkString(",")}
 ],
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }"""
 }
@@ -77,9 +78,8 @@ zIndex: $zIndex
 
   def renderPercentilesSeries(series: PercentilesSeries, chartVariableName: String) =
     s"""
-    ${
-      if (series.data.nonEmpty) {
-        s"""
+    ${if (series.data.nonEmpty) {
+      s"""
          {${renderPercentileSeries("min", chartVariableName, 0, 10)}},
          {${renderPercentileSeries("25%", chartVariableName, 1, 9)}},
          {${renderPercentileSeries("50%", chartVariableName, 2, 8)}},
@@ -90,8 +90,7 @@ zIndex: $zIndex
          {${renderPercentileSeries("95%", chartVariableName, 7, 3)}},
          {${renderPercentileSeries("99%", chartVariableName, 8, 2)}},
          {${renderPercentileSeries("max", chartVariableName, 9, 1)}},"""
-      } else ""
-    }"""
+    } else ""}"""
 
   private def renderCountsPerSecSeries(name: String, chartVariableName: String, color: String, index: Int, area: Boolean): String = s"""
 color: '$color',

@@ -8,7 +8,12 @@ package io.gatling.highcharts.template
 
 import io.gatling.highcharts.series.StackedColumnSeries
 
-class GroupDetailsDurationDistributionTemplate(title: String, containerId: String, durationSeriesSuccess: StackedColumnSeries, durationSeriesFailure: StackedColumnSeries) extends Template {
+class GroupDetailsDurationDistributionTemplate(
+    title: String,
+    containerId: String,
+    durationSeriesSuccess: StackedColumnSeries,
+    durationSeriesFailure: StackedColumnSeries
+) extends Template {
 
   def js = s"""
 var responseTimeDistributionChart = new Highcharts.Chart({
