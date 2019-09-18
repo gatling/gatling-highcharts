@@ -12,7 +12,6 @@ lazy val root = Project("gatling-highcharts", file("."))
   .aggregate(gatlingChartsHighcharts, gatlingHighchartsBundle)
   .settings(basicSettings: _*)
   .settings(noArtifactToPublish)
-  .settings(updateOptions := updateOptions.value.withGigahorse(false))
 
 // Modules
 

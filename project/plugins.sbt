@@ -1,4 +1,4 @@
-resolvers += Resolver.url("gatling",url("https://dl.bintray.com/content/gatling/sbt-plugins/"))(Resolver.ivyStylePatterns)
+resolvers += Resolver.bintrayIvyRepo("gatling", "sbt-plugins")
 
-addSbtPlugin("io.gatling" % "gatling-build-plugin" % "2.2.4")
-addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.11")
+addSbtPlugin("io.gatling"       % "gatling-build-plugin" % "2.3.0")
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager"  % "1.3.11")
