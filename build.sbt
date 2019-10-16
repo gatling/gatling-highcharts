@@ -1,11 +1,11 @@
 import sbt._
-import sbt.Keys._
 
 import BuildSettings._
 import Dependencies._
 import Bundle._
 
 // Root project
+ThisBuild / Keys.useCoursier := false
 
 lazy val root = Project("gatling-highcharts", file("."))
   .enablePlugins(AutomateHeaderPlugin, SonatypeReleasePlugin)
