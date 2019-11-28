@@ -10,7 +10,7 @@ import io.gatling.charts.util.Colors._
 
 class RequestDetailsIndicatorTemplate extends Template {
 
-  val js = s"""
+  override def js: String = s"""
 Highcharts.setOptions({
   global: { useUTC: false }
 });
@@ -110,7 +110,7 @@ indicatorsChart.setTitle({
 });
 """
 
-  val html = s"""
+  override def html: String = s"""
             <div class="schema demi">
               <div id="container_indicators" class="demi"></div>
             </div>

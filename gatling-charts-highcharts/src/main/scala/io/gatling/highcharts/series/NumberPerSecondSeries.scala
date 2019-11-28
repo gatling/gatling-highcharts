@@ -8,4 +8,4 @@ package io.gatling.highcharts.series
 
 import io.gatling.core.stats._
 
-case class NumberPerSecondSeries(name: String, data: Iterable[IntVsTimePlot], color: String)
+final case class NumberPerSecondSeries(name: String, data: Iterable[IntVsTimePlot], color: String)

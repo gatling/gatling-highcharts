@@ -10,7 +10,7 @@ import io.gatling.charts.report.Container.{ Group, Request }
 
 class NumberOfRequestsTemplate(numberOfRequestNames: Int) extends Template {
 
-  val js = s"""
+  override def js: String = s"""
 function numberOfRequestsDataForGroup(group) {
   var data = {names: [], oks: [], kos: []};
 
@@ -85,7 +85,7 @@ new Highcharts.Chart({
 });
 """
 
-  val html = s"""
+  override def html: String = """
             <div class="schema polar">
               <div id="container_number_of_requests"></div>
             </div>

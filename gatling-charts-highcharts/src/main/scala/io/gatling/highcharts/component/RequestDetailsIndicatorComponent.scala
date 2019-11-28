@@ -10,5 +10,5 @@ import io.gatling.highcharts.template.RequestDetailsIndicatorTemplate
 
 object RequestDetailsIndicatorComponent {
 
-  def apply() = new HighchartsComponent(new RequestDetailsIndicatorTemplate)
+  def apply(): HighchartsComponent = new HighchartsComponent(new RequestDetailsIndicatorTemplate)
 }

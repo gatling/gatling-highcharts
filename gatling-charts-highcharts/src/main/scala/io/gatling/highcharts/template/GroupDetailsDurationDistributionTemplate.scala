@@ -15,7 +15,7 @@ class GroupDetailsDurationDistributionTemplate(
     durationSeriesFailure: StackedColumnSeries
 ) extends Template {
 
-  def js = s"""
+  override def js: String = s"""
 var responseTimeDistributionChart = new Highcharts.Chart({
   chart: {
     renderTo: '$containerId',
@@ -64,7 +64,7 @@ responseTimeDistributionChart.setTitle({
 });
 """
 
-  val html = s"""
+  override def html: String = s"""
             <div class="schema geant">
               <div id="$containerId" class="geant"></div>
             </div>

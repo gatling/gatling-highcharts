@@ -13,7 +13,7 @@ object Template {
 
   def millisToSeconds(millis: Long): Long = millis / 1000
 
-  def renderUsersPerSecondSeries(runStart: Long, serie: NumberPerSecondSeries) =
+  def renderUsersPerSecondSeries(runStart: Long, serie: NumberPerSecondSeries): String =
     s"""
 color: '${serie.color}',
 name: '${serie.name.replace("'", "\\'")}',
@@ -34,7 +34,7 @@ abstract class Template {
 
   def html: String
 
-  def renderPieSeries(serie: PieSeries, pieX: Int) = s"""
+  def renderPieSeries(serie: PieSeries, pieX: Int): String = s"""
 type: 'pie',
 name: '${serie.name}',
 data: [
@@ -47,7 +47,7 @@ dataLabels: { enabled: false },
 dataGrouping: { enabled: false }
 """
 
-  def renderStackedColumnSeries(serie: StackedColumnSeries) = s"""
+  def renderStackedColumnSeries(serie: StackedColumnSeries): String = s"""
 type: 'column',
 color: '${serie.color}',
 name: '${serie.name}',
@@ -57,7 +57,7 @@ data: [
 tooltip: { yDecimals: 0, ySuffix: 'ms' }
 """
 
-  def renderScatterSeries(serie: ScatterSeries) = s"""
+  def renderScatterSeries(serie: ScatterSeries): String = s"""
 type: 'scatter',
 color: '${serie.color}',
 name: '${serie.name}',
@@ -65,7 +65,7 @@ data: [
 ${serie.elements.mkString(",")}
 ]"""
 
-  private def renderPercentileSeries(name: String, chartVariableName: String, index: Int, zIndex: Int) =
+  private def renderPercentileSeries(name: String, chartVariableName: String, index: Int, zIndex: Int): String =
     s"""
 pointInterval: 1000,
 name: '$name',
@@ -76,7 +76,7 @@ yAxis: 0,
 zIndex: $zIndex
 """
 
-  def renderPercentilesSeries(series: PercentilesSeries, chartVariableName: String) =
+  def renderPercentilesSeries(series: PercentilesSeries, chartVariableName: String): String =
     s"""
     ${if (series.data.nonEmpty) {
       s"""
@@ -101,10 +101,10 @@ ${if (area) ",type: 'area'" else ""}"""
 
   def renderCountsPerSecSeries(series: CountsPerSecSeries, chartVariableName: String, allOnly: Boolean): String =
     if (allOnly) {
-      s"""{${renderCountsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, true)}},"""
+      s"""{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors.head, 0, area = true)}},"""
     } else {
-      s"""{${renderCountsPerSecSeries(series.names(0), chartVariableName, series.colors(0), 0, false)}},
-{${renderCountsPerSecSeries(series.names(1), chartVariableName, series.colors(1), 1, true)}},
-{${renderCountsPerSecSeries(series.names(2), chartVariableName, series.colors(2), 2, true)}},"""
+      s"""{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors.head, 0, area = false)}},
+{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors(1), 1, area = true)}},
+{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors(2), 2, area = true)}},"""
     }
 }

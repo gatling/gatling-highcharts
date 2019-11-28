@@ -11,7 +11,7 @@ import io.gatling.charts.util.Colors._
 
 class ActiveUsersTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
 
-  def js = s"""
+  override def js: String = s"""
 allUsersData.yAxis = 0;
 
 var allUsersChart = new Highcharts.StockChart({
@@ -87,7 +87,7 @@ var allUsersChart = new Highcharts.StockChart({
     min: 0
   },
   series: [
-    ${series.map(serie => List("{", Template.renderUsersPerSecondSeries(runStart, serie), "},\n")).flatten.mkString}
+    ${series.flatMap(serie => List("{", Template.renderUsersPerSecondSeries(runStart, serie), "},\n")).mkString}
     allUsersData
   ]
 });
@@ -101,7 +101,7 @@ allUsersChart.setTitle({
 allUsersData.yAxis = 1;
 """
 
-  val html = s"""
+  override def html: String = """
             <div class="schema geant">
               <a name="active_users"></a>
               <div id="container_active_users" class="geant"></div>

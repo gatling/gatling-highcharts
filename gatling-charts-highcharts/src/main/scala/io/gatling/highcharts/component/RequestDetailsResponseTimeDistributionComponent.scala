@@ -12,12 +12,12 @@ import io.gatling.highcharts.template.RequestDetailsResponseTimeDistributionTemp
 
 object RequestDetailsResponseTimeDistributionComponent {
 
-  def apply(successDistribution: Series[PercentVsTimePlot], failuresDistribution: Series[PercentVsTimePlot]) = {
+  def apply(successDistribution: Series[PercentVsTimePlot], failuresDistribution: Series[PercentVsTimePlot]): HighchartsComponent = {
     val template = new RequestDetailsResponseTimeDistributionTemplate(
-      new StackedColumnSeries(successDistribution.name, successDistribution.data.map { plot =>
+      StackedColumnSeries(successDistribution.name, successDistribution.data.map { plot =>
         PieSlice(plot.time.toString, plot.roundedUpValue)
       }, successDistribution.colors.head),
-      new StackedColumnSeries(failuresDistribution.name, failuresDistribution.data.map { plot =>
+      StackedColumnSeries(failuresDistribution.name, failuresDistribution.data.map { plot =>
         PieSlice(plot.time.toString, plot.roundedUpValue)
       }, failuresDistribution.colors.head)
     )

@@ -8,19 +8,11 @@ package io.gatling.highcharts.template
 
 import io.gatling.highcharts.series.StackedColumnSeries
 
-object RequestDetailsResponseTimeDistributionTemplate {
-  val htmlContent = s"""
-            <div class="schema geant">
-              <div id="container_distrib" class="geant"></div>
-            </div>
-"""
-}
-
 class RequestDetailsResponseTimeDistributionTemplate(successSeries: StackedColumnSeries, failuresSeries: StackedColumnSeries) extends Template {
 
-  val categories = if (!successSeries.getXValues.isEmpty) successSeries.getXValues else failuresSeries.getXValues
+  val categories: Iterable[String] = if (successSeries.getXValues.nonEmpty) successSeries.getXValues else failuresSeries.getXValues
 
-  def js = s"""
+  override def js: String = s"""
 var responseTimeDistributionChart = new Highcharts.Chart({
   chart: {
     renderTo: 'container_distrib',
@@ -77,5 +69,10 @@ responseTimeDistributionChart.setTitle({
 });
 """
 
-  val html = RequestDetailsResponseTimeDistributionTemplate.htmlContent
+  override def html: String =
+    s"""
+            <div class="schema geant">
+              <div id="container_distrib" class="geant"></div>
+            </div>
+"""
 }

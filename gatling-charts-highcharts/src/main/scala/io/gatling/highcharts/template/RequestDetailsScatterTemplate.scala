@@ -11,7 +11,7 @@ import io.gatling.highcharts.series.ScatterSeries
 class RequestDetailsScatterTemplate(success: ScatterSeries, failures: ScatterSeries, containerName: String, chartTitle: String, yAxisTitle: String)
     extends Template {
 
-  def js = s"""
+  override def js: String = s"""
 var scatterChart = new Highcharts.Chart({
   chart: {
     renderTo: '$containerName', 
@@ -85,7 +85,7 @@ scatterChart.setTitle({
 });
 """
 
-  val html = s"""
+  override def html: String = s"""
             <div class="schema geant">
               <div id="$containerName" class="geant"></div>
             </div>

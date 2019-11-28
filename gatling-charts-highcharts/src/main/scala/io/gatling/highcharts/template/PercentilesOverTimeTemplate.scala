@@ -13,7 +13,7 @@ class PercentilesOverTimeTemplate(containerId: String, yAxisName: String, series
 
   private val UnpackedPlotsVarName = "responseTimePercentiles"
 
-  def js = s"""
+  override def js: String = s"""
 var $UnpackedPlotsVarName = unpack(${series.render});
 
 var responseTimeChart = new Highcharts.StockChart({
@@ -119,7 +119,7 @@ responseTimeChart.setTitle({
 });
 """
 
-  val html = s"""
+  override def html: String = s"""
             <div class="schema geant">
               <div id="$containerId" class="geant"></div>
             </div>

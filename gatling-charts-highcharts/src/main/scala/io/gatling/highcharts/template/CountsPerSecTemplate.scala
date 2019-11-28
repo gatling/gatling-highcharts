@@ -22,7 +22,7 @@ class CountsPerSecTemplate(
 
   private val UnpackedPlotsVarName = containerName
 
-  def js =
+  override def js: String =
     s"""
 var $UnpackedPlotsVarName = unpack(${countsSeries.render});
 
@@ -137,7 +137,7 @@ requestsChart.setTitle({
 });
 """
 
-  val html = s"""
+  override def html: String = s"""
             <div class="schema geant">
               <a name="$anchorName"></a>
                 <div id="$containerName" class="geant"></div>

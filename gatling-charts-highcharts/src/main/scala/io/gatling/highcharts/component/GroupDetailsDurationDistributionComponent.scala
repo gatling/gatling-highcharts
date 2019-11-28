@@ -17,16 +17,24 @@ object GroupDetailsDurationDistributionComponent {
       containerId: String,
       durationDistributionSuccess: Series[PercentVsTimePlot],
       durationDistributionFailure: Series[PercentVsTimePlot]
-  ) = {
+  ): HighchartsComponent = {
     val template = new GroupDetailsDurationDistributionTemplate(
       title,
       containerId,
-      new StackedColumnSeries(durationDistributionSuccess.name, durationDistributionSuccess.data.map { plot =>
-        PieSlice(plot.time.toString, plot.roundedUpValue)
-      }, durationDistributionSuccess.colors.head),
-      new StackedColumnSeries(durationDistributionFailure.name, durationDistributionFailure.data.map { plot =>
-        PieSlice(plot.time.toString, plot.roundedUpValue)
-      }, durationDistributionFailure.colors.head)
+      StackedColumnSeries(
+        durationDistributionSuccess.name,
+        durationDistributionSuccess.data.map { plot =>
+          PieSlice(plot.time.toString, plot.roundedUpValue)
+        },
+        durationDistributionSuccess.colors.head
+      ),
+      StackedColumnSeries(
+        durationDistributionFailure.name,
+        durationDistributionFailure.data.map { plot =>
+          PieSlice(plot.time.toString, plot.roundedUpValue)
+        },
+        durationDistributionFailure.colors.head
+      )
     )
 
     new HighchartsComponent(template)

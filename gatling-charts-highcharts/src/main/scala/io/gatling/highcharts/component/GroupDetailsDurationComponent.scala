@@ -12,11 +12,11 @@ import io.gatling.highcharts.template.PercentilesOverTimeTemplate
 
 object GroupDetailsDurationComponent {
 
-  def apply(containerId: String, yAxisName: String, runStart: Long, durationsSuccess: Series[PercentilesVsTimePlot]) = {
+  def apply(containerId: String, yAxisName: String, runStart: Long, durationsSuccess: Series[PercentilesVsTimePlot]): HighchartsComponent = {
     val template = new PercentilesOverTimeTemplate(
       containerId,
       yAxisName,
-      new PercentilesSeries(durationsSuccess.name, runStart, durationsSuccess.data, durationsSuccess.colors)
+      PercentilesSeries(durationsSuccess.name, runStart, durationsSuccess.data, durationsSuccess.colors)
     )
 
     new HighchartsComponent(template)

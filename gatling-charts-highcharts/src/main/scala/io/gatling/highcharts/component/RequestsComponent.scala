@@ -12,14 +12,14 @@ import io.gatling.highcharts.template.CountsPerSecTemplate
 
 object RequestsComponent {
 
-  def apply(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]) = {
+  def apply(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]): HighchartsComponent = {
     val template = new CountsPerSecTemplate(
       chartTitle = "Number of requests per second",
       yAxisTitle = "Number of requests",
       containerName = "container_requests",
       anchorName = "requests",
-      countsSeries = new CountsPerSecSeries(runStart, counts.data, counts.colors),
-      pieSeries = new PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
+      countsSeries = CountsPerSecSeries(runStart, counts.data, counts.colors),
+      pieSeries = PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
       pieX = 760,
       allOnly = true
     )

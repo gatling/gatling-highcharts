@@ -10,14 +10,14 @@ import io.gatling.highcharts.template.Template
 
 import io.gatling.core.stats._
 
-case class CountsPerSecSeries(runStart: Long, data: Iterable[CountsVsTimePlot], colors: List[String]) {
+final case class CountsPerSecSeries(runStart: Long, data: Iterable[CountsVsTimePlot], colors: List[String]) {
 
-  val names = List(Series.All, Series.KO, Series.OK)
+  val names: Seq[String] = List(Series.All, Series.KO, Series.OK)
 
   def render: String =
     s"[${data.map(renderCountsVsTimePlot).mkString(",")}]"
 
-  def renderCountsVsTimePlot(countsVsTimePlot: CountsVsTimePlot) = {
+  def renderCountsVsTimePlot(countsVsTimePlot: CountsVsTimePlot): String = {
     import countsVsTimePlot._
     s"[${Template.millisToSeconds(runStart + time)},[$total,$kos, $oks]]"
   }

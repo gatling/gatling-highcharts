@@ -12,11 +12,11 @@ import io.gatling.highcharts.template.PercentilesOverTimeTemplate
 
 object RequestDetailsResponseTimeComponent {
 
-  def apply(runStart: Long, responseTimesSuccess: Series[PercentilesVsTimePlot]) = {
+  def apply(runStart: Long, responseTimesSuccess: Series[PercentilesVsTimePlot]): HighchartsComponent = {
     val template = new PercentilesOverTimeTemplate(
       "container",
       "Response Time (ms)",
-      new PercentilesSeries(responseTimesSuccess.name, runStart, responseTimesSuccess.data, responseTimesSuccess.colors)
+      PercentilesSeries(responseTimesSuccess.name, runStart, responseTimesSuccess.data, responseTimesSuccess.colors)
     )
 
     new HighchartsComponent(template)

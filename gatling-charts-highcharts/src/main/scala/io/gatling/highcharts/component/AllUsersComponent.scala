@@ -13,7 +13,7 @@ import io.gatling.highcharts.template.Template
 class AllUsersComponent(runStart: Long, series: Series[IntVsTimePlot]) {
 
   def getJavascript: String = {
-    val numberPerSecondSeries = new NumberPerSecondSeries(series.name, series.data, series.colors.head)
+    val numberPerSecondSeries = NumberPerSecondSeries(series.name, series.data, series.colors.head)
     s"""allUsersData = {
     ${Template.renderUsersPerSecondSeries(runStart, numberPerSecondSeries)}
     , zIndex: 20
