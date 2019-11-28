@@ -8,7 +8,9 @@ package io.gatling.highcharts.series
 
 import io.gatling.core.stats._
 
-class StackedColumnSeries(name: String, data: Iterable[PieSlice], color: String) extends ColumnSeries(name, data, List(color)) {
+case class StackedColumnSeries(name: String, data: Iterable[PieSlice], color: String) {
 
   def elements: Iterable[String] = data.map(_.value.toString)
+  val getXValues = data.map(_.name)
+  val getYValues = data.map(_.value)
 }

@@ -15,7 +15,7 @@ object Template {
 
   def renderUsersPerSecondSeries(runStart: Long, serie: NumberPerSecondSeries) =
     s"""
-color: '${serie.colors(0)}',
+color: '${serie.color}',
 name: '${serie.name.replace("'", "\\'")}',
 data: [
   ${serie.data
@@ -49,7 +49,7 @@ dataGrouping: { enabled: false }
 
   def renderStackedColumnSeries(serie: StackedColumnSeries) = s"""
 type: 'column',
-color: '${serie.colors(0)}',
+color: '${serie.color}',
 name: '${serie.name}',
 data: [
   ${serie.elements.mkString(",")}
@@ -59,7 +59,7 @@ tooltip: { yDecimals: 0, ySuffix: 'ms' }
 
   def renderScatterSeries(serie: ScatterSeries) = s"""
 type: 'scatter',
-color: '${serie.colors(0)}',
+color: '${serie.color}',
 name: '${serie.name}',
 data: [
 ${serie.elements.mkString(",")}

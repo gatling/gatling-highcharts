@@ -8,7 +8,7 @@ package io.gatling.highcharts.series
 
 import io.gatling.core.stats._
 
-class ScatterSeries(name: String, data: Iterable[IntVsTimePlot], color: String) extends Series[IntVsTimePlot](name, data, List(color)) {
+case class ScatterSeries(name: String, data: Iterable[IntVsTimePlot], color: String) {
 
   def elements: Iterable[String] =
     if (data.isEmpty) List("[]")
