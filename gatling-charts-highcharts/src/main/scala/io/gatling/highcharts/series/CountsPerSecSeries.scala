@@ -6,9 +6,8 @@
 
 package io.gatling.highcharts.series
 
+import io.gatling.charts.stats._
 import io.gatling.highcharts.template.Template
-
-import io.gatling.core.stats._
 
 final case class CountsPerSecSeries(runStart: Long, data: Iterable[CountsVsTimePlot], colors: List[String]) {
 

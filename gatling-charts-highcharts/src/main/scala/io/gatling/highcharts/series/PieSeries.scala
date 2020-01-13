@@ -6,7 +6,7 @@
 
 package io.gatling.highcharts.series
 
-import io.gatling.core.stats._
+import io.gatling.charts.stats._
 
 final case class PieSeries(name: String, data: Iterable[PieSlice], seriesColors: List[String]) {
 

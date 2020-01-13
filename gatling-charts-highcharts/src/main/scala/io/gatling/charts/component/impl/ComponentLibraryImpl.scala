@@ -6,8 +6,8 @@
 
 package io.gatling.charts.component.impl
 
-import io.gatling.core.stats._
 import io.gatling.charts.component.{ Component, ComponentLibrary }
+import io.gatling.charts.stats._
 import io.gatling.highcharts.component._
 
 class ComponentLibraryImpl extends ComponentLibrary {
@@ -26,7 +26,7 @@ class ComponentLibraryImpl extends ComponentLibrary {
   def getRequestDetailsResponseTimeScatterChartComponent(successes: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]): Component =
     RequestDetailsResponseTimeScatterComponent(successes, failures)
   def getRequestDetailsIndicatorChartComponent: Component = RequestDetailsIndicatorComponent()
-  def getNumberOfRequestsChartComponent(numberOfRequestNames: Int) = NumberOfRequestsComponent(numberOfRequestNames)
+  def getNumberOfRequestsChartComponent(numberOfRequestNames: Int): HighchartsComponent = NumberOfRequestsComponent(numberOfRequestNames)
   def getGroupDetailsDurationChartComponent(
       containerId: String,
       yAxisName: String,

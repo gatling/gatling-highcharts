@@ -6,7 +6,6 @@
 
 package io.gatling.highcharts.template
 
-import io.gatling.core.stats._
 import io.gatling.highcharts.series._
 
 object Template {
@@ -21,7 +20,8 @@ data: [
   ${serie.data
       .map {
         //case IntVsTimePlot(time, 0)     => fast"[${serie.runStart + time},null]"
-        case IntVsTimePlot(time, value) => s"[${millisToSeconds(runStart + time) * 1000},$value]"
+        plot =>
+          s"[${millisToSeconds(runStart + plot.time) * 1000},${plot.value}]"
       }
       .mkString(",")}
 ],

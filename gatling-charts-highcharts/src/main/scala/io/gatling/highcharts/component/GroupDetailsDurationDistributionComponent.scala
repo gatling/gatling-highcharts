@@ -6,7 +6,7 @@
 
 package io.gatling.highcharts.component
 
-import io.gatling.core.stats._
+import io.gatling.charts.stats._
 import io.gatling.highcharts.series.StackedColumnSeries
 import io.gatling.highcharts.template.GroupDetailsDurationDistributionTemplate
 
@@ -24,14 +24,14 @@ object GroupDetailsDurationDistributionComponent {
       StackedColumnSeries(
         durationDistributionSuccess.name,
         durationDistributionSuccess.data.map { plot =>
-          PieSlice(plot.time.toString, plot.roundedUpValue)
+          new PieSlice(plot.time.toString, plot.roundedUpValue)
         },
         durationDistributionSuccess.colors.head
       ),
       StackedColumnSeries(
         durationDistributionFailure.name,
         durationDistributionFailure.data.map { plot =>
-          PieSlice(plot.time.toString, plot.roundedUpValue)
+          new PieSlice(plot.time.toString, plot.roundedUpValue)
         },
         durationDistributionFailure.colors.head
       )

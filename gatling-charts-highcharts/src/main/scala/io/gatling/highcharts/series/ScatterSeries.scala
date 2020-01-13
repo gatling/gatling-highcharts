@@ -6,7 +6,7 @@
 
 package io.gatling.highcharts.series
 
-import io.gatling.core.stats._
+import io.gatling.charts.stats._
 
 final case class ScatterSeries(name: String, data: Iterable[IntVsTimePlot], color: String) {
 
