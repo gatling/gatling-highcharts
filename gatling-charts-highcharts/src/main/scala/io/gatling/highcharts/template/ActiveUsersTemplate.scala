@@ -6,8 +6,8 @@
 
 package io.gatling.highcharts.template
 
-import io.gatling.highcharts.series.NumberPerSecondSeries
 import io.gatling.charts.util.Colors._
+import io.gatling.highcharts.series.NumberPerSecondSeries
 
 class ActiveUsersTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
 

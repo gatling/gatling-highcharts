@@ -6,8 +6,8 @@
 
 package io.gatling.highcharts.template
 
-import io.gatling.highcharts.series.PercentilesSeries
 import io.gatling.charts.util.Colors._
+import io.gatling.highcharts.series.PercentilesSeries
 
 class PercentilesOverTimeTemplate(containerId: String, yAxisName: String, series: PercentilesSeries) extends Template {
 
