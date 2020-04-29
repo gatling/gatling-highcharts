@@ -29,3 +29,5 @@ lazy val gatlingHighchartsBundle = gatlingHighchartsModule("gatling-charts-highc
   .settings(libraryDependencies ++= gatlingHighchartsBundleDeps(version.value, scalaVersion.value))
   .settings(bundleSettings: _*)
   .settings(noArtifactToPublish)
+
+ThisBuild / scalafixDependencies += "com.nequissimus" %% "sort-imports" % "0.4.1"
