@@ -30,4 +30,4 @@ lazy val gatlingHighchartsBundle = gatlingHighchartsModule("gatling-charts-highc
   .settings(bundleSettings: _*)
   .settings(noArtifactToPublish)
 
-ThisBuild / scalafixDependencies += "com.nequissimus" %% "sort-imports" % "0.4.1"
+ThisBuild / scalafixDependencies += "com.nequissimus" %% "sort-imports" % "0.5.0"
