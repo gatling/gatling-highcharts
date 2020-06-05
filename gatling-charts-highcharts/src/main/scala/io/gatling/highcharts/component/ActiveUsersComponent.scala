@@ -13,9 +13,12 @@ import io.gatling.highcharts.template.ActiveUsersTemplate
 object ActiveUsersComponent {
 
   def apply(runStart: Long, series: Seq[Series[IntVsTimePlot]]): HighchartsComponent = {
-    val template = new ActiveUsersTemplate(runStart, series.map { s =>
-      NumberPerSecondSeries(s.name, s.data, s.colors.head)
-    })
+    val template = new ActiveUsersTemplate(
+      runStart,
+      series.map { s =>
+        NumberPerSecondSeries(s.name, s.data, s.colors.head)
+      }
+    )
     new HighchartsComponent(template)
   }
 }

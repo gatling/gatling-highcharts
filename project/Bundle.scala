@@ -28,14 +28,15 @@ object Bundle {
     mappings in Universal ++= zipFileMappings.value
   ) ++ useNativeZip
 
-  def zipFileMappings = Def.task {
-    IO.unzip(bundleFile.value, unzippedBundleLocation.value)
-    val location = unzippedBundleLocation.value.listFiles.head
-    // IO.unzip seems to "forget" file permissions, reset them after unzipping
-    (location / "bin").allPaths.get.map(_.setExecutable(true))
-    val finder = location.allPaths --- location
-    finder pair relativeTo(location)
-  }
+  def zipFileMappings =
+    Def.task {
+      IO.unzip(bundleFile.value, unzippedBundleLocation.value)
+      val location = unzippedBundleLocation.value.listFiles.head
+      // IO.unzip seems to "forget" file permissions, reset them after unzipping
+      (location / "bin").allPaths.get.map(_.setExecutable(true))
+      val finder = location.allPaths --- location
+      finder pair relativeTo(location)
+    }
 
   def buildDestinationJarPath(folder: String, sourceJarPath: File, gatlingVersion: String, scalaVersion: String): String =
     if (sourceJarPath.getName.startsWith("gatling") && !sourceJarPath.getName.contains(gatlingVersion)) {
