@@ -23,16 +23,12 @@ object GroupDetailsDurationDistributionComponent {
       containerId,
       StackedColumnSeries(
         durationDistributionSuccess.name,
-        durationDistributionSuccess.data.map { plot =>
-          new PieSlice(plot.time.toString, plot.roundedUpValue)
-        },
+        durationDistributionSuccess.data.map(plot => new PieSlice(plot.time.toString, plot.roundedUpValue)),
         durationDistributionSuccess.colors.head
       ),
       StackedColumnSeries(
         durationDistributionFailure.name,
-        durationDistributionFailure.data.map { plot =>
-          new PieSlice(plot.time.toString, plot.roundedUpValue)
-        },
+        durationDistributionFailure.data.map(plot => new PieSlice(plot.time.toString, plot.roundedUpValue)),
         durationDistributionFailure.colors.head
       )
     )
