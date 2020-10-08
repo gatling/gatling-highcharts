@@ -1,6 +1,6 @@
 import sbt._
 import sbt.Keys._
-import sbt.internal.inc.classpath.ClasspathUtilities
+import sbt.internal.inc.classpath.ClasspathUtil
 import com.typesafe.sbt.SbtNativePackager._
 import autoImport._
 import NativePackagerHelper._
@@ -21,7 +21,7 @@ object Bundle {
   }
 
   val bundleSettings = bundleArtifacts ++ Seq(
-    gatlingJars := (fullClasspath in Runtime).value.map(_.data).filter(ClasspathUtilities.isArchive),
+    gatlingJars := (fullClasspath in Runtime).value.map(_.data).filter(file => ClasspathUtil.isArchive(file.toPath)),
     mappings in Universal ++= gatlingJars.value.map(jar => jar -> buildDestinationJarPath("lib", jar, version.value, scalaVersion.value)),
     bundleFile := update.value.select(artifact = artifactFilter(classifier = "bundle")).head,
     unzippedBundleLocation := target.value / "unzipped",
