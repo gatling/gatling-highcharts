@@ -104,7 +104,7 @@ ${if (area) ",type: 'area'" else ""}"""
       s"""{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors.head, 0, area = true)}},"""
     } else {
       s"""{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors.head, 0, area = false)}},
-{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors(1), 1, area = true)}},
-{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors(2), 2, area = true)}},"""
+{${renderCountsPerSecSeries(series.names(1), chartVariableName, series.colors(1), 1, area = true)}},
+{${renderCountsPerSecSeries(series.names(2), chartVariableName, series.colors(2), 2, area = true)}},"""
     }
 }
