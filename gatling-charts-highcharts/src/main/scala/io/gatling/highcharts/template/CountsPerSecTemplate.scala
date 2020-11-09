@@ -126,7 +126,7 @@ var requestsChart = new Highcharts.StockChart({
 }
 """
     } else {
-      s""
+      ""
     }}
   ]
 });
