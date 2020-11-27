@@ -4,6 +4,8 @@ import BuildSettings._
 import Dependencies._
 import Bundle._
 
+scalaVersion := "2.13.4"
+
 // Root project
 
 lazy val root = Project("gatling-highcharts", file("."))
