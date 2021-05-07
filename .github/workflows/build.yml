@@ -1,0 +1,72 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CURRENT_VERSION: "3.6.0"
+      JVM_OPTS: "-Xmx6G"
+      SBT_OPTS: "-Dsbt.ci=true"
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Checkout gatling/gatling
+        uses: actions/checkout@v2
+        with:
+          repository: gatling/gatling
+          ref: main
+          path: gatling
+
+      - name: Checkout gatling/gatling-highcharts
+        uses: actions/checkout@v2
+        with:
+          path: gatling-highcharts
+
+      - name: Setup Scala
+        uses: olafurpg/setup-scala@v10
+        with:
+          java-version: "adopt@1.8"
+
+      - name: Cache SBT
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.ivy2/cache
+            ~/.cache/coursier
+            ~/.sbt/launchers
+            ~/.sbt/boot
+            ~/.sbt/preloaded
+          key: ${{ runner.os }}-sbt-${{ hashFiles('**/build.sbt', '**/plugins.sbt', '**/build.properties') }}
+
+      - name: Publish gatling locally
+        working-directory: gatling
+        run: |
+          sbt -Dproject.version="$CURRENT_VERSION" publishLocal
+
+      - name: Test
+        working-directory: gatling-highcharts
+        run: |
+          sbt \
+            -Dproject.version="$CURRENT_VERSION" \
+            "all headerCheck" \
+            "all scalafmtSbtCheck" \
+            "all scalafmtCheckAll" \
+            "all compile:gatlingScalafixCheck" \
+            "all test:gatlingScalafixCheck" \
+            "all gatlingScalafixCheck" \
+            "test"
