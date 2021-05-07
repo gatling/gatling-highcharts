@@ -16,16 +16,16 @@ object Bundle {
     def bundleArtifact(ext: String) = Artifact("gatling-charts-highcharts-bundle", ext, ext, "bundle")
 
     Seq(
-      addArtifact(bundleArtifact("zip"), packageBin in Universal)
+      addArtifact(bundleArtifact("zip"), Universal / packageBin)
     ).flatMap(_.settings)
   }
 
   val bundleSettings = bundleArtifacts ++ Seq(
-    gatlingJars := (fullClasspath in Runtime).value.map(_.data).filter(file => ClasspathUtil.isArchive(file.toPath)),
-    mappings in Universal ++= gatlingJars.value.map(jar => jar -> buildDestinationJarPath("lib", jar, version.value, scalaVersion.value)),
+    gatlingJars := (Runtime / fullClasspath).value.map(_.data).filter(file => ClasspathUtil.isArchive(file.toPath)),
+    Universal / mappings ++= gatlingJars.value.map(jar => jar -> buildDestinationJarPath("lib", jar, version.value, scalaVersion.value)),
     bundleFile := update.value.select(artifact = artifactFilter(classifier = "bundle")).head,
     unzippedBundleLocation := target.value / "unzipped",
-    mappings in Universal ++= zipFileMappings.value
+    Universal / mappings ++= zipFileMappings.value
   ) ++ useNativeZip
 
   def zipFileMappings =

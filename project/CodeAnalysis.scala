@@ -6,8 +6,8 @@ import wartremover.Wart
 object CodeAnalysis {
 
   lazy val settings = Seq(
-    wartremoverErrors in (Compile, compile) := Warts.allBut(disabledWarts: _*),
-    wartremoverErrors in (Test, compile) := (wartremoverErrors in (Compile, compile)).value
+    Compile / compile / wartremoverErrors := Warts.allBut(disabledWarts: _*),
+    Test / compile / wartremoverErrors := (Compile / compile / wartremoverErrors).value
   )
 
   private def disabledWarts: List[Wart] =

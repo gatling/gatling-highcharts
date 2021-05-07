@@ -29,5 +29,5 @@ object BuildSettings {
   lazy val gatlingHighchartsModuleSettings = basicSettings
 
   lazy val noArtifactToPublish =
-    publishArtifact in Compile := false
+    Compile / publishArtifact := false
 }
