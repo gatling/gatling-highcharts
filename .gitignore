@@ -5,7 +5,8 @@
 *.iws
 
 # sbt
-.bsp/sbt.json
+/.bsp/
+/version.sbt
 
 # building
 target

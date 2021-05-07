@@ -4,22 +4,27 @@ import BuildSettings._
 import Dependencies._
 import Bundle._
 
-scalaVersion := "2.13.4"
+Global / githubPath := "gatling/gatling-highcharts"
+Global / gatlingDevelopers := Seq(
+  GatlingDeveloper("slandelle@gatling.io", "Stephane Landelle", isGatlingCorp = true),
+  GatlingDeveloper("gcorre@gatling.io", "Guillaume Corré", isGatlingCorp = true)
+)
+Global / scalaVersion := "2.13.4"
 
 // Root project
 
 lazy val root = Project("gatling-highcharts", file("."))
-  .enablePlugins(AutomateHeaderPlugin, SonatypeReleasePlugin)
+  .enablePlugins(GatlingOssPlugin)
   .aggregate(gatlingChartsHighcharts, gatlingHighchartsBundle)
-  .settings(basicSettings: _*)
-  .settings(noArtifactToPublish)
+  .settings(basicSettings)
+  .settings(publish / skip := true)
 
 // Modules
 
 def gatlingHighchartsModule(id: String) =
   Project(id, file(id))
-    .enablePlugins(AutomateHeaderPlugin, SonatypeReleasePlugin)
-    .settings(gatlingHighchartsModuleSettings ++ CodeAnalysis.settings)
+    .enablePlugins(GatlingOssPlugin)
+    .settings(basicSettings ++ CodeAnalysis.settings)
 
 lazy val gatlingChartsHighcharts = gatlingHighchartsModule("gatling-charts-highcharts")
   .settings(libraryDependencies ++= gatlingChartsHighchartsDeps(version.value))
@@ -30,4 +35,4 @@ lazy val gatlingHighchartsBundle = gatlingHighchartsModule("gatling-charts-highc
   .enablePlugins(UniversalPlugin)
   .settings(libraryDependencies ++= gatlingHighchartsBundleDeps(version.value, scalaVersion.value))
   .settings(bundleSettings: _*)
-  .settings(noArtifactToPublish)
+  .settings(publish / skip := true)
