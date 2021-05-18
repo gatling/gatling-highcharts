@@ -35,4 +35,6 @@ lazy val gatlingHighchartsBundle = gatlingHighchartsModule("gatling-charts-highc
   .enablePlugins(UniversalPlugin)
   .settings(libraryDependencies ++= gatlingHighchartsBundleDeps(version.value, scalaVersion.value))
   .settings(bundleSettings: _*)
-  .settings(publish / skip := true)
+  .settings(packageDoc / publishArtifact := false) // no javadoc
+  .settings(packageSrc / publishArtifact := false) // no source
+  .settings(packageBin / publishArtifact := false) // no jar (remains the bundle.zip)
