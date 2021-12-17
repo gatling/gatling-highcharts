@@ -36,10 +36,11 @@ jobs:
         with:
           path: gatling-highcharts
 
-      - name: Setup Scala
-        uses: olafurpg/setup-scala@v10
+      - name: Setup JDK
+        uses: actions/setup-java@v2
         with:
-          java-version: "adopt@1.8"
+          distribution: 'zulu'
+          java-version: '8'
 
       - name: Cache SBT
         uses: actions/cache@v2
