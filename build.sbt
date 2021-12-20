@@ -10,6 +10,7 @@ Global / gatlingDevelopers := Seq(
   GatlingDeveloper("gcorre@gatling.io", "Guillaume Corré", isGatlingCorp = true)
 )
 Global / scalaVersion := "2.13.7"
+ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 
 // Root project
 
