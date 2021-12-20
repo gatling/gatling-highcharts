@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 30
     env:
       CURRENT_VERSION: "3.6.0"
-      JVM_OPTS: "-Xmx6G"
+      JAVA_OPTS: "-Xmx6G"
       SBT_OPTS: "-Dsbt.ci=true"
     steps:
       - name: Cancel Previous Runs
