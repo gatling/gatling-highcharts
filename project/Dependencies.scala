@@ -8,6 +8,7 @@ object Dependencies {
   def app(gatlingVersion: String)         = "io.gatling"     % "gatling-app"         % gatlingVersion
   def compiler(gatlingVersion: String)    = "io.gatling"     % "gatling-compiler"    % gatlingVersion
   def recorder(gatlingVersion: String)    = "io.gatling"     % "gatling-recorder"    % gatlingVersion
+  def bundleJar(gatlingVersion: String)   = "io.gatling"     % "gatling-bundle"      % gatlingVersion
   def bundle(gatlingVersion: String)      = "io.gatling"     % "gatling-bundle"      % gatlingVersion artifacts bundleArtifact
   // format: ON
 
@@ -15,5 +16,5 @@ object Dependencies {
     Seq(app _, recorder _).map(_(version))
 
   def gatlingHighchartsBundleDeps(gatlingVersion: String, scalaVersion: String) =
-    Seq(bundle _, compiler _).map(_(gatlingVersion))
+    Seq(bundle _, compiler _, bundleJar _).map(_(gatlingVersion))
 }
