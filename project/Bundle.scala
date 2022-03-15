@@ -39,7 +39,11 @@ object Bundle {
     }
 
   def buildDestinationJarPath(folder: String, sourceJarPath: File, gatlingVersion: String, scalaVersion: String): String =
-    if (sourceJarPath.getName.startsWith("gatling") && !sourceJarPath.getName.contains(gatlingVersion)) {
+    if (
+      sourceJarPath.getName.startsWith("gatling") && !sourceJarPath.getName
+        .contains(gatlingVersion) && !sourceJarPath.getName
+        .startsWith("gatling-enterprise-plugin-commons") && !sourceJarPath.getName.startsWith("gatling-recorder-bc")
+    ) {
       s"$folder/${sourceJarPath.base}-$gatlingVersion.${sourceJarPath.ext}"
     } else if (Set("scala-library.jar", "scala-reflect.jar", "scala-compiler.jar").contains(sourceJarPath.getName)) {
       s"$folder/${sourceJarPath.base}-$scalaVersion.${sourceJarPath.ext}"
