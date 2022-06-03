@@ -7,5 +7,6 @@
 package io.gatling.highcharts.series
 
 import io.gatling.charts.stats._
+import io.gatling.charts.util.Color
 
-final case class NumberPerSecondSeries(name: String, data: Iterable[IntVsTimePlot], color: String)
+final case class NumberPerSecondSeries(name: String, data: Iterable[IntVsTimePlot], color: Color)

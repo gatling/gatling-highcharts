@@ -6,7 +6,7 @@
 
 package io.gatling.highcharts.template
 
-import io.gatling.charts.util.Colors._
+import io.gatling.charts.util.Color
 import io.gatling.highcharts.series.{ CountsPerSecSeries, PieSeries }
 
 class CountsPerSecTemplate(
@@ -44,23 +44,23 @@ var requestsChart = new Highcharts.StockChart({
   rangeSelector: {
     buttonSpacing: 0,
     buttonTheme: {
-      fill: '$LightGrey',
+      fill: '${Color.RangeSelector.Fill}',
       padding: 1,
-      stroke: '$Black',
+      stroke: '${Color.RangeSelector.Border}',
       'stroke-width': 0.25,
       style: {
-        color: '$Black',
+        color: '${Color.RangeSelector.Border}',
         fontWeight: 'bold',
       },
       states: {
-        stroke: '$Black',
+        stroke: '${Color.RangeSelector.Border}',
         'stroke-width': 0.25,
         hover: {
-          fill: '$DarkGrey',
+          fill: '${Color.RangeSelector.Hover}',
           style: { color: 'black' }
          },
          select: {
-          fill: '$DarkOrange',
+          fill: '${Color.RangeSelector.Selected}',
           style: { color: 'white' }
         }
       }
@@ -103,16 +103,14 @@ var requestsChart = new Highcharts.StockChart({
   yAxis:[
     {
       min: 0,
-      title: {
-        text: '$yAxisTitle',
-        style: { color: '${Blue.code}' }
-      },
-      opposite: false
+      title: { text: '$yAxisTitle' },
+      opposite: false,
+      reversedStacks: false
     }, {
       min: 0,
       title: {
         text: 'Active Users',
-        style: { color: '${Orange.code}' }
+        style: { color: '${Color.Users.All}' }
       },
       opposite: true
     }

@@ -1,11 +1,11 @@
 /*
- * Copyright 2011-2014 eBusiness Information, Groupe Excilys (www.ebusinessinformation.fr)
+ * Copyright 2011-2022 Gatling Corp
  *
  * Licensed under the Gatling Highcharts License
  */
 Highcharts.theme = {
 	chart: {
-		backgroundColor: '#e6e5e0',
+		backgroundColor: '#f7f7f7',
 		borderWidth: 0,
 		borderRadius: 8,
 		plotBackgroundColor: null,
@@ -43,7 +43,7 @@ Highcharts.theme = {
 			style: {
 				color: '#666',
 				font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
-			}				
+			}
 		}
 	},
 	labels: {
@@ -51,8 +51,8 @@ Highcharts.theme = {
 			color: '#CCC'
 		}
 	},
-	
-	
+
+
 	rangeSelector: {
 		buttonTheme: {
 			fill: '#cfc9c6',
@@ -79,7 +79,7 @@ Highcharts.theme = {
 						color: '#FFF'
 					}
 				}
-			}					
+			}
 		},
 		inputStyle: {
 			backgroundColor: '#333',
@@ -89,23 +89,23 @@ Highcharts.theme = {
 			color: '#8b897d'
 		}
 	},
-	
+
 	navigator: {
 		handles: {
-			backgroundColor: '#e6e5e0',
+			backgroundColor: '#f7f7f7',
 			borderColor: '#92918C'
 		},
 		outlineColor: '#92918C',
 		outlineWidth: 1,
 		maskFill: 'rgba(146, 145, 140, 0.5)',
 		series: {
-			color: '#4572A7',
-			lineColor: '#4572A7'
+			color: '#5E7BE2',
+			lineColor: '#5E7BE2'
 		}
 	},
-	
+
 	scrollbar: {
-		buttonBackgroundColor: '#e6e5e0',
+		buttonBackgroundColor: '#f7f7f7',
 		buttonBorderWidth: 1,
 		buttonBorderColor: '#92918C',
 		buttonArrowColor: '#92918C',

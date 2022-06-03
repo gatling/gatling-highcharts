@@ -6,7 +6,7 @@
 
 package io.gatling.highcharts.template
 
-import io.gatling.charts.util.Colors._
+import io.gatling.charts.util.Color
 import io.gatling.highcharts.series.NumberPerSecondSeries
 
 class ActiveUsersTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
@@ -33,23 +33,23 @@ var allUsersChart = new Highcharts.StockChart({
   rangeSelector: {
     buttonSpacing: 0,
     buttonTheme: {
-      fill: '$LightGrey',
+      fill: '${Color.RangeSelector.Fill}',
       padding: 1,
-      stroke: '$Black',
+      stroke: '${Color.RangeSelector.Border}',
       'stroke-width': 0.25,
       style: {
-        color: '$Black',
+        color: '${Color.RangeSelector.Border}',
         fontWeight: 'bold',
       },
       states: {
-        stroke: '$Black',
+        stroke: '${Color.RangeSelector.Border}',
         'stroke-width': 0.25,
         hover: {
-          fill: '$DarkGrey',
+          fill: '${Color.RangeSelector.Hover}',
           style: { color: 'black' }
         },
         select: {
-          fill: '$DarkOrange',
+          fill: '${Color.RangeSelector.Selected}',
           style: { color: 'white' }
         }
       }

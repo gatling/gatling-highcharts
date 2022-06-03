@@ -6,7 +6,7 @@
 
 package io.gatling.highcharts.template
 
-import io.gatling.charts.util.Colors._
+import io.gatling.charts.util.Color
 
 class RequestDetailsIndicatorTemplate extends Template {
 
@@ -32,7 +32,8 @@ var indicatorsChart = new Highcharts.Chart({
     ]
   },
   yAxis: {
-    title: { text: 'Number of Requests' }
+    title: { text: 'Number of Requests' },
+    reversedStacks: false
   },
   tooltip: {
     formatter: function() {
@@ -55,19 +56,19 @@ var indicatorsChart = new Highcharts.Chart({
     {
       type: 'column',
       data: [{
-      	color: '${Green.code}',
+      	color: '${Color.Requests.Ok}',
       	y: pageStats.group1.count
       },
       {
-      	color: '${Yellow.code}',
+      	color: '${Color.Requests.Fine}',
       	y: pageStats.group2.count
       },
       {
-      	color: '${Orange.code}',
+      	color: '${Color.Requests.Poor}',
       	y: pageStats.group3.count
       },
       {
-      	color: '${Red.code}',
+      	color: '${Color.Requests.Ko}',
       	y: pageStats.group4.count
       }]
     },
@@ -78,22 +79,22 @@ var indicatorsChart = new Highcharts.Chart({
         {
           name: pageStats.group1.name,
           y: pageStats.group1.percentage,
-          color: '${Green.code}'
+          color: '${Color.Requests.Ok}'
         },
         {
           name: pageStats.group2.name,
           y: pageStats.group2.percentage,
-          color: '${Yellow.code}'
+          color: '${Color.Requests.Fine}'
         },
         {
           name: pageStats.group3.name,
           y: pageStats.group3.percentage,
-          color: '${Orange.code}'
+          color: '${Color.Requests.Poor}'
         },
         {
           name: pageStats.group4.name,
           y: pageStats.group4.percentage,
-          color: '${Red.code}'
+          color: '${Color.Requests.Ko}'
         }
       ],
       center: [470, 85],
@@ -112,6 +113,7 @@ indicatorsChart.setTitle({
 
   override def html: String = s"""
             <div class="schema demi">
+              <a name="indicators"></a>
               <div id="container_indicators" class="demi"></div>
             </div>
 """

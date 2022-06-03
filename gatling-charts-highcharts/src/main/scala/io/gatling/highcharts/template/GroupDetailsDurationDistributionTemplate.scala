@@ -36,7 +36,8 @@ var responseTimeDistributionChart = new Highcharts.Chart({
   },
   yAxis: {
     min: 0,
-    title: { text: 'Percentage of Requests' }
+    title: { text: 'Percentage of Requests' },
+    reversedStacks: false
   },
   tooltip: {
     formatter: function() {

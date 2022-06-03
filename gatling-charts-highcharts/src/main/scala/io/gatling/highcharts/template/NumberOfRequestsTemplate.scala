@@ -7,6 +7,7 @@
 package io.gatling.highcharts.template
 
 import io.gatling.charts.report.Container.{ Group, Request }
+import io.gatling.charts.util.Color
 
 class NumberOfRequestsTemplate(numberOfRequestNames: Int) extends Template {
 
@@ -54,7 +55,8 @@ new Highcharts.Chart({
     labels:{ enabled:false }
   },
   yAxis:{
-    min:0
+    min:0,
+    reversedStacks: false
   },
   plotOptions:{
     series:{
@@ -74,12 +76,12 @@ new Highcharts.Chart({
     {
       name:'KO',
       data:numberOfRequestsData.kos,
-      color:"#FF0000"
+      color:"${Color.Requests.Ko}"
     },
     {
       name:'OK',
       data:numberOfRequestsData.oks,
-      color:"#4572A7"
+      color:"${Color.Requests.Ok}"
     }
   ]
 });

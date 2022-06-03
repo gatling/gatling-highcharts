@@ -7,12 +7,13 @@
 package io.gatling.highcharts.series
 
 import io.gatling.charts.stats._
+import io.gatling.charts.util.Color
 
-final case class PieSeries(name: String, data: Iterable[PieSlice], seriesColors: List[String]) {
+final case class PieSeries(name: String, data: Iterable[PieSlice], colors: List[Color]) {
 
   def elements: Iterable[String] =
     data
-      .zip(seriesColors)
+      .zip(colors)
       .map { case (slice, color) => (slice.name, slice.value, color) }
       .map { case (name, count, color) => s"{name: '$name', y: $count, color: '$color'}" }
 }

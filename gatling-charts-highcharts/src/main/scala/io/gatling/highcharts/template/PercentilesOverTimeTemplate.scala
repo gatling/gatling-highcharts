@@ -6,7 +6,7 @@
 
 package io.gatling.highcharts.template
 
-import io.gatling.charts.util.Colors._
+import io.gatling.charts.util.Color
 import io.gatling.highcharts.series.PercentilesSeries
 
 class PercentilesOverTimeTemplate(containerId: String, yAxisName: String, series: PercentilesSeries) extends Template {
@@ -21,12 +21,12 @@ var responseTimeChart = new Highcharts.StockChart({
     renderTo: '$containerId',
     zoomType: 'x'
   },
-  colors: ['#C4FD90', '#7FF77F', '#6FF2AD', '#60ECE5', '#51A8E7', '#4353E2', '#7335DC', '#BC28D7', '#D11C97', '#C73905', '$Orange'],
+  colors: [${series.colors.map(color => s"'$color'").mkString(", ")}],
   credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
-    y: -65,
+    y: -55,
     borderWidth: 0,
     itemStyle: { fontWeight: "normal" }
   },
@@ -36,23 +36,23 @@ var responseTimeChart = new Highcharts.StockChart({
     rangeSelector: { align: "left" },
     buttonSpacing: 0,
     buttonTheme: {
-      fill: '$LightGrey',
+      fill: '${Color.RangeSelector.Fill}',
       padding: 1,
-      stroke: '$Black',
+      stroke: '${Color.RangeSelector.Border}',
       'stroke-width': 0.25,
       style: {
-        color: '$Black',
+        color: '${Color.RangeSelector.Border}',
         fontWeight: 'bold',
       },
       states: {
-        stroke: '$Black',
+        stroke: '${Color.RangeSelector.Hover}',
         'stroke-width': 0.25,
         hover: {
-          fill: '$DarkGrey',
+          fill: '${Color.RangeSelector.Hover}',
           style: { color: 'black' }
         },
         select: {
-          fill: '$DarkOrange',
+          fill: '${Color.RangeSelector.Selected}',
           style: { color: 'white' }
         }
       }
@@ -87,16 +87,13 @@ var responseTimeChart = new Highcharts.StockChart({
   yAxis:[
     {
       min: 0,
-      title: {
-        text: '$yAxisName',
-        style: { color: '${Blue.code}' }
-      },
+      title: { text: '$yAxisName' },
       opposite: false
     }, {
       min: 0,
       title: {
         text: 'Active Users',
-        style: { color: '${Orange.code}' }
+        style: { color: '${Color.Users.All}' }
       },
       opposite: true
     }

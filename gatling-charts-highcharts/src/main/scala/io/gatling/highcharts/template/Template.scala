@@ -6,6 +6,7 @@
 
 package io.gatling.highcharts.template
 
+import io.gatling.charts.util.Color
 import io.gatling.highcharts.series._
 
 object Template {
@@ -92,7 +93,7 @@ zIndex: $zIndex
          {${renderPercentileSeries("max", chartVariableName, 9, 1)}},"""
     } else ""}"""
 
-  private def renderCountsPerSecSeries(name: String, chartVariableName: String, color: String, index: Int, area: Boolean): String = s"""
+  private def renderCountsPerSecSeries(name: String, chartVariableName: String, color: Color, index: Int, area: Boolean): String = s"""
 color: '$color',
 name: '$name',
 data: $chartVariableName[$index],
