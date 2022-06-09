@@ -4,12 +4,12 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.series
+package io.gatling.charts.highcharts.series
 
 import io.gatling.charts.stats._
 import io.gatling.charts.util.Color
 
-final case class PieSeries(name: String, data: Iterable[PieSlice], colors: List[Color]) {
+private[highcharts] final case class PieSeries(name: String, data: Iterable[PieSlice], colors: List[Color]) {
 
   def elements: Iterable[String] =
     data

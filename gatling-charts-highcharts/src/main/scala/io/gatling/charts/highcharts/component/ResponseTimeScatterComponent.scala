@@ -4,16 +4,17 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.component
+package io.gatling.charts.highcharts.component
 
+import io.gatling.charts.component.Component
+import io.gatling.charts.highcharts.series.ScatterSeries
+import io.gatling.charts.highcharts.template.ResponseTimeScatterTemplate
 import io.gatling.charts.stats._
-import io.gatling.highcharts.series.ScatterSeries
-import io.gatling.highcharts.template.RequestDetailsScatterTemplate
 
-object RequestDetailsResponseTimeScatterComponent {
+private[charts] object ResponseTimeScatterComponent {
 
-  def apply(success: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]): HighchartsComponent = {
-    val template = new RequestDetailsScatterTemplate(
+  def apply(success: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]): Component = {
+    val template = new ResponseTimeScatterTemplate(
       ScatterSeries(success.name, success.data, success.colors.head),
       ScatterSeries(failures.name, failures.data, failures.colors.head),
       "container_response_time_dispersion",

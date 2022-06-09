@@ -4,13 +4,13 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.series
+package io.gatling.charts.highcharts.series
 
+import io.gatling.charts.highcharts.template.Template
 import io.gatling.charts.stats._
 import io.gatling.charts.util.Color
-import io.gatling.highcharts.template.Template
 
-final case class CountsPerSecSeries(runStart: Long, data: Iterable[CountsVsTimePlot], colors: List[Color]) {
+private[highcharts] final case class CountsPerSecSeries(runStart: Long, data: Iterable[CountsVsTimePlot], colors: List[Color]) {
 
   val names: Seq[String] = List(Series.All, Series.OK, Series.KO)
 

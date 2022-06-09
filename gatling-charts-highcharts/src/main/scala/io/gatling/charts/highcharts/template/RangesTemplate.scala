@@ -4,21 +4,21 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.template
+package io.gatling.charts.highcharts.template
 
 import io.gatling.charts.util.Color
 
-class RequestDetailsIndicatorTemplate extends Template {
+private[highcharts] class RangesTemplate(chartTitle: String, eventName: String) extends Template {
 
   override def js: String = s"""
 Highcharts.setOptions({
   global: { useUTC: false }
 });
 
-var indicatorsChart = new Highcharts.Chart({
+var rangesChart = new Highcharts.Chart({
   chart: {
-    renderTo: 'container_indicators',
-    marginRight: 150
+    renderTo: 'container_ranges',
+    marginRight: 100
   },
   credits: { enabled: false },
   legend: { enabled: false },
@@ -32,16 +32,16 @@ var indicatorsChart = new Highcharts.Chart({
     ]
   },
   yAxis: {
-    title: { text: 'Number of Requests' },
+    title: { text: 'Number of ${eventName.capitalize}' },
     reversedStacks: false
   },
   tooltip: {
     formatter: function() {
       var s;
       if (this.point.name) { // the pie chart
-        s = ''+ this.point.name +': '+ this.y +'% requests';
+        s = ''+ this.point.name +': '+ this.y +'% $eventName';
       } else {
-        s = ''+ this.y + ' requests';
+        s = ''+ this.y + ' $eventName';
       }
       return s;
     }
@@ -97,24 +97,24 @@ var indicatorsChart = new Highcharts.Chart({
           color: '${Color.Requests.Ko}'
         }
       ],
-      center: [470, 85],
-      size: 100,
+      center: [345, 0],
+      size: 90,
       showInLegend: false,
       dataLabels: { enabled: false }
     }
   ]
 });
 
-indicatorsChart.setTitle({
-  text: '<span class="chart_title">Indicators</span>',
+rangesChart.setTitle({
+  text: '<span class="chart_title">$chartTitle</span>',
   useHTML: true
 });
 """
 
-  override def html: String = s"""
-            <div class="schema demi">
-              <a name="indicators"></a>
-              <div id="container_indicators" class="demi"></div>
+  override def html: String = """
+            <div class="schema ranges">
+              <a name="ranges"></a>
+              <div id="container_ranges" class="ranges"></div>
             </div>
 """
 }

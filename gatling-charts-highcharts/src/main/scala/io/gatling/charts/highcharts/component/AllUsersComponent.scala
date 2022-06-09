@@ -4,13 +4,13 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.component
+package io.gatling.charts.highcharts.component
 
+import io.gatling.charts.highcharts.series.NumberPerSecondSeries
+import io.gatling.charts.highcharts.template.Template
 import io.gatling.charts.stats._
-import io.gatling.highcharts.series.NumberPerSecondSeries
-import io.gatling.highcharts.template.Template
 
-class AllUsersComponent(runStart: Long, series: Series[IntVsTimePlot]) {
+private[charts] final class AllUsersComponent(runStart: Long, series: Series[IntVsTimePlot]) {
 
   def getJavascript: String = {
     val numberPerSecondSeries = NumberPerSecondSeries(series.name, series.data, series.colors.head)

@@ -7,36 +7,29 @@
 package io.gatling.charts.component.impl
 
 import io.gatling.charts.component.{ Component, ComponentLibrary }
+import io.gatling.charts.highcharts.component._
 import io.gatling.charts.stats._
-import io.gatling.highcharts.component._
 
-class ComponentLibraryImpl extends ComponentLibrary {
-  def getAllUsersJs(runStart: Long, series: Series[IntVsTimePlot]): String = new AllUsersComponent(runStart, series).getJavascript
-  def getActiveSessionsChartComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component = ActiveUsersComponent(runStart, series)
-  def getRequestsChartComponent(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]): Component =
-    RequestsComponent(runStart, counts, pieSeries)
-  def getResponsesChartComponent(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]): Component =
-    ResponsesComponent(runStart, counts, pieSeries)
-  def getRequestDetailsResponseTimeChartComponent(runStart: Long, responseTimesSuccess: Series[PercentilesVsTimePlot]): Component =
-    RequestDetailsResponseTimeComponent(runStart, responseTimesSuccess)
-  def getRequestDetailsResponseTimeDistributionChartComponent(
+final class ComponentLibraryImpl extends ComponentLibrary {
+  override def getAllUsersJs(runStart: Long, series: Series[IntVsTimePlot]): String = new AllUsersComponent(runStart, series).getJavascript
+  override def getActiveSessionsComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component = ActiveUsersComponent(runStart, series)
+  override def getRangesComponent(chartTitle: String, eventName: String): Component = RangesComponent(chartTitle, eventName)
+  override def getRequestCountPolarComponent: Component = RequestCountPolarComponent.Instance
+  override def getDistributionComponent(
+      title: String,
+      yAxisName: String,
       responseTimesSuccess: Series[PercentVsTimePlot],
       responseTimesFailures: Series[PercentVsTimePlot]
-  ): Component = RequestDetailsResponseTimeDistributionComponent(responseTimesSuccess, responseTimesFailures)
-  def getRequestDetailsResponseTimeScatterChartComponent(successes: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]): Component =
-    RequestDetailsResponseTimeScatterComponent(successes, failures)
-  def getRequestDetailsIndicatorChartComponent: Component = RequestDetailsIndicatorComponent()
-  def getNumberOfRequestsChartComponent(numberOfRequestNames: Int): HighchartsComponent = NumberOfRequestsComponent(numberOfRequestNames)
-  def getGroupDetailsDurationChartComponent(
-      containerId: String,
+  ): Component = DistributionComponent(title, yAxisName, responseTimesSuccess, responseTimesFailures)
+  override def getPercentilesOverTimeComponent(
       yAxisName: String,
       runStart: Long,
       durationsSuccess: Series[PercentilesVsTimePlot]
-  ): Component = GroupDetailsDurationComponent(containerId, yAxisName, runStart, durationsSuccess)
-  def getGroupDetailsDurationDistributionChartComponent(
-      title: String,
-      containerId: String,
-      durationsSuccess: Series[PercentVsTimePlot],
-      durationsFailure: Series[PercentVsTimePlot]
-  ): Component = GroupDetailsDurationDistributionComponent(title, containerId, durationsSuccess, durationsFailure)
+  ): Component = PercentilesOverTimeComponent(yAxisName, runStart, durationsSuccess)
+  override def getRequestsComponent(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]): Component =
+    RequestsComponent(runStart, counts, pieSeries)
+  override def getResponsesComponent(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]): Component =
+    ResponsesComponent(runStart, counts, pieSeries)
+  override def getResponseTimeScatterComponent(successes: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]): Component =
+    ResponseTimeScatterComponent(successes, failures)
 }

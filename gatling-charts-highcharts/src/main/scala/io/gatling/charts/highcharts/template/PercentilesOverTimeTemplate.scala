@@ -4,44 +4,41 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.template
+package io.gatling.charts.highcharts.template
 
+import java.util.Locale
+
+import io.gatling.charts.highcharts.series.PercentilesSeries
 import io.gatling.charts.util.Color
-import io.gatling.highcharts.series.{ CountsPerSecSeries, PieSeries }
 
-class CountsPerSecTemplate(
-    chartTitle: String,
-    yAxisTitle: String,
-    containerName: String,
-    anchorName: String,
-    countsSeries: CountsPerSecSeries,
-    pieSeries: PieSeries,
-    pieX: Int,
-    allOnly: Boolean
-) extends Template {
+private[highcharts] final class PercentilesOverTimeTemplate(yAxisName: String, series: PercentilesSeries) extends Template {
 
-  private val UnpackedPlotsVarName = containerName
+  private val title = series.name
+  private val jsName = s"${title.replaceAll("[ ()]", "").toLowerCase(Locale.ROOT)}Percentiles"
+  private val chartName = s"${jsName}Chart"
+  private val containerId = s"${jsName}Container"
 
-  override def js: String =
-    s"""
-var $UnpackedPlotsVarName = unpack(${countsSeries.render});
+  override def js: String = s"""
+var $jsName = unpack(${series.render});
 
-var requestsChart = new Highcharts.StockChart({
+var $chartName = new Highcharts.StockChart({
   chart: {
-    renderTo: '$containerName',
+    renderTo: '$containerId',
     zoomType: 'x'
   },
+  colors: [${series.colors.map(color => s"'$color'").mkString(", ")}],
   credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
-    itemDistance: 10,
-    y: -285,
+    y: -55,
     borderWidth: 0,
     itemStyle: { fontWeight: "normal" }
   },
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  navigator: { baseSeries: 9 },
   rangeSelector: {
+    rangeSelector: { align: "left" },
     buttonSpacing: 0,
     buttonTheme: {
       fill: '${Color.RangeSelector.Fill}',
@@ -53,13 +50,13 @@ var requestsChart = new Highcharts.StockChart({
         fontWeight: 'bold',
       },
       states: {
-        stroke: '${Color.RangeSelector.Border}',
+        stroke: '${Color.RangeSelector.Hover}',
         'stroke-width': 0.25,
         hover: {
           fill: '${Color.RangeSelector.Hover}',
           style: { color: 'black' }
-         },
-         select: {
+        },
+        select: {
           fill: '${Color.RangeSelector.Selected}',
           style: { color: 'white' }
         }
@@ -87,14 +84,6 @@ var requestsChart = new Highcharts.StockChart({
     selected : 3,
     inputEnabled : false
   },
-  plotOptions: {
-    series: {
-      dataGrouping: { enabled: false }
-    },
-    area: {
-      stacking: 'normal'
-    }
-  },
   xAxis: {
     type: 'datetime',
     ordinal: false,
@@ -103,9 +92,8 @@ var requestsChart = new Highcharts.StockChart({
   yAxis:[
     {
       min: 0,
-      title: { text: '$yAxisTitle' },
-      opposite: false,
-      reversedStacks: false
+      title: { text: '$yAxisName (ms)' },
+      opposite: false
     }, {
       min: 0,
       title: {
@@ -115,30 +103,27 @@ var requestsChart = new Highcharts.StockChart({
       opposite: true
     }
   ],
+  plotOptions: {
+    arearange: { lineWidth: 1 },
+    series: {
+      dataGrouping: { enabled: false }
+    }
+  },
   series: [
-    ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName, allOnly)}
-    allUsersData${if (!allOnly) {
-      s""",
-{
-  ${renderPieSeries(pieSeries, pieX)}
-}
-"""
-    } else {
-      ""
-    }}
+  ${renderPercentilesSeries(series, jsName)}
+  allUsersData
   ]
 });
 
-requestsChart.setTitle({
-  text: '<span class="chart_title">$chartTitle</span>',
+$chartName.setTitle({
+  text: '<span class="chart_title chart_title_">$title</span>',
   useHTML: true
 });
 """
 
   override def html: String = s"""
             <div class="schema geant">
-              <a name="$anchorName"></a>
-                <div id="$containerName" class="geant"></div>
+              <div id="$containerId" class="geant"></div>
             </div>
 """
 }

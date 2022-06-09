@@ -4,36 +4,33 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.template
+package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.highcharts.series.NumberPerSecondSeries
 import io.gatling.charts.util.Color
-import io.gatling.highcharts.series.PercentilesSeries
 
-class PercentilesOverTimeTemplate(containerId: String, yAxisName: String, series: PercentilesSeries) extends Template {
-
-  private val UnpackedPlotsVarName = "responseTimePercentiles"
+private[highcharts] final class ActiveUsersTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
 
   override def js: String = s"""
-var $UnpackedPlotsVarName = unpack(${series.render});
+allUsersData.yAxis = 0;
 
-var responseTimeChart = new Highcharts.StockChart({
+var allUsersChart = new Highcharts.StockChart({
   chart: {
-    renderTo: '$containerId',
+    renderTo: 'container_active_users',
     zoomType: 'x'
   },
-  colors: [${series.colors.map(color => s"'$color'").mkString(", ")}],
   credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
-    y: -55,
+    align: 'right',
+    verticalAlign: 'top',
+    layout: 'vertical',
     borderWidth: 0,
     itemStyle: { fontWeight: "normal" }
   },
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
-  navigator: { baseSeries: 9 },
   rangeSelector: {
-    rangeSelector: { align: "left" },
     buttonSpacing: 0,
     buttonTheme: {
       fill: '${Color.RangeSelector.Fill}',
@@ -45,7 +42,7 @@ var responseTimeChart = new Highcharts.StockChart({
         fontWeight: 'bold',
       },
       states: {
-        stroke: '${Color.RangeSelector.Hover}',
+        stroke: '${Color.RangeSelector.Border}',
         'stroke-width': 0.25,
         hover: {
           fill: '${Color.RangeSelector.Hover}',
@@ -84,41 +81,30 @@ var responseTimeChart = new Highcharts.StockChart({
     ordinal: false,
     maxZoom: 10000 // three days
   },
-  yAxis:[
-    {
-      min: 0,
-      title: { text: '$yAxisName' },
-      opposite: false
-    }, {
-      min: 0,
-      title: {
-        text: 'Active Users',
-        style: { color: '${Color.Users.All}' }
-      },
-      opposite: true
-    }
-  ],
-  plotOptions: {
-    arearange: { lineWidth: 1 },
-    series: {
-      dataGrouping: { enabled: false }
-    }
+  yAxis: {
+    title: { text: 'Number of Active Users' },
+    opposite: false,
+    min: 0
   },
   series: [
-  ${renderPercentilesSeries(series, UnpackedPlotsVarName)}
-  allUsersData
+    ${series.flatMap(serie => List("{", Template.renderUsersPerSecondSeries(runStart, serie), "},\n")).mkString}
+    allUsersData
   ]
 });
 
-responseTimeChart.setTitle({
-  text: '<span class="chart_title chart_title_">${series.name}</span>',
+
+allUsersChart.setTitle({
+  text: '<span class="chart_title">Active Users along the Simulation</span>',
   useHTML: true
 });
+
+allUsersData.yAxis = 1;
 """
 
-  override def html: String = s"""
+  override val html: String = """
             <div class="schema geant">
-              <div id="$containerId" class="geant"></div>
+              <a name="active_users"></a>
+              <div id="container_active_users" class="geant"></div>
             </div>
 """
 }

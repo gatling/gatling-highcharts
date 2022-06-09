@@ -4,28 +4,39 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.template
+package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.highcharts.series.{ CountsPerSecSeries, PieSeries }
 import io.gatling.charts.util.Color
-import io.gatling.highcharts.series.NumberPerSecondSeries
 
-class ActiveUsersTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
+private[highcharts] final class CountsPerSecTemplate(
+    chartTitle: String,
+    yAxisTitle: String,
+    containerName: String,
+    anchorName: String,
+    countsSeries: CountsPerSecSeries,
+    pieSeries: PieSeries,
+    pieX: Int,
+    allOnly: Boolean
+) extends Template {
 
-  override def js: String = s"""
-allUsersData.yAxis = 0;
+  private val UnpackedPlotsVarName = containerName
 
-var allUsersChart = new Highcharts.StockChart({
+  override def js: String =
+    s"""
+var $UnpackedPlotsVarName = unpack(${countsSeries.render});
+
+var requestsChart = new Highcharts.StockChart({
   chart: {
-    renderTo: 'container_active_users',
+    renderTo: '$containerName',
     zoomType: 'x'
   },
   credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
-    align: 'right',
-    verticalAlign: 'top',
-    layout: 'vertical',
+    itemDistance: 10,
+    y: -285,
     borderWidth: 0,
     itemStyle: { fontWeight: "normal" }
   },
@@ -47,8 +58,8 @@ var allUsersChart = new Highcharts.StockChart({
         hover: {
           fill: '${Color.RangeSelector.Hover}',
           style: { color: 'black' }
-        },
-        select: {
+         },
+         select: {
           fill: '${Color.RangeSelector.Selected}',
           style: { color: 'white' }
         }
@@ -76,35 +87,58 @@ var allUsersChart = new Highcharts.StockChart({
     selected : 3,
     inputEnabled : false
   },
+  plotOptions: {
+    series: {
+      dataGrouping: { enabled: false }
+    },
+    area: {
+      stacking: 'normal'
+    }
+  },
   xAxis: {
     type: 'datetime',
     ordinal: false,
     maxZoom: 10000 // three days
   },
-  yAxis: {
-    title: { text: 'Number of Active Users' },
-    opposite: false,
-    min: 0
-  },
+  yAxis:[
+    {
+      min: 0,
+      title: { text: '$yAxisTitle' },
+      opposite: false,
+      reversedStacks: false
+    }, {
+      min: 0,
+      title: {
+        text: 'Active Users',
+        style: { color: '${Color.Users.All}' }
+      },
+      opposite: true
+    }
+  ],
   series: [
-    ${series.flatMap(serie => List("{", Template.renderUsersPerSecondSeries(runStart, serie), "},\n")).mkString}
-    allUsersData
+    ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName, allOnly)}
+    allUsersData${if (!allOnly) {
+      s""",
+{
+  ${renderPieSeries(pieSeries, pieX)}
+}
+"""
+    } else {
+      ""
+    }}
   ]
 });
 
-
-allUsersChart.setTitle({
-  text: '<span class="chart_title">Active Users along the Simulation</span>',
+requestsChart.setTitle({
+  text: '<span class="chart_title">$chartTitle</span>',
   useHTML: true
 });
-
-allUsersData.yAxis = 1;
 """
 
-  override def html: String = """
+  override def html: String = s"""
             <div class="schema geant">
-              <a name="active_users"></a>
-              <div id="container_active_users" class="geant"></div>
+              <a name="$anchorName"></a>
+                <div id="$containerName" class="geant"></div>
             </div>
 """
 }

@@ -4,23 +4,24 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.component
+package io.gatling.charts.highcharts.component
 
+import io.gatling.charts.component.Component
+import io.gatling.charts.highcharts.series.StackedColumnSeries
+import io.gatling.charts.highcharts.template.DistributionTemplate
 import io.gatling.charts.stats._
-import io.gatling.highcharts.series.StackedColumnSeries
-import io.gatling.highcharts.template.GroupDetailsDurationDistributionTemplate
 
-object GroupDetailsDurationDistributionComponent {
+private[charts] object DistributionComponent {
 
   def apply(
       title: String,
-      containerId: String,
+      yAxisName: String,
       durationDistributionSuccess: Series[PercentVsTimePlot],
       durationDistributionFailure: Series[PercentVsTimePlot]
-  ): HighchartsComponent = {
-    val template = new GroupDetailsDurationDistributionTemplate(
+  ): Component = {
+    val template = new DistributionTemplate(
       title,
-      containerId,
+      yAxisName,
       StackedColumnSeries(
         durationDistributionSuccess.name,
         durationDistributionSuccess.data.map(plot => new PieSlice(plot.time.toString, plot.roundedUpValue)),

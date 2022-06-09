@@ -4,12 +4,12 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.template
+package io.gatling.charts.highcharts.template
 
 import io.gatling.charts.report.Container.{ Group, Request }
 import io.gatling.charts.util.Color
 
-class NumberOfRequestsTemplate(numberOfRequestNames: Int) extends Template {
+private[highcharts] object RequestCountPolarTemplate extends Template {
 
   override def js: String = s"""
 function numberOfRequestsDataForGroup(group) {
@@ -33,6 +33,7 @@ function numberOfRequestsDataForGroup(group) {
 }
 
 var numberOfRequestsData = numberOfRequestsDataForGroup(stats);
+var tickInterval = Math.ceil(numberOfRequestsData.names.length / 1000);
 
 new Highcharts.Chart({
   chart: {
@@ -50,7 +51,7 @@ new Highcharts.Chart({
   },
   xAxis:{
     tickmarkPlacement:'on',
-    tickInterval: ${math.ceil(numberOfRequestNames.toDouble / 1000).toInt},
+    tickInterval: tickInterval,
     categories:numberOfRequestsData.names,
     labels:{ enabled:false }
   },

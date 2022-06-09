@@ -4,12 +4,17 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.template
+package io.gatling.charts.highcharts.template
 
-import io.gatling.highcharts.series.ScatterSeries
+import io.gatling.charts.highcharts.series.ScatterSeries
 
-class RequestDetailsScatterTemplate(success: ScatterSeries, failures: ScatterSeries, containerName: String, chartTitle: String, yAxisTitle: String)
-    extends Template {
+private[highcharts] final class ResponseTimeScatterTemplate(
+    success: ScatterSeries,
+    failures: ScatterSeries,
+    containerName: String,
+    chartTitle: String,
+    yAxisTitle: String
+) extends Template {
 
   override def js: String = s"""
 var scatterChart = new Highcharts.Chart({

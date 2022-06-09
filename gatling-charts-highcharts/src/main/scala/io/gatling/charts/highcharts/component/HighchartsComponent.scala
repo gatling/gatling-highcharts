@@ -4,12 +4,12 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.component
+package io.gatling.charts.highcharts.component
 
 import io.gatling.charts.component.Component
-import io.gatling.highcharts.template.Template
+import io.gatling.charts.highcharts.template.Template
 
-class HighchartsComponent(template: Template) extends Component {
+private[highcharts] final class HighchartsComponent(template: Template) extends Component {
 
   def html: String = template.html
 

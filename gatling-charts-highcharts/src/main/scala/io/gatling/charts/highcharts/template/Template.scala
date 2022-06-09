@@ -4,10 +4,10 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.template
+package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.highcharts.series._
 import io.gatling.charts.util.Color
-import io.gatling.highcharts.series._
 
 object Template {
 
@@ -29,7 +29,7 @@ data: [
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }"""
 }
 
-abstract class Template {
+private[highcharts] abstract class Template {
 
   def js: String
 

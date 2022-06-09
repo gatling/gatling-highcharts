@@ -4,19 +4,26 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.template
+package io.gatling.charts.highcharts.template
 
-import io.gatling.highcharts.series.StackedColumnSeries
+import java.util.Locale
 
-class GroupDetailsDurationDistributionTemplate(
+import io.gatling.charts.highcharts.series.StackedColumnSeries
+
+private[highcharts] final class DistributionTemplate(
     title: String,
-    containerId: String,
-    durationSeriesSuccess: StackedColumnSeries,
-    durationSeriesFailure: StackedColumnSeries
+    yAxisName: String,
+    successSeries: StackedColumnSeries,
+    failureSeries: StackedColumnSeries
 ) extends Template {
 
+  private val jsName = s"${title.replace(" ", "").toLowerCase(Locale.ROOT)}Distribution"
+  private val chartName = s"${jsName}Chart"
+  private val containerId = s"${jsName}Container"
+  private val categories = if (successSeries.getXValues.nonEmpty) successSeries.getXValues else failureSeries.getXValues
+
   override def js: String = s"""
-var responseTimeDistributionChart = new Highcharts.Chart({
+var $chartName = new Highcharts.Chart({
   chart: {
     renderTo: '$containerId',
     type: 'column'
@@ -31,12 +38,12 @@ var responseTimeDistributionChart = new Highcharts.Chart({
   },
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
   xAxis: {
-    categories: ['${durationSeriesSuccess.getXValues.mkString("', '")}'],
+    categories: ['${categories.mkString("', '")}'],
     tickInterval: 20
   },
   yAxis: {
     min: 0,
-    title: { text: 'Percentage of Requests' },
+    title: { text: 'Percentage of $yAxisName' },
     reversedStacks: false
   },
   tooltip: {
@@ -54,13 +61,13 @@ var responseTimeDistributionChart = new Highcharts.Chart({
     }
   },
   series: [
-  	{${renderStackedColumnSeries(durationSeriesSuccess)}},
-  	{${renderStackedColumnSeries(durationSeriesFailure)}}
+  	{${renderStackedColumnSeries(successSeries)}},
+  	{${renderStackedColumnSeries(failureSeries)}}
   ]
 });
 
-responseTimeDistributionChart.setTitle({
-  text: '<span class="chart_title">$title</span>',
+$chartName.setTitle({
+  text: '<span class="chart_title">$title Distribution</span>',
   useHTML: true
 });
 """

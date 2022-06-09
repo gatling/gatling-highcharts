@@ -4,12 +4,12 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.highcharts.series
+package io.gatling.charts.highcharts.series
 
 import io.gatling.charts.stats._
 import io.gatling.charts.util.Color
 
-final case class StackedColumnSeries(name: String, data: Iterable[PieSlice], color: Color) {
+private[highcharts] final case class StackedColumnSeries(name: String, data: Iterable[PieSlice], color: Color) {
 
   def elements: Iterable[String] = data.map(_.value.toString)
   val getXValues: Iterable[String] = data.map(_.name)
