@@ -8,7 +8,7 @@ package io.gatling.charts.highcharts.template
 
 import io.gatling.charts.util.Color
 
-private[highcharts] class RangesTemplate(chartTitle: String, eventName: String) extends Template {
+private[highcharts] class RangesTemplate(chartTitle: String, eventName: String, large: Boolean) extends Template {
 
   override def js: String = s"""
 Highcharts.setOptions({
@@ -17,7 +17,7 @@ Highcharts.setOptions({
 
 var rangesChart = new Highcharts.Chart({
   chart: {
-    renderTo: 'container_ranges',
+    renderTo: 'ranges',
     marginRight: 100
   },
   credits: { enabled: false },
@@ -97,7 +97,7 @@ var rangesChart = new Highcharts.Chart({
           color: '${Color.Requests.Ko}'
         }
       ],
-      center: [345, 0],
+      center: [${if (large) "368" else "345"}, 0],
       size: 90,
       showInLegend: false,
       dataLabels: { enabled: false }
@@ -111,10 +111,8 @@ rangesChart.setTitle({
 });
 """
 
-  override def html: String = """
-            <div class="schema ranges">
-              <a name="ranges"></a>
-              <div id="container_ranges" class="ranges"></div>
+  override def html: String = s"""
+            <div id="ranges" class="schema ${if (large) "ranges-large" else "ranges"}">
             </div>
 """
 }

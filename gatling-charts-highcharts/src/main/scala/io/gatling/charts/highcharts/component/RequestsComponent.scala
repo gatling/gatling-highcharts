@@ -17,8 +17,7 @@ private[charts] object RequestsComponent {
     val template = new CountsPerSecTemplate(
       chartTitle = "Number of requests per second",
       yAxisTitle = "Number of requests",
-      containerName = "container_requests",
-      anchorName = "requests",
+      containerName = "requests",
       countsSeries = CountsPerSecSeries(runStart, counts.data, counts.colors),
       pieSeries = PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
       pieX = 760,

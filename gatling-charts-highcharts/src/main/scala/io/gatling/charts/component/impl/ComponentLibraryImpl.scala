@@ -13,7 +13,7 @@ import io.gatling.charts.stats._
 final class ComponentLibraryImpl extends ComponentLibrary {
   override def getAllUsersJs(runStart: Long, series: Series[IntVsTimePlot]): String = new AllUsersComponent(runStart, series).getJavascript
   override def getActiveSessionsComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component = ActiveUsersComponent(runStart, series)
-  override def getRangesComponent(chartTitle: String, eventName: String): Component = RangesComponent(chartTitle, eventName)
+  override def getRangesComponent(chartTitle: String, eventName: String, large: Boolean): Component = RangesComponent(chartTitle, eventName, large)
   override def getRequestCountPolarComponent: Component = RequestCountPolarComponent.Instance
   override def getDistributionComponent(
       title: String,

@@ -24,19 +24,24 @@ var $jsName = unpack(${series.render});
 var $chartName = new Highcharts.StockChart({
   chart: {
     renderTo: '$containerId',
-    zoomType: 'x'
+    zoomType: 'x',
+    marginBottom: 60
   },
   colors: [${series.colors.map(color => s"'$color'").mkString(", ")}],
   credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
-    y: -55,
+    y: -65,
     borderWidth: 0,
-    itemStyle: { fontWeight: "normal" }
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
   },
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
-  navigator: { baseSeries: 9 },
+  navigator: {
+    maskInside: false,
+    baseSeries: 9
+  },
   rangeSelector: {
     rangeSelector: { align: "left" },
     buttonSpacing: 0,

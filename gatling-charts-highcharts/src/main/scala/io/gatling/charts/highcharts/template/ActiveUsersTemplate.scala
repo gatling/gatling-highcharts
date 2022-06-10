@@ -16,7 +16,7 @@ allUsersData.yAxis = 0;
 
 var allUsersChart = new Highcharts.StockChart({
   chart: {
-    renderTo: 'container_active_users',
+    renderTo: 'active_users',
     zoomType: 'x'
   },
   credits: { enabled: false },
@@ -27,9 +27,13 @@ var allUsersChart = new Highcharts.StockChart({
     verticalAlign: 'top',
     layout: 'vertical',
     borderWidth: 0,
-    itemStyle: { fontWeight: "normal" }
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
   },
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  navigator: {
+    maskInside: false
+  },
   rangeSelector: {
     buttonSpacing: 0,
     buttonTheme: {
@@ -103,8 +107,7 @@ allUsersData.yAxis = 1;
 
   override val html: String = """
             <div class="schema geant">
-              <a name="active_users"></a>
-              <div id="container_active_users" class="geant"></div>
+              <div id="active_users" class="geant"></div>
             </div>
 """
 }

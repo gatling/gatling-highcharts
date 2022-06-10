@@ -21,7 +21,8 @@ var scatterChart = new Highcharts.Chart({
   chart: {
     renderTo: '$containerName', 
     defaultSeriesType: 'scatter',
-    zoomType: 'xy'
+    zoomType: 'xy',
+    marginBottom: 90
   },
   credits: { enabled: false },
   xAxis: {
@@ -46,19 +47,11 @@ var scatterChart = new Highcharts.Chart({
     }
   },
   legend: {
-    layout: 'vertical',
-    align: 'left',
-    verticalAlign: 'top',
-    x: 80,
-    y: 10,
+    enabled: true,
     floating: true,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderRadius: 3,
-    itemStyle: {
-      fontWeight: "normal",
-      color: "#274B6D"
-    }
+    y: 0,
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
   },
   plotOptions: {
     scatter: {

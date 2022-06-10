@@ -13,7 +13,6 @@ private[highcharts] final class CountsPerSecTemplate(
     chartTitle: String,
     yAxisTitle: String,
     containerName: String,
-    anchorName: String,
     countsSeries: CountsPerSecSeries,
     pieSeries: PieSeries,
     pieX: Int,
@@ -29,18 +28,22 @@ var $UnpackedPlotsVarName = unpack(${countsSeries.render});
 var requestsChart = new Highcharts.StockChart({
   chart: {
     renderTo: '$containerName',
-    zoomType: 'x'
+    zoomType: 'x',
+    marginBottom: 60
   },
   credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
-    itemDistance: 10,
-    y: -285,
+    y: -65,
     borderWidth: 0,
-    itemStyle: { fontWeight: "normal" }
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
   },
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  navigator: {
+    maskInside: false
+  },
   rangeSelector: {
     buttonSpacing: 0,
     buttonTheme: {
@@ -137,7 +140,6 @@ requestsChart.setTitle({
 
   override def html: String = s"""
             <div class="schema geant">
-              <a name="$anchorName"></a>
                 <div id="$containerName" class="geant"></div>
             </div>
 """

@@ -47,7 +47,8 @@ new Highcharts.Chart({
   },
   title:{
     text:'<span class="chart_title">Number of requests</span>',
-    useHTML: true
+    useHTML: true,
+    widthAdjust:-20
   },
   xAxis:{
     tickmarkPlacement:'on',
@@ -68,21 +69,20 @@ new Highcharts.Chart({
     }
   },
   legend: {
-    	borderWidth: 0.5,
-      borderRadius: 3,
-      borderColor: 'black',
-      itemStyle: { fontWeight: "normal" }
+      borderWidth: 0,
+      itemStyle: { fontWeight: "normal" },
+      symbolRadius: 0
   },
   series:[
+      {
+      name:'OK',
+      data:numberOfRequestsData.oks,
+      color:"${Color.Requests.Ok}"
+    },
     {
       name:'KO',
       data:numberOfRequestsData.kos,
       color:"${Color.Requests.Ko}"
-    },
-    {
-      name:'OK',
-      data:numberOfRequestsData.oks,
-      color:"${Color.Requests.Ok}"
     }
   ]
 });

@@ -26,17 +26,22 @@ private[highcharts] final class DistributionTemplate(
 var $chartName = new Highcharts.Chart({
   chart: {
     renderTo: '$containerId',
-    type: 'column'
+    type: 'column',
+    marginBottom: 60
   },
   credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
-    y: -285,
+    y: 5,
     borderWidth: 0,
-    itemStyle: { fontWeight: "normal" }
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
   },
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  navigator: {
+    maskInside: false
+  },
   xAxis: {
     categories: ['${categories.mkString("', '")}'],
     tickInterval: 20
