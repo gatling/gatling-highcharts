@@ -25,10 +25,10 @@ var rangesChart = new Highcharts.Chart({
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
   xAxis: {
     categories: [
-      pageStats.group1.name,
-      pageStats.group2.name,
-      pageStats.group3.name,
-      pageStats.group4.name
+      pageStats.group1.htmlName,
+      pageStats.group2.htmlName,
+      pageStats.group3.htmlName,
+      pageStats.group4.htmlName
     ]
   },
   yAxis: {
