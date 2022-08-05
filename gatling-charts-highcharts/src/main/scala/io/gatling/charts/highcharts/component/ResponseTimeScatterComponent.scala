@@ -18,8 +18,8 @@ private[charts] object ResponseTimeScatterComponent {
       ScatterSeries(success.name, success.data, success.colors.head),
       ScatterSeries(failures.name, failures.data, failures.colors.head),
       "container_response_time_dispersion",
-      "Response Time against Global RPS",
-      "Response Time"
+      "Response Time against Global Throughput",
+      "Response Time (ms)"
     )
     new HighchartsComponent(template)
   }
