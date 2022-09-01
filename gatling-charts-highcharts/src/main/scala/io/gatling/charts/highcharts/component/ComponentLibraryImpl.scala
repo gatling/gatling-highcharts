@@ -4,7 +4,7 @@
  * Licensed under the Gatling Highcharts License
  */
 
-package io.gatling.charts.component.impl
+package io.gatling.charts.highcharts.component
 
 import io.gatling.charts.component.{ Component, ComponentLibrary }
 import io.gatling.charts.highcharts.component._
