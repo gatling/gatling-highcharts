@@ -13,7 +13,7 @@ object CodeAnalysis {
   private def disabledWarts: List[Wart] =
     List(
       Wart.Overloading,
-      Wart.TraversableOps,
+      Wart.IterableOps,
       Wart.Serializable, // breaks JMS's Serializable usage, looks like a bug
       Wart.StringPlusAny // see https://github.com/wartremover/wartremover/issues/447
     )
