@@ -10,7 +10,6 @@ import io.gatling.charts.highcharts.series._
 import io.gatling.charts.util.Color
 
 object Template {
-
   def millisToSeconds(millis: Long): Long = millis / 1000
 
   def renderUsersPerSecondSeries(runStart: Long, serie: NumberPerSecondSeries): String =
@@ -19,18 +18,17 @@ color: '${serie.color}',
 name: '${serie.name.replace("'", "\\'")}',
 data: [
   ${serie.data
-      .map {
-        //case IntVsTimePlot(time, 0)     => fast"[${serie.runStart + time},null]"
-        plot =>
-          s"[${millisToSeconds(runStart + plot.time) * 1000},${plot.value}]"
-      }
-      .mkString(",")}
+        .map {
+          // case IntVsTimePlot(time, 0)     => fast"[${serie.runStart + time},null]"
+          plot =>
+            s"[${millisToSeconds(runStart + plot.time) * 1000},${plot.value}]"
+        }
+        .mkString(",")}
 ],
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }"""
 }
 
 private[highcharts] abstract class Template {
-
   def js: String
 
   def html: String
@@ -80,7 +78,7 @@ zIndex: $zIndex
   def renderPercentilesSeries(series: PercentilesSeries, chartVariableName: String): String =
     s"""
     ${if (series.data.nonEmpty) {
-      s"""
+        s"""
          {${renderPercentileSeries("min", chartVariableName, 0, 10)}},
          {${renderPercentileSeries("25%", chartVariableName, 1, 9)}},
          {${renderPercentileSeries("50%", chartVariableName, 2, 8)}},
@@ -91,7 +89,7 @@ zIndex: $zIndex
          {${renderPercentileSeries("95%", chartVariableName, 7, 3)}},
          {${renderPercentileSeries("99%", chartVariableName, 8, 2)}},
          {${renderPercentileSeries("max", chartVariableName, 9, 1)}},"""
-    } else ""}"""
+      } else ""}"""
 
   private def renderCountsPerSecSeries(name: String, chartVariableName: String, color: Color, index: Int, area: Boolean): String = s"""
 color: '$color',

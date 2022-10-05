@@ -12,7 +12,6 @@ import io.gatling.charts.highcharts.template.DistributionTemplate
 import io.gatling.charts.stats._
 
 private[charts] object DistributionComponent {
-
   def apply(
       title: String,
       yAxisName: String,

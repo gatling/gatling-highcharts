@@ -10,7 +10,6 @@ import io.gatling.charts.highcharts.series.NumberPerSecondSeries
 import io.gatling.charts.util.Color
 
 private[highcharts] final class ActiveUsersTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
-
   override def js: String = s"""
 allUsersData.yAxis = 0;
 

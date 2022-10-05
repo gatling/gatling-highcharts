@@ -12,7 +12,6 @@ import io.gatling.charts.highcharts.series.PercentilesSeries
 import io.gatling.charts.util.Color
 
 private[highcharts] final class PercentilesOverTimeTemplate(yAxisName: String, series: PercentilesSeries) extends Template {
-
   private val title = series.name
   private val jsName = s"${title.replaceAll("[ ()]", "").toLowerCase(Locale.ROOT)}Percentiles"
   private val chartName = s"${jsName}Chart"

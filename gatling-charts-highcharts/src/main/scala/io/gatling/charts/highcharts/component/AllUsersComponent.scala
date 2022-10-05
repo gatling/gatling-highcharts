@@ -11,7 +11,6 @@ import io.gatling.charts.highcharts.template.Template
 import io.gatling.charts.stats._
 
 private[charts] final class AllUsersComponent(runStart: Long, series: Series[IntVsTimePlot]) {
-
   def getJavascript: String = {
     val numberPerSecondSeries = NumberPerSecondSeries(series.name, series.data, series.colors.head)
     s"""allUsersData = {

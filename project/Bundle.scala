@@ -7,7 +7,6 @@ import NativePackagerHelper._
 import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport.useNativeZip
 
 object Bundle {
-
   val gatlingJars = taskKey[Seq[File]]("List of all Gatling jars needed for the bundle")
   val bundleFile = taskKey[File]("Path of gatling-bundle")
   val unzippedBundleLocation = settingKey[File]("Directory where bundle is unzipped")

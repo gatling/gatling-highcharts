@@ -10,6 +10,5 @@ import io.gatling.charts.component.Component
 import io.gatling.charts.highcharts.template.RangesTemplate
 
 private[charts] object RangesComponent {
-
   def apply(chartTitle: String, eventName: String, large: Boolean): Component = new HighchartsComponent(new RangesTemplate(chartTitle, eventName, large))
 }

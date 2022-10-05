@@ -1,7 +1,6 @@
 import sbt._
 
 object Dependencies {
-
   private val bundleArtifact = Artifact("gatling-bundle", "zip", "zip", "bundle")
 
   // format: OFF

@@ -12,7 +12,6 @@ import io.gatling.charts.highcharts.template.PercentilesOverTimeTemplate
 import io.gatling.charts.stats._
 
 private[charts] object PercentilesOverTimeComponent {
-
   def apply(yAxisName: String, runStart: Long, durationsSuccess: Series[PercentilesVsTimePlot]): Component = {
     val template = new PercentilesOverTimeTemplate(
       yAxisName,

@@ -4,7 +4,6 @@ import wartremover.WartRemover.autoImport._
 import wartremover.Wart
 
 object CodeAnalysis {
-
   lazy val settings = Seq(
     Compile / compile / wartremoverErrors := Warts.allBut(disabledWarts: _*),
     Test / compile / wartremoverErrors := (Compile / compile / wartremoverErrors).value

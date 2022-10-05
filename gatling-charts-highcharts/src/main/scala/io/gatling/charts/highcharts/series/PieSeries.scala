@@ -10,7 +10,6 @@ import io.gatling.charts.stats._
 import io.gatling.charts.util.Color
 
 private[highcharts] final case class PieSeries(name: String, data: Iterable[PieSlice], colors: List[Color]) {
-
   def elements: Iterable[String] =
     data
       .zip(colors)

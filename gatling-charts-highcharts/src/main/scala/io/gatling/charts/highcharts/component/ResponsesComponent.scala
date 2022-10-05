@@ -12,7 +12,6 @@ import io.gatling.charts.highcharts.template.CountsPerSecTemplate
 import io.gatling.charts.stats._
 
 private[charts] object ResponsesComponent {
-
   def apply(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]): Component = {
     val template = new CountsPerSecTemplate(
       chartTitle = "Number of responses per second",
