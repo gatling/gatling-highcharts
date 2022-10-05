@@ -18,7 +18,6 @@ private[highcharts] final class CountsPerSecTemplate(
     pieX: Int,
     allOnly: Boolean
 ) extends Template {
-
   private val UnpackedPlotsVarName = containerName
 
   override def js: String =
@@ -121,14 +120,14 @@ var requestsChart = new Highcharts.StockChart({
   series: [
     ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName, allOnly)}
     allUsersData${if (!allOnly) {
-      s""",
+        s""",
 {
   ${renderPieSeries(pieSeries, pieX)}
 }
 """
-    } else {
-      ""
-    }}
+      } else {
+        ""
+      }}
   ]
 });
 

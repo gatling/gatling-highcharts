@@ -12,7 +12,6 @@ import io.gatling.charts.highcharts.template.ResponseTimeScatterTemplate
 import io.gatling.charts.stats._
 
 private[charts] object ResponseTimeScatterComponent {
-
   def apply(success: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]): Component = {
     val template = new ResponseTimeScatterTemplate(
       ScatterSeries(success.name, success.data, success.colors.head),

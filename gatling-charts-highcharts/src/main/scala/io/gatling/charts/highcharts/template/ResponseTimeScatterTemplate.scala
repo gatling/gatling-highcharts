@@ -15,7 +15,6 @@ private[highcharts] final class ResponseTimeScatterTemplate(
     chartTitle: String,
     yAxisTitle: String
 ) extends Template {
-
   override def js: String = s"""
 var scatterChart = new Highcharts.Chart({
   chart: {

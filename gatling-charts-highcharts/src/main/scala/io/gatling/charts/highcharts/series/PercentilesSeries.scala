@@ -10,7 +10,6 @@ import io.gatling.charts.stats._
 import io.gatling.charts.util.Color
 
 private[highcharts] final case class PercentilesSeries(name: String, runStart: Long, data: Iterable[PercentilesVsTimePlot], colors: List[Color]) {
-
   def render: String =
     s"[${data.map(renderPercentilesVsTimePlot).mkString(",")}]"
 

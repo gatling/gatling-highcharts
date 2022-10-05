@@ -16,7 +16,6 @@ private[highcharts] final class DistributionTemplate(
     successSeries: StackedColumnSeries,
     failureSeries: StackedColumnSeries
 ) extends Template {
-
   private val jsName = s"${title.replace(" ", "").toLowerCase(Locale.ROOT)}Distribution"
   private val chartName = s"${jsName}Chart"
   private val containerId = s"${jsName}Container"

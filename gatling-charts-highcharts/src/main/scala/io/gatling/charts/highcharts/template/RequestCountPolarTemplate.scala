@@ -10,7 +10,6 @@ import io.gatling.charts.report.Container.{ Group, Request }
 import io.gatling.charts.util.Color
 
 private[highcharts] object RequestCountPolarTemplate extends Template {
-
   override def js: String = s"""
 function numberOfRequestsDataForGroup(group) {
   var data = {names: [], oks: [], kos: []};

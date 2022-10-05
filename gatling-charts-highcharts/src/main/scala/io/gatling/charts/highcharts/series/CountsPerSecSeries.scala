@@ -11,7 +11,6 @@ import io.gatling.charts.stats._
 import io.gatling.charts.util.Color
 
 private[highcharts] final case class CountsPerSecSeries(runStart: Long, data: Iterable[CountsVsTimePlot], colors: List[Color]) {
-
   val names: Seq[String] = List(Series.All, Series.OK, Series.KO)
 
   def render: String =
