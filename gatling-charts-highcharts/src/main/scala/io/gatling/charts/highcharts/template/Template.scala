@@ -28,6 +28,7 @@ data: [
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }"""
 }
 
+@SuppressWarnings(Array("org.wartremover.warts.SeqApply"))
 private[highcharts] abstract class Template {
   def js: String
 
