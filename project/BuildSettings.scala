@@ -10,6 +10,6 @@ object BuildSettings {
     headerLicense := GatlingHighChartsLicense,
     licenses := Seq("Gatling Highcharts" -> url("https://raw.githubusercontent.com/gatling/gatling-highcharts/master/LICENSE")),
     // Avoid to write the Apache2 license
-    Compile / gatlingApache2LicenseTask := Seq.empty
+    Compile / gatlingApache2LicenseTask := Nil
   )
 }
