@@ -8,7 +8,7 @@ gatlingDevelopers := Seq(
   GatlingDeveloper("slandelle@gatling.io", "Stephane Landelle", isGatlingCorp = true),
   GatlingDeveloper("gcorre@gatling.io", "Guillaume Corré", isGatlingCorp = true)
 )
-scalaVersion := "2.13.14"
+scalaVersion := "2.13.15"
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 
 lazy val root = (project in file("."))
