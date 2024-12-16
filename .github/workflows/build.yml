@@ -20,7 +20,7 @@ jobs:
       SBT_OPTS: "-Dsbt.ci=true"
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.8.0
+        uses: styfle/cancel-workflow-action@0.12.1
         with:
           access_token: ${{ github.token }}
 
