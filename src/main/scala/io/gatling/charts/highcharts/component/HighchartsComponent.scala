@@ -10,9 +10,9 @@ import io.gatling.charts.component.Component
 import io.gatling.charts.highcharts.template.Template
 
 private[highcharts] final class HighchartsComponent(template: Template) extends Component {
-  def html: String = template.html
+  override def html: String = template.html
 
-  def js: String = template.js
+  override def js: String = template.js
 
-  val jsFiles: Seq[String] = List("highstock.js", "highcharts-more.js", "theme.js", "unpack.js")
+  override def jsFiles: Seq[String] = List("highstock.js", "highcharts-more.js", "theme.js", "unpack.js")
 }
