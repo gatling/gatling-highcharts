@@ -6,9 +6,10 @@
 
 package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.stats.Ranges
 import io.gatling.charts.util.Color
 
-private[highcharts] class RangesTemplate(chartTitle: String, eventName: String, large: Boolean) extends Template {
+private[highcharts] class RangesTemplate(chartTitle: String, eventName: String, ranges: Ranges, large: Boolean) extends Template {
   override def js: String = s"""
 Highcharts.setOptions({
   global: { useUTC: false }
@@ -24,10 +25,10 @@ var rangesChart = new Highcharts.Chart({
   title: { text: 'A title to let highcharts reserve the place for the title set later' },
   xAxis: {
     categories: [
-      pageStats.group1.htmlName,
-      pageStats.group2.htmlName,
-      pageStats.group3.htmlName,
-      pageStats.group4.htmlName
+      "t < ${ranges.lowerBound} ms",
+      "t >= ${ranges.lowerBound} ms <br> t < ${ranges.higherBound} ms",
+      "t >= ${ranges.higherBound} ms",
+      "failed"
     ]
   },
   yAxis: {
@@ -56,19 +57,19 @@ var rangesChart = new Highcharts.Chart({
       type: 'column',
       data: [{
       	color: '${Color.Requests.Ok}',
-      	y: pageStats.group1.count
+      	y: ${ranges.lowCount}
       },
       {
       	color: '${Color.Requests.Fine}',
-      	y: pageStats.group2.count
+      	y: ${ranges.middleCount}
       },
       {
       	color: '${Color.Requests.Poor}',
-      	y: pageStats.group3.count
+      	y: ${ranges.highCount}
       },
       {
       	color: '${Color.Requests.Ko}',
-      	y: pageStats.group4.count
+      	y: ${ranges.koCount}
       }]
     },
     {
@@ -76,23 +77,23 @@ var rangesChart = new Highcharts.Chart({
       name: 'Percentages',
       data: [
         {
-          name: pageStats.group1.name,
-          y: pageStats.group1.percentage,
+          name: "t < ${ranges.lowerBound} ms",
+          y: ${ranges.lowPercentage},
           color: '${Color.Requests.Ok}'
         },
         {
-          name: pageStats.group2.name,
-          y: pageStats.group2.percentage,
+          name: "${ranges.lowerBound} ms <= t < ${ranges.higherBound} ms",
+          y: ${ranges.middlePercentage},
           color: '${Color.Requests.Fine}'
         },
         {
-          name: pageStats.group3.name,
-          y: pageStats.group3.percentage,
+          name: "t >= ${ranges.higherBound} ms",
+          y: ${ranges.highPercentage},
           color: '${Color.Requests.Poor}'
         },
         {
-          name: pageStats.group4.name,
-          y: pageStats.group4.percentage,
+          name: "failed",
+          y: ${ranges.koPercentage},
           color: '${Color.Requests.Ko}'
         }
       ],

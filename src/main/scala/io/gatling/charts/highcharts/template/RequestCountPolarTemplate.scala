@@ -6,33 +6,24 @@
 
 package io.gatling.charts.highcharts.template
 
-import io.gatling.charts.report.Container.{ Group, Request }
+import io.gatling.charts.report.{ GroupContainer, RequestContainer }
 import io.gatling.charts.util.Color
 
-private[highcharts] object RequestCountPolarTemplate extends Template {
-  override def js: String = s"""
-function numberOfRequestsDataForGroup(group) {
-  var data = {names: [], oks: [], kos: []};
+private[highcharts] final class RequestCountPolarTemplate(rootContainer: GroupContainer) extends Template {
+  override def js: String = {
 
-  $$.each(group.contents, function(contentName, content) {
-    if (content.type == '$Group') {
-      var result = numberOfRequestsDataForGroup(content);
-      data.names = data.names.concat(result.names);
-      data.oks = data.oks.concat(result.oks);
-      data.kos = data.kos.concat(result.kos);
-    }
-    else if (content.type == '$Request') {
-      data.names.push(content.path);
-      data.oks.push(parseInt(content.stats.numberOfRequests.ok));
-      data.kos.push(parseInt(content.stats.numberOfRequests.ko));
-    }
-  });
+    @SuppressWarnings(Array("org.wartremover.warts.Recursion"))
+    def collectRequestContainersRec(groupContainer: GroupContainer): List[RequestContainer] =
+      groupContainer.groups.values.flatMap(collectRequestContainersRec).toList ::: groupContainer.requests.values.toList
 
-  return data;
-}
+    val requestContainers = collectRequestContainersRec(rootContainer)
+    val ticksInterval = math.ceil(requestContainers.size / 1000.0)
+    val categories = requestContainers.map(_.name).mkString("['", "', '", "']")
+    val okData = requestContainers.map(_.stats.numberOfRequestsStatistics.success).mkString("[", ", ", "]")
+    val koData = requestContainers.map(_.stats.numberOfRequestsStatistics.failure).mkString("[", ", ", "]")
 
-var numberOfRequestsData = numberOfRequestsDataForGroup(stats);
-var tickInterval = Math.ceil(numberOfRequestsData.names.length / 1000);
+    s"""
+var tickInterval = $ticksInterval;
 
 new Highcharts.Chart({
   chart: {
@@ -52,7 +43,7 @@ new Highcharts.Chart({
   xAxis:{
     tickmarkPlacement:'on',
     tickInterval: tickInterval,
-    categories:numberOfRequestsData.names,
+    categories: $categories,
     labels:{ enabled:false }
   },
   yAxis:{
@@ -75,17 +66,18 @@ new Highcharts.Chart({
   series:[
       {
       name:'OK',
-      data:numberOfRequestsData.oks,
+      data:$okData,
       color:"${Color.Requests.Ok}"
     },
     {
       name:'KO',
-      data:numberOfRequestsData.kos,
+      data:$koData,
       color:"${Color.Requests.Ko}"
     }
   ]
 });
 """
+  }
 
   override def html: String = """
             <div class="schema polar">
