@@ -9,13 +9,17 @@ package io.gatling.charts.highcharts.template
 import io.gatling.charts.highcharts.series.NumberPerSecondSeries
 import io.gatling.charts.util.Color
 
-private[highcharts] final class ActiveUsersTemplate(runStart: Long, series: Seq[NumberPerSecondSeries]) extends Template {
+private[highcharts] final class UsersChartTemplate(
+    title: String,
+    yAxisTitle: String,
+    jsVariablePrefix: String,
+    runStart: Long,
+    series: Seq[NumberPerSecondSeries]
+) extends Template {
   override def js: String = s"""
-allUsersData.yAxis = 0;
-
-var allUsersChart = new Highcharts.StockChart({
+var ${jsVariablePrefix}Chart = new Highcharts.StockChart({
   chart: {
-    renderTo: 'active_users',
+    renderTo: '${jsVariablePrefix}Div',
     zoomType: 'x'
   },
   credits: { enabled: false },
@@ -29,7 +33,10 @@ var allUsersChart = new Highcharts.StockChart({
     itemStyle: { fontWeight: "normal" },
     symbolRadius: 0
   },
-  title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  title: {
+    text: '<span class="chart_title">$title</span>',
+    useHTML: true
+  },
   navigator: {
     maskInside: false
   },
@@ -85,28 +92,19 @@ var allUsersChart = new Highcharts.StockChart({
     maxZoom: 10000 // three days
   },
   yAxis: {
-    title: { text: 'Number of Active Users' },
+    title: { text: '$yAxisTitle' },
     opposite: false,
     min: 0
   },
   series: [
-    ${series.flatMap(serie => List("{", Template.renderUsersPerSecondSeries(runStart, serie), "},\n")).mkString}
-    allUsersData
+    ${series.map(ser => Template.renderUsersPerSecondSeries(runStart, ser)).mkString(",\n")}
   ]
 });
-
-
-allUsersChart.setTitle({
-  text: '<span class="chart_title">Active Users along the Simulation</span>',
-  useHTML: true
-});
-
-allUsersData.yAxis = 1;
 """
 
-  override val html: String = """
+  override val html: String = s"""
             <div class="schema geant">
-              <div id="active_users" class="geant"></div>
+              <div id="${jsVariablePrefix}Div" class="geant"></div>
             </div>
 """
 }

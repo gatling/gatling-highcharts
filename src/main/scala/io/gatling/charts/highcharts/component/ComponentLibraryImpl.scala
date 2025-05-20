@@ -13,11 +13,22 @@ import io.gatling.charts.report.GroupContainer
 import io.gatling.charts.stats._
 
 final class ComponentLibraryImpl extends ComponentLibrary {
-  override def getAllUsersJs(runStart: Long, series: Series[IntVsTimePlot]): String = new AllUsersComponent(runStart, series).getJavascript
-
-  override def getActiveSessionsComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component =
+  override def getUserStartRateComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component =
     new HighchartsComponent(
-      new ActiveUsersTemplate(
+      new UsersChartTemplate(
+        "Number of users started per second",
+        "Number of users started",
+        "userStartRate",
+        runStart,
+        series.map(s => NumberPerSecondSeries(s.name, s.data, s.colors.head))
+      )
+    )
+  override def getMaxConcurrentUsersComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component =
+    new HighchartsComponent(
+      new UsersChartTemplate(
+        "Number of concurrent users",
+        "Number of concurrent users",
+        "concurrentUsers",
         runStart,
         series.map(s => NumberPerSecondSeries(s.name, s.data, s.colors.head))
       )
@@ -73,7 +84,7 @@ final class ComponentLibraryImpl extends ComponentLibrary {
         countsSeries = CountsPerSecSeries(runStart, counts.data, counts.colors),
         pieSeries = PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
         pieX = 760,
-        allOnly = true
+        hasPieCharts = false
       )
     )
 
@@ -86,7 +97,7 @@ final class ComponentLibraryImpl extends ComponentLibrary {
         countsSeries = CountsPerSecSeries(runStart, counts.data, counts.colors),
         pieSeries = PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
         pieX = 775,
-        allOnly = false
+        hasPieCharts = true
       )
     )
 

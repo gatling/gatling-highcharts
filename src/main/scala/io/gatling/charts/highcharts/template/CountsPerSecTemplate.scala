@@ -16,7 +16,7 @@ private[highcharts] final class CountsPerSecTemplate(
     countsSeries: CountsPerSecSeries,
     pieSeries: PieSeries,
     pieX: Int,
-    allOnly: Boolean
+    hasPieCharts: Boolean
 ) extends Template {
   private val UnpackedPlotsVarName = containerName
 
@@ -39,7 +39,10 @@ var requestsChart = new Highcharts.StockChart({
     itemStyle: { fontWeight: "normal" },
     symbolRadius: 0
   },
-  title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  title: {
+    text: '<span class="chart_title">$chartTitle</span>',
+    useHTML: true
+  },
   navigator: {
     maskInside: false
   },
@@ -108,18 +111,10 @@ var requestsChart = new Highcharts.StockChart({
       title: { text: '$yAxisTitle' },
       opposite: false,
       reversedStacks: false
-    }, {
-      min: 0,
-      title: {
-        text: 'Active Users',
-        style: { color: '${Color.Users.All}' }
-      },
-      opposite: true
     }
   ],
   series: [
-    ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName, allOnly)}
-    allUsersData${if (!allOnly) {
+    ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName, hasPieCharts)}${if (hasPieCharts) {
         s""",
 {
   ${renderPieSeries(pieSeries, pieX)}
@@ -129,11 +124,6 @@ var requestsChart = new Highcharts.StockChart({
         ""
       }}
   ]
-});
-
-requestsChart.setTitle({
-  text: '<span class="chart_title">$chartTitle</span>',
-  useHTML: true
 });
 """
 

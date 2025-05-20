@@ -13,7 +13,7 @@ object Template {
   def millisToSeconds(millis: Long): Long = millis / 1000
 
   def renderUsersPerSecondSeries(runStart: Long, serie: NumberPerSecondSeries): String =
-    s"""
+    s"""{
 color: '${serie.color}',
 name: '${serie.name.replace("'", "\\'")}',
 data: [
@@ -25,7 +25,8 @@ data: [
         }
         .mkString(",")}
 ],
-tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }"""
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+}"""
 }
 
 @SuppressWarnings(Array("org.wartremover.warts.SeqApply"))
@@ -89,7 +90,7 @@ zIndex: $zIndex
          {${renderPercentileSeries("90%", chartVariableName, 6, 4)}},
          {${renderPercentileSeries("95%", chartVariableName, 7, 3)}},
          {${renderPercentileSeries("99%", chartVariableName, 8, 2)}},
-         {${renderPercentileSeries("max", chartVariableName, 9, 1)}},"""
+         {${renderPercentileSeries("max", chartVariableName, 9, 1)}}"""
       } else ""}"""
 
   private def renderCountsPerSecSeries(name: String, chartVariableName: String, color: Color, index: Int, area: Boolean): String = s"""
@@ -99,12 +100,12 @@ data: $chartVariableName[$index],
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
 ${if (area) ",type: 'area'" else ""}"""
 
-  def renderCountsPerSecSeries(series: CountsPerSecSeries, chartVariableName: String, allOnly: Boolean): String =
-    if (allOnly) {
-      s"""{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors.head, 0, area = true)}},"""
-    } else {
+  def renderCountsPerSecSeries(series: CountsPerSecSeries, chartVariableName: String, hasPieCharts: Boolean): String =
+    if (hasPieCharts) {
       s"""{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors.head, 0, area = false)}},
 {${renderCountsPerSecSeries(series.names(1), chartVariableName, series.colors(1), 1, area = true)}},
-{${renderCountsPerSecSeries(series.names(2), chartVariableName, series.colors(2), 2, area = true)}},"""
+{${renderCountsPerSecSeries(series.names(2), chartVariableName, series.colors(2), 2, area = true)}}"""
+    } else {
+      s"""{${renderCountsPerSecSeries(series.names.head, chartVariableName, series.colors.head, 0, area = true)}},"""
     }
 }

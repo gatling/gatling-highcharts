@@ -35,7 +35,10 @@ var scatterChart = new Highcharts.Chart({
     showLastLabel: true,
     min: 0
   },
-  title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  title: {
+    text: '<span class="chart_title">$chartTitle</span>',
+    useHTML: true
+  },
   yAxis: {
     min: 0,
     title: { text: '$yAxisTitle' }
@@ -74,11 +77,6 @@ var scatterChart = new Highcharts.Chart({
 	  {${renderScatterSeries(success)}},
 	  {${renderScatterSeries(failures)}}
 	]
-});
-
-scatterChart.setTitle({
-  text: '<span class="chart_title">$chartTitle</span>',
-  useHTML: true
 });
 """
 

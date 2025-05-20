@@ -22,7 +22,10 @@ var rangesChart = new Highcharts.Chart({
   },
   credits: { enabled: false },
   legend: { enabled: false },
-  title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  title: {
+    text: '<span class="chart_title">$chartTitle</span>',
+    useHTML: true
+  },
   xAxis: {
     categories: [
       "t < ${ranges.lowerBound} ms",
@@ -103,11 +106,6 @@ var rangesChart = new Highcharts.Chart({
       dataLabels: { enabled: false }
     }
   ]
-});
-
-rangesChart.setTitle({
-  text: '<span class="chart_title">$chartTitle</span>',
-  useHTML: true
 });
 """
 

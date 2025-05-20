@@ -37,7 +37,10 @@ var $chartName = new Highcharts.Chart({
     itemStyle: { fontWeight: "normal" },
     symbolRadius: 0
   },
-  title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  title: {
+    text: '<span class="chart_title">$title Distribution</span>',
+    useHTML: true
+  },
   navigator: {
     maskInside: false
   },
@@ -68,11 +71,6 @@ var $chartName = new Highcharts.Chart({
   	{${renderStackedColumnSeries(successSeries)}},
   	{${renderStackedColumnSeries(failureSeries)}}
   ]
-});
-
-$chartName.setTitle({
-  text: '<span class="chart_title">$title Distribution</span>',
-  useHTML: true
 });
 """
 

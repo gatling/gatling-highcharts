@@ -36,7 +36,10 @@ var $chartName = new Highcharts.StockChart({
     itemStyle: { fontWeight: "normal" },
     symbolRadius: 0
   },
-  title: { text: 'A title to let highcharts reserve the place for the title set later' },
+  title: {
+    text: '<span class="chart_title chart_title_">$title</span>',
+    useHTML: true
+  },
   navigator: {
     maskInside: false,
     baseSeries: 9
@@ -98,13 +101,6 @@ var $chartName = new Highcharts.StockChart({
       min: 0,
       title: { text: '$yAxisName (ms)' },
       opposite: false
-    }, {
-      min: 0,
-      title: {
-        text: 'Active Users',
-        style: { color: '${Color.Users.All}' }
-      },
-      opposite: true
     }
   ],
   plotOptions: {
@@ -115,13 +111,7 @@ var $chartName = new Highcharts.StockChart({
   },
   series: [
   ${renderPercentilesSeries(series, jsName)}
-  allUsersData
   ]
-});
-
-$chartName.setTitle({
-  text: '<span class="chart_title chart_title_">$title</span>',
-  useHTML: true
 });
 """
 
