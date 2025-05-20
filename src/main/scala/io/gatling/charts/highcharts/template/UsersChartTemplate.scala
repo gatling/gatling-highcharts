@@ -6,20 +6,24 @@
 
 package io.gatling.charts.highcharts.template
 
-import io.gatling.charts.highcharts.series.NumberPerSecondSeries
+import io.gatling.charts.stats.UserSeries
 import io.gatling.charts.util.Color
 
 private[highcharts] final class UsersChartTemplate(
     title: String,
     yAxisTitle: String,
-    jsVariablePrefix: String,
+    containerId: String,
     runStart: Long,
-    series: Seq[NumberPerSecondSeries]
+    allUsersSeries: UserSeries,
+    scenarioSeries: Seq[UserSeries]
 ) extends Template {
+
+  private val scenarioSeriesColors = Iterator.continually(Color.Users.Base).flatten.take(scenarioSeries.size).toList
+
   override def js: String = s"""
-var ${jsVariablePrefix}Chart = new Highcharts.StockChart({
+new Highcharts.StockChart({
   chart: {
-    renderTo: '${jsVariablePrefix}Div',
+    renderTo: '$containerId',
     zoomType: 'x'
   },
   credits: { enabled: false },
@@ -97,14 +101,25 @@ var ${jsVariablePrefix}Chart = new Highcharts.StockChart({
     min: 0
   },
   series: [
-    ${series.map(ser => Template.renderUsersPerSecondSeries(runStart, ser)).mkString(",\n")}
+    ${scenarioSeries.zip(scenarioSeriesColors).map { case (series, color) => renderUsersPerSecondSeries(series, color) }.mkString(",\n")},
+    ${renderUsersPerSecondSeries(allUsersSeries, Color.Users.All)}
   ]
 });
 """
 
+  private def renderUsersPerSecondSeries(series: UserSeries, color: Color): String =
+    s"""{
+color: '$color',
+name: '${series.name.replace("'", "\\'")}',
+data: [
+  ${series.data.map(plot => s"[${runStart + plot.time}, ${plot.value}]").mkString(",")}
+],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+}"""
+
   override val html: String = s"""
             <div class="schema geant">
-              <div id="${jsVariablePrefix}Div" class="geant"></div>
+              <div id="$containerId" class="geant"></div>
             </div>
 """
 }

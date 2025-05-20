@@ -15,7 +15,7 @@ Highcharts.setOptions({
   global: { useUTC: false }
 });
 
-var rangesChart = new Highcharts.Chart({
+new Highcharts.Chart({
   chart: {
     renderTo: 'ranges',
     marginRight: 100

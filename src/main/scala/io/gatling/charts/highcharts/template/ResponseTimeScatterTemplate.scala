@@ -6,17 +6,18 @@
 
 package io.gatling.charts.highcharts.template
 
-import io.gatling.charts.highcharts.series.ScatterSeries
+import io.gatling.charts.stats.{ IntVsTimePlot, Series }
+import io.gatling.charts.util.Color
 
 private[highcharts] final class ResponseTimeScatterTemplate(
-    success: ScatterSeries,
-    failures: ScatterSeries,
+    success: Seq[IntVsTimePlot],
+    failures: Seq[IntVsTimePlot],
     containerName: String,
     chartTitle: String,
     yAxisTitle: String
 ) extends Template {
   override def js: String = s"""
-var scatterChart = new Highcharts.Chart({
+new Highcharts.Chart({
   chart: {
     renderTo: '$containerName', 
     defaultSeriesType: 'scatter',
@@ -74,11 +75,19 @@ var scatterChart = new Highcharts.Chart({
     }
   },
   series: [
-	  {${renderScatterSeries(success)}},
-	  {${renderScatterSeries(failures)}}
+	  {${renderScatterSeries(success, Series.OK, Color.Requests.Ok)}},
+	  {${renderScatterSeries(failures, Series.KO, Color.Requests.Ko)}}
 	]
 });
 """
+
+  private def renderScatterSeries(series: Seq[IntVsTimePlot], name: String, color: Color): String = s"""
+type: 'scatter',
+color: '$color',
+name: '$name',
+data: [
+${series.map(plot => s"[${plot.time},${plot.value}]").mkString(",")}
+]"""
 
   override def html: String = s"""
             <div class="schema geant">

@@ -8,25 +8,21 @@ package io.gatling.charts.highcharts.template
 
 import java.util.Locale
 
-import io.gatling.charts.highcharts.series.PercentilesSeries
+import io.gatling.charts.stats.{ Percentiles, PercentilesVsTimePlot }
 import io.gatling.charts.util.Color
 
-private[highcharts] final class PercentilesOverTimeTemplate(yAxisName: String, series: PercentilesSeries) extends Template {
-  private val title = series.name
-  private val jsName = s"${title.replaceAll("[ ()]", "").toLowerCase(Locale.ROOT)}Percentiles"
-  private val chartName = s"${jsName}Chart"
-  private val containerId = s"${jsName}Container"
+private[highcharts] final class PercentilesOverTimeTemplate(title: String, yAxisName: String, runStart: Long, data: Seq[PercentilesVsTimePlot])
+    extends Template {
+  private val containerId = s"${title.replaceAll("[ ()]", "").toLowerCase(Locale.ROOT)}PercentilesContainer"
 
   override def js: String = s"""
-var $jsName = unpack(${series.render});
-
-var $chartName = new Highcharts.StockChart({
+new Highcharts.StockChart({
   chart: {
     renderTo: '$containerId',
     zoomType: 'x',
     marginBottom: 60
   },
-  colors: [${series.colors.map(color => s"'$color'").mkString(", ")}],
+  colors: [${Color.Requests.Percentiles.map(color => s"'$color'").mkString(", ")}],
   credits: { enabled: false },
   legend: {
     enabled: true,
@@ -110,10 +106,41 @@ var $chartName = new Highcharts.StockChart({
     }
   },
   series: [
-  ${renderPercentilesSeries(series, jsName)}
+  $renderPercentilesSeries
   ]
 });
 """
+
+  private def renderPercentilesSeries: String = {
+    def renderPercentileSeries(f: Percentiles => Int, name: String, zIndex: Int): String =
+      s"""
+pointInterval: 1000,
+name: '$name',
+data: ${data
+          .map(plot => s"""[${plot.time + runStart}, ${plot.percentiles.map(percentiles => f(percentiles).toString).getOrElse("null")}]""")
+          .mkString("[", ", ", "]")},
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: $zIndex
+"""
+
+    if (data.nonEmpty) {
+      s"""
+         {${renderPercentileSeries(_.percentile0, "min", 10)}},
+         {${renderPercentileSeries(_.percentile25, "25%", 9)}},
+         {${renderPercentileSeries(_.percentile50, "50%", 8)}},
+         {${renderPercentileSeries(_.percentile75, "75%", 7)}},
+         {${renderPercentileSeries(_.percentile80, "80%", 6)}},
+         {${renderPercentileSeries(_.percentile85, "85%", 5)}},
+         {${renderPercentileSeries(_.percentile90, "90%", 4)}},
+         {${renderPercentileSeries(_.percentile95, "95%", 3)}},
+         {${renderPercentileSeries(_.percentile99, "99%", 2)}},
+         {${renderPercentileSeries(_.percentile100, "max", 1)}}"""
+    } else {
+      ""
+    }
+  }
 
   override def html: String = s"""
             <div class="schema geant">

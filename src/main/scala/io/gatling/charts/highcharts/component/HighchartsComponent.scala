@@ -14,5 +14,5 @@ private[highcharts] final class HighchartsComponent(template: Template) extends 
 
   override def js: String = template.js
 
-  override def jsFiles: Seq[String] = List("highstock.js", "highcharts-more.js", "theme.js", "unpack.js")
+  override def jsFiles: Seq[String] = List("highstock.js", "highcharts-more.js", "theme.js")
 }

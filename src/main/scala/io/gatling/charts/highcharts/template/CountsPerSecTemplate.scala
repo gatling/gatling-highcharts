@@ -6,25 +6,21 @@
 
 package io.gatling.charts.highcharts.template
 
-import io.gatling.charts.highcharts.series.{ CountsPerSecSeries, PieSeries }
+import io.gatling.charts.stats.{ CountsVsTimePlot, Series }
 import io.gatling.charts.util.Color
+import io.gatling.commons.util.Collections._
 
 private[highcharts] final class CountsPerSecTemplate(
     chartTitle: String,
     yAxisTitle: String,
     containerName: String,
-    countsSeries: CountsPerSecSeries,
-    pieSeries: PieSeries,
-    pieX: Int,
-    hasPieCharts: Boolean
+    runStart: Long,
+    countsData: Seq[CountsVsTimePlot],
+    hasPie: Boolean
 ) extends Template {
-  private val UnpackedPlotsVarName = containerName
-
   override def js: String =
     s"""
-var $UnpackedPlotsVarName = unpack(${countsSeries.render});
-
-var requestsChart = new Highcharts.StockChart({
+new Highcharts.StockChart({
   chart: {
     renderTo: '$containerName',
     zoomType: 'x',
@@ -114,18 +110,46 @@ var requestsChart = new Highcharts.StockChart({
     }
   ],
   series: [
-    ${renderCountsPerSecSeries(countsSeries, UnpackedPlotsVarName, hasPieCharts)}${if (hasPieCharts) {
-        s""",
-{
-  ${renderPieSeries(pieSeries, pieX)}
-}
-"""
-      } else {
-        ""
-      }}
+    $renderCountsPerSecSeries
   ]
 });
 """
+
+  private def renderCountsPerSecSeries: String = {
+
+    def renderCountsPerSecSeries(f: CountsVsTimePlot => Int, name: String, color: Color, area: Boolean): String =
+      s"""{
+color: '$color',
+name: '$name',
+data: ${countsData.map(plot => s"""[${runStart + plot.time}, ${f(plot)}]""").mkString("[", ", ", "]")},
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+${if (area) ",type: 'area'" else ""}
+}"""
+
+    def renderPieSeries: String =
+      s"""{
+type: 'pie',
+name: '${Series.Distribution}',
+data: [
+  {name: '${Series.OK}', y: ${countsData.sumBy(_.oks)}, color: '${Color.Requests.Ok}'},
+  {name: '${Series.KO}', y: ${countsData.sumBy(_.kos)}, color: '${Color.Requests.Ko}'}
+],
+center: [775, -40],
+size: 70,
+showInLegend: false,
+dataLabels: { enabled: false },
+dataGrouping: { enabled: false }
+}"""
+
+    if (hasPie) {
+      s"""${renderCountsPerSecSeries(plot => plot.oks + plot.kos, Series.All, Color.Requests.All, area = false)},
+${renderCountsPerSecSeries(_.oks, Series.OK, Color.Requests.Ok, area = true)},
+${renderCountsPerSecSeries(_.kos, Series.KO, Color.Requests.Ko, area = true)},
+$renderPieSeries"""
+    } else {
+      s"""${renderCountsPerSecSeries(plot => plot.oks + plot.kos, Series.All, Color.Requests.All, area = true)}"""
+    }
+  }
 
   override def html: String = s"""
             <div class="schema geant">

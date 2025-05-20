@@ -7,30 +7,31 @@
 package io.gatling.charts.highcharts.component
 
 import io.gatling.charts.component.{ Component, ComponentLibrary }
-import io.gatling.charts.highcharts.series._
 import io.gatling.charts.highcharts.template._
 import io.gatling.charts.report.GroupContainer
 import io.gatling.charts.stats._
 
 final class ComponentLibraryImpl extends ComponentLibrary {
-  override def getUserStartRateComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component =
+  override def getUserStartRateComponent(runStart: Long, allUsersSeries: UserSeries, scenarioSeries: Seq[UserSeries]): Component =
     new HighchartsComponent(
       new UsersChartTemplate(
         "Number of users started per second",
         "Number of users started",
         "userStartRate",
         runStart,
-        series.map(s => NumberPerSecondSeries(s.name, s.data, s.colors.head))
+        allUsersSeries,
+        scenarioSeries
       )
     )
-  override def getMaxConcurrentUsersComponent(runStart: Long, series: Seq[Series[IntVsTimePlot]]): Component =
+  override def getMaxConcurrentUsersComponent(runStart: Long, allUsersSeries: UserSeries, scenarioSeries: Seq[UserSeries]): Component =
     new HighchartsComponent(
       new UsersChartTemplate(
         "Number of concurrent users",
         "Number of concurrent users",
         "concurrentUsers",
         runStart,
-        series.map(s => NumberPerSecondSeries(s.name, s.data, s.colors.head))
+        allUsersSeries,
+        scenarioSeries
       )
     )
 
@@ -43,69 +44,62 @@ final class ComponentLibraryImpl extends ComponentLibrary {
   override def getDistributionComponent(
       title: String,
       yAxisName: String,
-      responseTimesSuccess: Series[PercentVsTimePlot],
-      responseTimesFailures: Series[PercentVsTimePlot]
+      responseTimesSuccess: Seq[PercentVsTimePlot],
+      responseTimesFailures: Seq[PercentVsTimePlot]
   ): Component =
     new HighchartsComponent(
       new DistributionTemplate(
         title,
         yAxisName,
-        StackedColumnSeries(
-          responseTimesSuccess.name,
-          responseTimesSuccess.data.map(plot => new PieSlice(plot.time.toString, plot.roundedUpValue)),
-          responseTimesSuccess.colors.head
-        ),
-        StackedColumnSeries(
-          responseTimesFailures.name,
-          responseTimesFailures.data.map(plot => new PieSlice(plot.time.toString, plot.roundedUpValue)),
-          responseTimesFailures.colors.head
-        )
+        responseTimesSuccess,
+        responseTimesFailures
       )
     )
 
   override def getPercentilesOverTimeComponent(
+      title: String,
       yAxisName: String,
       runStart: Long,
-      durationsSuccess: Series[PercentilesVsTimePlot]
+      data: Seq[PercentilesVsTimePlot]
   ): Component =
     new HighchartsComponent(
       new PercentilesOverTimeTemplate(
+        title,
         yAxisName,
-        PercentilesSeries(durationsSuccess.name, runStart, durationsSuccess.data, durationsSuccess.colors)
+        runStart,
+        data
       )
     )
 
-  override def getRequestsComponent(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]): Component =
+  override def getRequestsComponent(runStart: Long, counts: Seq[CountsVsTimePlot]): Component =
     new HighchartsComponent(
       new CountsPerSecTemplate(
         chartTitle = "Number of requests per second",
         yAxisTitle = "Number of requests",
         containerName = "requests",
-        countsSeries = CountsPerSecSeries(runStart, counts.data, counts.colors),
-        pieSeries = PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
-        pieX = 760,
-        hasPieCharts = false
+        runStart,
+        counts,
+        hasPie = false
       )
     )
 
-  override def getResponsesComponent(runStart: Long, counts: Series[CountsVsTimePlot], pieSeries: Series[PieSlice]): Component =
+  override def getResponsesComponent(runStart: Long, counts: Seq[CountsVsTimePlot]): Component =
     new HighchartsComponent(
       new CountsPerSecTemplate(
         chartTitle = "Number of responses per second",
         yAxisTitle = "Number of responses",
         containerName = "responses",
-        countsSeries = CountsPerSecSeries(runStart, counts.data, counts.colors),
-        pieSeries = PieSeries(pieSeries.name, pieSeries.data, pieSeries.colors),
-        pieX = 775,
-        hasPieCharts = true
+        runStart,
+        counts,
+        hasPie = true
       )
     )
 
-  override def getResponseTimeScatterComponent(successes: Series[IntVsTimePlot], failures: Series[IntVsTimePlot]): Component =
+  override def getResponseTimeScatterComponent(successes: Seq[IntVsTimePlot], failures: Seq[IntVsTimePlot]): Component =
     new HighchartsComponent(
       new ResponseTimeScatterTemplate(
-        ScatterSeries(successes.name, successes.data, successes.colors.head),
-        ScatterSeries(failures.name, failures.data, failures.colors.head),
+        successes,
+        failures,
         "container_response_time_dispersion",
         "Response Time against Global Throughput",
         "Response Time (ms)"

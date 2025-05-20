@@ -8,21 +8,20 @@ package io.gatling.charts.highcharts.template
 
 import java.util.Locale
 
-import io.gatling.charts.highcharts.series.StackedColumnSeries
+import io.gatling.charts.stats.{ PercentVsTimePlot, Series }
+import io.gatling.charts.util.Color
 
 private[highcharts] final class DistributionTemplate(
     title: String,
     yAxisName: String,
-    successSeries: StackedColumnSeries,
-    failureSeries: StackedColumnSeries
+    successSeries: Seq[PercentVsTimePlot],
+    failureSeries: Seq[PercentVsTimePlot]
 ) extends Template {
-  private val jsName = s"${title.replace(" ", "").toLowerCase(Locale.ROOT)}Distribution"
-  private val chartName = s"${jsName}Chart"
-  private val containerId = s"${jsName}Container"
-  private val categories = if (successSeries.getXValues.nonEmpty) successSeries.getXValues else failureSeries.getXValues
+  private val containerId = s"${title.replace(" ", "").toLowerCase(Locale.ROOT)}DistributionContainer"
+  private val categories = (if (successSeries.nonEmpty) successSeries else failureSeries).map(_.time)
 
   override def js: String = s"""
-var $chartName = new Highcharts.Chart({
+new Highcharts.Chart({
   chart: {
     renderTo: '$containerId',
     type: 'column',
@@ -68,10 +67,20 @@ var $chartName = new Highcharts.Chart({
     }
   },
   series: [
-  	{${renderStackedColumnSeries(successSeries)}},
-  	{${renderStackedColumnSeries(failureSeries)}}
+  	{${renderStackedColumnSeries(successSeries, Series.OK, Color.Requests.Ok)}},
+  	{${renderStackedColumnSeries(failureSeries, Series.KO, Color.Requests.Ko)}}
   ]
 });
+"""
+
+  private def renderStackedColumnSeries(series: Iterable[PercentVsTimePlot], name: String, color: Color): String = s"""
+type: 'column',
+color: '$color',
+name: '$name',
+data: [
+  ${series.map(plot => (plot.value * 100).toInt / 100.0).mkString(",")}
+],
+tooltip: { yDecimals: 0, ySuffix: 'ms' }
 """
 
   override def html: String = s"""
