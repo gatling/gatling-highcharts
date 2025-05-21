@@ -10,4 +10,7 @@ private[highcharts] abstract class Template {
   def js: String
 
   def html: String
+
+  protected def truncateTimestampToSecond(fullTimestamp: Long): Long =
+    fullTimestamp / 1000 * 1000
 }

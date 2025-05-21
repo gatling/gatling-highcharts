@@ -121,7 +121,7 @@ new Highcharts.StockChart({
       s"""{
 color: '$color',
 name: '$name',
-data: ${countsData.map(plot => s"""[${runStart + plot.time}, ${f(plot)}]""").mkString("[", ", ", "]")},
+data: ${countsData.map(plot => s"""[${truncateTimestampToSecond(runStart + plot.time)}, ${f(plot)}]""").mkString("[", ", ", "]")},
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
 ${if (area) ",type: 'area'" else ""}
 }"""

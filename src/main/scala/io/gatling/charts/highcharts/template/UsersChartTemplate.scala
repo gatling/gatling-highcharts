@@ -112,7 +112,7 @@ new Highcharts.StockChart({
 color: '$color',
 name: '${series.name.replace("'", "\\'")}',
 data: [
-  ${series.data.map(plot => s"[${runStart + plot.time}, ${plot.value}]").mkString(",")}
+  ${series.data.map(plot => s"[${truncateTimestampToSecond(runStart + plot.time)}, ${plot.value}]").mkString(",")}
 ],
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
 }"""

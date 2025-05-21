@@ -117,7 +117,9 @@ new Highcharts.StockChart({
 pointInterval: 1000,
 name: '$name',
 data: ${data
-          .map(plot => s"""[${plot.time + runStart}, ${plot.percentiles.map(percentiles => f(percentiles).toString).getOrElse("null")}]""")
+          .map(plot =>
+            s"""[${truncateTimestampToSecond(runStart + plot.time)}, ${plot.percentiles.map(percentiles => f(percentiles).toString).getOrElse("null")}]"""
+          )
           .mkString("[", ", ", "]")},
 tooltip: { yDecimals: 0, ySuffix: 'ms' },
 type : 'area',
