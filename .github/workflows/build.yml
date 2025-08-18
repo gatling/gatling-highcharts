@@ -25,14 +25,14 @@ jobs:
           access_token: ${{ github.token }}
 
       - name: Checkout gatling/gatling
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: gatling/gatling
           ref: main
           path: gatling
 
       - name: Checkout gatling/gatling-highcharts
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: gatling-highcharts
 
