@@ -10,16 +10,16 @@ import io.gatling.charts.stats.{ IntVsTimePlot, Series }
 import io.gatling.charts.util.Color
 
 private[highcharts] final class ResponseTimeScatterTemplate(
+    containerId: String,
     success: Seq[IntVsTimePlot],
     failures: Seq[IntVsTimePlot],
-    containerName: String,
     chartTitle: String,
     yAxisTitle: String
 ) extends Template {
   override def js: String = s"""
 new Highcharts.Chart({
   chart: {
-    renderTo: '$containerName', 
+    renderTo: '$containerId',
     defaultSeriesType: 'scatter',
     zoomType: 'xy',
     marginBottom: 90
@@ -91,7 +91,7 @@ ${series.map(plot => s"[${plot.time},${plot.value}]").mkString(",")}
 
   override def html: String = s"""
             <div class="schema geant">
-              <div id="$containerName" class="geant"></div>
+              <div id="$containerId" class="geant"></div>
             </div>
 """
 }

@@ -6,18 +6,16 @@
 
 package io.gatling.charts.highcharts.template
 
-import java.util.Locale
-
 import io.gatling.charts.stats.{ PercentVsTimePlot, Series }
 import io.gatling.charts.util.Color
 
 private[highcharts] final class DistributionTemplate(
+    containerId: String,
     title: String,
     yAxisName: String,
     successSeries: Seq[PercentVsTimePlot],
     failureSeries: Seq[PercentVsTimePlot]
 ) extends Template {
-  private val containerId = s"${title.replace(" ", "").toLowerCase(Locale.ROOT)}DistributionContainer"
   private val categories = (if (successSeries.nonEmpty) successSeries else failureSeries).map(_.time)
 
   override def js: String = s"""

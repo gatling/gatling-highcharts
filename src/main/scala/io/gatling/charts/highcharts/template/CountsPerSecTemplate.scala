@@ -11,9 +11,9 @@ import io.gatling.charts.util.Color
 import io.gatling.commons.util.Collections._
 
 private[highcharts] final class CountsPerSecTemplate(
+    containerId: String,
     chartTitle: String,
     yAxisTitle: String,
-    containerName: String,
     runStart: Long,
     countsData: Seq[CountsVsTimePlot],
     hasPie: Boolean
@@ -22,7 +22,7 @@ private[highcharts] final class CountsPerSecTemplate(
     s"""
 new Highcharts.StockChart({
   chart: {
-    renderTo: '$containerName',
+    renderTo: '$containerId',
     zoomType: 'x',
     marginBottom: 60
   },
@@ -153,7 +153,7 @@ $renderPieSeries"""
 
   override def html: String = s"""
             <div class="schema geant">
-                <div id="$containerName" class="geant"></div>
+                <div id="$containerId" class="geant"></div>
             </div>
 """
 }

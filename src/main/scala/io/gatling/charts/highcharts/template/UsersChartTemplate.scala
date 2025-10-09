@@ -10,9 +10,9 @@ import io.gatling.charts.stats.UserSeries
 import io.gatling.charts.util.Color
 
 private[highcharts] final class UsersChartTemplate(
+    containerId: String,
     title: String,
     yAxisTitle: String,
-    containerId: String,
     runStart: Long,
     allUsersSeries: UserSeries,
     scenarioSeries: Seq[UserSeries]

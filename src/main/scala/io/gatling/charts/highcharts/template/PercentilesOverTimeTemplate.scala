@@ -6,15 +6,16 @@
 
 package io.gatling.charts.highcharts.template
 
-import java.util.Locale
-
 import io.gatling.charts.stats.{ Percentiles, PercentilesVsTimePlot }
 import io.gatling.charts.util.Color
 
-private[highcharts] final class PercentilesOverTimeTemplate(title: String, yAxisName: String, runStart: Long, data: Seq[PercentilesVsTimePlot])
-    extends Template {
-  private val containerId = s"${title.replaceAll("[ ()]", "").toLowerCase(Locale.ROOT)}PercentilesContainer"
-
+private[highcharts] final class PercentilesOverTimeTemplate(
+    containerId: String,
+    title: String,
+    yAxisName: String,
+    runStart: Long,
+    data: Seq[PercentilesVsTimePlot]
+) extends Template {
   override def js: String = s"""
 new Highcharts.StockChart({
   chart: {

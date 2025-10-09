@@ -12,36 +12,37 @@ import io.gatling.charts.report.GroupContainer
 import io.gatling.charts.stats._
 
 final class ComponentLibraryImpl extends ComponentLibrary {
-  override def getUserStartRateComponent(runStart: Long, allUsersSeries: UserSeries, scenarioSeries: Seq[UserSeries]): Component =
+  override def getUserStartRateComponent(containerId: String, runStart: Long, allUsersSeries: UserSeries, scenarioSeries: Seq[UserSeries]): Component =
     new HighchartsComponent(
       new UsersChartTemplate(
+        containerId,
         "Number of users started per second",
         "Number of users started",
-        "userStartRate",
         runStart,
         allUsersSeries,
         scenarioSeries
       )
     )
-  override def getMaxConcurrentUsersComponent(runStart: Long, allUsersSeries: UserSeries, scenarioSeries: Seq[UserSeries]): Component =
+  override def getMaxConcurrentUsersComponent(containerId: String, runStart: Long, allUsersSeries: UserSeries, scenarioSeries: Seq[UserSeries]): Component =
     new HighchartsComponent(
       new UsersChartTemplate(
+        containerId,
         "Number of concurrent users",
         "Number of concurrent users",
-        "concurrentUsers",
         runStart,
         allUsersSeries,
         scenarioSeries
       )
     )
 
-  override def getRangesComponent(chartTitle: String, eventName: String, ranges: Ranges, large: Boolean): Component =
-    new HighchartsComponent(new RangesTemplate(chartTitle, eventName, ranges, large))
+  override def getRangesComponent(containerId: String, chartTitle: String, eventName: String, ranges: Ranges, large: Boolean): Component =
+    new HighchartsComponent(new RangesTemplate(containerId, chartTitle, eventName, ranges, large))
 
   override def getRequestCountPolarComponent(rootContainer: GroupContainer): Component =
     new HighchartsComponent(new RequestCountPolarTemplate(rootContainer))
 
   override def getDistributionComponent(
+      containerId: String,
       title: String,
       yAxisName: String,
       responseTimesSuccess: Seq[PercentVsTimePlot],
@@ -49,6 +50,7 @@ final class ComponentLibraryImpl extends ComponentLibrary {
   ): Component =
     new HighchartsComponent(
       new DistributionTemplate(
+        containerId,
         title,
         yAxisName,
         responseTimesSuccess,
@@ -57,6 +59,7 @@ final class ComponentLibraryImpl extends ComponentLibrary {
     )
 
   override def getPercentilesOverTimeComponent(
+      containerId: String,
       title: String,
       yAxisName: String,
       runStart: Long,
@@ -64,6 +67,7 @@ final class ComponentLibraryImpl extends ComponentLibrary {
   ): Component =
     new HighchartsComponent(
       new PercentilesOverTimeTemplate(
+        containerId,
         title,
         yAxisName,
         runStart,
@@ -71,36 +75,36 @@ final class ComponentLibraryImpl extends ComponentLibrary {
       )
     )
 
-  override def getRequestsComponent(runStart: Long, counts: Seq[CountsVsTimePlot]): Component =
+  override def getRequestsComponent(containerId: String, runStart: Long, counts: Seq[CountsVsTimePlot]): Component =
     new HighchartsComponent(
       new CountsPerSecTemplate(
+        containerId,
         chartTitle = "Number of requests per second",
         yAxisTitle = "Number of requests",
-        containerName = "requests",
         runStart,
         counts,
         hasPie = false
       )
     )
 
-  override def getResponsesComponent(runStart: Long, counts: Seq[CountsVsTimePlot]): Component =
+  override def getResponsesComponent(containerId: String, runStart: Long, counts: Seq[CountsVsTimePlot]): Component =
     new HighchartsComponent(
       new CountsPerSecTemplate(
+        containerId,
         chartTitle = "Number of responses per second",
         yAxisTitle = "Number of responses",
-        containerName = "responses",
         runStart,
         counts,
         hasPie = true
       )
     )
 
-  override def getResponseTimeScatterComponent(successes: Seq[IntVsTimePlot], failures: Seq[IntVsTimePlot]): Component =
+  override def getResponseTimeScatterComponent(containerId: String, successes: Seq[IntVsTimePlot], failures: Seq[IntVsTimePlot]): Component =
     new HighchartsComponent(
       new ResponseTimeScatterTemplate(
+        containerId,
         successes,
         failures,
-        "container_response_time_dispersion",
         "Response Time against Global Throughput",
         "Response Time (ms)"
       )
