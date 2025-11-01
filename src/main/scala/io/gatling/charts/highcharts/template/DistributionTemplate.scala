@@ -16,7 +16,7 @@ private[highcharts] final class DistributionTemplate(
     successSeries: Seq[PercentVsTimePlot],
     failureSeries: Seq[PercentVsTimePlot]
 ) extends Template {
-  private val categories = (if (successSeries.nonEmpty) successSeries else failureSeries).map(_.time)
+  private val categories = (if (successSeries.nonEmpty) successSeries else failureSeries).map(_.time).mkString("['", "', '", "']")
 
   override def js: String = s"""
 new Highcharts.Chart({
@@ -42,7 +42,7 @@ new Highcharts.Chart({
     maskInside: false
   },
   xAxis: {
-    categories: ['${categories.mkString("', '")}'],
+    categories: $categories,
     tickInterval: 20
   },
   yAxis: {
