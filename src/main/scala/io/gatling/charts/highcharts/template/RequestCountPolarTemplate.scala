@@ -18,7 +18,7 @@ private[highcharts] final class RequestCountPolarTemplate(rootContainer: GroupCo
 
     val requestContainers = collectRequestContainersRec(rootContainer)
     val ticksInterval = math.ceil(requestContainers.size / 1000.0)
-    val categories = requestContainers.map(_.name).mkString("['", "', '", "']")
+    val categories = requestContainers.map(_.name.replace("'", "&#39;")).mkString("['", "', '", "']")
     val okData = requestContainers.map(container => container.stats.numberOfRequestsStatistics.success.getOrElse(0L)).mkString("[", ", ", "]")
     val koData = requestContainers.map(container => container.stats.numberOfRequestsStatistics.failure.getOrElse(0L)).mkString("[", ", ", "]")
 
