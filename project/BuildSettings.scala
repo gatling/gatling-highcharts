@@ -1,7 +1,7 @@
 import io.gatling.build.license._
 import sbt._
 import sbt.Keys._
-import de.heikoseeberger.sbtheader.HeaderPlugin.autoImport._
+import sbtheader.HeaderPlugin.autoImport._
 
 object BuildSettings {
   lazy val basicSettings = Seq(
