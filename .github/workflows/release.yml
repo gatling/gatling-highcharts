@@ -9,6 +9,9 @@ defaults:
   run:
     shell: bash
 
+permissions:
+  contents: read
+
 jobs:
   release:
     if: github.repository == 'gatling/gatling-highcharts'
@@ -18,6 +21,7 @@ jobs:
       JAVA_OPTS: "-Xmx6G"
       SBT_OPTS: "-Dsbt.ci=true"
     steps:
+      - name: Checkout
       - uses: actions/checkout@v6
 
       - name: Setup JDK
