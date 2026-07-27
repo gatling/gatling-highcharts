@@ -1,11 +1,11 @@
-import sbt.Keys._
-import sbt._
-import wartremover.WartRemover.autoImport._
+import sbt.Keys.*
+import sbt.*
+import wartremover.WartRemover.autoImport.*
 import wartremover.Wart
 
 object CodeAnalysis {
-  lazy val settings = Seq(
-    Compile / compile / wartremoverErrors := Warts.allBut(disabledWarts: _*),
+  lazy val settings: Seq[Def.Setting[?]] = Seq(
+    Compile / compile / wartremoverErrors := Warts.allBut(disabledWarts *),
     Test / compile / wartremoverErrors := (Compile / compile / wartremoverErrors).value
   )
 

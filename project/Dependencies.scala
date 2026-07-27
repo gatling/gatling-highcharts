@@ -1,11 +1,11 @@
-import sbt._
+import sbt.*
 
 object Dependencies {
   // format: OFF
-  def app(gatlingVersion: String)         = "io.gatling"     % "gatling-app"         % gatlingVersion
-  def recorder(gatlingVersion: String)    = "io.gatling"     % "gatling-recorder"    % gatlingVersion
+  private def app(gatlingVersion: String)         = "io.gatling"     % "gatling-app"         % gatlingVersion
+  private def recorder(gatlingVersion: String)    = "io.gatling"     % "gatling-recorder"    % gatlingVersion
   // format: ON
 
-  def gatlingChartsHighchartsDeps(version: String) =
-    Seq(app _, recorder _).map(_(version))
+  def gatlingChartsHighchartsDeps(version: String): Seq[ModuleID] =
+    Seq(app, recorder).map(_(version))
 }
