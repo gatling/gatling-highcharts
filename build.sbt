@@ -1,7 +1,7 @@
-import sbt._
+import sbt.*
 
-import BuildSettings._
-import Dependencies._
+import BuildSettings.*
+import Dependencies.*
 
 githubPath := "gatling/gatling-highcharts"
 gatlingDevelopers := Seq(
@@ -9,9 +9,8 @@ gatlingDevelopers := Seq(
   GatlingDeveloper("gcorre@gatling.io", "Guillaume Corré", isGatlingCorp = true)
 )
 scalaVersion := "2.13.18"
-ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
 
-lazy val root = (project in file("."))
+lazy val root = rootProject
   .enablePlugins(GatlingOssPlugin)
   .settings(name := "gatling-charts-highcharts")
   .settings(basicSettings ++ CodeAnalysis.settings)

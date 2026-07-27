@@ -67,8 +67,8 @@ jobs:
         run: |
           sbt \
             -Dproject.version="$CURRENT_VERSION" \
-            "all headerCheck" \
-            "all scalafmtSbtCheck" \
-            "all scalafmtCheckAll" \
-            "all scalafixAll --check" \
-            "test"
+            "headerCheck;" \
+            "scalafmtSbtCheck;" \
+            "scalafmtCheckAll;" \
+            "scalafixAll --check;" \
+            "test;"
