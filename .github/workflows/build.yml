@@ -71,4 +71,4 @@ jobs:
             "scalafmtSbtCheck;" \
             "scalafmtCheckAll;" \
             "scalafixAll --check;" \
-            "test;"
+            "testFull;"
