@@ -118,11 +118,13 @@ new Highcharts.StockChart({
       s"""
 pointInterval: 1000,
 name: ${jsString(name)},
-data: ${data
-          .map(plot =>
-            s"""[${truncateTimestampToSecond(runStart + plot.time)}, ${plot.percentiles.map(percentiles => f(percentiles).toString).getOrElse("null")}]"""
-          )
-          .mkString("[", ", ", "]")},
+data: [${joinJs(data, ", ") { (sb, plot) =>
+          val withTimestamp = sb.append('[').append(truncateTimestampToSecond(runStart + plot.time)).append(", ")
+          (plot.percentiles match {
+            case Some(percentiles) => withTimestamp.append(f(percentiles))
+            case None              => withTimestamp.append("null")
+          }).append(']')
+        }}],
 tooltip: { yDecimals: 0, ySuffix: 'ms' },
 type : 'area',
 yAxis: 0,

@@ -50,6 +50,17 @@ private[highcharts] object Template {
     }.mkString
 
   /**
+   * Join items into a single StringBuilder, without allocating an intermediate String per item. Used for large data series.
+   */
+  def joinJs[A](items: Iterable[A], separator: String)(appendItem: (java.lang.StringBuilder, A) => java.lang.StringBuilder): String = {
+    // roughly the size of a [timestamp, value] pair
+    val sb = new java.lang.StringBuilder(math.min(items.size.toLong * 24, Int.MaxValue / 2L).toInt)
+    items.foreach(item => appendItem(sb, item).append(separator))
+    if (sb.length > 0) sb.setLength(sb.length - separator.length)
+    sb.toString
+  }
+
+  /**
    * A Highcharts title using useHTML: true, as a JavaScript string literal.
    */
   def htmlTitle(title: String): String =

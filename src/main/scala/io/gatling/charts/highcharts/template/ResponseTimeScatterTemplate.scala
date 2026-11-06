@@ -87,7 +87,7 @@ type: 'scatter',
 color: '$color',
 name: ${jsString(name)},
 data: [
-${series.map(plot => s"[${plot.time},${plot.value}]").mkString(",")}
+${joinJs(series, ",")((sb, plot) => sb.append('[').append(plot.time).append(',').append(plot.value).append(']'))}
 ]"""
 
   override def html: String = s"""

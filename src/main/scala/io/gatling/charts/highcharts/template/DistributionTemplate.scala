@@ -77,7 +77,7 @@ type: 'column',
 color: '$color',
 name: ${jsString(name)},
 data: [
-  ${series.map(plot => math.round(plot.value * 100) / 100.0).mkString(",")}
+  ${joinJs(series, ",")((sb, plot) => sb.append(math.round(plot.value * 100) / 100.0))}
 ],
 tooltip: { yDecimals: 0, ySuffix: 'ms' }
 """

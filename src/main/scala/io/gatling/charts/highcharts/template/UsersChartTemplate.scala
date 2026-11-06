@@ -113,7 +113,7 @@ new Highcharts.StockChart({
 color: '$color',
 name: ${jsString(svgText(series.name))},
 data: [
-  ${series.data.map(plot => s"[${truncateTimestampToSecond(runStart + plot.time)}, ${plot.value}]").mkString(",")}
+  ${joinJs(series.data, ",")((sb, plot) => sb.append('[').append(truncateTimestampToSecond(runStart + plot.time)).append(", ").append(plot.value).append(']'))}
 ],
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
 }"""
