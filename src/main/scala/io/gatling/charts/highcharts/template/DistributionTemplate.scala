@@ -17,7 +17,7 @@ private[highcharts] final class DistributionTemplate(
     successSeries: Seq[PercentVsTimePlot],
     failureSeries: Seq[PercentVsTimePlot]
 ) extends Template {
-  private val categories = (if (successSeries.nonEmpty) successSeries else failureSeries).map(_.time).mkString("['", "', '", "']")
+  private val categories = (if (successSeries.nonEmpty) successSeries else failureSeries).map(plot => s"'${plot.time}'").mkString("[", ", ", "]")
 
   override def js: String = s"""
 new Highcharts.Chart({
@@ -77,7 +77,7 @@ type: 'column',
 color: '$color',
 name: ${jsString(name)},
 data: [
-  ${series.map(plot => (plot.value * 100).toInt / 100.0).mkString(",")}
+  ${series.map(plot => math.round(plot.value * 100) / 100.0).mkString(",")}
 ],
 tooltip: { yDecimals: 0, ySuffix: 'ms' }
 """

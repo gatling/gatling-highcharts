@@ -4,6 +4,11 @@
  * Licensed under the Gatling Highcharts License
  */
 Highcharts.theme = {
+	// display times in the browser's time zone
+	global: {
+		useUTC: false
+	},
+
 	chart: {
 		backgroundColor: '#f7f7f7',
 		borderWidth: 0,

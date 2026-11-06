@@ -12,10 +12,6 @@ import io.gatling.charts.util.Color
 
 private[highcharts] class RangesTemplate(containerId: String, chartTitle: String, eventName: String, ranges: Ranges, large: Boolean) extends Template {
   override def js: String = s"""
-Highcharts.setOptions({
-  global: { useUTC: false }
-});
-
 new Highcharts.Chart({
   chart: {
     renderTo: ${jsString(containerId)},
