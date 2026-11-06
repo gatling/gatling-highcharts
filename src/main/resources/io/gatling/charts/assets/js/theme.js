@@ -57,45 +57,20 @@ Highcharts.theme = {
 		}
 	},
 
+	credits: {
+		enabled: false
+	},
 
-	rangeSelector: {
-		buttonTheme: {
-			fill: '#cfc9c6',
-			stroke: '#000000',
-			style: {
-				color: '#34332e',
-				fontWeight: 'bold',
-				borderColor: '#b2b2a9'
-			},
-			states: {
-				hover: {
-					fill: '#92918C',
-					stroke: '#000000',
-					style: {
-				    color: '#34332e',
-				    fontWeight: 'bold',
-				    borderColor: '#8b897d'
-			    }
-				},
-				select: {
-					fill: '#E37400',
-					stroke: '#000000',
-					style: {
-						color: '#FFF'
-					}
-				}
-			}
+	legend: {
+		borderWidth: 0,
+		itemStyle: {
+			fontWeight: 'normal'
 		},
-		inputStyle: {
-			backgroundColor: '#333',
-			color: 'silver'
-		},
-		labelStyle: {
-			color: '#8b897d'
-		}
+		symbolRadius: 0
 	},
 
 	navigator: {
+		maskInside: false,
 		handles: {
 			backgroundColor: '#f7f7f7',
 			borderColor: '#92918C'

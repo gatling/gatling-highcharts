@@ -27,75 +27,19 @@ new Highcharts.StockChart({
     renderTo: ${jsString(containerId)},
     zoomType: 'x'
   },
-  credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
     align: 'right',
     verticalAlign: 'top',
-    layout: 'vertical',
-    borderWidth: 0,
-    itemStyle: { fontWeight: "normal" },
-    symbolRadius: 0
+    layout: 'vertical'
   },
   title: {
     text: ${htmlTitle(title)},
     useHTML: true
   },
-  navigator: {
-    maskInside: false
-  },
-  rangeSelector: {
-    buttonSpacing: 0,
-    buttonTheme: {
-      fill: '${Color.RangeSelector.Fill}',
-      padding: 1,
-      stroke: '${Color.RangeSelector.Border}',
-      'stroke-width': 0.25,
-      style: {
-        color: '${Color.RangeSelector.Border}',
-        fontWeight: 'bold',
-      },
-      states: {
-        stroke: '${Color.RangeSelector.Border}',
-        'stroke-width': 0.25,
-        hover: {
-          fill: '${Color.RangeSelector.Hover}',
-          style: { color: 'black' }
-        },
-        select: {
-          fill: '${Color.RangeSelector.Selected}',
-          style: { color: 'white' }
-        }
-      }
-    },
-    buttons : [
-      {
-        type : 'minute',
-        count : 1,
-        text : '1m'
-      }, {
-        type : 'minute',
-        count : 10,
-        text : '10m'
-      }, {
-        type : 'hour',
-        count : 1,
-        text : '1h'
-      }, {
-        type : 'all',
-        count : 1,
-        text : 'All'
-      }
-    ],
-    selected : 3,
-    inputEnabled : false
-  },
-  xAxis: {
-    type: 'datetime',
-    ordinal: false,
-    maxZoom: 10000 // three days
-  },
+  $StockRangeSelector,
+  $StockXAxis,
   yAxis: {
     title: { text: ${jsString(svgText(yAxisTitle))} },
     opposite: false,
@@ -115,10 +59,10 @@ name: ${jsString(svgText(series.name))},
 data: [
   ${joinJs(series.data, ",")((sb, plot) => sb.append('[').append(truncateTimestampToSecond(runStart + plot.time)).append(", ").append(plot.value).append(']'))}
 ],
-tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+tooltip: { valueDecimals: 0 }
 }"""
 
-  override val html: String = s"""
+  override def html: String = s"""
             <div class="schema geant">
               <div id="${escapeHtml(containerId)}" class="geant"></div>
             </div>

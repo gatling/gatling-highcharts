@@ -25,75 +25,20 @@ new Highcharts.StockChart({
     marginBottom: 60
   },
   colors: [${Color.Requests.Percentiles.map(color => s"'$color'").mkString(", ")}],
-  credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
-    y: -65,
-    borderWidth: 0,
-    itemStyle: { fontWeight: "normal" },
-    symbolRadius: 0
+    y: -65
   },
   title: {
     text: ${htmlTitle(title)},
     useHTML: true
   },
   navigator: {
-    maskInside: false,
     baseSeries: 9
   },
-  rangeSelector: {
-    rangeSelector: { align: "left" },
-    buttonSpacing: 0,
-    buttonTheme: {
-      fill: '${Color.RangeSelector.Fill}',
-      padding: 1,
-      stroke: '${Color.RangeSelector.Border}',
-      'stroke-width': 0.25,
-      style: {
-        color: '${Color.RangeSelector.Border}',
-        fontWeight: 'bold',
-      },
-      states: {
-        stroke: '${Color.RangeSelector.Hover}',
-        'stroke-width': 0.25,
-        hover: {
-          fill: '${Color.RangeSelector.Hover}',
-          style: { color: 'black' }
-        },
-        select: {
-          fill: '${Color.RangeSelector.Selected}',
-          style: { color: 'white' }
-        }
-      }
-    },
-    buttons : [
-      {
-        type : 'minute',
-        count : 1,
-        text : '1m'
-      }, {
-        type : 'minute',
-        count : 10,
-        text : '10m'
-      }, {
-        type : 'hour',
-        count : 1,
-        text : '1h'
-      }, {
-        type : 'all',
-        count : 1,
-        text : 'All'
-      }
-    ],
-    selected : 3,
-    inputEnabled : false
-  },
-  xAxis: {
-    type: 'datetime',
-    ordinal: false,
-    maxZoom: 10000 // three days
-  },
+  $StockRangeSelector,
+  $StockXAxis,
   yAxis:[
     {
       min: 0,
@@ -101,6 +46,7 @@ new Highcharts.StockChart({
       opposite: false
     }
   ],
+  tooltip: { valueSuffix: ' ms' },
   plotOptions: {
     arearange: { lineWidth: 1 },
     series: {
@@ -116,7 +62,6 @@ new Highcharts.StockChart({
   private def renderPercentilesSeries: String = {
     def renderPercentileSeries(f: Percentiles => Int, name: String, zIndex: Int): String =
       s"""
-pointInterval: 1000,
 name: ${jsString(name)},
 data: [${joinJs(data, ", ") { (sb, plot) =>
           val withTimestamp = sb.append('[').append(truncateTimestampToSecond(runStart + plot.time)).append(", ")
@@ -125,7 +70,6 @@ data: [${joinJs(data, ", ") { (sb, plot) =>
             case None              => withTimestamp.append("null")
           }).append(']')
         }}],
-tooltip: { yDecimals: 0, ySuffix: 'ms' },
 type : 'area',
 yAxis: 0,
 zIndex: $zIndex

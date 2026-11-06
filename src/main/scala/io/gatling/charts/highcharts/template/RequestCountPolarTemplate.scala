@@ -24,17 +24,12 @@ private[highcharts] final class RequestCountPolarTemplate(rootContainer: GroupCo
     val koData = requestContainers.map(container => container.stats.numberOfRequestsStatistics.failure.getOrElse(0L)).mkString("[", ", ", "]")
 
     s"""
-var tickInterval = $ticksInterval;
-
 new Highcharts.Chart({
   chart: {
     renderTo:'container_number_of_requests',
     polar:true,
     type:'column',
     height:330
-  },
-  credits:{
-    enabled:false
   },
   title:{
     text:'<span class="chart_title">Number of requests</span>',
@@ -43,7 +38,7 @@ new Highcharts.Chart({
   },
   xAxis:{
     tickmarkPlacement:'on',
-    tickInterval: tickInterval,
+    tickInterval: $ticksInterval,
     categories: $categories,
     labels:{ enabled:false }
   },
@@ -58,11 +53,6 @@ new Highcharts.Chart({
       pointPlacement:'on',
       shadow: true
     }
-  },
-  legend: {
-      borderWidth: 0,
-      itemStyle: { fontWeight: "normal" },
-      symbolRadius: 0
   },
   series:[
       {

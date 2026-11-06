@@ -27,68 +27,16 @@ new Highcharts.StockChart({
     zoomType: 'x',
     marginBottom: 60
   },
-  credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
-    y: -65,
-    borderWidth: 0,
-    itemStyle: { fontWeight: "normal" },
-    symbolRadius: 0
+    y: -65
   },
   title: {
     text: ${htmlTitle(chartTitle)},
     useHTML: true
   },
-  navigator: {
-    maskInside: false
-  },
-  rangeSelector: {
-    buttonSpacing: 0,
-    buttonTheme: {
-      fill: '${Color.RangeSelector.Fill}',
-      padding: 1,
-      stroke: '${Color.RangeSelector.Border}',
-      'stroke-width': 0.25,
-      style: {
-        color: '${Color.RangeSelector.Border}',
-        fontWeight: 'bold',
-      },
-      states: {
-        stroke: '${Color.RangeSelector.Border}',
-        'stroke-width': 0.25,
-        hover: {
-          fill: '${Color.RangeSelector.Hover}',
-          style: { color: 'black' }
-         },
-         select: {
-          fill: '${Color.RangeSelector.Selected}',
-          style: { color: 'white' }
-        }
-      }
-    },
-    buttons : [
-      {
-        type : 'minute',
-        count : 1,
-        text : '1m'
-      }, {
-        type : 'minute',
-        count : 10,
-        text : '10m'
-      }, {
-        type : 'hour',
-        count : 1,
-        text : '1h'
-      }, {
-        type : 'all',
-        count : 1,
-        text : 'All'
-      }
-    ],
-    selected : 3,
-    inputEnabled : false
-  },
+  $StockRangeSelector,
   plotOptions: {
     series: {
       dataGrouping: { enabled: false }
@@ -97,11 +45,7 @@ new Highcharts.StockChart({
       stacking: 'normal'
     }
   },
-  xAxis: {
-    type: 'datetime',
-    ordinal: false,
-    maxZoom: 10000 // three days
-  },
+  $StockXAxis,
   yAxis:[
     {
       min: 0,
@@ -125,7 +69,7 @@ name: ${jsString(name)},
 data: [${joinJs(countsData, ", ")((sb, plot) =>
           sb.append('[').append(truncateTimestampToSecond(runStart + plot.time)).append(", ").append(f(plot)).append(']')
         )}],
-tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+tooltip: { valueDecimals: 0 }
 ${if (area) ",type: 'area'" else ""}
 }"""
 
@@ -137,7 +81,7 @@ data: [
   {name: '${Series.OK}', y: ${countsData.sumBy(_.oks.toLong)}, color: '${Color.Requests.Ok}'},
   {name: '${Series.KO}', y: ${countsData.sumBy(_.kos.toLong)}, color: '${Color.Requests.Ko}'}
 ],
-center: [775, -40],
+center: ['87.37%', -40], // relative to the plot width, so it follows the chart width
 size: 70,
 showInLegend: false,
 dataLabels: { enabled: false },

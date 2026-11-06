@@ -10,14 +10,13 @@ import io.gatling.charts.highcharts.template.Template._
 import io.gatling.charts.stats.Ranges
 import io.gatling.charts.util.Color
 
-private[highcharts] class RangesTemplate(containerId: String, chartTitle: String, eventName: String, ranges: Ranges, large: Boolean) extends Template {
+private[highcharts] final class RangesTemplate(containerId: String, chartTitle: String, eventName: String, ranges: Ranges, large: Boolean) extends Template {
   override def js: String = s"""
 new Highcharts.Chart({
   chart: {
     renderTo: ${jsString(containerId)},
     marginRight: 100
   },
-  credits: { enabled: false },
   legend: { enabled: false },
   title: {
     text: ${htmlTitle(chartTitle)},

@@ -26,21 +26,14 @@ new Highcharts.Chart({
     type: 'column',
     marginBottom: 60
   },
-  credits: { enabled: false },
   legend: {
     enabled: true,
     floating: true,
-    y: 5,
-    borderWidth: 0,
-    itemStyle: { fontWeight: "normal" },
-    symbolRadius: 0
+    y: 5
   },
   title: {
     text: ${htmlTitle(s"$title Distribution")},
     useHTML: true
-  },
-  navigator: {
-    maskInside: false
   },
   xAxis: {
     categories: $categories,
@@ -78,8 +71,7 @@ color: '$color',
 name: ${jsString(name)},
 data: [
   ${joinJs(series, ",")((sb, plot) => sb.append(math.round(plot.value * 100) / 100.0))}
-],
-tooltip: { yDecimals: 0, ySuffix: 'ms' }
+]
 """
 
   override def html: String = s"""

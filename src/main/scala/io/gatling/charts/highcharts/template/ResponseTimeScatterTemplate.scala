@@ -21,11 +21,10 @@ private[highcharts] final class ResponseTimeScatterTemplate(
 new Highcharts.Chart({
   chart: {
     renderTo: ${jsString(containerId)},
-    defaultSeriesType: 'scatter',
+    type: 'scatter',
     zoomType: 'xy',
     marginBottom: 90
   },
-  credits: { enabled: false },
   xAxis: {
     title: {
       enabled: true,
@@ -53,9 +52,7 @@ new Highcharts.Chart({
   legend: {
     enabled: true,
     floating: true,
-    y: 0,
-    borderWidth: 0,
-    itemStyle: { fontWeight: "normal" },
+    y: 0
   },
   plotOptions: {
     scatter: {

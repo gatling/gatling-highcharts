@@ -6,7 +6,56 @@
 
 package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.util.Color
+
 private[highcharts] object Template {
+
+  /**
+   * Range selector shared by the time-series (stock) charts. Kept here rather than in theme.js because its colors come from Gatling's Color palette.
+   */
+  val StockRangeSelector: String =
+    s"""rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '${Color.RangeSelector.Fill}',
+      padding: 1,
+      stroke: '${Color.RangeSelector.Border}',
+      'stroke-width': 0.25,
+      style: {
+        color: '${Color.RangeSelector.Border}',
+        fontWeight: 'bold'
+      },
+      states: {
+        hover: {
+          fill: '${Color.RangeSelector.Hover}',
+          style: { color: 'black', fontWeight: 'bold' }
+        },
+        select: {
+          fill: '${Color.RangeSelector.Selected}',
+          style: { color: 'white' }
+        }
+      }
+    },
+    labelStyle: { color: '#8b897d' },
+    buttons: [
+      { type: 'minute', count: 1, text: '1m' },
+      { type: 'minute', count: 10, text: '10m' },
+      { type: 'hour', count: 1, text: '1h' },
+      { type: 'all', count: 1, text: 'All' }
+    ],
+    selected: 3,
+    inputEnabled: false
+  }"""
+
+  /**
+   * Time axis shared by the time-series (stock) charts.
+   */
+  val StockXAxis: String =
+    """xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    minRange: 10000 // can't zoom in below 10 seconds
+  }"""
 
   private def escapeJsChar(c: Char): String =
     c match {
