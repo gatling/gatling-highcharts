@@ -6,6 +6,7 @@
 
 package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.highcharts.template.Template._
 import io.gatling.charts.stats.{ CountsVsTimePlot, Series }
 import io.gatling.charts.util.Color
 import io.gatling.commons.util.Collections._
@@ -22,7 +23,7 @@ private[highcharts] final class CountsPerSecTemplate(
     s"""
 new Highcharts.StockChart({
   chart: {
-    renderTo: '$containerId',
+    renderTo: ${jsString(containerId)},
     zoomType: 'x',
     marginBottom: 60
   },
@@ -36,7 +37,7 @@ new Highcharts.StockChart({
     symbolRadius: 0
   },
   title: {
-    text: '<span class="chart_title">$chartTitle</span>',
+    text: ${htmlTitle(chartTitle)},
     useHTML: true
   },
   navigator: {
@@ -104,7 +105,7 @@ new Highcharts.StockChart({
   yAxis:[
     {
       min: 0,
-      title: { text: '$yAxisTitle' },
+      title: { text: ${jsString(svgText(yAxisTitle))} },
       opposite: false,
       reversedStacks: false
     }
@@ -120,7 +121,7 @@ new Highcharts.StockChart({
     def renderCountsPerSecSeries(f: CountsVsTimePlot => Int, name: String, color: Color, area: Boolean): String =
       s"""{
 color: '$color',
-name: '$name',
+name: ${jsString(name)},
 data: ${countsData.map(plot => s"""[${truncateTimestampToSecond(runStart + plot.time)}, ${f(plot)}]""").mkString("[", ", ", "]")},
 tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
 ${if (area) ",type: 'area'" else ""}
@@ -131,8 +132,8 @@ ${if (area) ",type: 'area'" else ""}
 type: 'pie',
 name: '${Series.Distribution}',
 data: [
-  {name: '${Series.OK}', y: ${countsData.sumBy(_.oks)}, color: '${Color.Requests.Ok}'},
-  {name: '${Series.KO}', y: ${countsData.sumBy(_.kos)}, color: '${Color.Requests.Ko}'}
+  {name: '${Series.OK}', y: ${countsData.sumBy(_.oks.toLong)}, color: '${Color.Requests.Ok}'},
+  {name: '${Series.KO}', y: ${countsData.sumBy(_.kos.toLong)}, color: '${Color.Requests.Ko}'}
 ],
 center: [775, -40],
 size: 70,
@@ -153,7 +154,7 @@ $renderPieSeries"""
 
   override def html: String = s"""
             <div class="schema geant">
-                <div id="$containerId" class="geant"></div>
+                <div id="${escapeHtml(containerId)}" class="geant"></div>
             </div>
 """
 }

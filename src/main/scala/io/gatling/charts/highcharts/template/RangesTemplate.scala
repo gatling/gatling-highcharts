@@ -6,6 +6,7 @@
 
 package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.highcharts.template.Template._
 import io.gatling.charts.stats.Ranges
 import io.gatling.charts.util.Color
 
@@ -17,13 +18,13 @@ Highcharts.setOptions({
 
 new Highcharts.Chart({
   chart: {
-    renderTo: '$containerId',
+    renderTo: ${jsString(containerId)},
     marginRight: 100
   },
   credits: { enabled: false },
   legend: { enabled: false },
   title: {
-    text: '<span class="chart_title">$chartTitle</span>',
+    text: ${htmlTitle(chartTitle)},
     useHTML: true
   },
   xAxis: {
@@ -35,16 +36,16 @@ new Highcharts.Chart({
     ]
   },
   yAxis: {
-    title: { text: 'Number of ${eventName.capitalize}' },
+    title: { text: ${jsString(svgText(s"Number of ${eventName.capitalize}"))} },
     reversedStacks: false
   },
   tooltip: {
     formatter: function() {
       var s;
       if (this.point.name) { // the pie chart
-        s = ''+ this.point.name +': '+ this.y +'% $eventName';
+        s = ''+ this.point.name +': '+ this.y + ${jsString(svgText(s"% $eventName"))};
       } else {
-        s = ''+ this.y + ' $eventName';
+        s = ''+ this.y + ${jsString(svgText(s" $eventName"))};
       }
       return s;
     }
@@ -110,7 +111,7 @@ new Highcharts.Chart({
 """
 
   override def html: String = s"""
-            <div id="$containerId" class="schema ${if (large) "ranges-large" else "ranges"}">
+            <div id="${escapeHtml(containerId)}" class="schema ${if (large) "ranges-large" else "ranges"}">
             </div>
 """
 }

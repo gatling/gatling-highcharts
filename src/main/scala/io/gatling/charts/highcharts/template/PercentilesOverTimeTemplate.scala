@@ -6,6 +6,7 @@
 
 package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.highcharts.template.Template._
 import io.gatling.charts.stats.{ Percentiles, PercentilesVsTimePlot }
 import io.gatling.charts.util.Color
 
@@ -19,7 +20,7 @@ private[highcharts] final class PercentilesOverTimeTemplate(
   override def js: String = s"""
 new Highcharts.StockChart({
   chart: {
-    renderTo: '$containerId',
+    renderTo: ${jsString(containerId)},
     zoomType: 'x',
     marginBottom: 60
   },
@@ -34,7 +35,7 @@ new Highcharts.StockChart({
     symbolRadius: 0
   },
   title: {
-    text: '<span class="chart_title chart_title_">$title</span>',
+    text: ${htmlTitle(title)},
     useHTML: true
   },
   navigator: {
@@ -96,7 +97,7 @@ new Highcharts.StockChart({
   yAxis:[
     {
       min: 0,
-      title: { text: '$yAxisName (ms)' },
+      title: { text: ${jsString(svgText(s"$yAxisName (ms)"))} },
       opposite: false
     }
   ],
@@ -116,7 +117,7 @@ new Highcharts.StockChart({
     def renderPercentileSeries(f: Percentiles => Int, name: String, zIndex: Int): String =
       s"""
 pointInterval: 1000,
-name: '$name',
+name: ${jsString(name)},
 data: ${data
           .map(plot =>
             s"""[${truncateTimestampToSecond(runStart + plot.time)}, ${plot.percentiles.map(percentiles => f(percentiles).toString).getOrElse("null")}]"""
@@ -147,7 +148,7 @@ zIndex: $zIndex
 
   override def html: String = s"""
             <div class="schema geant">
-              <div id="$containerId" class="geant"></div>
+              <div id="${escapeHtml(containerId)}" class="geant"></div>
             </div>
 """
 }

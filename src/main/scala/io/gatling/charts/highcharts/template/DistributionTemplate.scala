@@ -6,6 +6,7 @@
 
 package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.highcharts.template.Template._
 import io.gatling.charts.stats.{ PercentVsTimePlot, Series }
 import io.gatling.charts.util.Color
 
@@ -21,7 +22,7 @@ private[highcharts] final class DistributionTemplate(
   override def js: String = s"""
 new Highcharts.Chart({
   chart: {
-    renderTo: '$containerId',
+    renderTo: ${jsString(containerId)},
     type: 'column',
     marginBottom: 60
   },
@@ -35,7 +36,7 @@ new Highcharts.Chart({
     symbolRadius: 0
   },
   title: {
-    text: '<span class="chart_title">$title Distribution</span>',
+    text: ${htmlTitle(s"$title Distribution")},
     useHTML: true
   },
   navigator: {
@@ -47,7 +48,7 @@ new Highcharts.Chart({
   },
   yAxis: {
     min: 0,
-    title: { text: 'Percentage of $yAxisName' },
+    title: { text: ${jsString(svgText(s"Percentage of $yAxisName"))} },
     reversedStacks: false
   },
   tooltip: {
@@ -74,7 +75,7 @@ new Highcharts.Chart({
   private def renderStackedColumnSeries(series: Iterable[PercentVsTimePlot], name: String, color: Color): String = s"""
 type: 'column',
 color: '$color',
-name: '$name',
+name: ${jsString(name)},
 data: [
   ${series.map(plot => (plot.value * 100).toInt / 100.0).mkString(",")}
 ],
@@ -83,7 +84,7 @@ tooltip: { yDecimals: 0, ySuffix: 'ms' }
 
   override def html: String = s"""
             <div class="schema geant">
-              <div id="$containerId" class="geant"></div>
+              <div id="${escapeHtml(containerId)}" class="geant"></div>
             </div>
 """
 }

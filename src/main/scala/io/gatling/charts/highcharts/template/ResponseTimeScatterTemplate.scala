@@ -6,6 +6,7 @@
 
 package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.highcharts.template.Template._
 import io.gatling.charts.stats.{ IntVsTimePlot, Series }
 import io.gatling.charts.util.Color
 
@@ -19,7 +20,7 @@ private[highcharts] final class ResponseTimeScatterTemplate(
   override def js: String = s"""
 new Highcharts.Chart({
   chart: {
-    renderTo: '$containerId',
+    renderTo: ${jsString(containerId)},
     defaultSeriesType: 'scatter',
     zoomType: 'xy',
     marginBottom: 90
@@ -37,12 +38,12 @@ new Highcharts.Chart({
     min: 0
   },
   title: {
-    text: '<span class="chart_title">$chartTitle</span>',
+    text: ${htmlTitle(chartTitle)},
     useHTML: true
   },
   yAxis: {
     min: 0,
-    title: { text: '$yAxisTitle' }
+    title: { text: ${jsString(svgText(yAxisTitle))} }
   },
   tooltip: {
     formatter: function() {
@@ -84,14 +85,14 @@ new Highcharts.Chart({
   private def renderScatterSeries(series: Seq[IntVsTimePlot], name: String, color: Color): String = s"""
 type: 'scatter',
 color: '$color',
-name: '$name',
+name: ${jsString(name)},
 data: [
 ${series.map(plot => s"[${plot.time},${plot.value}]").mkString(",")}
 ]"""
 
   override def html: String = s"""
             <div class="schema geant">
-              <div id="$containerId" class="geant"></div>
+              <div id="${escapeHtml(containerId)}" class="geant"></div>
             </div>
 """
 }

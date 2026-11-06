@@ -6,6 +6,7 @@
 
 package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.highcharts.template.Template._
 import io.gatling.charts.report.{ GroupContainer, RequestContainer }
 import io.gatling.charts.util.Color
 
@@ -18,7 +19,7 @@ private[highcharts] final class RequestCountPolarTemplate(rootContainer: GroupCo
 
     val requestContainers = collectRequestContainersRec(rootContainer)
     val ticksInterval = math.ceil(requestContainers.size / 1000.0)
-    val categories = requestContainers.map(_.name.replace("'", "&#39;")).mkString("['", "', '", "']")
+    val categories = requestContainers.map(container => jsString(svgText(container.name))).mkString("[", ", ", "]")
     val okData = requestContainers.map(container => container.stats.numberOfRequestsStatistics.success.getOrElse(0L)).mkString("[", ", ", "]")
     val koData = requestContainers.map(container => container.stats.numberOfRequestsStatistics.failure.getOrElse(0L)).mkString("[", ", ", "]")
 

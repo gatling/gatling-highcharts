@@ -6,6 +6,7 @@
 
 package io.gatling.charts.highcharts.template
 
+import io.gatling.charts.highcharts.template.Template._
 import io.gatling.charts.stats.UserSeries
 import io.gatling.charts.util.Color
 
@@ -23,7 +24,7 @@ private[highcharts] final class UsersChartTemplate(
   override def js: String = s"""
 new Highcharts.StockChart({
   chart: {
-    renderTo: '$containerId',
+    renderTo: ${jsString(containerId)},
     zoomType: 'x'
   },
   credits: { enabled: false },
@@ -38,7 +39,7 @@ new Highcharts.StockChart({
     symbolRadius: 0
   },
   title: {
-    text: '<span class="chart_title">$title</span>',
+    text: ${htmlTitle(title)},
     useHTML: true
   },
   navigator: {
@@ -96,7 +97,7 @@ new Highcharts.StockChart({
     maxZoom: 10000 // three days
   },
   yAxis: {
-    title: { text: '$yAxisTitle' },
+    title: { text: ${jsString(svgText(yAxisTitle))} },
     opposite: false,
     min: 0
   },
@@ -110,7 +111,7 @@ new Highcharts.StockChart({
   private def renderUsersPerSecondSeries(series: UserSeries, color: Color): String =
     s"""{
 color: '$color',
-name: '${series.name.replace("'", "\\'")}',
+name: ${jsString(svgText(series.name))},
 data: [
   ${series.data.map(plot => s"[${truncateTimestampToSecond(runStart + plot.time)}, ${plot.value}]").mkString(",")}
 ],
@@ -119,7 +120,7 @@ tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
 
   override val html: String = s"""
             <div class="schema geant">
-              <div id="$containerId" class="geant"></div>
+              <div id="${escapeHtml(containerId)}" class="geant"></div>
             </div>
 """
 }
